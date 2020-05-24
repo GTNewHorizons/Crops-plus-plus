@@ -65,17 +65,17 @@ dependencies {
     compile "net.industrial-craft:industrialcraft-2:${config.ic2.version}:dev"
 }
 
-task getThaucraftDev(type: Download) {
+task getThaumcraftDev(type: Download) {
     onlyIf {
         !file("libs/Thaumcraft-1.7.10-4.2.3.5.jar").exists()
     }
-    src "https://minecraft.curseforge.com/projects/thaumcraft/files/2227552/download"
-    dest file("libs/Thaumcraft-1.7.10-4.2.3.5.jar")
+    src "http://downloads.gtnewhorizons.com/Mods_for_Jenkins/Thaumcraft-1.7.10-4.2.3.5-deobf.jar"  
+    dest file("libs/Thaumcraft-1.7.10-4.2.3.5-deobf.jar")
     mustRunAfter "deobfBinJar"
     mustRunAfter "repackMinecraft"
 }
 
-task getGalacticraft(type: Download, dependsOn: "getThaucraftDev") {
+task getGalacticraft(type: Download, dependsOn: "getThaumcraftDev") {
     onlyIf {
         !file("libs/GalacticraftCore-Dev-1.7-3.0.12.503.jar").exists()
     }

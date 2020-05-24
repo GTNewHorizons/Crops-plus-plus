@@ -37,8 +37,18 @@ public abstract class BasicCrop extends CropCard implements ICropCardInfo {
     }
 
     @Override
+    public boolean canBeHarvested(ICropTile crop) {
+        return crop.getSize() == maxSize();
+    }
+
+    @Override
+    public int getOptimalHavestSize(ICropTile crop) {
+        return maxSize();
+    }
+
+    @Override
     public int getrootslength(ICropTile crop) {
-        return 3;
+        return 5;
     }
 
     @Override

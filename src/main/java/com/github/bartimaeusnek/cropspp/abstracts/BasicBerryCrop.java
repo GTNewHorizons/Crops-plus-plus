@@ -3,6 +3,9 @@ package com.github.bartimaeusnek.cropspp.abstracts;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import ic2.api.crops.ICropTile;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class BasicBerryCrop extends BasicCrop {
 
 
@@ -39,14 +42,8 @@ public abstract class BasicBerryCrop extends BasicCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 3;
-    }
-
-
-    @Override
-    public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 3;
+    public List<String> getCropInformation() {
+        return Arrays.asList("Has increased Nutrient requirements (x1.2)", "Has decreased humidity and air requirements (x0.9)");
     }
 
     @Override

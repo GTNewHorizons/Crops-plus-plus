@@ -168,7 +168,7 @@ public class GTVanillaMachineRecipeLoader implements Runnable {
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Titanium.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Desh.getNeutrons() + Materials.Desh.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Desh.getDust(1)}, 240, 480);
         //NON-ELEMENTAR
         //UV
-        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.MeteoricIron.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.DeepIron.getDust(1)}, 120, 484544);
+        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.MeteoricIron.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.DeepIron.getDust(1)}, 120, 500000);
 
         if (ModsLoaded.TC) {
             //Magic Modifier PrimP
@@ -181,15 +181,15 @@ public class GTVanillaMachineRecipeLoader implements Runnable {
             GT_Values.RA.addAutoclaveRecipe(GT_ModHandler.getModItem("Thaumcraft", "ItemResource", 32L, 14), Materials.UUMatter.getFluid(500L), new ItemStack(CppItems.Modifier, 1, 1), 3300, 2400, 120, false);
             //Magic Modifier
             GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Iron.getDust(1), new ItemStack(CppItems.Modifier, 1, 1)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Thaumium.getNeutrons() + Materials.Thaumium.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Thaumium.getDust(1)}, 240, 120);
-            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Thaumium.getDust(1), new ItemStack(CppItems.Modifier, 1, 1)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Arsenic.getNeutrons() + Materials.Arsenic.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Void.getDust(1)}, 240, 510);
-            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Void.getDust(1), new ItemStack(CppItems.Modifier, 2, 1)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Indium.getNeutrons() + Materials.Indium.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.ShadowIron.getDust(1)}, 240, 7890);
-            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.ShadowIron.getDust(1), new ItemStack(CppItems.Modifier, 16, 1)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Osmium.getNeutrons() + Materials.Osmium.getProtons()) * 1000)}, new FluidStack[]{}, new ItemStack[]{GT_ModHandler.getModItem("ThaumicTinkerer", "kamiResource", 1L, 2)}, 1800, 28760);
+            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Thaumium.getDust(1), new ItemStack(CppItems.Modifier, 1, 1)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Arsenic.getNeutrons() + Materials.Arsenic.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Void.getDust(1)}, 240, 480);
+            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Void.getDust(1), new ItemStack(CppItems.Modifier, 2, 1)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Indium.getNeutrons() + Materials.Indium.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.ShadowIron.getDust(1)}, 240, 7680);
+            GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.ShadowIron.getDust(1), new ItemStack(CppItems.Modifier, 16, 1)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Osmium.getNeutrons() + Materials.Osmium.getProtons()) * 1000)}, new FluidStack[]{}, new ItemStack[]{GT_ModHandler.getModItem("ThaumicTinkerer", "kamiResource", 1L, 2)}, 1800, 30270);
         }
 
         //Magic Modifier + Space Modifier
-        //GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[] { new ItemStack(CppItems.Modifier,16,0), new ItemStack(CppItems.Modifier,4,1)}, new FluidStack[] {Materials.Platinum.getMolten(288L),Materials.MeteoricIron.getMolten(144L), Materials.UUMatter.getFluid(Materials.Platinum.getProtons()+Materials.Platinum.getNeutrons())}, new FluidStack[] {}, new ItemStack[] {Materials.Mytryl.getDust(1)}, 1800, 7890);
+        //GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[] { new ItemStack(CppItems.Modifier,16,0), new ItemStack(CppItems.Modifier,4,1)}, new FluidStack[] {Materials.Platinum.getMolten(288L),Materials.MeteoricIron.getMolten(144L), Materials.UUMatter.getFluid(Materials.Platinum.getProtons()+Materials.Platinum.getNeutrons())}, new FluidStack[] {}, new ItemStack[] {Materials.Mytryl.getDust(1)}, 1800, 7680);
         //coral buff
-        GT_Values.RA.addAutoclaveRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 64L, 15), Materials.UUMatter.getFluid(2L), Materials.Sunnarium.getDust(8), 5000, 15000, 7890, true);
+        GT_Values.RA.addAutoclaveRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 64L, 15), Materials.UUMatter.getFluid(2L), Materials.Sunnarium.getDust(8), 5000, 15000, 7680, true);
 
         if (ModsLoaded.BoP)
             GT_ModHandler.addCompressionRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "tile.treeMoss", 8L), Ic2Items.plantBall.copy());
@@ -215,7 +215,7 @@ public class GTVanillaMachineRecipeLoader implements Runnable {
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 9, 0), GT_OreDictUnificator.get(OrePrefixes.crushed.get(Materials.MeteoricIron), 1)}, new FluidStack[]{Materials.Water.getFluid(1000L)}, new FluidStack[]{}, new ItemStack[]{GT_OreDictUnificator.get(OrePrefixes.crushedPurified.get(Materials.MeteoricIron), 4)}, 240, 480);
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 9, 0), GT_OreDictUnificator.get(OrePrefixes.crushed.get(Materials.Desh), 1)}, new FluidStack[]{Materials.Water.getFluid(1000L)}, new FluidStack[]{}, new ItemStack[]{GT_OreDictUnificator.get(OrePrefixes.crushedPurified.get(Materials.Desh), 4)}, 240, 480);
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 9, 0), GT_OreDictUnificator.get(OrePrefixes.crushed.get(Materials.Orichalcum), 1)}, new FluidStack[]{Materials.Water.getFluid(1000L)}, new FluidStack[]{}, new ItemStack[]{GT_OreDictUnificator.get(OrePrefixes.crushedPurified.get(Materials.Orichalcum), 4)}, 240, 480);
-        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 9, 0), GT_OreDictUnificator.get(OrePrefixes.crushed.get(Materials.DeepIron), 1)}, new FluidStack[]{Materials.Water.getFluid(1000L)}, new FluidStack[]{}, new ItemStack[]{GT_OreDictUnificator.get(OrePrefixes.crushedPurified.get(Materials.DeepIron), 4)}, 240, 28760);
+        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 9, 0), GT_OreDictUnificator.get(OrePrefixes.crushed.get(Materials.DeepIron), 1)}, new FluidStack[]{Materials.Water.getFluid(1000L)}, new FluidStack[]{}, new ItemStack[]{GT_OreDictUnificator.get(OrePrefixes.crushedPurified.get(Materials.DeepIron), 4)}, 240, 30720);
 
         //Potions from Netherberries
         GT_Values.RA.addBrewingRecipe(GT_ModHandler.getModItem("Natura", "berry.nether", 16L, 0), Materials.Water.getFluid(1000L).getFluid(), FluidRegistry.getFluid("potion.regen"), false);

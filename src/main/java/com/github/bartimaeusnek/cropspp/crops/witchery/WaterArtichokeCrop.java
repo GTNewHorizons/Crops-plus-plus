@@ -17,23 +17,18 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
     }
 
     @Override
-    public int tier() {
-        return super.tier();
-    }
-
-    @Override
     public String[] attributes() {
         return new String[]{"Flower", "Water", "Blue", "Ingredient"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("itemWaterArtichoke");
+        return OreDict.ISget("cropArtichoke");
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("itemWaterArtichoke");
+        return OreDict.ISget("cropArtichoke");
     }
 
 }

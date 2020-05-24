@@ -123,6 +123,9 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
                     TileEntityCrop cropTE = (TileEntityCrop) possibleCrop;
 
+                    if (cropTE.getCrop() == null)
+                        continue;
+
                     if (cropTE.getCrop().tier() <= 0)
                         cropTE.reset();
 

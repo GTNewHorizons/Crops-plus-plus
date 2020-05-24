@@ -10,6 +10,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import java.util.Collections;
+import java.util.List;
+
 public class GoldfishCrop extends BasicDecorationCrop {
 
     public GoldfishCrop() {
@@ -89,6 +92,11 @@ public class GoldfishCrop extends BasicDecorationCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         return new ItemStack(CppItems.Goldfisch);
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Screams.");
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.github.bartimaeusnek.cropspp;
 
-public class ConfigValues {
+import com.github.bartimaeusnek.croploadcore.config;
 
+public class ConfigValues {
+    public static config c;
     public static boolean Items = true;
     public static int PrimordialBerryGroth = 125000;
     public static boolean ayo_bonsai = false; //ayo = add your own

@@ -55,11 +55,6 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 3;
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 3;
     }

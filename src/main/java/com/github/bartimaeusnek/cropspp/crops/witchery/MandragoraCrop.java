@@ -14,11 +14,6 @@ public class MandragoraCrop extends BasicWitcheryCrop {
     }
 
     @Override
-    public int tier() {
-        return super.tier();
-    }
-
-    @Override
     public String name() {
         return "Mandragora";
     }

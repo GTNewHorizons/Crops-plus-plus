@@ -26,6 +26,11 @@ public class CopperOreBerryCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
+    protected String hasBlock() {
+        return "blockCopper";
+    }
+
+    @Override
     public int growthDuration(ICropTile crop) {
         int r;
         if (ConfigValues.debug)

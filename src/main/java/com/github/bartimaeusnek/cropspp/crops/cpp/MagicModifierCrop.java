@@ -7,6 +7,9 @@ import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.Collections;
+import java.util.List;
+
 public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     public MagicModifierCrop() {
@@ -31,6 +34,11 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     @Override
     public ItemStack getSeeds(ICropTile crop) {
         return crop.generateSeeds(crop.getCrop(), crop.getGrowth(), crop.getGain(), crop.getResistance(), crop.getScanLevel());
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a block of Ichorium below to fully mature.");
     }
 
     @Override
@@ -67,6 +75,11 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     @Override
     public byte getSizeAfterHarvest(ICropTile crop) {
         return 1;
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+            return new ItemStack(CppItems.Modifier, 1, 1);
     }
 
     @Override

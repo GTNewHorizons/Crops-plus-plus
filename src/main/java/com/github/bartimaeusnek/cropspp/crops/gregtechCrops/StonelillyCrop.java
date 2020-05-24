@@ -8,6 +8,9 @@ import ic2.api.crops.ICropTile;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StonelillyCrop extends BasicDecorationCrop {
     private String color;
 
@@ -18,6 +21,26 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getDisplayItem() {
+        switch (color) {
+            case "Red": {
+                return Materials.GraniteRed.getDust(9);
+            }
+            case "Black": {
+                return Materials.GraniteBlack.getDust(9);
+            }
+            case "White": {
+                return Materials.Marble.getDust(9);
+            }
+            case "Gray": {
+                return Materials.Stone.getDust(9);
+            }
+            case "Yellow": {
+                return Materials.Endstone.getDust(2);
+            }
+            case "Nether": {
+                return Materials.Netherrack.getDust(9);
+            }
+        }
         return new ItemStack(Blocks.cobblestone);
     }
 
@@ -126,6 +149,40 @@ public class StonelillyCrop extends BasicDecorationCrop {
             }
         }
         return ret;
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        ArrayList<String> information = new ArrayList<>();
+        switch (color) {
+            case "Red": {
+                information.add("Needs a Block of Red Granite or Granite(Non-GT) below to fully Mature");
+                break;
+            }
+            case "Black": {
+                information.add("Needs a Block of Black Granite or Basalt below to fully Mature");
+                break;
+            }
+            case "White": {
+                information.add("Needs a Block of Marble or Diorite below to fully Mature");
+                break;
+            }
+            case "Gray": {
+                information.add("Needs a Block of Cobblestone, Stone or Andesite below to fully Mature");
+                break;
+            }
+            case "Yellow": {
+                information.add("Needs a Block of Endstone, Sand or Sandstone below to fully Mature");
+                break;
+            }
+            case "Nether": {
+                information.add("Needs a Block of Netherrack or Netherbrick below to fully Mature");
+                break;
+            }
+        }
+        information.add("Has increased Nutrient requirements (x1.4)");
+        information.add("Has decreased humidity and air requirements (x0.8)");
+        return information;
     }
 
     @Override

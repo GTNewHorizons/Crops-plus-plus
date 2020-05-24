@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
 import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GlowingCoralCrop extends BasicDecorationCrop {
 
@@ -15,7 +17,7 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + name().replace(" ", ""));
+        return new ItemStack(BOPCBlocks.coral1, 1, 15);
     }
 
     @Override
@@ -33,6 +35,10 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
         return new String[]{"Water", "Light", "Shiny"};
     }
 
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList("Needs a block of Glowstone below to incrase yield","Emits light.");
+    }
     @Override
     public int getEmittedLight(ICropTile crop) {
         return 7;

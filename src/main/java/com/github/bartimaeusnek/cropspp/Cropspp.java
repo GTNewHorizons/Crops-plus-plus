@@ -7,6 +7,7 @@ import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropGeneExtractor;
 import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropReplicator;
 import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropSynthesiser;
 import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropWeedPicker;
+import com.github.bartimaeusnek.cropspp.commands.EnableDebug;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
 import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
@@ -16,6 +17,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(
         modid = Cropspp.modID, name = Cropspp.name, version = Cropspp.version,
         dependencies = "required-after:IC2; "
-                + "required-after:croploadcore@0.1.0; "
+                + "required-after:croploadcore@0.1.4; "
                 + "after:GalacticraftCore; "
                 + "after:Mantle; "
                 + "after:Natura; "
@@ -94,6 +96,7 @@ public final class Cropspp {
         CppItems.register_Items();
         CppItems.OreDictItems();
         CppItems.register_recipes();
+        BiomeHumidityBonus.apply();
     }
 
     @EventHandler
@@ -104,5 +107,10 @@ public final class Cropspp {
             final GTHandler GTHandler = new GTHandler();
             GTHandler.run();
         }
+    }
+
+    @EventHandler
+    public void onFMLServerStart(FMLServerStartingEvent event) {
+        event.registerServerCommand(new EnableDebug());
     }
 }

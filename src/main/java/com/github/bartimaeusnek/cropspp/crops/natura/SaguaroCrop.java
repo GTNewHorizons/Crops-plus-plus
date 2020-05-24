@@ -73,10 +73,4 @@ public class SaguaroCrop extends CactiCrop {
         else
             return new ItemStack(CppItems.BerryItems, 1, 4);
     }
-
-    @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires more humidity than nutrients or air, but not much more
-        return (int) ((double) humidity * 0.5 + (double) nutrients * 1.25 + (double) air * 1.25);
-    }
 }

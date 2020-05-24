@@ -15,6 +15,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import java.util.Collections;
+import java.util.List;
+
 public class GarnydniaCrop extends BasicCrop {
 
     public GarnydniaCrop() {
@@ -81,6 +84,10 @@ public class GarnydniaCrop extends BasicCrop {
             return 300;
     }
 
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a block or ore of Yellow or Red Garnet below to fully mature.");
+    }
+
     /**
      * Taken from GT Directly, all credits for this method go to GregoriousT
      */
@@ -122,11 +129,6 @@ public class GarnydniaCrop extends BasicCrop {
     @Override
     public String discoveredBy() {
         return "moronwmachinegun";
-    }
-
-    @Override
-    public int getOptimalHavestSize(ICropTile iCropTile) {
-        return 3;
     }
 
     @Override

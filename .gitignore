@@ -9,3 +9,8 @@ README
 *txt
 .gradle/
 libs/
+out/
+eclipse/
+*.ipr
+*.iml
+*.iws

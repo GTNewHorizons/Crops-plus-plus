@@ -7,6 +7,9 @@ import ic2.api.crops.ICropTile;
 import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
 import net.minecraft.item.ItemStack;
 
+import java.util.Collections;
+import java.util.List;
+
 public class SpacePlantCrop extends BasicCrop {
 
     public SpacePlantCrop() {
@@ -80,8 +83,8 @@ public class SpacePlantCrop extends BasicCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return this.maxSize();
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a block from the moon below to fully mature.");
     }
 
     @Override

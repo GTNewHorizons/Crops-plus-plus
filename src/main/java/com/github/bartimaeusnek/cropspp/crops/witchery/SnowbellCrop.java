@@ -17,11 +17,6 @@ public class SnowbellCrop extends BasicWitcheryCrop {
     }
 
     @Override
-    public int tier() {
-        return super.tier();
-    }
-
-    @Override
     public String[] attributes() {
         return new String[]{"White", "Flower", "Ice", "Toxic", "Ingredient"};
     }

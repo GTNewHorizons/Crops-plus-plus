@@ -62,11 +62,6 @@ public class CottonCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 5;
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 5;
     }

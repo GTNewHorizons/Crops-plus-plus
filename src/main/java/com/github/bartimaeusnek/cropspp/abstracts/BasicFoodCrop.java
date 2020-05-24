@@ -2,6 +2,9 @@ package com.github.bartimaeusnek.cropspp.abstracts;
 
 import ic2.api.crops.ICropTile;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class BasicFoodCrop extends BasicDecorationCrop {
 
     public BasicFoodCrop() {
@@ -51,8 +54,8 @@ public abstract class BasicFoodCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 3;
+    public List<String> getCropInformation() {
+        return Arrays.asList("Needs a light Level of 9 or higher.");
     }
 
     @Override

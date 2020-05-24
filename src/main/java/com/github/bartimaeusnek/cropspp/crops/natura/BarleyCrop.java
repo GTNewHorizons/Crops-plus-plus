@@ -38,11 +38,6 @@ public class BarleyCrop extends BasicFoodCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 4;
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 4;
     }

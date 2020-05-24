@@ -13,6 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CactiCrop extends BasicDecorationCrop {
 
     public CactiCrop() {
@@ -46,6 +49,11 @@ public class CactiCrop extends BasicDecorationCrop {
     @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() >= 2;
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList("Has increased air and nutrients requirements (x1.25)","Has decreased humidity requirements (x0.5)", "Hurt Player on collision");
     }
 
     @Override

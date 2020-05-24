@@ -20,12 +20,12 @@ public class PreloadTextures {
                                 !(InstalledTreesGetter.savedNames.get(i).contains("Vishroom") ||
                                         InstalledTreesGetter.savedNames.get(i).contains("Ethereal Bloom")))) {
                     ItemStack Sapling = InstalledTreesGetter.BaseSeed.get(i);
-					try {
-						BonsaiRenderer renderer = new BonsaiRenderer("bpp:"+Sapling.getIconIndex().getIconName().replaceAll(":","_"), InstalledTreesGetter.make_crop_IIcons(Sapling, Sapling.getIconIndex().getIconName()), (TextureAtlasSprite) Sapling.getIconIndex());
-						e.map.setTextureEntry(renderer.getIconName(), renderer);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+                    try {
+                        BonsaiRenderer renderer = new BonsaiRenderer("bpp:" + Sapling.getIconIndex().getIconName().replaceAll(":", "_"), InstalledTreesGetter.make_crop_IIcons(Sapling, Sapling.getIconIndex().getIconName()), (TextureAtlasSprite) Sapling.getIconIndex());
+                        e.map.setTextureEntry(renderer.getIconName(), renderer);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }

@@ -33,6 +33,11 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
+    protected String hasBlock() {
+        return "blockKnightmetal";
+    }
+
+    @Override
     public int growthDuration(ICropTile crop) {
         int r;
         if (ConfigValues.debug)

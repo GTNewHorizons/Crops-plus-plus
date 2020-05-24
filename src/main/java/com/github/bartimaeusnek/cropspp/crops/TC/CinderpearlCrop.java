@@ -7,6 +7,9 @@ import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.Collections;
+import java.util.List;
+
 public class CinderpearlCrop extends BasicThaumcraftCrop {
 
     public CinderpearlCrop() {
@@ -64,6 +67,11 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         return OreDict.ISget("crop" + this.name());
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a block of Blaze below to fully mature.");
     }
 
 }

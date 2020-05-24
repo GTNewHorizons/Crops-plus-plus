@@ -4,7 +4,6 @@ import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.croploadcore.config;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
-import com.github.bartimaeusnek.cropspp.Cropspp;
 import com.github.bartimaeusnek.cropspp.crops.cpp.*;
 import com.github.bartimaeusnek.cropspp.crops.natura.*;
 import com.github.bartimaeusnek.cropspp.crops.witchery.GarlicCrop;
@@ -17,6 +16,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.bartimaeusnek.cropspp.ConfigValues.c;
 
 //IC2API
 //ItemsFromAPIs
@@ -164,22 +165,22 @@ public class CropLoader {
     }
 
     public static void load(FMLPreInitializationEvent preinit) {
-        config c = new config(preinit, "berriespp.cfg");
+        c = new config(preinit, "berriespp.cfg");
         c.tConfig.addCustomCategoryComment("System", "enable or disable system config:"
                 + "\nDebug will set all crops groth duration to 1 and disable all requirements.(aka. \"Cheatmode\")"
                 + "\nBonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)"
                 + "\nWiP Items are not finished items."
                 + "\nItems will enable/disable all items.");
-        ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(true);
-        ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(true);
-        ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(false);
+        ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
+        ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
+        ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
 
         c.tConfig.addCustomCategoryComment("Crops", "enable single plants here:");
 
         for (int i = 0; i < list.size(); ++i) {
-            bHasCropObj.add(c.tConfig.get("Crops", setnames().get(i), true).getBoolean(false));
+            bHasCropObj.add(c.tConfig.get("Crops", setnames().get(i), true).getBoolean(true));
         }
-
+        bHasCropObj.add(c.tConfig.get("Crops", "Bonsai", true).getBoolean(true));
         c.tConfig.addCustomCategoryComment("Gain", "Set custom gain modifiers here:"
                 + "\n Tinker's Construct Berries' Gain is not modified by All Crops."
                 + "\n Primordial Berry's gain is absolut"
@@ -198,8 +199,9 @@ public class CropLoader {
             if (bHasCropObj.get(i) && cropObjs().get(i) != null)
                 Crops.instance.registerCrop(cropObjs().get(i));
         }
-        if (ConfigValues.ayo_bonsai)
-            Cropspp.cpplogger.info("Bonsais registered!");
+        if (bHasCropObj.get(bHasCropObj.size()-1)){
+            Bonsais.registerAllBonais();
+        }
     }
 
     public static void registerBaseSeed() {
@@ -210,8 +212,5 @@ public class CropLoader {
             if (baseseed.get(i) != null && cropObjs().get(i) != null)
                 Crops.instance.registerBaseSeed(baseseed.get(i), cropObjs().get(i), 1, 1, 1, 1);
         }
-
-        if (ConfigValues.ayo_bonsai)
-            Cropspp.cpplogger.info("Bonsai Base Seed registered!");
     }
 }

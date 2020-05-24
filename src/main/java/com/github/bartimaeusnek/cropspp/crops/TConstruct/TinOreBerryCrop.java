@@ -31,6 +31,11 @@ public class TinOreBerryCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
+    protected String hasBlock() {
+        return "blockTin";
+    }
+
+    @Override
     public int growthDuration(ICropTile crop) {
         int r;
         if (ConfigValues.debug)

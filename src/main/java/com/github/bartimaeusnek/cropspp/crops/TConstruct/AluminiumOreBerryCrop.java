@@ -18,6 +18,10 @@ public class AluminiumOreBerryCrop extends BasicTinkerBerryCrop {
         return "Aluminium " + BasicTinkerBerryCrop.OBname();
     }
 
+    @Override
+    protected String hasBlock() {
+        return "blockAluminium";
+    }
 
     @Override
     public ItemStack getGain(ICropTile crop) {

@@ -46,21 +46,10 @@ public class BoPBerryCrop extends BasicBerryCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 3;
-    }
-
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 3;
     }
 
-    @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires more humidity than nutrients or air, but not much more
-        return (int) ((double) humidity * 1.2 + (double) nutrients * 0.9 + (double) air * 0.9);
-    }
 
     @Override
     public int growthDuration(ICropTile crop) {

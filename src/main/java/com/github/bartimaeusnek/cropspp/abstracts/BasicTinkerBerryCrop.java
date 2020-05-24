@@ -6,6 +6,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
@@ -26,6 +30,8 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     public float dropGainChance() {
         return (float) ((Math.pow(0.95, (float) tier())) * ConfigValues.TConstructBerryGain);
     }
+
+    protected abstract String hasBlock();
 
     @Override
     public int stat(int n) {
@@ -51,13 +57,8 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
         if (ConfigValues.debug)
             r = crop.getSize() < 4;
         else
-            r = crop.getSize() < 1 || (crop.getLightLevel() <= 10 && crop.getSize() < 4); //Codepiece by DaeFennek <3
+            r = crop.getSize() < 1 || crop.getSize() == 3 && crop.isBlockBelow(hasBlock()) || (crop.getLightLevel() <= 10 && crop.getSize() < 3); //Codepiece by DaeFennek <3
         return r;
-    }
-
-    @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 4;
     }
 
     @Override
@@ -85,6 +86,11 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     public byte getSizeAfterHarvest(ICropTile crop) {
         // return to partially grown state when harvested
         return 2;
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return (List<String>) Arrays.asList(new String[]{"Needs a block of " + OreDictionary.getOres(hasBlock()).get(0).getDisplayName() + " Below to fully mature.", "Needs a light level below or equal to 10 to fully mature.", "Has increased Nutrient requirements (x1.5) and decreased humidity requirements (x0.5)", "Hurt Player on collision"});
     }
 
     @Override

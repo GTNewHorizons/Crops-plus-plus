@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
 import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GlowflowerCrop extends BasicDecorationCrop {
 
@@ -15,8 +17,7 @@ public class GlowflowerCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + name());
-
+        return new ItemStack(BOPCBlocks.flowers, 1, 3);
     }
 
     @Override
@@ -45,6 +46,12 @@ public class GlowflowerCrop extends BasicDecorationCrop {
             return 7;
         else return 0;
     }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList("Needs a block of Glowstone below to incrase yield","Emits light when fully grown.");
+    }
+
 
     @Override
     public ItemStack getGain(ICropTile crop) {

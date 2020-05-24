@@ -65,11 +65,6 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     }
 
     @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 2;
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 2;
     }
@@ -111,7 +106,14 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        // TODO Auto-generated method stub
-        return new ItemStack(NContent.glowshroom, 1, 0);
+        ItemStack r;
+        if (name.contains("Blue"))
+            r = new ItemStack(NContent.glowshroom, 1, 2);
+        else if (name.contains("Green"))
+            r = new ItemStack(NContent.glowshroom, 1, 0);
+        else if (name.contains("Purple"))
+            r = new ItemStack(NContent.glowshroom, 1, 1);
+        else r = new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+        return r;
     }
 }

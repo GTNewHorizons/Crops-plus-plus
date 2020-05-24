@@ -17,11 +17,6 @@ public class WolfsBaneCrop extends BasicWitcheryCrop {
     }
 
     @Override
-    public int tier() {
-        return super.tier();
-    }
-
-    @Override
     public String[] attributes() {
         return new String[]{"Flower", "Toxic", "Purple", "Ingredient"};
     }

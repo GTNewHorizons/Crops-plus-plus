@@ -5,6 +5,9 @@ import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
 
+import java.util.Collections;
+import java.util.List;
+
 public class PrimordialPearlBerryCrop extends BasicCrop {
 
 
@@ -43,11 +46,6 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
     @Override
     public boolean canGrow(ICropTile crop) {
         return crop.getSize() < 4;
-    }
-
-    @Override
-    public int getOptimalHavestSize(ICropTile crop) {
-        return 4;
     }
 
     @Override
@@ -114,6 +112,11 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
     @Override
     public ItemStack getDisplayItem() {
         return thaumcraft.api.ItemApi.getItem("itemEldritchObject", 3);
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Can not Cross, takes a long time to mature.");
     }
 
 }

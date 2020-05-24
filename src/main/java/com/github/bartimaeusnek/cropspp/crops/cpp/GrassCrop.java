@@ -11,6 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GrassCrop extends BasicDecorationCrop {
     private int random;
 
@@ -119,6 +122,11 @@ public class GrassCrop extends BasicDecorationCrop {
     @Override
     public byte getSizeAfterHarvest(ICropTile crop) {
         return (byte) ((int) crop.getSize() - 1);
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList(new String[]{"Is a weed", "Hurt Player on collision, when fully grown"});
     }
 
     @Override
