@@ -1,0 +1,25 @@
+// Add your dependencies here
+
+dependencies {
+    file("libs/biomesoplentyAPI.jar")
+    file("libs/CropLoadCore-0.1.1.jar")
+    file("libs/twilightforest-1.7.10-2.3.7-deobf.jar")
+    file("libs/GTNewHorizonsCoreMod-1.7.10-1.5.18.jar")
+    compile("com.github.GTNewHorizons:TinkersConstruct:1.9.0.5-GTNH:dev")
+    compile("com.github.GTNewHorizons:Natura:2.4.5-dev:dev")
+    compile("com.github.GTNewHorizons:NotEnoughItems:2.1.16-GTNH:dev")
+//    compile("com.github.GTNewHorizons:NewHorizonsCoreMod:master:dev") {
+//        setChanging(true)
+//        transitive = false
+//    }
+    compile("net.industrial-craft:industrialcraft-2-2.2.828-experimental:dev")
+    compile("com.github.GTNewHorizons:GT5-Unofficial:experimental-SNAPSHOT:dev") {
+        setChanging(true)
+        transitive = false
+    }
+    
+    compileOnly("com.github.GTNewHorizons:Galacticraft:master:dev") {  // TODO: change a tag
+        transitive = false
+    }
+    compileOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
+}

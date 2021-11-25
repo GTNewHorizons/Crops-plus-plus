@@ -40,7 +40,8 @@ import org.apache.logging.log4j.Logger;
 
 public final class Cropspp {
     public static final String name = "Crops++";
-    public static final String version = "@version@";
+//    public static final String version = "@version@";
+    public static final String version = "1.4.0.0";
     public static final String modID = "berriespp";
     public static final Logger cpplogger = LogManager.getLogger(name);
 
