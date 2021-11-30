@@ -155,7 +155,9 @@ configurations.all {
 // Pulls version from git tag
 version = minecraftVersion + "-" + gitVersion()
 group = modGroup
-archivesBaseName = modId
+// Hax
+//archivesBaseName = modId
+archivesBaseName = "CropsPP"
 
 minecraft {
     version = minecraftVersion + "-" + forgeVersion + "-" + minecraftVersion
