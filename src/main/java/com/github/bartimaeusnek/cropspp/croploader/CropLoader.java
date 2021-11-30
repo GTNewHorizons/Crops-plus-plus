@@ -174,6 +174,7 @@ public class CropLoader {
         ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
         ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
         ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
+        ConfigValues.ILoveScreaming = c.tConfig.get("System", "ILoveScreaming", false).getBoolean(false);
 
         c.tConfig.addCustomCategoryComment("Crops", "enable single plants here:");
 
