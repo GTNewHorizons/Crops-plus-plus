@@ -1,0 +1,31 @@
+repositories {
+    maven {
+        name "IC2 Maven"
+        url "https://maven.ic2.player.to/"
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+    ivy {
+        name = 'gtnh_download_source'
+        artifactPattern("http://downloads.gtnewhorizons.com/Mods_for_Jenkins/[module]-[revision].[ext]")
+        metadataSources {
+            artifact()
+        }
+    }
+    maven {
+        name "CurseForge Maven"
+        url "https://minecraft.curseforge.com/api/maven/"
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+    maven {
+        url = "https://jitpack.io"
+    }
+    maven {
+        url "https://cursemaven.com"
+    }
+}
