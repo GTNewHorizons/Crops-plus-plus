@@ -32,7 +32,7 @@ public class NaturaBerryItems extends ItemFood {
         super(heal, 0.4F, false);
         setHasSubtypes(true);
         setMaxDamage(0);
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(64);
         this.setCreativeTab(CreativeTab.cpp);
     }
 
