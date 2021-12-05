@@ -13,7 +13,7 @@ dependencies {
 //        transitive = false
 //    }
     compile "net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev"
-    compile("com.github.GTNewHorizons:GT5-Unofficial:experimental-SNAPSHOT:dev") {
+    compile("com.github.GTNewHorizons:GT5-Unofficial:master-SNAPSHOT:dev") {
         setChanging(true)
         transitive = false
     }
