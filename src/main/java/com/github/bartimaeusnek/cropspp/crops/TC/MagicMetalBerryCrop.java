@@ -71,16 +71,11 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        if (crop.getSize() == 2)
-            return 1200;
-        else if (crop.getSize() == 3 && (crop.isBlockBelow("blockThaumium")))
-            return 1800;
-        else if (crop.getSize() == 3 && (crop.isBlockBelow("blockVoid") || crop.isBlockBelow("blockThauminite") || crop.isBlockBelow("blockIron")))
-            return 3300;
-        else
-            return 500;
+        if (ConfigValues.debug) return 1;
+        if (crop.getSize() == 2) return 1200;
+        if (crop.getSize() == 3 && (crop.isBlockBelow("blockThaumium"))) return 1800;
+        if (crop.getSize() == 3 && (crop.isBlockBelow("blockVoid") || crop.isBlockBelow("blockThauminite") || crop.isBlockBelow("blockIron"))) return 3300;
+        return 500;
     }
 
     @Override

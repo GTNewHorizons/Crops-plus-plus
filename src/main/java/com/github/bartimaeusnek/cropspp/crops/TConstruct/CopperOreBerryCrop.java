@@ -32,22 +32,8 @@ public class CopperOreBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        if (ConfigValues.debug)
-            r = 1;
-            // Same growth stages as melons and pumpkins
-        else if (crop.getSize() >= 2) {
-
-            // Ripens "quickly"
-            r = 3000;
-        } else if (crop.getSize() == 3 && crop.isBlockBelow("blockCopper"))
-            r = 1500;
-        else {
-            // Takes a while to grow from seed
-            r = 500;
-        }
-
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() >= 2 ? 3000 : 500;
     }
 
     @Override

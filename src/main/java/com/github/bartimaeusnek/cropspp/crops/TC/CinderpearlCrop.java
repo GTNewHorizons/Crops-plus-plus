@@ -34,28 +34,19 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() == 1)
-            r = 2250;
-        else if (crop.getSize() == 2 && (crop.isBlockBelow("blockBlaze") || !(OreDictionary.doesOreNameExist("blockBlaze"))))
-            r = 1750;
-        else
-            r = 250;
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() == 1 ? 2250 : 1750;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        boolean r = false;
         if (ConfigValues.debug)
-            r = crop.getSize() < 3;
-        else if (crop.getSize() <= 1)
-            r = crop.getSize() <= 1;
-        else if (crop.getSize() == 2)
-            r = (crop.getSize() == 2 && (crop.isBlockBelow("blockBlaze") || !(OreDictionary.doesOreNameExist("blockBlaze"))));
-        return r;
+            return crop.getSize() < 3;
+        if (crop.getSize() <= 1)
+            return crop.getSize() <= 1;
+        if (crop.getSize() == 2)
+            return (crop.getSize() == 2 && (crop.isBlockBelow("blockBlaze") || !(OreDictionary.doesOreNameExist("blockBlaze"))));
+        return false;
     }
 
 

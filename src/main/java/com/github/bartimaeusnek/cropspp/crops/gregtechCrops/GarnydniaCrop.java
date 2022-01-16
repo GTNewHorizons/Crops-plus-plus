@@ -74,14 +74,9 @@ public class GarnydniaCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        else if (crop.getSize() == 0)
-            return 3300;
-        else if (crop.getSize() == this.maxSize() - 1)
-            return 550;
-        else
-            return 300;
+        if (ConfigValues.debug) return 1;
+        if (crop.getSize() == 0) return 3300;
+        return crop.getSize() == this.maxSize() - 1 ? 550 : 300;
     }
 
     public List<String> getCropInformation() {

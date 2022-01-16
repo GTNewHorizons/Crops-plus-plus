@@ -43,11 +43,7 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        else {
-            return ConfigValues.PrimordialBerryGroth / 16;
-        }
+        return ConfigValues.debug ? 1 : ConfigValues.PrimordialBerryGroth / 16;
     }
 
     @Override

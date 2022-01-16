@@ -43,14 +43,8 @@ public class SaguaroCrop extends CactiCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() > 2)
-            r = 450;
-        else
-            r = 225;
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() > 2 ? 450 : 225;
     }
 
     @Override
