@@ -61,11 +61,7 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        else {
-            return ConfigValues.PrimordialBerryGroth;
-        }
+        return ConfigValues.debug ? 1 : ConfigValues.PrimordialBerryGroth;
     }
 
     @Override

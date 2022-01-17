@@ -49,18 +49,8 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        // Same growth stages as melons and pumpkins
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() == 2) {
-            // Ripens not so quickly
-            r = 1200;
-        } else {
-            // Takes a while to grow from seed
-            r = 800;
-        }
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() == 2 ? 1200 : 800;
     }
 
     @Override

@@ -28,12 +28,8 @@ public class WaterlillyCrop extends BasicDecorationCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int ret = 550;
-        if (crop.isBlockBelow(Blocks.water) || crop.isBlockBelow(Blocks.flowing_water))
-            ret = 225;
-        if (ConfigValues.debug)
-            ret = 1;
-        return ret;
+        if (ConfigValues.debug) return 1;
+        return crop.isBlockBelow(Blocks.water) || crop.isBlockBelow(Blocks.flowing_water) ? 225 : 550;
     }
 
     @Override

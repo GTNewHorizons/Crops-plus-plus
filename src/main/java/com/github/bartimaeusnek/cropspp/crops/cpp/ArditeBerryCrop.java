@@ -38,16 +38,8 @@ public class ArditeBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() == 2)
-            r = 3000;
-        else if (crop.getSize() == 3 && crop.isBlockBelow("blockArdite"))
-            r = 3000;
-        else
-            r = 500;
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() >= 2 ? 3000 : 500;
     }
 
     @Override

@@ -51,12 +51,8 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        else if (crop.getSize() == (this.maxSize() - 1) && crop.isBlockBelow(Blocks.end_stone))
-            return 550;
-        else
-            return 300;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() == (this.maxSize() - 1) && crop.isBlockBelow(Blocks.end_stone) ? 550 : 300;
     }
 
     @Override
