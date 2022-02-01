@@ -11,13 +11,6 @@ repositories {
             artifact()
         }
     }
-    ivy {
-        name = 'gtnh_download_source'
-        artifactPattern("http://downloads.gtnewhorizons.com/Mods_for_Jenkins/[module]-[revision].[ext]")
-        metadataSources {
-            artifact()
-        }
-    }
     maven {
         name "CurseForge Maven"
         url "https://minecraft.curseforge.com/api/maven/"
