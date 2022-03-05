@@ -4,22 +4,54 @@ import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
-import gregtech.api.objects.GT_RenderedTexture;
+import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Utility;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import static gregtech.api.enums.Textures.BlockIcons.*;
+
 public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
 
     public CropReplicator(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 6, new String[]{"It can replicate Crops", "It needs a Cell of UUM per crop's tier", "Takes in 6A", "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)"}, 2, 2, "Crop_Replicator.png", "", new ITexture[]{new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_SIDE_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FRONT_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_TOP_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER)});
+        super(aID, aName, aNameRegional, aTier, 6,
+                new String[]{
+                        "It can replicate Crops",
+                        "It needs a Cell of UUM per crop's tier",
+                        "Takes in 6A",
+                        "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
+                        "Can process crops up to tier " + getMaxCropTier(aTier)},
+                2, 2, "Crop_Replicator.png", "",
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_SIDE_SCANNER),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_FRONT_SCANNER_ACTIVE),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_FRONT_SCANNER),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_TOP_SCANNER_ACTIVE),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_TOP_SCANNER),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_BOTTOM_SCANNER_ACTIVE),
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW).glow().build()),
+                TextureFactory.of(
+                        TextureFactory.of(OVERLAY_BOTTOM_SCANNER),
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
     }
 
     public CropReplicator(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures, String mGUIName, String mNEIName) {
@@ -31,40 +63,40 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
         return new CropReplicator(this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
     }
 
+    public static int getMaxCropTier(int mTier){
+        return (mTier * 2 - 1);
+    }
+
     @Override
     public int checkRecipe(boolean skipOC) {
         ItemStack aStack = getInputAt(0);
         ItemStack bStack = getInputAt(1);
-        ItemStack tosave = getSpecialSlot();
 
-        if (GT_Utility.areUnificationsEqual((ItemStack) aStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)) {
+        if (GT_Utility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)) {
             ItemStack helper = bStack;
             bStack = aStack;
             aStack = helper;
-            helper = null;
         }
-        if (GT_Utility.areUnificationsEqual((ItemStack) bStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) {
-
-
+        if (GT_Utility.areUnificationsEqual(bStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) {
             NBTTagCompound tNBT = aStack.getTagCompound();
 
-            if (tNBT == null || tNBT.getString("name").isEmpty() || tNBT.getString("name").equals("Primordial Berry"))
+            if (tNBT == null || tNBT.getString("name").isEmpty())
                 return DID_NOT_FIND_RECIPE;
             if (getOutputAt(0) != null || getOutputAt(1) != null)
                 return DID_NOT_FIND_RECIPE;
-
             CropCard card = Crops.instance.getCropCard(tNBT.getString("owner"), tNBT.getString("name"));
-
+            if(card.tier() > getMaxCropTier(this.mTier))
+                return DID_NOT_FIND_RECIPE;
             if (bStack.stackSize < card.tier())
                 return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
 
-            aStack.stackSize -= 1;
             bStack.stackSize -= card.tier();
             this.mOutputItems[0] = aStack.splitStack(2);
             this.mOutputItems[1] = Materials.Empty.getCells(card.tier());
 
-
-            calculateOverclockedNess((int) (GT_Values.V[Math.round((card.tier() + 2) / 2)] - (GT_Values.V[Math.round((card.tier() + 2) / 2)] / 10)), 12000);
+            long power = GT_Values.V[(card.tier() + 2) / 2];
+            power *= mAmperage;
+            calculateOverclockedNess((int) (power - (power / 10)), 12000);
             if (mMaxProgresstime == Integer.MAX_VALUE - 1 && mEUt == Integer.MAX_VALUE - 1)
                 return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
             return FOUND_AND_SUCCESSFULLY_USED_RECIPE;
@@ -75,7 +107,7 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient((String) GregTech_API.sSoundList.get(Integer.valueOf(212)), 10, 1.0F, aX, aY, aZ);
+            GT_Utility.doSoundAtClient((String) GregTech_API.sSoundList.get(212), 10, 1.0F, aX, aY, aZ);
         }
     }
 
