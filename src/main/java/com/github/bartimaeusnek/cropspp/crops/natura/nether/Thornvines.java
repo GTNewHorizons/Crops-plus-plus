@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.natura.nether;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
 import ic2.api.crops.ICropTile;
 import mods.natura.common.NContent;
@@ -42,12 +43,8 @@ public class Thornvines extends VineCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem))
-            entity.attackEntityFrom(DamageSource.cactus, 1);
-        if (entity instanceof EntityLivingBase) {
-            return ((EntityLivingBase) entity).isSprinting();
-        }
-        return false;
+        CCropUtility.damageEntity(entity ,1);
+          return super.onEntityCollision(crop,entity);
     }
 
     @Override

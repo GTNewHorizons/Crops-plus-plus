@@ -14,4 +14,6 @@ public class ConfigValues {
     public static float PrimordialBerryGain = (float) 0.5;
     public static boolean WiPItems = false;
     public static boolean ILoveScreaming = false;
+    public static boolean BootsProtect = false;
+    public static float BootsDamageChance = 1.0f;
 }

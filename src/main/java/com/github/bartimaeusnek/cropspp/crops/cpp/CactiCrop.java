@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.crops.cpp;
 
 import biomesoplenty.api.content.BOPCBlocks;
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
 import ic2.api.crops.Crops;
@@ -64,12 +65,12 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem))
-            entity.attackEntityFrom(DamageSource.cactus, 1);
-        if (entity instanceof EntityLivingBase) {
-            return ((EntityLivingBase) entity).isSprinting();
+
+        if(!entity.isSneaking()){
+            CCropUtility.damageEntity(entity ,1);
         }
-        return false;
+        return super.onEntityCollision(crop,entity);
+
     }
 
     @Override

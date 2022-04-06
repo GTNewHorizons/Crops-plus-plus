@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
+import biomesoplenty.api.content.BOPCBlocks;
 import com.github.bartimaeusnek.cropspp.crops.BoP.*;
 import net.minecraft.item.ItemStack;
 
@@ -19,6 +20,7 @@ public class BoPLoader {
         p.add(new CropLoader(new GlowflowerCrop(), new ItemStack(biomesoplenty.api.content.BOPCBlocks.flowers, 1, 3)));
         p.add(new CropLoader(new TurnipCrop(), null));
         p.add(new CropLoader(new WildCarrotsCrop(), null));
+        p.add(new CropLoader(new Bamboo(), new ItemStack(BOPCBlocks.saplings, 1, 2)));
         return p;
     }
 }
