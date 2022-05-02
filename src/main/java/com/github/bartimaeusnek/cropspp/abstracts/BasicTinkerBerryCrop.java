@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import ic2.api.crops.ICropTile;
 import net.minecraft.entity.Entity;
@@ -95,12 +96,8 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem))
-            entity.attackEntityFrom(DamageSource.cactus, 1);
-        if (entity instanceof EntityLivingBase) {
-            return ((EntityLivingBase) entity).isSprinting();
-        }
-        return false;
+        CCropUtility.damageEntity(entity,1);
+        return super.onEntityCollision(crop, entity);
     }
 
 }

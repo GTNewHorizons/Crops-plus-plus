@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 import ic2.api.crops.ICropTile;
@@ -85,12 +86,8 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem))
-            entity.attackEntityFrom(DamageSource.magic, 1);
-        if (entity instanceof EntityLivingBase) {
-            return ((EntityLivingBase) entity).isSprinting();
-        }
-        return false;
+        CCropUtility.damageEntity(entity ,1);
+        return super.onEntityCollision(crop,entity);
     }
 
     @Override
