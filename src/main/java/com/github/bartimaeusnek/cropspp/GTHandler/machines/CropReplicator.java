@@ -90,8 +90,11 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
             if (bStack.stackSize < card.tier())
                 return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
 
+            this.mOutputItems[0] = aStack.copy();
+            this.mOutputItems[0].stackSize = 2;
+
             bStack.stackSize -= card.tier();
-            this.mOutputItems[0] = aStack.splitStack(2);
+            aStack.stackSize -= 1;
             this.mOutputItems[1] = Materials.Empty.getCells(card.tier());
 
             long power = GT_Values.V[(card.tier() + 2) / 2];
