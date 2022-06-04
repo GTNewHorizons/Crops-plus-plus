@@ -113,21 +113,21 @@ public class CppPotions extends Item {
                 break;
             }
             case 8: {
-                list.add("Das ist des Jaegers' Eherenschild,");
-                list.add("dass er beschuetzt und hegt sein Wild,");
-                list.add("weidmaennisch jagt, wie sich's gehoert,");
-                list.add("den Schoepfer im Geschoepfe ehrt.");
+                list.add("Das ist des J\u00e4gers' Eherenschild,");
+                list.add("dass er besch\u00fctzt und hegt sein Wild,");
+                list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
+                list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
                 list.add("");
                 list.add("It will give 1h potioneffects!");
                 break;
             }
             case 9: {
-                list.add("Das ist des Jaegers' Eherenschild,");
-                list.add("dass er beschuetzt und hegt sein Wild,");
-                list.add("weidmaennisch jagt, wie sich's gehoert,");
-                list.add("den Schoepfer im Geschoepfe ehrt.");
+                list.add("Das ist des J\u00e4gers' Eherenschild,");
+                list.add("dass er besch\u00fctzt und hegt sein Wild,");
+                list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
+                list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
                 list.add("");
-                list.add("It smells like fake Jaegermeister...");
+                list.add("It smells like fake J\u00e4germeister...");
                 break;
             }
             //other cases

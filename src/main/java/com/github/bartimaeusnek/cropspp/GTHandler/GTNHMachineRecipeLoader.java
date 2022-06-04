@@ -5,6 +5,8 @@ import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import com.github.bartimaeusnek.cropspp.items.CppPotions;
+
+import cpw.mods.fml.common.Loader;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -167,14 +169,13 @@ public class GTNHMachineRecipeLoader implements Runnable {
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Steel.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.MeteoricSteel.getNeutrons() + Materials.MeteoricSteel.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.MeteoricSteel.getDust(1)}, 240, 480);
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Bismuth.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Oriharukon.getNeutrons() + Materials.Oriharukon.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Oriharukon.getDust(1)}, 240, 480);
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Titanium.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid(Materials.Desh.getNeutrons() + Materials.Desh.getProtons())}, new FluidStack[]{}, new ItemStack[]{Materials.Desh.getDust(1)}, 240, 480);
-        //NON-ELEMENTAR
-        //UV
-        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Plutonium241.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.BlackPlutonium.getDust(1)}, 120, 500000);
-        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.MeteoricIron.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.DeepIron.getDust(1)}, 120, 122880);
-        //IV
+        //Non-elements
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Ice.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Water.getProtons() + Materials.Water.getNeutrons()) * 10)}, new FluidStack[]{}, new ItemStack[]{Materials.CallistoIce.getDust(1)}, 240, 7680);
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Lead.getDust(1), new ItemStack(CppItems.Modifier, 16, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Water.getProtons() + Materials.Water.getNeutrons()) * 10)}, new FluidStack[]{}, new ItemStack[]{Materials.Ledox.getDust(1)}, 240, 7680);
-
+        if (Loader.isModLoaded("Avaritia"))
+        	GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{GT_ModHandler.getModItem("Avaritia", "Resource", 1L, 1), new ItemStack(CppItems.Modifier, 32, 0)}, new FluidStack[]{Materials.UUMatter.getFluid(100L)}, null, new ItemStack[]{Materials.MysteriousCrystal.getDust(1)}, 240, 122880);
+        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.MeteoricIron.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.DeepIron.getDust(1)}, 120, 122880);
+        GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{Materials.Plutonium241.getDust(1), new ItemStack(CppItems.Modifier, 64, 0)}, new FluidStack[]{Materials.UUMatter.getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons()))}, new FluidStack[]{}, new ItemStack[]{Materials.BlackPlutonium.getDust(1)}, 120, 500000);
 
         if (ModsLoaded.TC) {
             //Magic Modifier PrimP

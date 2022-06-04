@@ -9,7 +9,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
-import gregtech.api.objects.GT_RenderedTexture;
+import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_Pump;
 import ic2.core.crop.TileEntityCrop;
@@ -17,17 +17,20 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.FluidStack;
 
 import static gregtech.api.enums.GT_Values.V;
 
 public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
-    private FakePlayer mFakePlayer = null;
-
     public CropWeedPicker(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 1, new String[]{"Automatically picks Weeds", "Range = Tier", "Takes in 1A", "Needs a Weeding Trovel or a Spade in its Inventory", "Need to be supplied with 1L Lubricant per tick."}, new ITexture[]{new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_SIDE_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FRONT_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_TOP_SCANNER), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER)});
+        super(aID, aName, aNameRegional, aTier, 1,
+                new String[]{
+                        "Automatically picks Weeds",
+                        "Range = Tier",
+                        "Takes in 1A",
+                        "Needs a Weeding Trovel or a Spade in its Inventory",
+                        "Need to be supplied with 1L Lubricant per tick."});
     }
 
     public CropWeedPicker(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
@@ -232,7 +235,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex, boolean aActive, boolean aRedstone) {
-        return new ITexture[]{Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1], (aSide == 0 || aSide == 1) ? new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_PIPE_OUT) : new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_ADV_PUMP)};
+        return new ITexture[]{Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1], (aSide == 0 || aSide == 1) ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT) : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP)};
     }
 
     @Override
@@ -243,15 +246,8 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
         return new ITexture[]{
-                new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_ADV_PUMP), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_ADV_PUMP), new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_ADV_PUMP),};
-    }
-
-    protected FakePlayer getFakePlayer(IGregTechTileEntity aBaseTile) {
-        if (mFakePlayer == null) mFakePlayer = GT_Utility.getFakePlayer(aBaseTile);
-        mFakePlayer.setWorld(aBaseTile.getWorld());
-        mFakePlayer.setPosition(aBaseTile.getXCoord(), aBaseTile.getYCoord(), aBaseTile.getZCoord());
-        return mFakePlayer;
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),};
     }
 
 }

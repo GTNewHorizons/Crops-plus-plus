@@ -23,9 +23,7 @@ public class SpacePlantCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        return 5000;
+        return ConfigValues.debug ? 1 : 5000;
     }
 
 

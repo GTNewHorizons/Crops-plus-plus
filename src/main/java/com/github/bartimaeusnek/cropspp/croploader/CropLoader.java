@@ -174,6 +174,7 @@ public class CropLoader {
         ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
         ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
         ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
+        ConfigValues.ILoveScreaming = c.tConfig.get("System", "ILoveScreaming", false).getBoolean(false);
 
         c.tConfig.addCustomCategoryComment("Crops", "enable single plants here:");
 
@@ -190,6 +191,14 @@ public class CropLoader {
         ConfigValues.TConstructBerryGain = (float) c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1).getDouble(1);
         ConfigValues.PrimordialBerryGain = (float) c.tConfig.get("Gain", "Primordial Berry", (float) 0.5).getDouble(0.5);
         ConfigValues.PrimordialBerryGroth = c.tConfig.get("Gain", "Primordial Berry growth time", 125000).getInt(125000);
+
+
+
+        //Boots
+        ConfigValues.BootsProtect = c.tConfig.get("System", "Is Boots Protect", true).getBoolean(true);
+        ConfigValues.BootsDamageChance = (float) c.tConfig.get("System", "Boots Damage Chance", (float) 1).getDouble(1);
+
+
         if (c.tConfig.hasChanged())
             c.save();
     }

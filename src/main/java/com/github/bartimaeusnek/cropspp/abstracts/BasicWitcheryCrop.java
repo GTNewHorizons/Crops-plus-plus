@@ -11,10 +11,7 @@ public abstract class BasicWitcheryCrop extends BasicDecorationCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        else
-            return 550;
+        return ConfigValues.debug ? 1 : 550;
     }
 
     @Override

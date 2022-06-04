@@ -39,19 +39,8 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() >= 2) {
-            r = 4500;
-        } else if (crop.getSize() == 3 && (crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal")))
-            r = 3000;
-        else {
-            // Takes a while to grow from seed
-            r = 1000;
-        }
-
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() >= 2 ? 4500 : 1000;
     }
 
     @Override

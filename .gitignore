@@ -14,3 +14,11 @@ eclipse/
 *.ipr
 *.iml
 *.iws
+*.bat
+/build/
+bin/
+.classpath
+.project
+.settings
+.idea
+run/

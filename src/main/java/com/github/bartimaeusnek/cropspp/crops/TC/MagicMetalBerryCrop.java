@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 import ic2.api.crops.ICropTile;
@@ -71,16 +72,11 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug)
-            return 1;
-        if (crop.getSize() == 2)
-            return 1200;
-        else if (crop.getSize() == 3 && (crop.isBlockBelow("blockThaumium")))
-            return 1800;
-        else if (crop.getSize() == 3 && (crop.isBlockBelow("blockVoid") || crop.isBlockBelow("blockThauminite") || crop.isBlockBelow("blockIron")))
-            return 3300;
-        else
-            return 500;
+        if (ConfigValues.debug) return 1;
+        if (crop.getSize() == 2) return 1200;
+        if (crop.getSize() == 3 && (crop.isBlockBelow("blockThaumium"))) return 1800;
+        if (crop.getSize() == 3 && (crop.isBlockBelow("blockVoid") || crop.isBlockBelow("blockThauminite") || crop.isBlockBelow("blockIron"))) return 3300;
+        return 500;
     }
 
     @Override
@@ -90,12 +86,8 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem))
-            entity.attackEntityFrom(DamageSource.magic, 1);
-        if (entity instanceof EntityLivingBase) {
-            return ((EntityLivingBase) entity).isSprinting();
-        }
-        return false;
+        CCropUtility.damageEntity(entity ,1);
+        return super.onEntityCollision(crop,entity);
     }
 
     @Override

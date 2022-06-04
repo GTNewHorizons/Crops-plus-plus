@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.crops.cpp;
 
 import com.github.bartimaeusnek.croploadcore.MyRandom;
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.entity.Entity;
@@ -62,8 +63,9 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        if (!(entity instanceof EntityItem) && crop.getSize() == 4)
-            entity.attackEntityFrom(DamageSource.cactus, 1);
+            if(crop.getSize() == 4){
+                CCropUtility.damageEntity(entity ,1);
+            }
         return false;
     }
 

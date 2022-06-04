@@ -29,14 +29,8 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r = 9999999;
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() == 1)
-            r = 2250;
-        else if (crop.getSize() == 2 && (crop.isBlockBelow("blockQuicksilver") || !OreDictionary.doesOreNameExist("blockQuicksilver")))
-            r = 1750;
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() == 1 ? 2250 : 1750;
     }
 
     @Override

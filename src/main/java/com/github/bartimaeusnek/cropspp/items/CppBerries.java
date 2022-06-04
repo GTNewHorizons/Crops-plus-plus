@@ -24,7 +24,7 @@ public class CppBerries extends ItemFood {
         this.setCreativeTab(CreativeTab.cpp);
         setHasSubtypes(true);
         setMaxDamage(0);
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(64);
     }
 
     @Override

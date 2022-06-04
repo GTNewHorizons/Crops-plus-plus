@@ -17,18 +17,8 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        int r;
-        // Same growth stages as melons and pumpkins
-        if (ConfigValues.debug)
-            r = 1;
-        else if (crop.getSize() == 2) {
-            // Ripens not so quickly
-            r = 2200;
-        } else {
-            // Takes a while to grow from seed
-            r = 1800;
-        }
-        return r;
+        if (ConfigValues.debug) return 1;
+        return crop.getSize() == 2 ? 2200 : 1800;
     }
 
     @Override
