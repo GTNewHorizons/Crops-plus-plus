@@ -214,8 +214,15 @@ public class GTNHMachineRecipeLoader implements Runnable {
             }
         }
 
-        //Trophy
-        GT_Values.RA.addExtruderRecipe(Materials.Neutronium.getBlocks(64), Materials.Neutronium.getBlocks(64), CppItems.Trophy, 2147483647, 8);
+        // Not a noob trophy, v2.0.
+        GT_Values.RA.addPlasmaForgeRecipe(
+                new ItemStack[] {Materials.SpaceTime.getBlocks(64), Materials.SpaceTime.getBlocks(64), Materials.SpaceTime.getBlocks(64)},
+                new FluidStack[]{Materials.ExcitedDTEC.getFluid(100_000_000)},
+
+                new ItemStack[] {CppItems.Trophy.splitStack(1)},
+                new FluidStack[]{GT_Values.NF},
+                86400*20*2, 2_000_000_000, 13500);
+
         GT_Values.RA.addFluidExtractionRecipe(new ItemStack(CppItems.Modifier, 1, 0), GT_Values.NI, Materials.UUMatter.getFluid(2L), 5000, 128, 4);
 
         //Chem Refine
