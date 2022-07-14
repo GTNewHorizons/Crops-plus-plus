@@ -3,14 +3,11 @@ package com.github.bartimaeusnek.cropspp.abstracts;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import ic2.api.crops.ICropTile;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
@@ -91,7 +88,15 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return (List<String>) Arrays.asList(new String[]{"Needs a block of " + OreDictionary.getOres(hasBlock()).get(0).getDisplayName() + " Below to fully mature.", "Needs a light level below or equal to 10 to fully mature.", "Has increased Nutrient requirements (x1.5) and decreased humidity requirements (x0.5)", "Hurt Player on collision"});
+        List<String> ret = new ArrayList<>();
+        List<ItemStack> blocks = OreDictionary.getOres(hasBlock());
+        if(blocks.size() > 0) {
+            ret.add("Needs a block of " + blocks.get(0).getDisplayName() + " Below to fully mature.");
+        }
+        ret.add("Needs a light level below or equal to 10 to fully mature.");
+        ret.add("Has increased Nutrient requirements (x1.5) and decreased humidity requirements (x0.5)");
+        ret.add("Hurt Player on collision");
+        return ret;
     }
 
     @Override
