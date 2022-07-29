@@ -22,6 +22,7 @@ public final class CppItems {
     public final static ItemStack ModifierMagic = new ItemStack(Modifier, 1, 1);
     //public final static ItemStack ModifierAnti = new ItemStack(Modifier, 1, 3);
     public final static ItemStack Trophy = new ItemStack(Modifier, 1, 2);
+    //public final static ItemStack GigaTrophy = new ItemStack(Modifier, 1, 4);
     //public final static ItemStack Gr = new ItemStack(Modifier, 1, 4);
     //public final static ItemStack Ga = new ItemStack(Modifier, 1, 5);
     //public final static ItemStack Re = new ItemStack(Modifier, 1, 6);
@@ -38,6 +39,7 @@ public final class CppItems {
             GameRegistry.registerCustomItemStack("ModifierMagic", ModifierMagic);
             //GameRegistry.registerCustomItemStack("ModifierAnti", ModifierAnti);
             GameRegistry.registerCustomItemStack("Trophy", Trophy);
+//            GameRegistry.registerCustomItemStack("gigaTrophy", GigaTrophy);
             if (ModsLoaded.GT)
                 GameRegistry.registerItem(CppPotions, "BppPotions");
             GameRegistry.registerItem(CppBerries, "foodBerries");
