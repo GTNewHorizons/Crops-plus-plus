@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.GTHandler;
 
+import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -48,7 +49,8 @@ public class GTCraftingRecipeLoader implements Runnable {
         GT_ModHandler.addCraftingRecipe(CropItemList.cropGeneExtractorLuV.get(1L), bitsd, new Object[]{"RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_LuV, 'T', ItemList.Emitter_LuV, 'R', ItemList.Sensor_LuV, 'C', OrePrefixes.circuit.get(Materials.Ultimate), 'W', OrePrefixes.cableGt01.get(Materials.VanadiumGallium)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropGeneExtractorZPM.get(1L), bitsd, new Object[]{"RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_ZPM, 'T', ItemList.Emitter_ZPM, 'R', ItemList.Sensor_ZPM, 'C', OrePrefixes.circuit.get(Materials.Superconductor), 'W', OrePrefixes.cableGt01.get(Materials.Naquadah)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropGeneExtractorUV.get(1L), bitsd, new Object[]{"RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_UV, 'T', ItemList.Emitter_UV, 'R', ItemList.Sensor_UV, 'C', OrePrefixes.circuit.get(Materials.Infinite), 'W', OrePrefixes.cableGt01.get(Materials.NaquadahAlloy)});
-        GT_ModHandler.addCraftingRecipe(CropItemList.cropGeneExtractorUHV.get(1L), bitsd, new Object[]{"RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_MAX, 'T', ItemList.Emitter_UHV, 'R', ItemList.Sensor_UHV, 'C', OrePrefixes.circuit.get(Materials.Bio), 'W', OrePrefixes.wireGt01.get(Materials.SuperconductorUV)});
+        if(ModsLoaded.dreamcraft)
+            GT_ModHandler.addCraftingRecipe(CropItemList.cropGeneExtractorUHV.get(1L), bitsd, new Object[]{"RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_MAX, 'T', ItemList.Emitter_UHV, 'R', ItemList.Sensor_UHV, 'C', OrePrefixes.circuit.get(Materials.Bio), 'W', OrePrefixes.wireGt01.get(Materials.SuperconductorUV)});
 
         GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorLV.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_LV, 'F', ItemList.Field_Generator_LV, 'E', ItemList.Emitter_LV, 'C', OrePrefixes.circuit.get(Materials.Good), 'W', OrePrefixes.cableGt04.get(Materials.Tin)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorMV.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_MV, 'F', ItemList.Field_Generator_MV, 'E', ItemList.Emitter_MV, 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', OrePrefixes.cableGt04.get(Materials.AnyCopper)});
@@ -58,6 +60,8 @@ public class GTCraftingRecipeLoader implements Runnable {
         GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorLuV.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_LuV, 'F', ItemList.Field_Generator_LuV, 'E', ItemList.Emitter_LuV, 'C', OrePrefixes.circuit.get(Materials.Ultimate), 'W', OrePrefixes.cableGt04.get(Materials.VanadiumGallium)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorZPM.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_ZPM, 'F', ItemList.Field_Generator_ZPM, 'E', ItemList.Emitter_ZPM, 'C', OrePrefixes.circuit.get(Materials.Superconductor), 'W', OrePrefixes.cableGt04.get(Materials.Naquadah)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorUV.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_UV, 'F', ItemList.Field_Generator_UV, 'E', ItemList.Emitter_UV, 'C', OrePrefixes.circuit.get(Materials.Infinite), 'W', OrePrefixes.cableGt04.get(Materials.NaquadahAlloy)});
+        if(ModsLoaded.dreamcraft)
+            GT_ModHandler.addCraftingRecipe(CropItemList.cropReplicatorUHV.get(1L), bitsd, new Object[]{"CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_MAX, 'F', ItemList.Field_Generator_UHV, 'E', ItemList.Emitter_UHV, 'C', OrePrefixes.circuit.get(Materials.Bio), 'W', OrePrefixes.wireGt04.get(Materials.SuperconductorUV)});
 
         GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserLV.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_LV, 'F', ItemList.Field_Generator_LV, 'E', ItemList.Emitter_LV, 'C', OrePrefixes.circuit.get(Materials.Good), 'W', OrePrefixes.cableGt04.get(Materials.Tin)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserMV.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_MV, 'F', ItemList.Field_Generator_MV, 'E', ItemList.Emitter_MV, 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', OrePrefixes.cableGt04.get(Materials.AnyCopper)});
@@ -67,6 +71,9 @@ public class GTCraftingRecipeLoader implements Runnable {
         GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserLuV.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_LuV, 'F', ItemList.Field_Generator_LuV, 'E', ItemList.Emitter_LuV, 'C', OrePrefixes.circuit.get(Materials.Ultimate), 'W', OrePrefixes.cableGt04.get(Materials.VanadiumGallium)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserZPM.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_ZPM, 'F', ItemList.Field_Generator_ZPM, 'E', ItemList.Emitter_ZPM, 'C', OrePrefixes.circuit.get(Materials.Superconductor), 'W', OrePrefixes.cableGt04.get(Materials.Naquadah)});
         GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserUV.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_UV, 'F', ItemList.Field_Generator_UV, 'E', ItemList.Emitter_UV, 'C', OrePrefixes.circuit.get(Materials.Infinite), 'W', OrePrefixes.cableGt04.get(Materials.NaquadahAlloy)});
+        if(ModsLoaded.dreamcraft)
+            GT_ModHandler.addCraftingRecipe(CropItemList.cropSynthesiserUHV.get(1L), bitsd, new Object[]{"FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_MAX, 'F', ItemList.Field_Generator_UHV, 'E', ItemList.Emitter_UHV, 'C', OrePrefixes.circuit.get(Materials.Bio), 'W', OrePrefixes.wireGt04.get(Materials.SuperconductorUV)});
+
         GT_ModHandler.addCraftingRecipe(
                 new ItemStack(itemLens),
                 GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.MIRRORED | GT_ModHandler.RecipeBits.DISMANTLEABLE | GT_ModHandler.RecipeBits.REVERSIBLE,
