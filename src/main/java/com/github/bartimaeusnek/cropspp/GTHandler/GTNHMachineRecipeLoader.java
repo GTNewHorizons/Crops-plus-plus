@@ -196,7 +196,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
         //Magic Modifier + Space Modifier
         GT_Values.RA.addMultiblockChemicalRecipe(new ItemStack[]{new ItemStack(CppItems.Modifier, 16, 0), new ItemStack(CppItems.Modifier, 4, 1)}, new FluidStack[]{Materials.Platinum.getMolten(288L), Materials.MeteoricIron.getMolten(144L), Materials.UUMatter.getFluid(Materials.Platinum.getProtons() + Materials.Platinum.getNeutrons())}, new FluidStack[]{}, new ItemStack[]{Materials.Mytryl.getDust(1)}, 1800, 7680);
         //coral buff
-        GT_Values.RA.addAutoclaveSpaceRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 64L, 15), Materials.UUMatter.getFluid(2L), Materials.Sunnarium.getDust(8), 5000, 15000, 7680, true);
+        GT_Values.RA.addAutoclaveSpaceRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 64L, 15), Materials.UUMatter.getFluid(2L), Materials.Sunnarium.getDust(4), 10000, 15000, 7680, true);
 
         if (ModsLoaded.BoP)
             GT_ModHandler.addCompressionRecipe(GT_ModHandler.getModItem("BiomesOPlenty", "tile.treeMoss", 8L), Ic2Items.plantBall.copy());
