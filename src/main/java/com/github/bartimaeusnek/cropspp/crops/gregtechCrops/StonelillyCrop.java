@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import gregtech.api.enums.Materials;
@@ -189,7 +190,7 @@ public class StonelillyCrop extends BasicDecorationCrop {
                 if (crop.isBlockBelow("stoneGraniteRed"))
                     ret = Materials.GraniteRed.getDust(9);
                 if (crop.isBlockBelow("blockGranite"))
-                    ret = OreDict.ISget("blockGranite");
+                    ret = CCropUtility.getCopiedOreStack("blockGranite");
                 break;
             }
             case "Black": {
@@ -203,14 +204,14 @@ public class StonelillyCrop extends BasicDecorationCrop {
                 if (crop.isBlockBelow("blockMarble"))
                     ret = Materials.Marble.getDust(9);
                 if (crop.isBlockBelow("blockDiorite"))
-                    ret = OreDict.ISget("blockDiorite");
+                    ret = CCropUtility.getCopiedOreStack("blockDiorite");
                 break;
             }
             case "Gray": {
                 if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone))
                     ret = Materials.Stone.getDust(9);
                 if (crop.isBlockBelow("blockAndesite"))
-                    ret = OreDict.ISget("blockAndesite");
+                    ret = CCropUtility.getCopiedOreStack("blockAndesite");
                 break;
             }
             case "Yellow": {

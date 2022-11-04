@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,7 +24,7 @@ public class WildCarrotsCrop extends BasicFoodCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("cropWildcarrots");
+        return CCropUtility.getCopiedOreStack("cropWildcarrots");
     }
 
     @SideOnly(Side.CLIENT)

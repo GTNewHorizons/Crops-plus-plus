@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp;
 
+import com.github.bartimaeusnek.croploadcore.OreDict;
 import ic2.api.crops.ICropTile;
 import ic2.core.Ic2Items;
 import net.minecraft.entity.Entity;
@@ -13,11 +14,18 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CCropUtility {
 
+    public static ItemStack getCopiedOreStack(String name) {
+        ArrayList<ItemStack> ores = OreDictionary.getOres(name);
+        ItemStack stack = ores.size() != 0 ? ores.get(ores.size() - 1) : null;
+        return stack == null ? null : stack.copy();
+    }
 
     public static boolean isRainingOn(ICropTile crop){
         ChunkCoordinates cord =  crop.getLocation();
