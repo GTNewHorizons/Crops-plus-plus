@@ -3,13 +3,11 @@ package com.github.bartimaeusnek.cropspp.crops.TC;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-
 import java.util.Collections;
 import java.util.List;
+import net.minecraft.item.ItemStack;
 
 public class PrimordialPearlBerryCrop extends BasicCrop {
-
 
     public PrimordialPearlBerryCrop() {
         super();
@@ -29,15 +27,15 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 0;   // not edible
+                return 0; // not edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 12;   // immensely colorful
+                return 12; // immensely colorful
             case 4:
-                return 0;   // not weed-like
+                return 0; // not weed-like
             default:
                 return 0;
         }
@@ -84,7 +82,6 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
         return false;
     }
 
-
     @Override
     public ItemStack getSeeds(ICropTile crop) {
         return crop.generateSeeds(crop.getCrop(), (byte) 1, (byte) 1, (byte) 1, crop.getScanLevel());
@@ -97,7 +94,7 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Berry", "Primordial", "Magic", "Unique"};
+        return new String[] {"Berry", "Primordial", "Magic", "Unique"};
     }
 
     @Override
@@ -114,5 +111,4 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
     public List<String> getCropInformation() {
         return Collections.singletonList("Can not Cross, takes a long time to mature.");
     }
-
 }

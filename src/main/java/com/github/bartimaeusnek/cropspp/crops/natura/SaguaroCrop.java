@@ -26,16 +26,14 @@ public class SaguaroCrop extends CactiCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Food", "Cactus"};
+        return new String[] {"Green", "Food", "Cactus"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         if (ModsLoaded.Natura) {
-            if (crop.getSize() == 2)
-                return new ItemStack(NContent.saguaro, 2, 0);
-            else
-                return new ItemStack(NContent.seedFood, 3, 0);
+            if (crop.getSize() == 2) return new ItemStack(NContent.saguaro, 2, 0);
+            else return new ItemStack(NContent.seedFood, 3, 0);
         } else {
             return new ItemStack(CppItems.BerryItems, 1, 4);
         }
@@ -54,17 +52,13 @@ public class SaguaroCrop extends CactiCrop {
 
     @Override
     public byte getSizeAfterHarvest(ICropTile crop) {
-        if (crop.getSize() == 2)
-            return 1;
-        else
-            return 2;
+        if (crop.getSize() == 2) return 1;
+        else return 2;
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        if (ModsLoaded.Natura)
-            return new ItemStack(NContent.seedFood, 3, 0);
-        else
-            return new ItemStack(CppItems.BerryItems, 1, 4);
+        if (ModsLoaded.Natura) return new ItemStack(NContent.seedFood, 3, 0);
+        else return new ItemStack(CppItems.BerryItems, 1, 4);
     }
 }

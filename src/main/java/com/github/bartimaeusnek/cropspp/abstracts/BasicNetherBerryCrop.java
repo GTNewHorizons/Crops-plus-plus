@@ -2,17 +2,14 @@ package com.github.bartimaeusnek.cropspp.abstracts;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import ic2.api.crops.ICropTile;
-
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
-
     public BasicNetherBerryCrop() {
         super();
     }
-
 
     @Override
     public int tier() {
@@ -23,15 +20,15 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 1;   // a bit chemical
+                return 1; // a bit chemical
             case 1:
-                return 3;   // kinda edible
+                return 3; // kinda edible
             case 2:
-                return 4;   // strong defensive properties
+                return 4; // strong defensive properties
             case 3:
-                return 4;   // quite colorful
+                return 4; // quite colorful
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }
@@ -39,15 +36,14 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        if (crop.getSize() < 1)
-            return true;
-        else
-            return crop.getSize() < 3;
+        if (crop.getSize() < 1) return true;
+        else return crop.getSize() < 3;
     }
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList("Has increased Nutrient requirements (x1.5)","Has decreased humidity requirements (x0.5)");
+        return Arrays.asList(
+                "Has increased Nutrient requirements (x1.5)", "Has decreased humidity requirements (x0.5)");
     }
 
     @Override
@@ -61,5 +57,4 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
         if (ConfigValues.debug) return 1;
         return crop.getSize() == 2 ? 300 : 700;
     }
-
 }

@@ -4,11 +4,10 @@ import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.crops.TC.PrimordialPearlBerryCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import java.util.Collections;
 import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
@@ -33,7 +32,8 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     @Override
     public ItemStack getSeeds(ICropTile crop) {
-        return crop.generateSeeds(crop.getCrop(), crop.getGrowth(), crop.getGain(), crop.getResistance(), crop.getScanLevel());
+        return crop.generateSeeds(
+                crop.getCrop(), crop.getGrowth(), crop.getGain(), crop.getResistance(), crop.getScanLevel());
     }
 
     @Override
@@ -48,23 +48,22 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     @Override
     public float dropGainChance() {
-        return (float) ((float) ((Math.pow(0.95, (float) tier())) * ConfigValues.BerryGain) * (ConfigValues.PrimordialBerryGain * 1.5));
+        return (float) ((float) ((Math.pow(0.95, (float) tier())) * ConfigValues.BerryGain)
+                * (ConfigValues.PrimordialBerryGain * 1.5));
     }
 
     @Override
     public int getEmittedLight(ICropTile crop) {
-        if (crop.getSize() == 4)
-            return 4;
+        if (crop.getSize() == 4) return 4;
         else return 0;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
         boolean ret = false;
-        if (crop.getSize() < 3)
-            ret = true;
-        else if ((crop.getSize() == 3 && crop.isBlockBelow("blockIchorium")) || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium")))
-            ret = true;
+        if (crop.getSize() < 3) ret = true;
+        else if ((crop.getSize() == 3 && crop.isBlockBelow("blockIchorium"))
+                || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium"))) ret = true;
         return ret;
     }
 
@@ -75,7 +74,7 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-            return new ItemStack(CppItems.Modifier, 1, 1);
+        return new ItemStack(CppItems.Modifier, 1, 1);
     }
 
     @Override
@@ -88,4 +87,3 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
         return "bartimaeusnek";
     }
 }
-

@@ -6,7 +6,7 @@ public class ConfigValues {
     public static config c;
     public static boolean Items = true;
     public static int PrimordialBerryGroth = 125000;
-    public static boolean ayo_bonsai = false; //ayo = add your own
+    public static boolean ayo_bonsai = false; // ayo = add your own
     public static boolean debug = false;
     public static boolean OreDictPlants = true;
     public static float BerryGain = 1;

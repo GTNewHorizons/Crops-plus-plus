@@ -20,7 +20,7 @@ public class BlackberryCrop extends BasicBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[]{"Berry", "Food", "Black"}; // purple like CropVenomilia
+        return new String[] {"Berry", "Food", "Black"}; // purple like CropVenomilia
     }
 
     public String discoveredBy() {
@@ -29,18 +29,13 @@ public class BlackberryCrop extends BasicBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (ModsLoaded.Natura)
-            return new ItemStack(NContent.berryItem, 3, 2);
-        else
-            return CCropUtility.getCopiedOreStack("crop" + this.name());
+        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
+        else return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        if (ModsLoaded.Natura)
-            return new ItemStack(NContent.berryItem, 3, 2);
-        else
-            return OreDict.ISget("crop" + this.name());
+        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
+        else return OreDict.ISget("crop" + this.name());
     }
-
 }

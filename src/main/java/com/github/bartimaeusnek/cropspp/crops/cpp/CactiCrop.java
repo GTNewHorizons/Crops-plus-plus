@@ -7,21 +7,23 @@ import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
 import ic2.api.crops.Crops;
 import ic2.api.crops.ICropTile;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-
 import java.util.Arrays;
 import java.util.List;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class CactiCrop extends BasicDecorationCrop {
 
     public CactiCrop() {
         if (ModsLoaded.BoP)
-            Crops.instance.registerBaseSeed(new ItemStack(BOPCBlocks.plants, 1, 12), com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)), 1, 1, 1, 1);
+            Crops.instance.registerBaseSeed(
+                    new ItemStack(BOPCBlocks.plants, 1, 12),
+                    com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
+                    1,
+                    1,
+                    1,
+                    1);
     }
 
     @Override
@@ -36,15 +38,13 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Cactus"};
+        return new String[] {"Green", "Cactus"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if ((ModsLoaded.BoP && crop.getSize() == 2))
-            return new ItemStack(BOPCBlocks.plants, 1, 12);
-        else
-            return new ItemStack(Item.getItemById(81), 1, 0);
+        if ((ModsLoaded.BoP && crop.getSize() == 2)) return new ItemStack(BOPCBlocks.plants, 1, 12);
+        else return new ItemStack(Item.getItemById(81), 1, 0);
     }
 
     @Override
@@ -54,7 +54,10 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList("Has increased air and nutrients requirements (x1.25)","Has decreased humidity requirements (x0.5)", "Hurt Player on collision");
+        return Arrays.asList(
+                "Has increased air and nutrients requirements (x1.25)",
+                "Has decreased humidity requirements (x0.5)",
+                "Hurt Player on collision");
     }
 
     @Override
@@ -66,16 +69,14 @@ public class CactiCrop extends BasicDecorationCrop {
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
 
-        if(!entity.isSneaking()){
-            CCropUtility.damageEntity(entity ,1);
+        if (!entity.isSneaking()) {
+            CCropUtility.damageEntity(entity, 1);
         }
-        return super.onEntityCollision(crop,entity);
-
+        return super.onEntityCollision(crop, entity);
     }
 
     @Override
     public ItemStack getDisplayItem() {
         return new ItemStack(Item.getItemById(81), 1, 0);
     }
-
 }

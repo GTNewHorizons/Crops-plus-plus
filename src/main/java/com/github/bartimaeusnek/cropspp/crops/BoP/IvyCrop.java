@@ -37,7 +37,7 @@ public class IvyCrop extends VineCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Tendrilly", "Flower", "Bad", "Poison"};
+        return new String[] {"Green", "Tendrilly", "Flower", "Bad", "Poison"};
     }
 
     @Override
@@ -54,5 +54,4 @@ public class IvyCrop extends VineCrop {
     public ItemStack getDisplayItem() {
         return new ItemStack(BOPCBlocks.ivy, 2, 0);
     }
-
 }

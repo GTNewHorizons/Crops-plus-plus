@@ -27,7 +27,7 @@ public class VineCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Tendrilly"};
+        return new String[] {"Green", "Tendrilly"};
     }
 
     @Override
@@ -39,5 +39,4 @@ public class VineCrop extends BasicDecorationCrop {
     public ItemStack getDisplayItem() {
         return new ItemStack(Item.getItemById(106), 2, 0);
     }
-
 }

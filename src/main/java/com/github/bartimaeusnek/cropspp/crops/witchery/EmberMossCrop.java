@@ -24,7 +24,7 @@ public class EmberMossCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Fire", "Ingredient", "Bad", "Climbable"};
+        return new String[] {"Fire", "Ingredient", "Bad", "Climbable"};
     }
 
     @Override
@@ -36,5 +36,4 @@ public class EmberMossCrop extends BasicWitcheryCrop {
     public ItemStack getDisplayItem() {
         return OreDict.ISget("crop" + this.name().replaceAll(" ", ""));
     }
-
 }

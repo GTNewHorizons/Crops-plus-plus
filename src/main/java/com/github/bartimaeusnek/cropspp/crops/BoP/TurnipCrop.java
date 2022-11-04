@@ -29,7 +29,7 @@ public class TurnipCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Food", "Purple", "Carrots"};
+        return new String[] {"Food", "Purple", "Carrots"};
     }
 
     @SideOnly(Side.CLIENT)

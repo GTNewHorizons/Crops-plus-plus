@@ -32,7 +32,7 @@ public class SugarBeetCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Food", "White", "Ingredient"};
+        return new String[] {"Food", "White", "Ingredient"};
     }
 
     @SideOnly(Side.CLIENT)
@@ -50,5 +50,4 @@ public class SugarBeetCrop extends BasicFoodCrop {
     public ItemStack getGain(ICropTile var1) {
         return new ItemStack(CppItems.CppBerries, 1, 1);
     }
-
 }

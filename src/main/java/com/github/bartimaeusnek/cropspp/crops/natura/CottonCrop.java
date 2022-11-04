@@ -49,7 +49,7 @@ public class CottonCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"White", "Cotton"};
+        return new String[] {"White", "Cotton"};
     }
 
     @Override
@@ -74,10 +74,7 @@ public class CottonCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (!ModsLoaded.Natura)
-            return CCropUtility.getCopiedOreStack("crop" + this.name());
-        else
-            return new ItemStack(NContent.plantItem, 1, 3);
+        if (!ModsLoaded.Natura) return CCropUtility.getCopiedOreStack("crop" + this.name());
+        else return new ItemStack(NContent.plantItem, 1, 3);
     }
-
 }

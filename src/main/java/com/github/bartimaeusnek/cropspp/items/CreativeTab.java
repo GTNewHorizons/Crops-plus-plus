@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 
 public final class CreativeTab extends CreativeTabs {
 
-    public final static CreativeTab cpp = new CreativeTab();
+    public static final CreativeTab cpp = new CreativeTab();
 
     public CreativeTab() {
         super("Cropspp");
@@ -15,9 +15,7 @@ public final class CreativeTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        if (ModsLoaded.Natura)
-            return OreDict.ISget("cropSaguaroBerry").getItem();
+        if (ModsLoaded.Natura) return OreDict.ISget("cropSaguaroBerry").getItem();
         else return CppItems.Goldfisch;
     }
-
 }

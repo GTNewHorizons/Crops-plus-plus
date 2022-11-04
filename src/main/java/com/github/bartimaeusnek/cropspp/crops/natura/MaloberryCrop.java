@@ -21,22 +21,18 @@ public class MaloberryCrop extends BasicBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[]{"Berry", "Food", "Yellow"}; // orange like CropCarrots
+        return new String[] {"Berry", "Food", "Yellow"}; // orange like CropCarrots
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (ModsLoaded.Natura)
-            return new ItemStack(NContent.berryItem, 3, 3);
-        else
-            return CCropUtility.getCopiedOreStack("crop" + this.name());
+        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 3);
+        else return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        if (ModsLoaded.Natura)
-            return new ItemStack(NContent.berryItem, 3, 3);
-        else
-            return OreDict.ISget("crop" + this.name());
+        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 3);
+        else return OreDict.ISget("crop" + this.name());
     }
 }

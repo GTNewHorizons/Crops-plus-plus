@@ -2,12 +2,10 @@ package com.github.bartimaeusnek.cropspp.abstracts;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import ic2.api.crops.ICropTile;
-
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class BasicBerryCrop extends BasicCrop {
-
 
     public BasicBerryCrop() {
         super();
@@ -22,15 +20,15 @@ public abstract class BasicBerryCrop extends BasicCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 4;   // very edible
+                return 4; // very edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 4;   // quite colorful
+                return 4; // quite colorful
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }
@@ -43,7 +41,8 @@ public abstract class BasicBerryCrop extends BasicCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList("Has increased Nutrient requirements (x1.2)", "Has decreased humidity and air requirements (x0.9)");
+        return Arrays.asList(
+                "Has increased Nutrient requirements (x1.2)", "Has decreased humidity and air requirements (x0.9)");
     }
 
     @Override
@@ -74,5 +73,4 @@ public abstract class BasicBerryCrop extends BasicCrop {
     public String discoveredBy() {
         return "bartimaeusnek";
     }
-
 }

@@ -24,7 +24,7 @@ public class GarlicCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Food", "Ingredient", "Healing"};
+        return new String[] {"Food", "Ingredient", "Healing"};
     }
 
     @Override

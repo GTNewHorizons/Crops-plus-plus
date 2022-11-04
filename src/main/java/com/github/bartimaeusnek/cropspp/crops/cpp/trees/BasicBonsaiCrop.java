@@ -32,28 +32,25 @@ public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
         return (float) ((Math.pow(0.95, (float) tier())) * ConfigValues.BerryGain);
     }
 
-
     @Override
     public String name() {
-        if (!name.contains("Rubber"))
-            return name.replace(" Wood", "Bonsai");
-        else
-            return "Rubber Wood Bonsai";
+        if (!name.contains("Rubber")) return name.replace(" Wood", "Bonsai");
+        else return "Rubber Wood Bonsai";
     }
 
     @Override
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 0;   // not edible
+                return 0; // not edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 1;   // a bit colorful
+                return 1; // a bit colorful
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }
@@ -67,7 +64,7 @@ public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Tree", "Bonsai", "Leavy"};
+        return new String[] {"Tree", "Bonsai", "Leavy"};
     }
 
     @Override
@@ -78,8 +75,7 @@ public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
     @SideOnly(Side.CLIENT)
     public void registerSprites(IIconRegister iconRegister) {
         textures = new IIcon[maxSize()];
-        for (int i = 0; i <= textures.length - 1; i++)
-            textures[i] = iconRegister.registerIcon(ICNNAME);
+        for (int i = 0; i <= textures.length - 1; i++) textures[i] = iconRegister.registerIcon(ICNNAME);
         textures[2] = iconRegister.registerIcon(drop.getIconIndex().getIconName());
     }
 
@@ -109,8 +105,7 @@ public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (name().equals("Rubber Wood Bonsai"))
-            return new ItemStack(Ic2Items.rubberWood.getItem(), 1);
+        if (name().equals("Rubber Wood Bonsai")) return new ItemStack(Ic2Items.rubberWood.getItem(), 1);
         return drop;
     }
 }

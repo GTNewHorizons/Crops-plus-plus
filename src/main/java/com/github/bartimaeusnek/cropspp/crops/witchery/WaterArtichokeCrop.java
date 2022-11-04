@@ -19,7 +19,7 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Flower", "Water", "Blue", "Ingredient"};
+        return new String[] {"Flower", "Water", "Blue", "Ingredient"};
     }
 
     @Override
@@ -31,5 +31,4 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
     public ItemStack getDisplayItem() {
         return OreDict.ISget("cropArtichoke");
     }
-
 }

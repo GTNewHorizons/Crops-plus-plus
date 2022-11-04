@@ -21,7 +21,7 @@ public class MandragoraCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Flower", "Magic", "Bad", "Toxic", "Ingredient"};
+        return new String[] {"Flower", "Magic", "Bad", "Toxic", "Ingredient"};
     }
 
     @Override

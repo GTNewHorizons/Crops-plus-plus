@@ -25,12 +25,11 @@ public class EyebulbCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Nether", "Evil", "Bad"};
+        return new String[] {"Nether", "Evil", "Bad"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         return new ItemStack(BOPCBlocks.flowers, 1, 13);
     }
-
 }

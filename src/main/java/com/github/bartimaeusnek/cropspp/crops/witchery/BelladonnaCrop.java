@@ -20,7 +20,7 @@ public class BelladonnaCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Purple", "Flower", "Toxic", "Ingredient"};
+        return new String[] {"Purple", "Flower", "Toxic", "Ingredient"};
     }
 
     @Override

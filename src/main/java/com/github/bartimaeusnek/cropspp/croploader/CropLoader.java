@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
+import static com.github.bartimaeusnek.cropspp.ConfigValues.c;
+
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.croploadcore.config;
@@ -11,16 +13,13 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.github.bartimaeusnek.cropspp.ConfigValues.c;
-
-//IC2API
-//ItemsFromAPIs
+// IC2API
+// ItemsFromAPIs
 
 public class CropLoader {
     private static List<Boolean> bHasCropObj = new ArrayList<Boolean>();
@@ -37,7 +36,6 @@ public class CropLoader {
      * CropLoader.register();
      * to load the Crops into the game.
      */
-
 
     public CropLoader(CropCard cropObj) {
         this.cropObj = cropObj;
@@ -60,7 +58,7 @@ public class CropLoader {
         return new CropLoader(cropObj, OreDict.ISget("crop" + cropObj.name()));
     }
 
-    public final static List<CropLoader> cropLoader() {
+    public static final List<CropLoader> cropLoader() {
 
         List<CropLoader> p = new ArrayList<CropLoader>();
 
@@ -78,8 +76,7 @@ public class CropLoader {
         if (ModsLoaded.GT) {
             p.addAll(GTLoader.load());
         }
-        if (ModsLoaded.Natura)
-            p.addAll(NaturaLoader.load());
+        if (ModsLoaded.Natura) p.addAll(NaturaLoader.load());
         else {
             p.add(new CropLoader(new SaguaroCrop(), null));
         }
@@ -121,26 +118,26 @@ public class CropLoader {
         p.add(new CropLoader(new BlackberryCrop(), null));
         p.add(new CropLoader(new BlueberryCrop(), null));
         p.add(new CropLoader(new RaspberryCrop(), null));
-        //p.add(new WeedCrop());
+        // p.add(new WeedCrop());
 
-	/*if (lokko12.berriespp.ConfigValures.ayo_bonsai)
-		if (InstalledTreesGetter.savedNames != null)	
-	for(int i=0; i < InstalledTreesGetter.savedNames.size(); ++i) {
-		if( Operators.AND(Operators.NOR( InstalledTreesGetter.savedNames.get(i).contains("Shimmerleaf"),InstalledTreesGetter.savedNames.get(i).contains("Cinderpearl") ) , Operators.NOR(InstalledTreesGetter.savedNames.get(i).contains("Vishroom"),InstalledTreesGetter.savedNames.get(i).contains("Ethereal Bloom")))) 
-		{
-			p.add(new CropLoader(new BasicBonsaiCrop(InstalledTreesGetter.savedNames.get(i),
-					"bpp:"+InstalledTreesGetter.BaseSeed.get(i).getIconIndex().getIconName().replaceAll(":","_")
-					,InstalledTreesGetter.savedDrop.get(i)),InstalledTreesGetter.BaseSeed.get(i)));
-		}
-		
-			
-	}
-		else
-			Berriespp.bpplogger.info("Something wrent wrong at getting Trees, BonsaiGen Disabled!");*/
+        /*if (lokko12.berriespp.ConfigValures.ayo_bonsai)
+        	if (InstalledTreesGetter.savedNames != null)
+        for(int i=0; i < InstalledTreesGetter.savedNames.size(); ++i) {
+        	if( Operators.AND(Operators.NOR( InstalledTreesGetter.savedNames.get(i).contains("Shimmerleaf"),InstalledTreesGetter.savedNames.get(i).contains("Cinderpearl") ) , Operators.NOR(InstalledTreesGetter.savedNames.get(i).contains("Vishroom"),InstalledTreesGetter.savedNames.get(i).contains("Ethereal Bloom"))))
+        	{
+        		p.add(new CropLoader(new BasicBonsaiCrop(InstalledTreesGetter.savedNames.get(i),
+        				"bpp:"+InstalledTreesGetter.BaseSeed.get(i).getIconIndex().getIconName().replaceAll(":","_")
+        				,InstalledTreesGetter.savedDrop.get(i)),InstalledTreesGetter.BaseSeed.get(i)));
+        	}
+
+
+        }
+        	else
+        		Berriespp.bpplogger.info("Something wrent wrong at getting Trees, BonsaiGen Disabled!");*/
         return p;
     }
 
-    private final static List<CropCard> cropObjs() {
+    private static final List<CropCard> cropObjs() {
         List<CropCard> p = new ArrayList<CropCard>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCC(list.get(i)));
@@ -148,7 +145,7 @@ public class CropLoader {
         return p;
     }
 
-    private final static List<ItemStack> setBaseSeed() {
+    private static final List<ItemStack> setBaseSeed() {
         List<ItemStack> p = new ArrayList<ItemStack>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCG(list.get(i)));
@@ -156,7 +153,7 @@ public class CropLoader {
         return p;
     }
 
-    private final static List<String> setnames() {
+    private static final List<String> setnames() {
         List<String> s = new ArrayList<String>();
         for (int i = 0; i < list.size(); ++i) {
             s.add(cropObjs().get(i).name());
@@ -166,15 +163,18 @@ public class CropLoader {
 
     public static void load(FMLPreInitializationEvent preinit) {
         c = new config(preinit, "berriespp.cfg");
-        c.tConfig.addCustomCategoryComment("System", "enable or disable system config:"
-                + "\nDebug will set all crops groth duration to 1 and disable all requirements.(aka. \"Cheatmode\")"
-                + "\nBonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)"
-                + "\nWiP Items are not finished items."
-                + "\nItems will enable/disable all items.");
+        c.tConfig.addCustomCategoryComment(
+                "System",
+                "enable or disable system config:"
+                        + "\nDebug will set all crops groth duration to 1 and disable all requirements.(aka. \"Cheatmode\")"
+                        + "\nBonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)"
+                        + "\nWiP Items are not finished items."
+                        + "\nItems will enable/disable all items.");
         ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
         ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
         ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
-        ConfigValues.ILoveScreaming = c.tConfig.get("System", "ILoveScreaming", false).getBoolean(false);
+        ConfigValues.ILoveScreaming =
+                c.tConfig.get("System", "ILoveScreaming", false).getBoolean(false);
 
         c.tConfig.addCustomCategoryComment("Crops", "enable single plants here:");
 
@@ -182,25 +182,29 @@ public class CropLoader {
             bHasCropObj.add(c.tConfig.get("Crops", setnames().get(i), true).getBoolean(true));
         }
         bHasCropObj.add(c.tConfig.get("Crops", "Bonsai", true).getBoolean(true));
-        c.tConfig.addCustomCategoryComment("Gain", "Set custom gain modifiers here:"
-                + "\n Tinker's Construct Berries' Gain is not modified by All Crops."
-                + "\n Primordial Berry's gain is absolut"
-                + "\n Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period"
-                + "\n IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks");
-        ConfigValues.BerryGain = (float) c.tConfig.get("Gain", "All crops", (float) 1).getDouble(1);
-        ConfigValues.TConstructBerryGain = (float) c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1).getDouble(1);
-        ConfigValues.PrimordialBerryGain = (float) c.tConfig.get("Gain", "Primordial Berry", (float) 0.5).getDouble(0.5);
-        ConfigValues.PrimordialBerryGroth = c.tConfig.get("Gain", "Primordial Berry growth time", 125000).getInt(125000);
+        c.tConfig.addCustomCategoryComment(
+                "Gain",
+                "Set custom gain modifiers here:"
+                        + "\n Tinker's Construct Berries' Gain is not modified by All Crops."
+                        + "\n Primordial Berry's gain is absolut"
+                        + "\n Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period"
+                        + "\n IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks");
+        ConfigValues.BerryGain =
+                (float) c.tConfig.get("Gain", "All crops", (float) 1).getDouble(1);
+        ConfigValues.TConstructBerryGain = (float)
+                c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1).getDouble(1);
+        ConfigValues.PrimordialBerryGain =
+                (float) c.tConfig.get("Gain", "Primordial Berry", (float) 0.5).getDouble(0.5);
+        ConfigValues.PrimordialBerryGroth =
+                c.tConfig.get("Gain", "Primordial Berry growth time", 125000).getInt(125000);
 
+        // Boots
+        ConfigValues.BootsProtect =
+                c.tConfig.get("System", "Is Boots Protect", true).getBoolean(true);
+        ConfigValues.BootsDamageChance = (float)
+                c.tConfig.get("System", "Boots Damage Chance", (float) 1).getDouble(1);
 
-
-        //Boots
-        ConfigValues.BootsProtect = c.tConfig.get("System", "Is Boots Protect", true).getBoolean(true);
-        ConfigValues.BootsDamageChance = (float) c.tConfig.get("System", "Boots Damage Chance", (float) 1).getDouble(1);
-
-
-        if (c.tConfig.hasChanged())
-            c.save();
+        if (c.tConfig.hasChanged()) c.save();
     }
 
     public static void register() {
@@ -208,7 +212,7 @@ public class CropLoader {
             if (bHasCropObj.get(i) && cropObjs().get(i) != null)
                 Crops.instance.registerCrop(cropObjs().get(i));
         }
-        if (bHasCropObj.get(bHasCropObj.size()-1)){
+        if (bHasCropObj.get(bHasCropObj.size() - 1)) {
             Bonsais.registerAllBonais();
         }
     }

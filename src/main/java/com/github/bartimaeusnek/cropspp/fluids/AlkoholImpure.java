@@ -1,10 +1,10 @@
 package com.github.bartimaeusnek.cropspp.fluids;
 
+import static gregtech.api.enums.GT_Values.RES_PATH_BLOCK;
+
 import gregtech.api.GregTech_API;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import static gregtech.api.enums.GT_Values.RES_PATH_BLOCK;
 
 public class AlkoholImpure extends Fluid implements Runnable {
 
@@ -31,7 +31,4 @@ public class AlkoholImpure extends Fluid implements Runnable {
     public long getPercentage() {
         return percentage;
     }
-
-
 }
-

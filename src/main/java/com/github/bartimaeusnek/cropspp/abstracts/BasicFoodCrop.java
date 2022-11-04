@@ -1,7 +1,6 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
 import ic2.api.crops.ICropTile;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public abstract class BasicFoodCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Food"};
+        return new String[] {"Food"};
     }
 
     @Override
@@ -67,5 +66,4 @@ public abstract class BasicFoodCrop extends BasicDecorationCrop {
     public byte getSizeAfterHarvest(ICropTile crop) {
         return 1;
     }
-
 }

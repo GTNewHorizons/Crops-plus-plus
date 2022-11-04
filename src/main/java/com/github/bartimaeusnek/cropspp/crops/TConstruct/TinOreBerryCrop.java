@@ -8,7 +8,6 @@ import tconstruct.world.TinkerWorld;
 
 public class TinOreBerryCrop extends BasicTinkerBerryCrop {
 
-
     public TinOreBerryCrop() {
         super();
     }
@@ -43,13 +42,11 @@ public class TinOreBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Tin", "Metal", "Shiny"};
+        return new String[] {"OreBerry", "Tin", "Metal", "Shiny"};
     }
 
     @Override
     public ItemStack getDisplayItem() {
         return new ItemStack(TinkerWorld.oreBerries, 6, 3);
     }
-
 }
-

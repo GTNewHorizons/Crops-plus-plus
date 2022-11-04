@@ -3,11 +3,10 @@ package com.github.bartimaeusnek.cropspp.crops.BoP;
 import biomesoplenty.api.content.BOPCBlocks;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
 import java.util.Arrays;
 import java.util.List;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 public class GlowingCoralCrop extends BasicDecorationCrop {
 
@@ -32,13 +31,14 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Water", "Light", "Shiny"};
+        return new String[] {"Water", "Light", "Shiny"};
     }
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList("Needs a block of Glowstone below to incrase yield","Emits light.");
+        return Arrays.asList("Needs a block of Glowstone below to incrase yield", "Emits light.");
     }
+
     @Override
     public int getEmittedLight(ICropTile crop) {
         return 7;
@@ -51,10 +51,7 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.isBlockBelow(Blocks.glowstone))
-            return new ItemStack(BOPCBlocks.coral1, 2, 15);
-        else
-            return new ItemStack(BOPCBlocks.coral1, 1, 15);
+        if (crop.isBlockBelow(Blocks.glowstone)) return new ItemStack(BOPCBlocks.coral1, 2, 15);
+        else return new ItemStack(BOPCBlocks.coral1, 1, 15);
     }
-
 }

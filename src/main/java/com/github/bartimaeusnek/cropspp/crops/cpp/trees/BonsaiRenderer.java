@@ -3,12 +3,11 @@ package com.github.bartimaeusnek.cropspp.crops.cpp.trees;
 import com.github.bartimaeusnek.cropspp.Cropspp;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.awt.image.BufferedImage;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.util.ResourceLocation;
-
-import java.awt.image.BufferedImage;
 
 @SideOnly(Side.CLIENT)
 public class BonsaiRenderer extends TextureAtlasSprite {
@@ -20,7 +19,7 @@ public class BonsaiRenderer extends TextureAtlasSprite {
         super(iconName);
         this.Image = Image;
         copyFrom(Original);
-        //this.load(null,null);
+        // this.load(null,null);
     }
 
     @Override
@@ -38,8 +37,9 @@ public class BonsaiRenderer extends TextureAtlasSprite {
     }
 
     @Override
-    public void loadSprite(BufferedImage[] mipmapImages, AnimationMetadataSection metadata, boolean useAnisotropicFiltering) {
-        //Making MipMaps
+    public void loadSprite(
+            BufferedImage[] mipmapImages, AnimationMetadataSection metadata, boolean useAnisotropicFiltering) {
+        // Making MipMaps
         int width = mipmapImages[0].getWidth();
         int height = mipmapImages[0].getHeight();
         this.width = width;
@@ -47,9 +47,15 @@ public class BonsaiRenderer extends TextureAtlasSprite {
         int[][] mipmapLevels = new int[mipmapImages.length][];
         BufferedImage bufferedimage = mipmapImages[0];
 
-
         mipmapLevels[0] = new int[bufferedimage.getWidth() * bufferedimage.getHeight()];
-        bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), mipmapLevels[0], 0, bufferedimage.getWidth());
+        bufferedimage.getRGB(
+                0,
+                0,
+                bufferedimage.getWidth(),
+                bufferedimage.getHeight(),
+                mipmapLevels[0],
+                0,
+                bufferedimage.getWidth());
 
         framesTextureData.add(mipmapLevels);
     }

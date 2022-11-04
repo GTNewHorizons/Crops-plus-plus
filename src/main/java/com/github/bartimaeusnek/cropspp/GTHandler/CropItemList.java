@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.GTHandler;
 
+import static gregtech.api.enums.GT_Values.W;
+
 import gregtech.api.interfaces.IItemContainer;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
@@ -7,8 +9,6 @@ import gregtech.api.util.GT_Utility;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import static gregtech.api.enums.GT_Values.W;
 
 public enum CropItemList implements IItemContainer {
     weedingTrowel,
@@ -94,7 +94,8 @@ public enum CropItemList implements IItemContainer {
 
     @Override
     public boolean isStackEqual(Object aStack, boolean aWildcard, boolean aIgnoreNBT) {
-        return !GT_Utility.isStackInvalid(aStack) && GT_Utility.areUnificationsEqual((ItemStack) aStack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
+        return !GT_Utility.isStackInvalid(aStack)
+                && GT_Utility.areUnificationsEqual((ItemStack) aStack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
     }
 
     @Override
@@ -193,6 +194,4 @@ public enum CropItemList implements IItemContainer {
         }
         return this;
     }
-
-
 }

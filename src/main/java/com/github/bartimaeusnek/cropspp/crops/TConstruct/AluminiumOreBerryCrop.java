@@ -8,7 +8,6 @@ import tconstruct.world.TinkerWorld;
 
 public class AluminiumOreBerryCrop extends BasicTinkerBerryCrop {
 
-
     public AluminiumOreBerryCrop() {
         super();
     }
@@ -34,17 +33,15 @@ public class AluminiumOreBerryCrop extends BasicTinkerBerryCrop {
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
         return crop.getSize() >= 2 ? 3000 : 500;
-        }
+    }
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Aluminium", "Metal", "Aluminum"};
+        return new String[] {"OreBerry", "Aluminium", "Metal", "Aluminum"};
     }
 
     @Override
     public ItemStack getDisplayItem() {
         return new ItemStack(TinkerWorld.oreBerries, 6, 4);
     }
-
 }
-

@@ -16,7 +16,7 @@ public class BlightberryCrop extends BasicNetherBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[]{"Berry", "Toxic", "Bad", "Green", "Nether", "Addictive"};
+        return new String[] {"Berry", "Toxic", "Bad", "Green", "Nether", "Addictive"};
     }
 
     @Override
@@ -28,5 +28,4 @@ public class BlightberryCrop extends BasicNetherBerryCrop {
     public ItemStack getDisplayItem() {
         return new ItemStack(NContent.netherBerryItem, 2, 0);
     }
-
 }

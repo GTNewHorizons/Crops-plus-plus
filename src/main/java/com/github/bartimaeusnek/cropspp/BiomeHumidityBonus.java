@@ -5,8 +5,8 @@ import net.minecraftforge.common.BiomeDictionary;
 
 public class BiomeHumidityBonus {
 
-    private BiomeHumidityBonus(){}
-    
+    private BiomeHumidityBonus() {}
+
     public static void apply() {
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.HOT, -5);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.COLD, -5);

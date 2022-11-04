@@ -5,15 +5,12 @@ import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
+import java.util.Arrays;
+import java.util.List;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class GrassCrop extends BasicDecorationCrop {
     private int random;
@@ -32,15 +29,15 @@ public class GrassCrop extends BasicDecorationCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 0;   // not edible
+                return 0; // not edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 3;   // primarily decorative
+                return 3; // primarily decorative
             case 4:
-                return 4;   // weed-like
+                return 4; // weed-like
             default:
                 return 0;
         }
@@ -63,9 +60,9 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-            if(crop.getSize() == 4){
-                CCropUtility.damageEntity(entity ,1);
-            }
+        if (crop.getSize() == 4) {
+            CCropUtility.damageEntity(entity, 1);
+        }
         return false;
     }
 
@@ -91,13 +88,12 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Bad"};
+        return new String[] {"Green", "Bad"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4)
-            return new ItemStack(Item.getItemById(32), 1, 0);
+        if (crop.getSize() == 4) return new ItemStack(Item.getItemById(32), 1, 0);
         if (crop.getSize() == 3) {
             random = MyRandom.intrandom(0, 10);
             switch (random) {
@@ -128,7 +124,7 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList(new String[]{"Is a weed", "Hurt Player on collision, when fully grown"});
+        return Arrays.asList(new String[] {"Is a weed", "Hurt Player on collision, when fully grown"});
     }
 
     @Override

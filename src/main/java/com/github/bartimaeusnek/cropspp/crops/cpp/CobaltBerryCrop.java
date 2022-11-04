@@ -28,15 +28,14 @@ public class CobaltBerryCrop extends BasicTinkerBerryCrop {
         return "blockCobalt";
     }
 
-
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if ((crop.isBlockBelow("blockCobalt") || ConfigValues.debug) && OreDictionary.getOres("nuggetCobalt").size() != 0) {
-            return OreDictionary.getOres("nuggetCobalt").get(OreDictionary.getOres("nuggetCobalt").size() - 1);
-        } else
-            return null;
+        if ((crop.isBlockBelow("blockCobalt") || ConfigValues.debug)
+                && OreDictionary.getOres("nuggetCobalt").size() != 0) {
+            return OreDictionary.getOres("nuggetCobalt")
+                    .get(OreDictionary.getOres("nuggetCobalt").size() - 1);
+        } else return null;
     }
-
 
     @Override
     public int growthDuration(ICropTile crop) {
@@ -46,7 +45,7 @@ public class CobaltBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Cobalt", "Metal", "Blue"};
+        return new String[] {"OreBerry", "Cobalt", "Metal", "Blue"};
     }
 
     @Override

@@ -34,14 +34,13 @@ public class WaterlillyCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Blue", "Water", "Green"};
+        return new String[] {"Blue", "Water", "Green"};
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         ItemStack ret = getDisplayItem();
-        if (MyRandom.intrandom(0, 10) > 8)
-            ret = new ItemStack(Items.dye, 2, 9);
+        if (MyRandom.intrandom(0, 10) > 8) ret = new ItemStack(Items.dye, 2, 9);
         return ret;
     }
 

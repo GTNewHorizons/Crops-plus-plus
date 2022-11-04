@@ -11,24 +11,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public final class CppItems {
-    public final static Item BerryItems = new NaturaBerryItems(1).setUnlocalizedName("berry");
-    public final static Item itemSpade = new ItemBppSpade();
-    public final static Item itemLens = new ItemBppLens();
-    public final static ItemStack itemSpadeStack = new ItemStack(itemSpade);
-    public final static Item Goldfisch = new Goldfish();
-    public final static ItemStack GoldfischS = new ItemStack(Goldfisch);
-    public final static Item Modifier = new Modifier();
-    public final static ItemStack ModifierSpace = new ItemStack(Modifier, 1, 0);
-    public final static ItemStack ModifierMagic = new ItemStack(Modifier, 1, 1);
-    //public final static ItemStack ModifierAnti = new ItemStack(Modifier, 1, 3);
-    public final static ItemStack Trophy = new ItemStack(Modifier, 1, 2);
-    //public final static ItemStack Gr = new ItemStack(Modifier, 1, 4);
-    //public final static ItemStack Ga = new ItemStack(Modifier, 1, 5);
-    //public final static ItemStack Re = new ItemStack(Modifier, 1, 6);
-    public final static Item CppBerries = new CppBerries();
-    public final static Item CppPotions = new CppPotions();
+    public static final Item BerryItems = new NaturaBerryItems(1).setUnlocalizedName("berry");
+    public static final Item itemSpade = new ItemBppSpade();
+    public static final Item itemLens = new ItemBppLens();
+    public static final ItemStack itemSpadeStack = new ItemStack(itemSpade);
+    public static final Item Goldfisch = new Goldfish();
+    public static final ItemStack GoldfischS = new ItemStack(Goldfisch);
+    public static final Item Modifier = new Modifier();
+    public static final ItemStack ModifierSpace = new ItemStack(Modifier, 1, 0);
+    public static final ItemStack ModifierMagic = new ItemStack(Modifier, 1, 1);
+    // public final static ItemStack ModifierAnti = new ItemStack(Modifier, 1, 3);
+    public static final ItemStack Trophy = new ItemStack(Modifier, 1, 2);
+    // public final static ItemStack Gr = new ItemStack(Modifier, 1, 4);
+    // public final static ItemStack Ga = new ItemStack(Modifier, 1, 5);
+    // public final static ItemStack Re = new ItemStack(Modifier, 1, 6);
+    public static final Item CppBerries = new CppBerries();
+    public static final Item CppPotions = new CppPotions();
 
-    public final static void register_Items() {
+    public static final void register_Items() {
         if (ConfigValues.Items) {
             GameRegistry.registerItem(itemLens, "itemLens");
             GameRegistry.registerItem(itemSpade, "itemSpade");
@@ -36,10 +36,9 @@ public final class CppItems {
             GameRegistry.registerItem(Modifier, "Modifier");
             GameRegistry.registerCustomItemStack("ModifierSpace", ModifierSpace);
             GameRegistry.registerCustomItemStack("ModifierMagic", ModifierMagic);
-            //GameRegistry.registerCustomItemStack("ModifierAnti", ModifierAnti);
+            // GameRegistry.registerCustomItemStack("ModifierAnti", ModifierAnti);
             GameRegistry.registerCustomItemStack("Trophy", Trophy);
-            if (ModsLoaded.GT)
-                GameRegistry.registerItem(CppPotions, "BppPotions");
+            if (ModsLoaded.GT) GameRegistry.registerItem(CppPotions, "BppPotions");
             GameRegistry.registerItem(CppBerries, "foodBerries");
             GameRegistry.registerCustomItemStack("berryHuckle", new ItemStack(CppBerries, 1, 0));
             GameRegistry.registerCustomItemStack("sugarbeet", new ItemStack(CppBerries, 1, 1));
@@ -58,13 +57,24 @@ public final class CppItems {
         }
     }
 
-    public final static void register_recipes() {
+    public static final void register_recipes() {
         if (ConfigValues.Items) {
             if (!ModsLoaded.GT) {
-                GameRegistry.addRecipe(itemSpadeStack, " P ", "PWP", " S ", 'P', OreDict.ISget("plateDenseSteel"), 'W', Ic2Items.weedingTrowel.getItem(), 'S', Items.stick);
+                GameRegistry.addRecipe(
+                        itemSpadeStack,
+                        " P ",
+                        "PWP",
+                        " S ",
+                        'P',
+                        OreDict.ISget("plateDenseSteel"),
+                        'W',
+                        Ic2Items.weedingTrowel.getItem(),
+                        'S',
+                        Items.stick);
                 GameRegistry.addShapelessRecipe(new ItemStack(Items.sugar, 8), new ItemStack(CppBerries, 1, 1));
                 GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
-                GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_nugget, 9), new ItemStack(Goldfisch), new ItemStack(Items.flint));
+                GameRegistry.addShapelessRecipe(
+                        new ItemStack(Items.gold_nugget, 9), new ItemStack(Goldfisch), new ItemStack(Items.flint));
             }
             if (!ModsLoaded.PHC) {
                 GameRegistry.addShapelessRecipe(new ItemStack(Items.fish), new ItemStack(Goldfisch));
@@ -73,7 +83,7 @@ public final class CppItems {
         }
     }
 
-    public final static void OreDictItems() {
+    public static final void OreDictItems() {
         if (ConfigValues.Items) {
             OreDictionary.registerOre("listAllfishraw", new ItemStack(Goldfisch));
             OreDictionary.registerOre("listAllberry", new ItemStack(CppBerries, 1, 0));

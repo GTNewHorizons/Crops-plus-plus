@@ -25,7 +25,7 @@ public class BarleyCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Food", "Wheat"};
+        return new String[] {"Green", "Food", "Wheat"};
     }
 
     @Override
@@ -52,5 +52,4 @@ public class BarleyCrop extends BasicFoodCrop {
     public ItemStack getGain(ICropTile crop) {
         return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
-
 }

@@ -1,10 +1,8 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
 import com.github.bartimaeusnek.cropspp.crops.witchery.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class WitcheryLoader {
 
@@ -23,5 +21,4 @@ public class WitcheryLoader {
 
         return p;
     }
-
 }

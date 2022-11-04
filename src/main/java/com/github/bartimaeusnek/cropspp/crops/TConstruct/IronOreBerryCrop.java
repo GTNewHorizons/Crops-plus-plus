@@ -8,7 +8,6 @@ import tconstruct.world.TinkerWorld;
 
 public class IronOreBerryCrop extends BasicTinkerBerryCrop {
 
-
     public IronOreBerryCrop() {
         super();
     }
@@ -38,7 +37,7 @@ public class IronOreBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Gray", "Metal"};
+        return new String[] {"OreBerry", "Gray", "Metal"};
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
+import static gregtech.api.enums.GT_Values.V;
+
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
@@ -19,18 +21,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
 
-import static gregtech.api.enums.GT_Values.V;
-
 public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     public CropWeedPicker(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 1,
-                new String[]{
-                        "Automatically picks Weeds",
-                        "Range = Tier",
-                        "Takes in 1A",
-                        "Needs a Weeding Trovel or a Spade in its Inventory",
-                        "Need to be supplied with 1L Lubricant per tick."});
+        super(aID, aName, aNameRegional, aTier, 1, new String[] {
+            "Automatically picks Weeds",
+            "Range = Tier",
+            "Takes in 1A",
+            "Needs a Weeding Trovel or a Spade in its Inventory",
+            "Need to be supplied with 1L Lubricant per tick."
+        });
     }
 
     public CropWeedPicker(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
@@ -44,7 +44,8 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean isFluidInputAllowed(FluidStack aFluid) {
-        return (aFluid.getFluid().equals(Materials.Lubricant.getFluid(1L).getFluid())) || (super.isFluidInputAllowed(aFluid));
+        return (aFluid.getFluid().equals(Materials.Lubricant.getFluid(1L).getFluid()))
+                || (super.isFluidInputAllowed(aFluid));
     }
 
     @Override
@@ -54,7 +55,11 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
-        return isValidSlot(aIndex) && aStack != null && aIndex < mInventory.length && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex])) && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
+        return isValidSlot(aIndex)
+                && aStack != null
+                && aIndex < mInventory.length
+                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
     }
 
     @Override
@@ -104,38 +109,49 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
         if (this.getBaseMetaTileEntity().isServerSide()) {
 
-            if (!((this.getBaseMetaTileEntity().isAllowedToWork()) && (GT_Utility.areStacksEqual(mInventory[0], CppItems.itemSpadeStack) || GT_Utility.areStacksEqual(mInventory[0], ic2.core.Ic2Items.weedingTrowel)) && (this.getFluid().amount >= 20) && (this.getBaseMetaTileEntity().isUniversalEnergyStored(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier)))))
-                return;
+            if (!((this.getBaseMetaTileEntity().isAllowedToWork())
+                    && (GT_Utility.areStacksEqual(mInventory[0], CppItems.itemSpadeStack)
+                            || GT_Utility.areStacksEqual(mInventory[0], ic2.core.Ic2Items.weedingTrowel))
+                    && (this.getFluid().amount >= 20)
+                    && (this.getBaseMetaTileEntity()
+                            .isUniversalEnergyStored(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier))))) return;
 
-            this.getBaseMetaTileEntity().decreaseStoredEnergyUnits(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier), true);
+            this.getBaseMetaTileEntity()
+                    .decreaseStoredEnergyUnits(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier), true);
             this.getFluid().amount -= 20;
 
-            int xmin = this.getBaseMetaTileEntity().getXCoord() > 0 ? this.getBaseMetaTileEntity().getXCoord() - this.mTier : this.getBaseMetaTileEntity().getXCoord() + this.mTier;
-            int xmax = this.getBaseMetaTileEntity().getXCoord() > 0 ? this.getBaseMetaTileEntity().getXCoord() + this.mTier : this.getBaseMetaTileEntity().getXCoord() - this.mTier;
+            int xmin = this.getBaseMetaTileEntity().getXCoord() > 0
+                    ? this.getBaseMetaTileEntity().getXCoord() - this.mTier
+                    : this.getBaseMetaTileEntity().getXCoord() + this.mTier;
+            int xmax = this.getBaseMetaTileEntity().getXCoord() > 0
+                    ? this.getBaseMetaTileEntity().getXCoord() + this.mTier
+                    : this.getBaseMetaTileEntity().getXCoord() - this.mTier;
 
-            int zmin = this.getBaseMetaTileEntity().getZCoord() > 0 ? this.getBaseMetaTileEntity().getZCoord() - this.mTier : this.getBaseMetaTileEntity().getZCoord() + this.mTier;
-            int zmax = this.getBaseMetaTileEntity().getZCoord() > 0 ? this.getBaseMetaTileEntity().getZCoord() + this.mTier : this.getBaseMetaTileEntity().getZCoord() - this.mTier;
+            int zmin = this.getBaseMetaTileEntity().getZCoord() > 0
+                    ? this.getBaseMetaTileEntity().getZCoord() - this.mTier
+                    : this.getBaseMetaTileEntity().getZCoord() + this.mTier;
+            int zmax = this.getBaseMetaTileEntity().getZCoord() > 0
+                    ? this.getBaseMetaTileEntity().getZCoord() + this.mTier
+                    : this.getBaseMetaTileEntity().getZCoord() - this.mTier;
 
             for (int x = xmin; x <= xmax; ++x) {
                 for (int z = zmin; z <= zmax; ++z) {
 
-                    TileEntity possibleCrop = this.getBaseMetaTileEntity().getWorld().getTileEntity(x, this.getBaseMetaTileEntity().getYCoord(), z);
+                    TileEntity possibleCrop = this.getBaseMetaTileEntity()
+                            .getWorld()
+                            .getTileEntity(x, this.getBaseMetaTileEntity().getYCoord(), z);
 
-                    if (!(possibleCrop instanceof TileEntityCrop))
-                        continue;
+                    if (!(possibleCrop instanceof TileEntityCrop)) continue;
 
                     TileEntityCrop cropTE = (TileEntityCrop) possibleCrop;
 
-                    if (cropTE.getCrop() == null)
-                        continue;
+                    if (cropTE.getCrop() == null) continue;
 
-                    if (cropTE.getCrop().tier() <= 0)
-                        cropTE.reset();
+                    if (cropTE.getCrop().tier() <= 0) cropTE.reset();
 
                     cropTE.weedlevel = 0;
                     cropTE.updateState();
                     cropTE.markDirty();
-
                 }
             }
         }
@@ -234,8 +250,19 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex, boolean aActive, boolean aRedstone) {
-        return new ITexture[]{Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1], (aSide == 0 || aSide == 1) ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT) : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP)};
+    public ITexture[] getTexture(
+            IGregTechTileEntity aBaseMetaTileEntity,
+            byte aSide,
+            byte aFacing,
+            byte aColorIndex,
+            boolean aActive,
+            boolean aRedstone) {
+        return new ITexture[] {
+            Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1],
+            (aSide == 0 || aSide == 1)
+                    ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
+                    : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP)
+        };
     }
 
     @Override
@@ -245,9 +272,11 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
-        return new ITexture[]{
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),};
+        return new ITexture[] {
+            TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                    TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+            TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                    TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+        };
     }
-
 }

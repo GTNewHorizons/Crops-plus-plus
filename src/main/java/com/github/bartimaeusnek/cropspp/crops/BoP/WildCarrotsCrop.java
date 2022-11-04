@@ -40,7 +40,7 @@ public class WildCarrotsCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Food", "White", "Carrots"};
+        return new String[] {"Food", "White", "Carrots"};
     }
 
     @Override

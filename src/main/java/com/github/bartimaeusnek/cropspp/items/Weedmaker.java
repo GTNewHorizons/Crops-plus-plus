@@ -19,9 +19,18 @@ public class Weedmaker extends Item {
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (!IC2.platform.isSimulating())
-            return false;
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
+        if (!IC2.platform.isSimulating()) return false;
         TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof TileEntityCrop) {
             TileEntityCrop crop = (TileEntityCrop) te;
@@ -30,5 +39,4 @@ public class Weedmaker extends Item {
         }
         return false;
     }
-
 }

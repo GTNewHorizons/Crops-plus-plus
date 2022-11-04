@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +14,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 public class CppPotions extends Item {
 
-    public final static String[] textureNames = new String[]{"FWheat", "Korn", "DKorn", "FReed", "SWhine", "Mash", "Wash", "GHP", "jagi", "njagi"/*, more names*/};
+    public static final String[] textureNames = new String[] {
+        "FWheat", "Korn", "DKorn", "FReed", "SWhine", "Mash", "Wash", "GHP", "jagi", "njagi" /*, more names*/
+    };
     public IIcon[] icons;
 
     public CppPotions() {
@@ -32,10 +33,8 @@ public class CppPotions extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int meta) {
-        if (meta < textureNames.length)
-            return icons[meta];
-        else
-            return icons[0];
+        if (meta < textureNames.length) return icons[meta];
+        else return icons[0];
     }
 
     @SideOnly(Side.CLIENT)
@@ -63,9 +62,17 @@ public class CppPotions extends Item {
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         if (itemstack.getItemDamage() < textureNames.length)
-            return (new StringBuilder()).append("potion.").append(textureNames[itemstack.getItemDamage()]).append(".bottled").toString();
+            return (new StringBuilder())
+                    .append("potion.")
+                    .append(textureNames[itemstack.getItemDamage()])
+                    .append(".bottled")
+                    .toString();
         else
-            return (new StringBuilder()).append("potion.").append(textureNames[0]).append(".bottled").toString();
+            return (new StringBuilder())
+                    .append("potion.")
+                    .append(textureNames[0])
+                    .append(".bottled")
+                    .toString();
     }
 
     @SideOnly(Side.CLIENT)
@@ -130,7 +137,7 @@ public class CppPotions extends Item {
                 list.add("It smells like fake J\u00e4germeister...");
                 break;
             }
-            //other cases
+                // other cases
         }
     }
 
@@ -195,5 +202,4 @@ public class CppPotions extends Item {
         }
         return new ItemStack(Items.glass_bottle);
     }
-
 }

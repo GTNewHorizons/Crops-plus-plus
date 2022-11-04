@@ -25,7 +25,7 @@ public class MossCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Climbable"};
+        return new String[] {"Green", "Climbable"};
     }
 
     @Override
@@ -35,8 +35,7 @@ public class MossCrop extends BasicDecorationCrop {
             return new ItemStack(TFBlocks.plant, 1, 3);
         } else if (r > 5 && r < 35) {
             return new ItemStack(BOPCBlocks.moss, 1, 0);
-        } else
-            return new ItemStack(BOPCBlocks.treeMoss, 1, 0);
+        } else return new ItemStack(BOPCBlocks.treeMoss, 1, 0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -48,7 +47,6 @@ public class MossCrop extends BasicDecorationCrop {
             textures[i - 1] = iconRegister.registerIcon("bpp:crop/blockCrop.Spanish Moss." + i);
         }
     }
-
 
     @Override
     public ItemStack getDisplayItem() {

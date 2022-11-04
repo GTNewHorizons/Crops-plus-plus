@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +11,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import java.util.List;
-
 
 /*
  * code by progwml6, Natura
@@ -26,7 +24,7 @@ import java.util.List;
 public class NaturaBerryItems extends ItemFood {
     public IIcon[] icons;
 
-    public String[] textureNames = new String[]{"rasp", "blue", "black", "geo", "cactus"};
+    public String[] textureNames = new String[] {"rasp", "blue", "black", "geo", "cactus"};
 
     public NaturaBerryItems(int heal) {
         super(heal, 0.4F, false);
@@ -53,10 +51,8 @@ public class NaturaBerryItems extends ItemFood {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int meta) {
-        if (meta < textureNames.length)
-            return icons[meta];
-        else
-            return null;
+        if (meta < textureNames.length) return icons[meta];
+        else return null;
     }
 
     @SideOnly(Side.CLIENT)
@@ -71,7 +67,10 @@ public class NaturaBerryItems extends ItemFood {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
+        return (new StringBuilder())
+                .append("item.berry.")
+                .append(textureNames[itemstack.getItemDamage()])
+                .toString();
     }
 
     /**

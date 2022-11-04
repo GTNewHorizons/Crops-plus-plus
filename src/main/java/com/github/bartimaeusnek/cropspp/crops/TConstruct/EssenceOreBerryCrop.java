@@ -8,7 +8,6 @@ import tconstruct.world.TinkerWorld;
 
 public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
 
-
     public EssenceOreBerryCrop() {
         super();
     }
@@ -24,7 +23,6 @@ public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
         if (crop.getSize() == 4 && crop.isBlockBelow("itemSkull")) {
             return new ItemStack(TinkerWorld.oreBerries, 6, 5);
         } else return new ItemStack(TinkerWorld.oreBerries, 2, 5);
-
     }
 
     @Override
@@ -45,7 +43,7 @@ public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Essence", "Undead"};
+        return new String[] {"OreBerry", "Essence", "Undead"};
     }
 
     @Override
@@ -53,4 +51,3 @@ public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
         return new ItemStack(TinkerWorld.oreBerries, 6, 5);
     }
 }
-

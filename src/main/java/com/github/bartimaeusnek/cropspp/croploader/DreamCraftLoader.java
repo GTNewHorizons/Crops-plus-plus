@@ -1,12 +1,11 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
+import static com.github.bartimaeusnek.cropspp.items.CppItems.ModifierMagic;
+
 import com.github.bartimaeusnek.cropspp.crops.cpp.MagicModifierCrop;
 import com.github.bartimaeusnek.cropspp.crops.cpp.SpacePlantCrop;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.github.bartimaeusnek.cropspp.items.CppItems.ModifierMagic;
 
 public class DreamCraftLoader {
 

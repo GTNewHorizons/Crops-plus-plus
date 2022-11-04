@@ -5,10 +5,7 @@ import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
 import ic2.api.crops.ICropTile;
 import mods.natura.common.NContent;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 
 public class Thornvines extends VineCrop {
 
@@ -38,13 +35,13 @@ public class Thornvines extends VineCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Nether", "Climbable", "Bad"};
+        return new String[] {"Nether", "Climbable", "Bad"};
     }
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        CCropUtility.damageEntity(entity ,1);
-          return super.onEntityCollision(crop,entity);
+        CCropUtility.damageEntity(entity, 1);
+        return super.onEntityCollision(crop, entity);
     }
 
     @Override

@@ -18,5 +18,4 @@ public abstract class BasicWitcheryCrop extends BasicDecorationCrop {
     public int tier() {
         return 4;
     }
-
 }

@@ -18,15 +18,15 @@ public abstract class BasicDecorationCrop extends BasicBerryCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 0;   // not edible
+                return 0; // not edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 4;   // primarily decorative
+                return 4; // primarily decorative
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }

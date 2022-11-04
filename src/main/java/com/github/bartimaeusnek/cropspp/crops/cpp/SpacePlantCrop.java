@@ -4,11 +4,10 @@ import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import ic2.api.crops.ICropTile;
-import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
-import net.minecraft.item.ItemStack;
-
 import java.util.Collections;
 import java.util.List;
+import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
+import net.minecraft.item.ItemStack;
 
 public class SpacePlantCrop extends BasicCrop {
 
@@ -26,7 +25,6 @@ public class SpacePlantCrop extends BasicCrop {
         return ConfigValues.debug ? 1 : 5000;
     }
 
-
     @Override
     public String name() {
         return "Space Plant";
@@ -41,15 +39,15 @@ public class SpacePlantCrop extends BasicCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 8;   // chemical
+                return 8; // chemical
             case 1:
-                return 0;   // edible
+                return 0; // edible
             case 2:
-                return 0;   // defensive properties
+                return 0; // defensive properties
             case 3:
-                return 4;   // colorful
+                return 4; // colorful
             case 4:
-                return 0;   // weed-like
+                return 0; // weed-like
             default:
                 return 0;
         }
@@ -57,7 +55,7 @@ public class SpacePlantCrop extends BasicCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Alien", "Space", "Radiation", "Transform"};
+        return new String[] {"Alien", "Space", "Radiation", "Transform"};
     }
 
     @Override
@@ -68,16 +66,19 @@ public class SpacePlantCrop extends BasicCrop {
     @Override
     public boolean canGrow(ICropTile crop) {
         boolean ret = false;
-        if (ConfigValues.debug)
-            ret = (crop.getSize() < (maxSize() - 1));
+        if (ConfigValues.debug) ret = (crop.getSize() < (maxSize() - 1));
         if (crop.getSize() == 3) {
-            //if((new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1), (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,3)))||(new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1), (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,4)))||(new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1), (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,5)))||(new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1), (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,14))))
-            if (crop.isBlockBelow(GCBlocks.blockMoon))
-                ret = true;
-        } else if (crop.getSize() < 3)
-            ret = true;
+            // if((new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
+            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,3)))||(new
+            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
+            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,4)))||(new
+            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
+            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,5)))||(new
+            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
+            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,14))))
+            if (crop.isBlockBelow(GCBlocks.blockMoon)) ret = true;
+        } else if (crop.getSize() < 3) ret = true;
         return ret;
-
     }
 
     @Override
@@ -94,5 +95,4 @@ public class SpacePlantCrop extends BasicCrop {
     public ItemStack getGain(ICropTile crop) {
         return new ItemStack(CppItems.Modifier, 1, 0);
     }
-
 }

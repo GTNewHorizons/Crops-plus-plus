@@ -29,7 +29,7 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"OreBerry", "Knightly", "Metal"};
+        return new String[] {"OreBerry", "Knightly", "Metal"};
     }
 
     @Override
@@ -45,9 +45,9 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4 && (crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal"))) {
+        if (crop.getSize() == 4
+                && (crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal"))) {
             return new ItemStack(twilightforest.item.TFItems.armorShard).splitStack(4);
         } else return new ItemStack(twilightforest.item.TFItems.armorShard);
     }
-
 }

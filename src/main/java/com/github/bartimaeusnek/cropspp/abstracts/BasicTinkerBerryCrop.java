@@ -35,15 +35,15 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 3;   // Industrial Crop
+                return 3; // Industrial Crop
             case 1:
-                return 0;   // NOT Edible
+                return 0; // NOT Edible
             case 2:
-                return 4;   // strong defensive properties
+                return 4; // strong defensive properties
             case 3:
-                return 1;   // a bit colorful
+                return 1; // a bit colorful
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }
@@ -52,10 +52,11 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     @Override
     public boolean canGrow(ICropTile crop) {
         boolean r;
-        if (ConfigValues.debug)
-            r = crop.getSize() < 4;
+        if (ConfigValues.debug) r = crop.getSize() < 4;
         else
-            r = crop.getSize() < 1 || crop.getSize() == 3 && crop.isBlockBelow(hasBlock()) || (crop.getLightLevel() <= 10 && crop.getSize() < 3); //Codepiece by DaeFennek <3
+            r = crop.getSize() < 1
+                    || crop.getSize() == 3 && crop.isBlockBelow(hasBlock())
+                    || (crop.getLightLevel() <= 10 && crop.getSize() < 3); // Codepiece by DaeFennek <3
         return r;
     }
 
@@ -90,7 +91,7 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     public List<String> getCropInformation() {
         List<String> ret = new ArrayList<>();
         List<ItemStack> blocks = OreDictionary.getOres(hasBlock());
-        if(blocks.size() > 0) {
+        if (blocks.size() > 0) {
             ret.add("Needs a block of " + blocks.get(0).getDisplayName() + " Below to fully mature.");
         }
         ret.add("Needs a light level below or equal to 10 to fully mature.");
@@ -101,8 +102,7 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public boolean onEntityCollision(ICropTile crop, Entity entity) {
-        CCropUtility.damageEntity(entity,1);
+        CCropUtility.damageEntity(entity, 1);
         return super.onEntityCollision(crop, entity);
     }
-
 }

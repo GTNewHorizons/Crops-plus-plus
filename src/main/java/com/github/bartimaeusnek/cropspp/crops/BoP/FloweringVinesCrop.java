@@ -38,7 +38,7 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Green", "Tendrilly", "Flower"};
+        return new String[] {"Green", "Tendrilly", "Flower"};
     }
 
     @Override
@@ -48,17 +48,13 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 3)
-            return new ItemStack(Item.getItemById(106), 2, 0);
-        else if (crop.getSize() == 4)
-            return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
-        else
-            return null;
+        if (crop.getSize() == 3) return new ItemStack(Item.getItemById(106), 2, 0);
+        else if (crop.getSize() == 4) return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
+        else return null;
     }
 
     @Override
     public ItemStack getDisplayItem() {
         return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
     }
-
 }

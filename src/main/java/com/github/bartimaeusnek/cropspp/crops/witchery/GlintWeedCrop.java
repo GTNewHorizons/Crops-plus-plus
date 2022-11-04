@@ -19,7 +19,7 @@ public class GlintWeedCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Orange", "Flower", "Magic"};
+        return new String[] {"Orange", "Flower", "Magic"};
     }
 
     @Override

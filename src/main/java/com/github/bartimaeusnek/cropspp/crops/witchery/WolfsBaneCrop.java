@@ -19,7 +19,7 @@ public class WolfsBaneCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Flower", "Toxic", "Purple", "Ingredient"};
+        return new String[] {"Flower", "Toxic", "Purple", "Ingredient"};
     }
 
     @Override
@@ -31,5 +31,4 @@ public class WolfsBaneCrop extends BasicWitcheryCrop {
     public ItemStack getDisplayItem() {
         return OreDict.ISget("itemWolfsBane");
     }
-
 }

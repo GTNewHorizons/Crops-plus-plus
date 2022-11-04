@@ -19,7 +19,7 @@ public class SnowbellCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"White", "Flower", "Ice", "Toxic", "Ingredient"};
+        return new String[] {"White", "Flower", "Ice", "Toxic", "Ingredient"};
     }
 
     @Override

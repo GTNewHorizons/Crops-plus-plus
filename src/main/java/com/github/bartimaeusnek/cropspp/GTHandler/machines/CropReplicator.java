@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
+import static gregtech.api.enums.Textures.BlockIcons.*;
+
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -15,55 +17,93 @@ import ic2.api.crops.Crops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import static gregtech.api.enums.Textures.BlockIcons.*;
-
 public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
 
     public CropReplicator(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 6,
-                new String[]{
-                        "It can replicate Crops",
-                        "It needs a Cell of UUM per crop's tier",
-                        "Takes in 6A",
-                        "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
-                        "Can process crops up to tier " + getMaxCropTier(aTier)},
-                2, 2, "Crop_Replicator.png", "",
+        super(
+                aID,
+                aName,
+                aNameRegional,
+                aTier,
+                6,
+                new String[] {
+                    "It can replicate Crops",
+                    "It needs a Cell of UUM per crop's tier",
+                    "Takes in 6A",
+                    "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
+                    "Can process crops up to tier " + getMaxCropTier(aTier)
+                },
+                2,
+                2,
+                "Crop_Replicator.png",
+                "",
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_SIDE_SCANNER_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_FRONT_SCANNER_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_TOP_SCANNER_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW)
+                                .glow()
+                                .build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
+                        TextureFactory.builder()
+                                .addIcon(OVERLAY_BOTTOM_SCANNER_GLOW)
+                                .glow()
+                                .build()));
     }
 
-    public CropReplicator(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures, String mGUIName, String mNEIName) {
+    public CropReplicator(
+            String mName,
+            byte mTier,
+            String[] mDescriptionArray,
+            ITexture[][][] mTextures,
+            String mGUIName,
+            String mNEIName) {
         super(mName, mTier, 6, mDescriptionArray, mTextures, 2, 2, mGUIName, mNEIName);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity arg0) {
-        return new CropReplicator(this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
+        return new CropReplicator(
+                this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
     }
 
-    public static int getMaxCropTier(int mTier){
+    public static int getMaxCropTier(int mTier) {
         return (mTier * 2 - 1);
     }
 
@@ -72,23 +112,21 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
         ItemStack aStack = getInputAt(0);
         ItemStack bStack = getInputAt(1);
 
-        if (GT_Utility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)) {
+        if (GT_Utility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true)
+                && ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)) {
             ItemStack helper = bStack;
             bStack = aStack;
             aStack = helper;
         }
-        if (GT_Utility.areUnificationsEqual(bStack, Materials.UUMatter.getCells(1), true) && ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) {
+        if (GT_Utility.areUnificationsEqual(bStack, Materials.UUMatter.getCells(1), true)
+                && ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) {
             NBTTagCompound tNBT = aStack.getTagCompound();
 
-            if (tNBT == null || tNBT.getString("name").isEmpty())
-                return DID_NOT_FIND_RECIPE;
-            if (getOutputAt(0) != null || getOutputAt(1) != null)
-                return DID_NOT_FIND_RECIPE;
+            if (tNBT == null || tNBT.getString("name").isEmpty()) return DID_NOT_FIND_RECIPE;
+            if (getOutputAt(0) != null || getOutputAt(1) != null) return DID_NOT_FIND_RECIPE;
             CropCard card = Crops.instance.getCropCard(tNBT.getString("owner"), tNBT.getString("name"));
-            if(card.tier() > getMaxCropTier(this.mTier))
-                return DID_NOT_FIND_RECIPE;
-            if (bStack.stackSize < card.tier())
-                return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
+            if (card.tier() > getMaxCropTier(this.mTier)) return DID_NOT_FIND_RECIPE;
+            if (bStack.stackSize < card.tier()) return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
 
             this.mOutputItems[0] = aStack.copy();
             this.mOutputItems[0].stackSize = 2;
@@ -120,9 +158,13 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
-        if (GT_Utility.areUnificationsEqual((ItemStack) aStack, Materials.UUMatter.getCells(1), true) || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
-            return isValidSlot(aIndex) && aStack != null && aIndex < mInventory.length && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex])) && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
+        if (GT_Utility.areUnificationsEqual((ItemStack) aStack, Materials.UUMatter.getCells(1), true)
+                || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
+            return isValidSlot(aIndex)
+                    && aStack != null
+                    && aIndex < mInventory.length
+                    && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                    && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
         return false;
     }
-
 }

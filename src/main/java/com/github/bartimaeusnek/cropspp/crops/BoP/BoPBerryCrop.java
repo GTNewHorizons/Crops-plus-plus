@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 
 public class BoPBerryCrop extends BasicBerryCrop {
 
-
     public BoPBerryCrop() {
         super();
     }
@@ -26,15 +25,15 @@ public class BoPBerryCrop extends BasicBerryCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 0;   // not chemical
+                return 0; // not chemical
             case 1:
-                return 4;   // very edible
+                return 4; // very edible
             case 2:
-                return 0;   // no defensive properties
+                return 0; // no defensive properties
             case 3:
-                return 4;   // quite colorful
+                return 4; // quite colorful
             case 4:
-                return 0;   // not particularly weed-like
+                return 0; // not particularly weed-like
             default:
                 return 0;
         }
@@ -49,7 +48,6 @@ public class BoPBerryCrop extends BasicBerryCrop {
     public boolean canBeHarvested(ICropTile crop) {
         return crop.getSize() == 3;
     }
-
 
     @Override
     public int growthDuration(ICropTile crop) {
@@ -75,7 +73,7 @@ public class BoPBerryCrop extends BasicBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[]{"Berry", "Food", "Red", "Ingredient"};
+        return new String[] {"Berry", "Food", "Red", "Ingredient"};
     }
 
     @Override
@@ -87,5 +85,4 @@ public class BoPBerryCrop extends BasicBerryCrop {
     public ItemStack getDisplayItem() {
         return new ItemStack(biomesoplenty.api.content.BOPCItems.food, 3, 0);
     }
-
 }

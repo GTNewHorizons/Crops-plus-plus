@@ -16,7 +16,7 @@ public class StingberryCrop extends BasicNetherBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[]{"Berry", "Toxic", "Bad", "Green", "Nether", "Addictive"};
+        return new String[] {"Berry", "Toxic", "Bad", "Green", "Nether", "Addictive"};
     }
 
     @Override
