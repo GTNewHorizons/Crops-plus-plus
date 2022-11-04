@@ -23,7 +23,7 @@ public class WolfsBaneCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("itemWolfsBane");
+        return CCropUtility.getCopiedOreStack(("itemWolfsBane");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class BelladonnaCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("item" + name());
+        return CCropUtility.getCopiedOreStack("item" + name());
     }
 
     @Override

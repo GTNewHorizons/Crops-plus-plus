@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 import ic2.api.crops.ICropTile;
@@ -57,7 +58,7 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("crop" + this.name());
+        return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
 
     @Override

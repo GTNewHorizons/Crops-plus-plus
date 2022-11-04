@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("cropArtichoke");
+        return CCropUtility.getCopiedOreStack("cropArtichoke");
     }
 
     @Override

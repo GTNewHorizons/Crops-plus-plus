@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicBerryCrop;
 import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class StrawberryCrop extends BasicBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return OreDict.ISget("crop" + this.name());
+        return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
 
     @Override
