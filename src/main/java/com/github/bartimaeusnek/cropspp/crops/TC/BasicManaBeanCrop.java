@@ -8,7 +8,6 @@ import ic2.api.crops.ICropTile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
@@ -23,7 +22,6 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     private static ItemStack manaBean = null;
     private static ArrayList<Aspect> aspects = null;
     private static Block blockCrystal = null;
-    private final Random rand = new Random();
 
     public BasicManaBeanCrop() {
         super();
@@ -90,10 +88,11 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
             Block b = w.getBlock(location.posX, location.posY - i, location.posZ);
             if (b == blockCrystal) {
                 option = w.getBlockMetadata(location.posX, location.posY - i, location.posZ);
+                break;
             }
         }
         ((ItemManaBean) bean.getItem())
-                .setAspects(bean, (new AspectList()).add(aspects.get(option > 5 ? rand.nextInt(5) : option), 1));
+                .setAspects(bean, (new AspectList()).add(aspects.get(option > 5 ? w.rand.nextInt(5) : option), 1));
         return bean;
     }
 
