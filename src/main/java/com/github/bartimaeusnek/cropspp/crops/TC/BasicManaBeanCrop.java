@@ -49,6 +49,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     @Override
     public boolean canGrow(ICropTile crop) {
         if (blockCrystal == null) blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0);
+        if (crop.getSize() == maxSize()) return false;
         if (crop.getSize() > 1) {
             return crop.isBlockBelow(blockCrystal);
         } else return true;
