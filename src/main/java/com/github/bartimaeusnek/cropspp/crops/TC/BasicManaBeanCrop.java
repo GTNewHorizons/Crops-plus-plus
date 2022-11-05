@@ -106,7 +106,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
             aspects.add(Aspect.EARTH);
             aspects.add(Aspect.ORDER);
             aspects.add(Aspect.ENTROPY);
-            manaBean = ItemApi.getItem("ItemManaBean", 0);
+            manaBean = ItemApi.getItem("itemManaBean", 0);
         }
         return manaBean;
     }
