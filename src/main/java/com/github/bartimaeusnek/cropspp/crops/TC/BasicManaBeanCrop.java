@@ -93,7 +93,9 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
             }
         }
         ((ItemManaBean) bean.getItem())
-                .setAspects(bean, (new AspectList()).add(aspects.get(option > 5 ? w.rand.nextInt(5) : option), 1));
+                .setAspects(
+                        bean,
+                        (new AspectList()).add(aspects.get(option > 5 ? w.rand.nextInt(aspects.size()) : option), 1));
         return bean;
     }
 
