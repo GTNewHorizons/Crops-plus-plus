@@ -11,7 +11,7 @@ public class ThaumcraftLoader {
         p.add(new CropLoader(new MagicMetalBerryCrop(), thaumcraft.api.ItemApi.getItem("itemResource", 17)));
         p.add(new CropLoader(new ShimmerleafCrop(), null));
         p.add(new CropLoader(new CinderpearlCrop(), null));
-        p.add(new CropLoader(new BasicManaBeanCrop()));
+        p.add(new CropLoader(new BasicManaBeanCrop(), null));
         return p;
     }
 }
