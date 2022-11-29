@@ -118,7 +118,8 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
                 && ItemList.Tool_DataOrb.isStackEqual(aStacks[2], false, true)
                 && ItemList.Tool_DataOrb.isStackEqual(aStacks[3], false, true)) {
 
-            if (this.mFluid == null || !this.mFluid.getFluid().getName().equals("ic2uumatter")) return DID_NOT_FIND_RECIPE;
+            if (this.mFluid == null || !this.mFluid.getFluid().getName().equals("ic2uumatter"))
+                return DID_NOT_FIND_RECIPE;
 
             if (getOutputAt(0) != null) return DID_NOT_FIND_RECIPE;
 
