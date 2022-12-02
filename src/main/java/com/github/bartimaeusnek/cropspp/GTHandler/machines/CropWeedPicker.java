@@ -3,10 +3,15 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 import static gregtech.api.enums.GT_Values.V;
 
 import com.github.bartimaeusnek.cropspp.items.CppItems;
+import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
+import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
+import com.gtnewhorizons.modularui.common.widget.SlotWidget;
+import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
-import gregtech.api.gui.GT_Container_BasicTank;
-import gregtech.api.gui.GT_GUIContainer_BasicTank;
+import gregtech.api.gui.modularui.GT_UIInfos;
+import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
@@ -16,7 +21,6 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_Pump;
 import ic2.core.crop.TileEntityCrop;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
@@ -60,16 +64,6 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
                 && aIndex < mInventory.length
                 && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
                 && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
-    }
-
-    @Override
-    public Object getServerGUI(int aID, InventoryPlayer aPlayerInventory, IGregTechTileEntity aBaseMetaTileEntity) {
-        return new GT_Container_BasicTank(aPlayerInventory, aBaseMetaTileEntity);
-    }
-
-    @Override
-    public Object getClientGUI(int aID, InventoryPlayer aPlayerInventory, IGregTechTileEntity aBaseMetaTileEntity) {
-        return new GT_GUIContainer_BasicTank(aPlayerInventory, aBaseMetaTileEntity, getLocalName());
     }
 
     @Override
@@ -159,8 +153,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer) {
-        if (aBaseMetaTileEntity.isClientSide()) return true;
-        aBaseMetaTileEntity.openGUI(aPlayer);
+        GT_UIInfos.openGTTileEntityUI(aBaseMetaTileEntity, aPlayer);
         return true;
     }
 
@@ -278,5 +271,28 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
             TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
                     TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
         };
+    }
+
+    @Override
+    public boolean useModularUI() {
+        return true;
+    }
+
+    @Override
+    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
+        builder.widget(new DrawableWidget()
+                        .setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK)
+                        .setPos(7, 16)
+                        .setSize(71, 45))
+                .widget(new SlotWidget(inventoryHandler, getInputSlot())
+                        .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_IN)
+                        .setPos(79, 16))
+                .widget(new TextWidget("Liquid Amount")
+                        .setDefaultColor(COLOR_TEXT_WHITE.get())
+                        .setPos(10, 20))
+                .widget(TextWidget.dynamicString(
+                                () -> GT_Utility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
+                        .setDefaultColor(COLOR_TEXT_WHITE.get())
+                        .setPos(10, 30));
     }
 }
