@@ -3,6 +3,9 @@
 dependencies {
     compile("com.github.GTNewHorizons:CropLoadCore:0.1.10:dev")
     compile("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
+	compile("com.github.GTNewHorizons:ModularUI:1.0.24:dev") {
+        transitive = false
+    }
     compileOnly(deobf("https://media.forgecdn.net/files/2499/612/BiomesOPlenty-1.7.10-2.1.0.2308-universal.jar"))
     compileOnly("com.github.GTNewHorizons:twilightforest:2.3.8.14:dev") {
         transitive = false
