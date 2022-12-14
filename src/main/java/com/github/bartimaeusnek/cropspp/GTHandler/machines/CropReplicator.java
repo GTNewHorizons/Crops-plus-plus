@@ -2,10 +2,19 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
 import static gregtech.api.enums.Textures.BlockIcons.*;
 
+import com.github.bartimaeusnek.cropspp.GTHandler.CPP_UITextures;
+import com.gtnewhorizons.modularui.api.drawable.IDrawable;
+import com.gtnewhorizons.modularui.api.math.Pos2d;
+import com.gtnewhorizons.modularui.api.math.Size;
+import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
+import com.gtnewhorizons.modularui.common.widget.ProgressBar;
+import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
@@ -166,5 +175,28 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
                     && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
                     && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
         return false;
+    }
+
+    @Override
+    public boolean useModularUI() {
+        return true;
+    }
+
+    @Override
+    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
+        super.addUIWidgets(builder, buildContext);
+        builder.widget(createProgressBar(
+                GT_UITextures.PROGRESSBAR_ARROW, 20, ProgressBar.Direction.RIGHT, new Pos2d(78, 24), new Size(20, 18)));
+    }
+
+    @Override
+    protected SlotWidget createItemInputSlot(int index, IDrawable[] backgrounds, Pos2d pos) {
+        if (index == 0) {
+            return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
+                    .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_CANISTER);
+        } else {
+            return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
+                    .setBackground(getGUITextureSet().getItemSlot(), CPP_UITextures.OVERLAY_SLOT_SEED);
+        }
     }
 }

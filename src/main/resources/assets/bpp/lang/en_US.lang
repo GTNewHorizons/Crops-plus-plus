@@ -1,4 +1,4 @@
-< en_US.lang - English localization file for the mod Crops++ >
+# < en_US.lang - English localization file for the mod Crops++ >
 item.Spade.name=Spade
 item.WateringCan.name=[WiP]Watering Can
 itemGroup.Cropspp=Crops++
@@ -35,3 +35,6 @@ potion.Wash.bottled.name=Bottled Wash
 potion.GHP.bottled.name=Bottled Generic High Proof
 potion.jagi.bottled.name=Real Bottled Jägermeister!
 potion.njagi.bottled.name=Bottled Fake Jägermeister
+
+bpp.machines.special_slot.tooltip=Data Slot
+bpp.machines.special_slot.tooltip.1=§7Set Data Orb to write
