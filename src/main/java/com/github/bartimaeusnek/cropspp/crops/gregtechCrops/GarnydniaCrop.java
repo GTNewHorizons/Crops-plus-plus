@@ -146,19 +146,17 @@ public class GarnydniaCrop extends BasicCrop {
     public ItemStack getGain(ICropTile iCropTile) {
         Materials dropMat;
         ItemStack drop;
-        if (XSTR.XSTR_INSTANCE.nextInt(100) > 50) dropMat = Materials.GarnetRed;
+        if (XSTR.XSTR_INSTANCE.nextInt(100) >= 50) dropMat = Materials.GarnetRed;
         else dropMat = Materials.GarnetYellow;
         int chance = XSTR.XSTR_INSTANCE.nextInt(100);
-        if (chance > 95) drop = GT_OreDictUnificator.get(OrePrefixes.gemExquisite, dropMat, 1);
-        else if (chance > 80 && chance < 95) drop = dropMat.getGems(1);
+        if (chance >= 95) drop = GT_OreDictUnificator.get(OrePrefixes.gemExquisite, dropMat, 1);
+        else if (chance >= 80) drop = dropMat.getGems(1);
         else if (chance == 42) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, Materials.GarnetSand, 1);
-        else if (chance > 40 && chance < 80) drop = dropMat.getDust(1);
+        else if (chance >= 40) drop = dropMat.getDust(1);
         else if (chance == 23) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
-        else if (chance > 20 && chance < 40) drop = dropMat.getDustSmall(1);
+        else if (chance >= 20) drop = dropMat.getDustSmall(1);
         else if (chance == 13 || chance == 17) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
-        else if (chance < 20) drop = dropMat.getDustTiny(1);
-        else // should never happen
-        drop = null;
+        else drop = dropMat.getDustTiny(1);
         return drop;
     }
 
