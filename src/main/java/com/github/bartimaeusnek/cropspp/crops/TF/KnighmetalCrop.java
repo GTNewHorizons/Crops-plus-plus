@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.TF;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
@@ -29,7 +30,7 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"OreBerry", "Knightly", "Metal"};
+        return new String[] { "OreBerry", "Knightly", "Metal" };
     }
 
     @Override

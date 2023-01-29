@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import mods.natura.common.NContent;
+
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicBerryCrop;
 import ic2.api.crops.ICropTile;
-import mods.natura.common.NContent;
-import net.minecraft.item.ItemStack;
 
 public class BlueberryCrop extends BasicBerryCrop {
 
@@ -20,7 +22,7 @@ public class BlueberryCrop extends BasicBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[] {"Berry", "Food", "Blue"}; // Blue like CropTerraWart
+        return new String[] { "Berry", "Food", "Blue" }; // Blue like CropTerraWart
     }
 
     public String discoveredBy() {

@@ -1,13 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import com.github.bartimaeusnek.croploadcore.MyRandom;
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import ic2.api.crops.ICropTile;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import com.github.bartimaeusnek.croploadcore.MyRandom;
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+import ic2.api.crops.ICropTile;
 
 public class WaterlillyCrop extends BasicDecorationCrop {
 
@@ -34,7 +35,7 @@ public class WaterlillyCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Blue", "Water", "Green"};
+        return new String[] { "Blue", "Water", "Green" };
     }
 
     @Override

@@ -2,12 +2,18 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
 import static gregtech.api.enums.GT_Values.V;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fluids.FluidStack;
+
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 import com.gtnewhorizons.modularui.common.widget.TextWidget;
+
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.gui.modularui.GT_UIInfos;
@@ -20,21 +26,19 @@ import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_Pump;
 import ic2.core.crop.TileEntityCrop;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.FluidStack;
 
 public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     public CropWeedPicker(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 1, new String[] {
-            "Automatically picks Weeds",
-            "Range = Tier",
-            "Takes in 1A",
-            "Needs a Weeding Trovel or a Spade in its Inventory",
-            "Need to be supplied with 1L Lubricant per tick."
-        });
+        super(
+                aID,
+                aName,
+                aNameRegional,
+                aTier,
+                1,
+                new String[] { "Automatically picks Weeds", "Range = Tier", "Takes in 1A",
+                        "Needs a Weeding Trovel or a Spade in its Inventory",
+                        "Need to be supplied with 1L Lubricant per tick." });
     }
 
     public CropWeedPicker(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
@@ -59,8 +63,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
-        return isValidSlot(aIndex)
-                && aStack != null
+        return isValidSlot(aIndex) && aStack != null
                 && aIndex < mInventory.length
                 && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
                 && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
@@ -108,7 +111,8 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
                             || GT_Utility.areStacksEqual(mInventory[0], ic2.core.Ic2Items.weedingTrowel))
                     && (this.getFluid().amount >= 20)
                     && (this.getBaseMetaTileEntity()
-                            .isUniversalEnergyStored(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier))))) return;
+                            .isUniversalEnergyStored(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier)))))
+                return;
 
             this.getBaseMetaTileEntity()
                     .decreaseStoredEnergyUnits(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier), true);
@@ -131,8 +135,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
             for (int x = xmin; x <= xmax; ++x) {
                 for (int z = zmin; z <= zmax; ++z) {
 
-                    TileEntity possibleCrop = this.getBaseMetaTileEntity()
-                            .getWorld()
+                    TileEntity possibleCrop = this.getBaseMetaTileEntity().getWorld()
                             .getTileEntity(x, this.getBaseMetaTileEntity().getYCoord(), z);
 
                     if (!(possibleCrop instanceof TileEntityCrop)) continue;
@@ -243,19 +246,11 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public ITexture[] getTexture(
-            IGregTechTileEntity aBaseMetaTileEntity,
-            byte aSide,
-            byte aFacing,
-            byte aColorIndex,
-            boolean aActive,
-            boolean aRedstone) {
-        return new ITexture[] {
-            Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1],
-            (aSide == 0 || aSide == 1)
-                    ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
-                    : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP)
-        };
+    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex,
+            boolean aActive, boolean aRedstone) {
+        return new ITexture[] { Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1],
+                (aSide == 0 || aSide == 1) ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
+                        : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP) };
     }
 
     @Override
@@ -265,12 +260,10 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
-        return new ITexture[] {
-            TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                    TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-            TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                    TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-        };
+        return new ITexture[] { TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), };
     }
 
     @Override
@@ -280,19 +273,15 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
-        builder.widget(new DrawableWidget()
-                        .setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK)
-                        .setPos(7, 16)
-                        .setSize(71, 45))
-                .widget(new SlotWidget(inventoryHandler, getInputSlot())
-                        .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_IN)
-                        .setPos(79, 16))
-                .widget(new TextWidget("Liquid Amount")
-                        .setDefaultColor(COLOR_TEXT_WHITE.get())
-                        .setPos(10, 20))
-                .widget(TextWidget.dynamicString(
-                                () -> GT_Utility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
-                        .setDefaultColor(COLOR_TEXT_WHITE.get())
-                        .setPos(10, 30));
+        builder.widget(
+                new DrawableWidget().setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK).setPos(7, 16).setSize(71, 45))
+                .widget(
+                        new SlotWidget(inventoryHandler, getInputSlot())
+                                .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_IN)
+                                .setPos(79, 16))
+                .widget(new TextWidget("Liquid Amount").setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 20)).widget(
+                        TextWidget
+                                .dynamicString(() -> GT_Utility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
+                                .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 30));
     }
 }

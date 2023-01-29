@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp.trees;
 
-import ic2.api.crops.CropCard;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import ic2.api.crops.CropCard;
 
 public class OredictHandler {
 
@@ -31,9 +33,7 @@ public class OredictHandler {
             for (ItemStack s : OreDictionary.getOres("treeSapling")) {
                 if (i.getDisplayName().contains("Log")) S = "Log";
                 else if (i.getDisplayName().contains("Wood")) S = "Wood";
-                if (s.getDisplayName()
-                        .replace("Sapling", "")
-                        .equals(i.getDisplayName().replace(S, ""))) ret.put(s, i);
+                if (s.getDisplayName().replace("Sapling", "").equals(i.getDisplayName().replace(S, ""))) ret.put(s, i);
                 else ret.put(s, new ItemStack(Blocks.log));
             }
         }

@@ -1,12 +1,15 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
-import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
-import ic2.api.crops.ICropTile;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import biomesoplenty.api.content.BOPCBlocks;
+
+import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
+import ic2.api.crops.ICropTile;
+
 public class FloweringVinesCrop extends VineCrop {
+
     public FloweringVinesCrop() {
         super();
     }
@@ -38,7 +41,7 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Tendrilly", "Flower"};
+        return new String[] { "Green", "Tendrilly", "Flower" };
     }
 
     @Override

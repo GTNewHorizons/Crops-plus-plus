@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import mods.natura.common.NContent;
+
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
-import mods.natura.common.NContent;
-import net.minecraft.item.ItemStack;
 
 public class CottonCrop extends BasicDecorationCrop {
 
@@ -49,7 +51,7 @@ public class CottonCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"White", "Cotton"};
+        return new String[] { "White", "Cotton" };
     }
 
     @Override

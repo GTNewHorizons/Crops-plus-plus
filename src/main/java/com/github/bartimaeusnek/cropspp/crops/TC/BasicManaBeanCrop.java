@@ -1,21 +1,24 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+
+import thaumcraft.api.ItemApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.common.items.ItemManaBean;
+
 import com.github.bartimaeusnek.croploadcore.BlockGetterTC;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 import ic2.api.crops.ICropTile;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.World;
-import thaumcraft.api.ItemApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.common.items.ItemManaBean;
 
 public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
@@ -69,7 +72,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Berry", "Bean", "Magic", "Colorful"};
+        return new String[] { "Berry", "Bean", "Magic", "Colorful" };
     }
 
     @Override
@@ -92,10 +95,9 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
                 break;
             }
         }
-        ((ItemManaBean) bean.getItem())
-                .setAspects(
-                        bean,
-                        (new AspectList()).add(aspects.get(option > 5 ? w.rand.nextInt(aspects.size()) : option), 1));
+        ((ItemManaBean) bean.getItem()).setAspects(
+                bean,
+                (new AspectList()).add(aspects.get(option > 5 ? w.rand.nextInt(aspects.size()) : option), 1));
         return bean;
     }
 

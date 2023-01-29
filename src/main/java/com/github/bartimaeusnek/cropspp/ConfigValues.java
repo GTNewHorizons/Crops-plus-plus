@@ -3,6 +3,7 @@ package com.github.bartimaeusnek.cropspp;
 import com.github.bartimaeusnek.croploadcore.config;
 
 public class ConfigValues {
+
     public static config c;
     public static boolean Items = true;
     public static int PrimordialBerryGroth = 125000;

@@ -1,9 +1,8 @@
 package com.github.bartimaeusnek.cropspp;
 
-import ic2.api.crops.ICropTile;
-import ic2.core.Ic2Items;
 import java.util.ArrayList;
 import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +15,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.oredict.OreDictionary;
+
+import ic2.api.crops.ICropTile;
+import ic2.core.Ic2Items;
 
 public class CCropUtility {
 

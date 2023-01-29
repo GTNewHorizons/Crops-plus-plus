@@ -1,11 +1,12 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ArditeBerryCrop extends BasicTinkerBerryCrop {
 
@@ -32,8 +33,7 @@ public class ArditeBerryCrop extends BasicTinkerBerryCrop {
     public ItemStack getGain(ICropTile crop) {
         if ((crop.isBlockBelow("blockArdite") || ConfigValues.debug)
                 && OreDictionary.getOres("nuggetArdite").size() != 0) {
-            return OreDictionary.getOres("nuggetArdite")
-                    .get(OreDictionary.getOres("nuggetArdite").size() - 1);
+            return OreDictionary.getOres("nuggetArdite").get(OreDictionary.getOres("nuggetArdite").size() - 1);
         } else return null;
     }
 
@@ -45,7 +45,7 @@ public class ArditeBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"OreBerry", "Ardite", "Metal", "Orange"};
+        return new String[] { "OreBerry", "Ardite", "Metal", "Orange" };
     }
 
     @Override

@@ -2,6 +2,12 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
 import static gregtech.api.enums.Textures.BlockIcons.*;
 
+import java.util.HashMap;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
+
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.math.Size;
@@ -9,6 +15,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
+
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -22,10 +29,6 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.items.behaviors.Behaviour_DataOrb;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
-import java.util.HashMap;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
 
 public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
 
@@ -36,81 +39,54 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
                 aNameRegional,
                 aTier,
                 16,
-                new String[] {
-                    "It can make Crops from DataOrbs",
-                    "It needs a crop's tier/2*1000L of UUM per Crop",
-                    "Takes in 16A",
-                    "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
-                    "Can process crops up to tier " + getMaxCropTier(aTier)
-                },
+                new String[] { "It can make Crops from DataOrbs", "It needs a crop's tier/2*1000L of UUM per Crop",
+                        "Takes in 16A",
+                        "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
+                        "Can process crops up to tier " + getMaxCropTier(aTier) },
                 4,
                 1,
                 "Crop_Synthesizer.png",
                 "",
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_SIDE_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_FRONT_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_TOP_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_BOTTOM_SCANNER_GLOW)
-                                .glow()
-                                .build()));
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
     }
 
-    public CropSynthesiser(
-            String mName,
-            byte mTier,
-            String[] mDescriptionArray,
-            ITexture[][][] mTextures,
-            String mGUIName,
-            String mNEIName) {
+    public CropSynthesiser(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures,
+            String mGUIName, String mNEIName) {
         super(mName, mTier, 16, mDescriptionArray, mTextures, 4, 1, mGUIName, mNEIName);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity arg0) {
         return new CropSynthesiser(
-                this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
+                this.mName,
+                this.mTier,
+                this.mDescriptionArray,
+                this.mTextures,
+                this.mGUIName,
+                this.mNEIName);
     }
 
     public static int getMaxCropTier(int mTier) {
@@ -119,7 +95,7 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     public int checkRecipe(boolean skipOC) {
-        ItemStack[] aStacks = {getInputAt(0), getInputAt(1), getInputAt(2), getInputAt(3)};
+        ItemStack[] aStacks = { getInputAt(0), getInputAt(1), getInputAt(2), getInputAt(3) };
 
         if (ItemList.Tool_DataOrb.isStackEqual(aStacks[0], false, true)
                 && ItemList.Tool_DataOrb.isStackEqual(aStacks[1], false, true)
@@ -140,10 +116,10 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
             String name = owner.split(":")[1];
             owner = owner.split(":")[0];
 
-            if (CropStats.get("Crop-Growth-Scan").isEmpty()
-                    || CropStats.get("Crop-Gain-Scan").isEmpty()
+            if (CropStats.get("Crop-Growth-Scan").isEmpty() || CropStats.get("Crop-Gain-Scan").isEmpty()
                     || CropStats.get("Crop-Resistance-Scan").isEmpty()
-                    || CropStats.get("Crop-Specimen-Scan").isEmpty()) return DID_NOT_FIND_RECIPE;
+                    || CropStats.get("Crop-Specimen-Scan").isEmpty())
+                return DID_NOT_FIND_RECIPE;
 
             CropCard card = Crops.instance.getCropCard(owner, name);
 
@@ -204,12 +180,10 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
-        if (ItemList.Tool_DataOrb.isStackEqual(aStack, false, true))
-            return isValidSlot(aIndex)
-                    && aStack != null
-                    && aIndex < mInventory.length
-                    && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
-                    && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
+        if (ItemList.Tool_DataOrb.isStackEqual(aStack, false, true)) return isValidSlot(aIndex) && aStack != null
+                && aIndex < mInventory.length
+                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
         return false;
     }
 
@@ -221,8 +195,13 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
-        builder.widget(createProgressBar(
-                GT_UITextures.PROGRESSBAR_ARROW, 20, ProgressBar.Direction.RIGHT, new Pos2d(78, 24), new Size(20, 18)));
+        builder.widget(
+                createProgressBar(
+                        GT_UITextures.PROGRESSBAR_ARROW,
+                        20,
+                        ProgressBar.Direction.RIGHT,
+                        new Pos2d(78, 24),
+                        new Size(20, 18)));
     }
 
     @Override

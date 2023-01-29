@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class WaterArtichokeCrop extends BasicWitcheryCrop {
+
     public WaterArtichokeCrop() {
         super();
         OreDict.BSget("cropArtichoke", this);
@@ -19,7 +21,7 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Flower", "Water", "Blue", "Ingredient"};
+        return new String[] { "Flower", "Water", "Blue", "Ingredient" };
     }
 
     @Override

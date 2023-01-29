@@ -1,15 +1,18 @@
 package com.github.bartimaeusnek.cropspp.crops.TF;
 
-import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.croploadcore.MyRandom;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.crops.ICropTile;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
 import twilightforest.block.TFBlocks;
+import biomesoplenty.api.content.BOPCBlocks;
+
+import com.github.bartimaeusnek.croploadcore.MyRandom;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.crops.ICropTile;
 
 public class MossCrop extends BasicDecorationCrop {
 
@@ -25,7 +28,7 @@ public class MossCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Climbable"};
+        return new String[] { "Green", "Climbable" };
     }
 
     @Override

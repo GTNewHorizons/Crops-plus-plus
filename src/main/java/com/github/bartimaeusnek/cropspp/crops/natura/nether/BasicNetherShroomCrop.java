@@ -1,11 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.natura.nether;
 
+import mods.natura.common.NContent;
+
+import net.minecraft.item.ItemStack;
+
 import biomesoplenty.api.content.BOPCBlocks;
+
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicNetherBerryCrop;
 import ic2.api.crops.ICropTile;
-import mods.natura.common.NContent;
-import net.minecraft.item.ItemStack;
 
 public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
@@ -67,7 +70,7 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     @Override
     public String[] attributes() {
         String[] r;
-        r = new String[] {"Food", "Mushroom", "Ingredient", "Nether"};
+        r = new String[] { "Food", "Mushroom", "Ingredient", "Nether" };
         return r;
     }
 

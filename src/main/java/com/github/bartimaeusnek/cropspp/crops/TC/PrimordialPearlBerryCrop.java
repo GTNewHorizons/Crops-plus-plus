@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import ic2.api.crops.ICropTile;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.item.ItemStack;
 
 public class PrimordialPearlBerryCrop extends BasicCrop {
 
@@ -94,7 +96,7 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Berry", "Primordial", "Magic", "Unique"};
+        return new String[] { "Berry", "Primordial", "Magic", "Unique" };
     }
 
     @Override

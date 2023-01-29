@@ -1,13 +1,15 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
-import com.github.bartimaeusnek.cropspp.items.CppItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.crops.ICropTile;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
+import com.github.bartimaeusnek.cropspp.items.CppItems;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.crops.ICropTile;
 
 public class SugarBeetCrop extends BasicFoodCrop {
 
@@ -32,7 +34,7 @@ public class SugarBeetCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Food", "White", "Ingredient"};
+        return new String[] { "Food", "White", "Ingredient" };
     }
 
     @SideOnly(Side.CLIENT)

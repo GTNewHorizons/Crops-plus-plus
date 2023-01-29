@@ -1,11 +1,12 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class MandragoraCrop extends BasicWitcheryCrop {
 
@@ -21,7 +22,7 @@ public class MandragoraCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Flower", "Magic", "Bad", "Toxic", "Ingredient"};
+        return new String[] { "Flower", "Magic", "Bad", "Toxic", "Ingredient" };
     }
 
     @Override

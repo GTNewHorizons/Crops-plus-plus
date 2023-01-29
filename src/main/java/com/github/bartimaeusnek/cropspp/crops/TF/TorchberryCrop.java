@@ -1,9 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.TF;
 
+import net.minecraft.item.ItemStack;
+
+import twilightforest.item.TFItems;
+
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-import twilightforest.item.TFItems;
 
 public class TorchberryCrop extends BasicCrop {
 
@@ -32,7 +34,7 @@ public class TorchberryCrop extends BasicCrop {
     public int stat(int n) {
         switch (n) {
             case 0:
-                return 2; //  chemical
+                return 2; // chemical
             case 1:
                 return 0; // not edible
             case 2:
@@ -40,7 +42,7 @@ public class TorchberryCrop extends BasicCrop {
             case 3:
                 return 2; // colorful
             case 4:
-                return 1; //  weed-like
+                return 1; // weed-like
             default:
                 return 0;
         }
@@ -69,7 +71,7 @@ public class TorchberryCrop extends BasicCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Berry", "Glow", "Shimmer"};
+        return new String[] { "Berry", "Glow", "Shimmer" };
     }
 
     @Override

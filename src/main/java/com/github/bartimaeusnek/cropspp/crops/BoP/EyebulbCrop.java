@@ -1,10 +1,12 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
+import net.minecraft.item.ItemStack;
+
 import biomesoplenty.api.content.BOPCBlocks;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class EyebulbCrop extends BasicDecorationCrop {
 
@@ -25,7 +27,7 @@ public class EyebulbCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Nether", "Evil", "Bad"};
+        return new String[] { "Nether", "Evil", "Bad" };
     }
 
     @Override

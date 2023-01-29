@@ -1,8 +1,9 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
-import com.github.bartimaeusnek.cropspp.crops.witchery.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.bartimaeusnek.cropspp.crops.witchery.*;
 
 public class WitcheryLoader {
 
@@ -13,8 +14,7 @@ public class WitcheryLoader {
         p.add(new CropLoader(new SpanishMossCrop(), null));
         p.add(new CropLoader(new BelladonnaCrop(), null));
         p.add(new CropLoader(new MandragoraCrop(), null));
-        p.add(new CropLoader(new SnowbellCrop(), null));
-        ;
+        p.add(new CropLoader(new SnowbellCrop(), null));;
         p.add(new CropLoader(new WolfsBaneCrop(), null));
         p.add(new CropLoader(new WaterArtichokeCrop(), null));
         p.add(new CropLoader(new EmberMossCrop(), null));

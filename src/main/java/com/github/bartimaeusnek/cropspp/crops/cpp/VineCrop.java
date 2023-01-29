@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import ic2.api.crops.ICropTile;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+import ic2.api.crops.ICropTile;
+
 public class VineCrop extends BasicDecorationCrop {
+
     public VineCrop() {
         super();
     }
@@ -27,7 +29,7 @@ public class VineCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Tendrilly"};
+        return new String[] { "Green", "Tendrilly" };
     }
 
     @Override

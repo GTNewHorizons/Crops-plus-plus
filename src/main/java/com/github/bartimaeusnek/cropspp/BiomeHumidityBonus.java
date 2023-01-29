@@ -1,7 +1,8 @@
 package com.github.bartimaeusnek.cropspp;
 
-import ic2.api.crops.Crops;
 import net.minecraftforge.common.BiomeDictionary;
+
+import ic2.api.crops.Crops;
 
 public class BiomeHumidityBonus {
 

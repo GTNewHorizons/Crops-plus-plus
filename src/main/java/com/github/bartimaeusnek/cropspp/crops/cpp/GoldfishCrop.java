@@ -1,16 +1,18 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.MyRandom;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import ic2.api.crops.ICropTile;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 public class GoldfishCrop extends BasicDecorationCrop {
 
@@ -35,7 +37,7 @@ public class GoldfishCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Nether", "Fish", "Food", "Bad", "Water"};
+        return new String[] { "Nether", "Fish", "Food", "Bad", "Water" };
     }
 
     @Override
@@ -102,24 +104,20 @@ public class GoldfishCrop extends BasicDecorationCrop {
     public void tick(ICropTile crop) {
         if (ConfigValues.ILoveScreaming) {
             if (MyRandom.intrandom(512, 0) == 42) {
-                if (crop.getSize() != this.maxSize())
-                    crop.getWorld()
-                            .playSoundEffect(
-                                    crop.getLocation().posX,
-                                    crop.getLocation().posY,
-                                    crop.getLocation().posZ,
-                                    "mob.ghast.scream",
-                                    crop.getSize(),
-                                    (maxSize() + 1) + (-1) * crop.getSize());
-                else if (crop.getSize() == this.maxSize())
-                    crop.getWorld()
-                            .playSoundEffect(
-                                    crop.getLocation().posX,
-                                    crop.getLocation().posY,
-                                    crop.getLocation().posZ,
-                                    "mob.ghast.scream",
-                                    crop.getSize(),
-                                    (maxSize() + 1) + (-1) * crop.getSize());
+                if (crop.getSize() != this.maxSize()) crop.getWorld().playSoundEffect(
+                        crop.getLocation().posX,
+                        crop.getLocation().posY,
+                        crop.getLocation().posZ,
+                        "mob.ghast.scream",
+                        crop.getSize(),
+                        (maxSize() + 1) + (-1) * crop.getSize());
+                else if (crop.getSize() == this.maxSize()) crop.getWorld().playSoundEffect(
+                        crop.getLocation().posX,
+                        crop.getLocation().posY,
+                        crop.getLocation().posZ,
+                        "mob.ghast.scream",
+                        crop.getSize(),
+                        (maxSize() + 1) + (-1) * crop.getSize());
             }
         }
     }

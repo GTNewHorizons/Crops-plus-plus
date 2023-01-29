@@ -1,8 +1,7 @@
 package com.github.bartimaeusnek.cropspp.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +9,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class Modifier extends Item {
+
     public IIcon[] icons;
-    public String[] textureNames = new String[] {"Space", "Magic", "Trophy" /*, "Anti","Growth","Gain","Resistance"*/};
+    public String[] textureNames = new String[] { "Space", "Magic",
+            "Trophy" /* , "Anti","Growth","Gain","Resistance" */ };
 
     public Modifier() {
         super();
@@ -41,18 +45,11 @@ public class Modifier extends Item {
             case 2:
                 list.add("Challenge Accepted!");
                 break;
-                /*case 3:
-                    list.add("!stooR-rettaM-itnA");
-                    break;
-                case 4:
-                	list.add("Boosts the Growth-Statt of a plant!");
-                    break;
-                case 5:
-                	list.add("Boosts the Gain-Statt of a plant!");
-                    break;
-                case 6:
-                	list.add("Boosts the Resistance-Statt of a plant!");
-                    break;*/
+            /*
+             * case 3: list.add("!stooR-rettaM-itnA"); break; case 4: list.add("Boosts the Growth-Statt of a plant!");
+             * break; case 5: list.add("Boosts the Gain-Statt of a plant!"); break; case 6:
+             * list.add("Boosts the Resistance-Statt of a plant!"); break;
+             */
         }
     }
 
@@ -68,16 +65,9 @@ public class Modifier extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        if (itemstack.getItemDamage() < textureNames.length)
-            return (new StringBuilder())
-                    .append("item_Modifier_")
-                    .append(textureNames[itemstack.getItemDamage()])
-                    .toString();
-        else
-            return (new StringBuilder())
-                    .append("item_Modifier_")
-                    .append(textureNames[0])
-                    .toString();
+        if (itemstack.getItemDamage() < textureNames.length) return (new StringBuilder()).append("item_Modifier_")
+                .append(textureNames[itemstack.getItemDamage()]).toString();
+        else return (new StringBuilder()).append("item_Modifier_").append(textureNames[0]).toString();
     }
 
     @Override
@@ -89,41 +79,14 @@ public class Modifier extends Item {
     }
 
     /*
-        @Override
-    	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-    		if (!IC2.platform.isSimulating())
-                return false;
-    		TileEntity te = world.getTileEntity(x, y, z);
-            if (te instanceof TileEntityCrop) {
-                TileEntityCrop crop = (TileEntityCrop)te;
-                if (crop.getCrop() != null) {
-                	if (crop.getCrop() instanceof ic2.api.crops.CropCard && crop.getCrop().tier()>=1) {
-                		switch (stack.getItemDamage() % textureNames.length)
-                        {
-                        case 4:
-                        	if (crop.statGrowth < 31)
-                        	crop.statGrowth=crop.statGrowth+1;
-                        	crop.updateState();
-                        	stack.stackSize=stack.stackSize-1;
-                            break;
-                        case 5:
-                        	if (crop.statGain < 31)
-                        	crop.statGain=crop.statGain+1;
-                        	crop.updateState();
-                        	stack.stackSize=stack.stackSize-1;
-                            break;
-                        case 6:
-                        	if (crop.statResistance < 31)
-                        	crop.statResistance=crop.statResistance+1;
-                        	crop.updateState();
-                        	stack.stackSize=stack.stackSize-1;
-                            break;
-                        }
-                		return true;
-                	}
-                }
-            }
-            return false;
-        }
-    */
+     * @Override public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z,
+     * int side, float hitX, float hitY, float hitZ) { if (!IC2.platform.isSimulating()) return false; TileEntity te =
+     * world.getTileEntity(x, y, z); if (te instanceof TileEntityCrop) { TileEntityCrop crop = (TileEntityCrop)te; if
+     * (crop.getCrop() != null) { if (crop.getCrop() instanceof ic2.api.crops.CropCard && crop.getCrop().tier()>=1) {
+     * switch (stack.getItemDamage() % textureNames.length) { case 4: if (crop.statGrowth < 31)
+     * crop.statGrowth=crop.statGrowth+1; crop.updateState(); stack.stackSize=stack.stackSize-1; break; case 5: if
+     * (crop.statGain < 31) crop.statGain=crop.statGain+1; crop.updateState(); stack.stackSize=stack.stackSize-1; break;
+     * case 6: if (crop.statResistance < 31) crop.statResistance=crop.statResistance+1; crop.updateState();
+     * stack.stackSize=stack.stackSize-1; break; } return true; } } } return false; }
+     */
 }

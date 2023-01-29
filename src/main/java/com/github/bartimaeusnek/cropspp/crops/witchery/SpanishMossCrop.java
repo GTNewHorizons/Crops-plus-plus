@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.crops.BoP.FloweringVinesCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class SpanishMossCrop extends FloweringVinesCrop {
 
@@ -25,7 +26,7 @@ public class SpanishMossCrop extends FloweringVinesCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Climbable", "Magic"};
+        return new String[] { "Green", "Climbable", "Magic" };
     }
 
     @Override

@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class BelladonnaCrop extends BasicWitcheryCrop {
 
@@ -20,7 +21,7 @@ public class BelladonnaCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Purple", "Flower", "Toxic", "Ingredient"};
+        return new String[] { "Purple", "Flower", "Toxic", "Ingredient" };
     }
 
     @Override

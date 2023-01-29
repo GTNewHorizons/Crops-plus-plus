@@ -2,10 +2,8 @@ package com.github.bartimaeusnek.cropspp.items;
 
 import static com.github.bartimaeusnek.cropspp.ConfigValues.debug;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.core.crop.TileEntityCrop;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +14,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.core.crop.TileEntityCrop;
+
 public class ItemBppWateringCan extends Item implements IFluidContainerItem {
+
     private int content = 0;
     private boolean nutrient = false;
 
@@ -66,17 +69,8 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (world.isRemote) return false;
         readFromToNBT(stack);
         if (content >= 144) {
@@ -108,10 +102,8 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
 
     @Override
     public FluidStack getFluid(ItemStack container) {
-        return content == 0
-                ? null
-                : nutrient
-                        ? FluidRegistry.getFluidStack("fluid.fertiliser", content)
+        return content == 0 ? null
+                : nutrient ? FluidRegistry.getFluidStack("fluid.fertiliser", content)
                         : new FluidStack(FluidRegistry.WATER, content);
     }
 
@@ -124,25 +116,21 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
     public int fill(ItemStack stack, FluidStack resource, boolean doFill) {
         if (resource == null || resource.getFluid() == null) return 0;
 
-        if (!nutrient || content == 0)
-            if ((resource.getFluid().equals(FluidRegistry.WATER)
-                    || resource.getFluid()
-                            .equals(FluidRegistry.getFluidStack("fluid.fertiliser", content)
-                                    .getFluid()))) {
-                boolean fert = false;
-                if (FluidRegistry.getFluidStack("fluid.fertiliser", content) != null)
-                    if (resource.getFluid()
-                            .equals(FluidRegistry.getFluidStack("fluid.fertiliser", content)
-                                    .getFluid())) fert = true;
-                int toFill = Math.min(resource.amount, (getCapacity(null) - content));
-                if (!doFill) return toFill;
-                else {
-                    nutrient = fert;
-                    content = toFill;
-                    writeToNBT(stack);
-                    return toFill;
+        if (!nutrient || content == 0) if ((resource.getFluid().equals(FluidRegistry.WATER)
+                || resource.getFluid().equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid()))) {
+                    boolean fert = false;
+                    if (FluidRegistry.getFluidStack("fluid.fertiliser", content) != null) if (resource.getFluid()
+                            .equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid()))
+                        fert = true;
+                    int toFill = Math.min(resource.amount, (getCapacity(null) - content));
+                    if (!doFill) return toFill;
+                    else {
+                        nutrient = fert;
+                        content = toFill;
+                        writeToNBT(stack);
+                        return toFill;
+                    }
                 }
-            }
         return 0;
     }
 

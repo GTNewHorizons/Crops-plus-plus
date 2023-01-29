@@ -2,6 +2,9 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
 import static gregtech.api.enums.Textures.BlockIcons.*;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import com.github.bartimaeusnek.cropspp.GTHandler.CPP_UITextures;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
@@ -10,6 +13,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
+
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -23,8 +27,6 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.items.behaviors.Behaviour_DataOrb;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
 
@@ -35,75 +37,42 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
                 aNameRegional,
                 aTier,
                 1,
-                new String[] {
-                    "It can extract CropGenes",
-                    "Use a circuit to determine the genes you want to extract,",
-                    "1 for Specimen, 2 for Growth, 3 for Gain, 4 for Resistance",
-                    "Takes in 1A",
-                    "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
-                    "Can process crops up to tier " + getMaxCropTier(aTier)
-                },
+                new String[] { "It can extract CropGenes", "Use a circuit to determine the genes you want to extract,",
+                        "1 for Specimen, 2 for Growth, 3 for Gain, 4 for Resistance", "Takes in 1A",
+                        "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
+                        "Can process crops up to tier " + getMaxCropTier(aTier) },
                 2,
                 1,
                 "Crop_Gen_Extractor.png",
                 "",
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_SIDE_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_FRONT_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_FRONT_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_TOP_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_TOP_SCANNER_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER_ACTIVE),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW)
-                                .glow()
-                                .build()),
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW).glow().build()),
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_BOTTOM_SCANNER),
-                        TextureFactory.builder()
-                                .addIcon(OVERLAY_BOTTOM_SCANNER_GLOW)
-                                .glow()
-                                .build()));
+                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
     }
 
-    public CropGeneExtractor(
-            String mName,
-            byte mTier,
-            String[] mDescriptionArray,
-            ITexture[][][] mTextures,
-            String mGUIName,
-            String mNEIName) {
+    public CropGeneExtractor(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures,
+            String mGUIName, String mNEIName) {
         super(mName, mTier, 1, mDescriptionArray, mTextures, 2, 1, mGUIName, mNEIName);
         // TODO Auto-generated constructor stub
     }
@@ -111,7 +80,12 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity arg0) {
         return new CropGeneExtractor(
-                this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
+                this.mName,
+                this.mTier,
+                this.mDescriptionArray,
+                this.mTextures,
+                this.mGUIName,
+                this.mNEIName);
     }
 
     public static int getMaxCropTier(int mTier) {
@@ -152,8 +126,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
             switch (bStack.getItemDamage()) {
                 case 1:
                     Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Specimen-Scan");
-                    Behaviour_DataOrb.setDataName(
-                            this.mOutputItems[0], tNBT.getString("owner") + ":" + tNBT.getString("name"));
+                    Behaviour_DataOrb
+                            .setDataName(this.mOutputItems[0], tNBT.getString("owner") + ":" + tNBT.getString("name"));
                     break;
                 case 2:
                     Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Growth-Scan");
@@ -195,8 +169,7 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
         if (ItemList.Circuit_Integrated.isStackEqual(aStack, true, true)
                 || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
-            return isValidSlot(aIndex)
-                    && aStack != null
+            return isValidSlot(aIndex) && aStack != null
                     && aIndex < mInventory.length
                     && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
                     && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
@@ -211,8 +184,13 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
-        builder.widget(createProgressBar(
-                GT_UITextures.PROGRESSBAR_ARROW, 20, ProgressBar.Direction.RIGHT, new Pos2d(78, 24), new Size(20, 18)));
+        builder.widget(
+                createProgressBar(
+                        GT_UITextures.PROGRESSBAR_ARROW,
+                        20,
+                        ProgressBar.Direction.RIGHT,
+                        new Pos2d(78, 24),
+                        new Size(20, 18)));
     }
 
     @Override

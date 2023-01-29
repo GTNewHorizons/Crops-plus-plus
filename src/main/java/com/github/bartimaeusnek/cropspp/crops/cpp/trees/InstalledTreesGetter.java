@@ -1,11 +1,5 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp.trees;
 
-import com.github.bartimaeusnek.croploadcore.OreDict;
-import com.github.bartimaeusnek.croploadcore.config;
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import com.github.bartimaeusnek.cropspp.Cropspp;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import ic2.api.crops.CropCard;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,10 +7,20 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.imageio.ImageIO;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.croploadcore.config;
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+import com.github.bartimaeusnek.cropspp.Cropspp;
+
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import ic2.api.crops.CropCard;
 
 public class InstalledTreesGetter {
 
@@ -31,8 +35,7 @@ public class InstalledTreesGetter {
         cfg = preinit.getModConfigurationDirectory().getPath();
         cfg = cfg.replace("config", "BppBonsais_");
         config c = new config(preinit, "berriespp.cfg");
-        ConfigValues.ayo_bonsai =
-                c.tConfig.get("System", "Bonsai Generation", false).getBoolean(true);
+        ConfigValues.ayo_bonsai = c.tConfig.get("System", "Bonsai Generation", false).getBoolean(true);
         return ConfigValues.ayo_bonsai;
     }
 
@@ -42,12 +45,14 @@ public class InstalledTreesGetter {
         // Berriespp.bpplogger.info("Name: "+name);
 
         BufferedImage overlay;
-        BufferedImage image = ImageIO.read(
-                InstalledTreesGetter.class.getResource("/assets/bpp/textures/blocks/crop/blockCrop.empty.1.png"));
+        BufferedImage image = ImageIO
+                .read(InstalledTreesGetter.class.getResource("/assets/bpp/textures/blocks/crop/blockCrop.empty.1.png"));
         // if (IICON.getIconName().contains(":"))
-        overlay = ImageIO.read(Sapling.getClass()
-                .getResource(new String("/assets/"
-                        + Sapling.getItem().getClass().getName().replace(":", "/textures/blocks/") + ".png")));
+        overlay = ImageIO.read(
+                Sapling.getClass().getResource(
+                        new String(
+                                "/assets/" + Sapling.getItem().getClass().getName().replace(":", "/textures/blocks/")
+                                        + ".png")));
         // else //Vanilla workaround
         // overlay = ImageIO.read(IICON.getClass().getResource(new
         // String("/assets/minecraft/textures/blocks/"+IICON.getIconName()+".png")));
@@ -99,20 +104,20 @@ public class InstalledTreesGetter {
         for (int i = 0; i < SubItemNames.size(); i++) {
 
             // prevent TC from making Shimmerleaf,Cinderpearl,Vishroom or Ethereal Bloom Bonsais
-            if (!(SubItemNames.get(i).contains("Shimmerleaf")
-                            || SubItemNames.get(i).contains("Cinderpearl"))
-                    && !(SubItemNames.get(i).contains("Vishroom")
-                            || SubItemNames.get(i).contains("Ethereal Bloom"))) {
+            if (!(SubItemNames.get(i).contains("Shimmerleaf") || SubItemNames.get(i).contains("Cinderpearl"))
+                    && !(SubItemNames.get(i).contains("Vishroom") || SubItemNames.get(i).contains("Ethereal Bloom"))) {
 
                 // rename ic2's Rubberwood
                 if (SubItemNames.get(i).equals("ic2.blockRubSapling")) SubItemNames.set(i, "Rubber Wood Sapling");
                 if (helplist.size() != helplistLog.size()) {
-                    Cropspp.cpplogger.error("Saplings/Logs out of synch!" + " Bonsaigen disabled!"
-                            + "\n helplist contains: " + Integer.toString(helplist.size())
-                            + "\n helplistLog contains: " + Integer.toString(helplistLog.size())
-                            + "\n helplist contains: ");
-                    for (int j = 0; j < helplist.size(); j++)
-                        Cropspp.cpplogger.info(helplist.get(j).getDisplayName());
+                    Cropspp.cpplogger.error(
+                            "Saplings/Logs out of synch!" + " Bonsaigen disabled!"
+                                    + "\n helplist contains: "
+                                    + Integer.toString(helplist.size())
+                                    + "\n helplistLog contains: "
+                                    + Integer.toString(helplistLog.size())
+                                    + "\n helplist contains: ");
+                    for (int j = 0; j < helplist.size(); j++) Cropspp.cpplogger.info(helplist.get(j).getDisplayName());
                     Cropspp.cpplogger.info("helplistLog contains: ");
                     for (int j = 0; j < helplistLog.size(); j++)
                         Cropspp.cpplogger.info(helplistLog.get(j).getDisplayName());
@@ -142,46 +147,37 @@ public class InstalledTreesGetter {
         for (int i = 0; i < subtypes1.size(); i++) {
             for (int j = 0; j < subtypes2.size(); j++) {
 
-                if (!synched
-                        && (subtypes2.get(j).getDisplayName().contains("Wood")
-                                && !subtypes2.get(j).getDisplayName().contains("Log"))) {
+                if (!synched && (subtypes2.get(j).getDisplayName().contains("Wood")
+                        && !subtypes2.get(j).getDisplayName().contains("Log"))) {
                     // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" conatins Wood.");
-                    if (subtypes1
-                            .get(i)
-                            .getDisplayName()
-                            .replace("Sapling", "")
+                    if (subtypes1.get(i).getDisplayName().replace("Sapling", "")
                             .equals(subtypes2.get(j).getDisplayName().replace("Wood", ""))) {
                         itemsgot.add(subtypes2.get(j));
                         synched = true;
                         // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" synched to
                         // "+subtypes1.get(i).getDisplayName());
                     }
-                } else if (!synched
-                        && (subtypes2.get(j).getDisplayName().contains("Log")
-                                && !subtypes2.get(j).getDisplayName().contains("Wood"))) {
-                    // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" conatins Log.");
-                    if (subtypes1
-                            .get(i)
-                            .getDisplayName()
-                            .replace("Sapling", "")
-                            .equals(subtypes2.get(j).getDisplayName().replace("Log", ""))) {
-                        itemsgot.add(subtypes2.get(j));
-                        synched = true;
-                        // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" synched to
-                        // "+subtypes1.get(i).getDisplayName());
-                    }
-                }
+                } else if (!synched && (subtypes2.get(j).getDisplayName().contains("Log")
+                        && !subtypes2.get(j).getDisplayName().contains("Wood"))) {
+                            // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" conatins Log.");
+                            if (subtypes1.get(i).getDisplayName().replace("Sapling", "")
+                                    .equals(subtypes2.get(j).getDisplayName().replace("Log", ""))) {
+                                itemsgot.add(subtypes2.get(j));
+                                synched = true;
+                                // Berriespp.bpplogger.info(subtypes2.get(j).getDisplayName()+" synched to
+                                // "+subtypes1.get(i).getDisplayName());
+                            }
+                        }
             }
             if (!synched) itemsgot.add(subtypes2.get(0));
             synched = false;
         }
 
         // Berriespp.bpplogger.info("synch completed");
-        /*for (int k = 0; k < itemsgot.size(); k++)
-        {
-        	//Berriespp.bpplogger.info("item synched: "+itemsgot.get(k).getDisplayName());
-        }
-        */
+        /*
+         * for (int k = 0; k < itemsgot.size(); k++) {
+         * //Berriespp.bpplogger.info("item synched: "+itemsgot.get(k).getDisplayName()); }
+         */
         return itemsgot;
     }
 }

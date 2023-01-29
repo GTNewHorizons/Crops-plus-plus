@@ -1,9 +1,10 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import ic2.api.crops.ICropTile;
 import java.util.Arrays;
 import java.util.List;
+
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+import ic2.api.crops.ICropTile;
 
 public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
@@ -42,8 +43,8 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList(
-                "Has increased Nutrient requirements (x1.5)", "Has decreased humidity requirements (x0.5)");
+        return Arrays
+                .asList("Has increased Nutrient requirements (x1.5)", "Has decreased humidity requirements (x0.5)");
     }
 
     @Override

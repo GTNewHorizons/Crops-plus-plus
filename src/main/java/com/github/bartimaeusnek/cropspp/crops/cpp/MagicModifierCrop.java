@@ -1,13 +1,15 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.crops.TC.PrimordialPearlBerryCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import ic2.api.crops.ICropTile;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
@@ -33,7 +35,11 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     @Override
     public ItemStack getSeeds(ICropTile crop) {
         return crop.generateSeeds(
-                crop.getCrop(), crop.getGrowth(), crop.getGain(), crop.getResistance(), crop.getScanLevel());
+                crop.getCrop(),
+                crop.getGrowth(),
+                crop.getGain(),
+                crop.getResistance(),
+                crop.getScanLevel());
     }
 
     @Override
@@ -63,7 +69,8 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
         boolean ret = false;
         if (crop.getSize() < 3) ret = true;
         else if ((crop.getSize() == 3 && crop.isBlockBelow("blockIchorium"))
-                || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium"))) ret = true;
+                || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium")))
+            ret = true;
         return ret;
     }
 

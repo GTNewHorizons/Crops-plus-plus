@@ -1,10 +1,12 @@
 package com.github.bartimaeusnek.cropspp.crops.TConstruct;
 
+import net.minecraft.item.ItemStack;
+
+import tconstruct.world.TinkerWorld;
+
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
-import tconstruct.world.TinkerWorld;
 
 public class IronOreBerryCrop extends BasicTinkerBerryCrop {
 
@@ -37,7 +39,7 @@ public class IronOreBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"OreBerry", "Gray", "Metal"};
+        return new String[] { "OreBerry", "Gray", "Metal" };
     }
 
     @Override

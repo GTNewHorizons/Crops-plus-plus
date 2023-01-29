@@ -1,16 +1,20 @@
 package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import gregtech.api.enums.Materials;
-import ic2.api.crops.ICropTile;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+
+import gregtech.api.enums.Materials;
+import ic2.api.crops.ICropTile;
+
 public class StonelillyCrop extends BasicDecorationCrop {
+
     private String color;
 
     public StonelillyCrop(String color) {
@@ -84,15 +88,15 @@ public class StonelillyCrop extends BasicDecorationCrop {
                         break;
                     }
                     case "Gray": {
-                        if (crop.isBlockBelow(Blocks.cobblestone)
-                                || crop.isBlockBelow(Blocks.stone)
-                                || crop.isBlockBelow("blockAndesite")) ret = true;
+                        if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
+                                || crop.isBlockBelow("blockAndesite"))
+                            ret = true;
                         break;
                     }
                     case "Yellow": {
-                        if (crop.isBlockBelow(Blocks.end_stone)
-                                || crop.isBlockBelow(Blocks.sand)
-                                || crop.isBlockBelow(Blocks.sandstone)) ret = true;
+                        if (crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
+                                || crop.isBlockBelow(Blocks.sandstone))
+                            ret = true;
                         break;
                     }
                     case "Nether": {
@@ -115,27 +119,27 @@ public class StonelillyCrop extends BasicDecorationCrop {
         String[] ret = null;
         switch (color) {
             case "Red": {
-                ret = new String[] {color, "Stone", "Fire"};
+                ret = new String[] { color, "Stone", "Fire" };
                 break;
             }
             case "Black": {
-                ret = new String[] {color, "Stone", "Dark"};
+                ret = new String[] { color, "Stone", "Dark" };
                 break;
             }
             case "White": {
-                ret = new String[] {color, "Stone", "Shiny"};
+                ret = new String[] { color, "Stone", "Shiny" };
                 break;
             }
             case "Gray": {
-                ret = new String[] {color, "Stone", "Metal"};
+                ret = new String[] { color, "Stone", "Metal" };
                 break;
             }
             case "Yellow": {
-                ret = new String[] {color, "Stone", "Alien"};
+                ret = new String[] { color, "Stone", "Alien" };
                 break;
             }
             case "Nether": {
-                ret = new String[] {color, "Stone", "Evil"};
+                ret = new String[] { color, "Stone", "Evil" };
                 break;
             }
         }

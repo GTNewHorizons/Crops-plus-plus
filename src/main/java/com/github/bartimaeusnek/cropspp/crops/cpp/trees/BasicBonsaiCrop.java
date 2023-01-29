@@ -1,15 +1,18 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp.trees;
 
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.crops.ICropTile;
-import ic2.core.Ic2Items;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.crops.ICropTile;
+import ic2.core.Ic2Items;
+
 public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
+
     private String name;
     private ItemStack drop;
     private String ICNNAME;
@@ -64,7 +67,7 @@ public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Tree", "Bonsai", "Leavy"};
+        return new String[] { "Tree", "Bonsai", "Leavy" };
     }
 
     @Override

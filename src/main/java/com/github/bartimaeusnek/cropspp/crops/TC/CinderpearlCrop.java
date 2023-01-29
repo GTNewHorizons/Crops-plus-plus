@@ -1,14 +1,16 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 import ic2.api.crops.ICropTile;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class CinderpearlCrop extends BasicThaumcraftCrop {
 
@@ -24,7 +26,7 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Magic", "Blaze", "Nether"};
+        return new String[] { "Magic", "Blaze", "Nether" };
     }
 
     @Override
@@ -42,9 +44,8 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
     public boolean canGrow(ICropTile crop) {
         if (ConfigValues.debug) return crop.getSize() < 3;
         if (crop.getSize() <= 1) return crop.getSize() <= 1;
-        if (crop.getSize() == 2)
-            return (crop.getSize() == 2
-                    && (crop.isBlockBelow("blockBlaze") || !(OreDictionary.doesOreNameExist("blockBlaze"))));
+        if (crop.getSize() == 2) return (crop.getSize() == 2
+                && (crop.isBlockBelow("blockBlaze") || !(OreDictionary.doesOreNameExist("blockBlaze"))));
         return false;
     }
 

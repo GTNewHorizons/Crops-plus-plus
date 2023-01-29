@@ -1,18 +1,21 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import com.github.bartimaeusnek.croploadcore.MyRandom;
-import com.github.bartimaeusnek.croploadcore.OreDict;
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import ic2.api.crops.ICropTile;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.github.bartimaeusnek.croploadcore.MyRandom;
+import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+import ic2.api.crops.ICropTile;
+
 public class GrassCrop extends BasicDecorationCrop {
+
     private int random;
 
     public GrassCrop() {
@@ -88,7 +91,7 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Bad"};
+        return new String[] { "Green", "Bad" };
     }
 
     @Override
@@ -124,7 +127,7 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList(new String[] {"Is a weed", "Hurt Player on collision, when fully grown"});
+        return Arrays.asList(new String[] { "Is a weed", "Hurt Player on collision, when fully grown" });
     }
 
     @Override

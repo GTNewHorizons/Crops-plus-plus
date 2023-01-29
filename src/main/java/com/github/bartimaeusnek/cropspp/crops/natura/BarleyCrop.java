@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class BarleyCrop extends BasicFoodCrop {
 
@@ -25,7 +26,7 @@ public class BarleyCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Food", "Wheat"};
+        return new String[] { "Green", "Food", "Wheat" };
     }
 
     @Override

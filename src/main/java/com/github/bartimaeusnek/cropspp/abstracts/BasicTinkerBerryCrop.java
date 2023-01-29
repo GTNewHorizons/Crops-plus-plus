@@ -1,13 +1,15 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.ConfigValues;
-import ic2.api.crops.ICropTile;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.ConfigValues;
+import ic2.api.crops.ICropTile;
 
 public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
@@ -53,10 +55,8 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
     public boolean canGrow(ICropTile crop) {
         boolean r;
         if (ConfigValues.debug) r = crop.getSize() < 4;
-        else
-            r = crop.getSize() < 1
-                    || crop.getSize() == 3 && crop.isBlockBelow(hasBlock())
-                    || (crop.getLightLevel() <= 10 && crop.getSize() < 3); // Codepiece by DaeFennek <3
+        else r = crop.getSize() < 1 || crop.getSize() == 3 && crop.isBlockBelow(hasBlock())
+                || (crop.getLightLevel() <= 10 && crop.getSize() < 3); // Codepiece by DaeFennek <3
         return r;
     }
 

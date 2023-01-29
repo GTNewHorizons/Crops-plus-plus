@@ -1,16 +1,19 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
-import com.github.bartimaeusnek.croploadcore.OreDict;
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.crops.ICropTile;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.crops.ICropTile;
+
 public class WildCarrotsCrop extends BasicFoodCrop {
+
     public WildCarrotsCrop() {
         super();
         OreDict.BSget("cropWildcarrots", this);
@@ -40,7 +43,7 @@ public class WildCarrotsCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Food", "White", "Carrots"};
+        return new String[] { "Food", "White", "Carrots" };
     }
 
     @Override

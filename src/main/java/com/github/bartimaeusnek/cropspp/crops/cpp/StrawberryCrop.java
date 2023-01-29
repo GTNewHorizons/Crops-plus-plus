@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicBerryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class StrawberryCrop extends BasicBerryCrop {
 
@@ -18,7 +19,7 @@ public class StrawberryCrop extends BasicBerryCrop {
     }
 
     public String[] attributes() {
-        return new String[] {"Berry", "Food", "Red"}; // Red like CropRedWheat, CropNetherWart
+        return new String[] { "Berry", "Food", "Red" }; // Red like CropRedWheat, CropNetherWart
     }
 
     public String discoveredBy() {

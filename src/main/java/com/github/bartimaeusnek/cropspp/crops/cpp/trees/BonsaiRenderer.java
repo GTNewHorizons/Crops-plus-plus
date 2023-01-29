@@ -1,13 +1,16 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp.trees;
 
-import com.github.bartimaeusnek.cropspp.Cropspp;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.awt.image.BufferedImage;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.util.ResourceLocation;
+
+import com.github.bartimaeusnek.cropspp.Cropspp;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class BonsaiRenderer extends TextureAtlasSprite {
@@ -37,8 +40,8 @@ public class BonsaiRenderer extends TextureAtlasSprite {
     }
 
     @Override
-    public void loadSprite(
-            BufferedImage[] mipmapImages, AnimationMetadataSection metadata, boolean useAnisotropicFiltering) {
+    public void loadSprite(BufferedImage[] mipmapImages, AnimationMetadataSection metadata,
+            boolean useAnisotropicFiltering) {
         // Making MipMaps
         int width = mipmapImages[0].getWidth();
         int height = mipmapImages[0].getHeight();

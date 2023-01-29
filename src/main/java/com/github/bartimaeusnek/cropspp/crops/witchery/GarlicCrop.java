@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class GarlicCrop extends BasicDecorationCrop {
+
     public GarlicCrop() {
         super();
         OreDict.BSget("crop" + name(), this);
@@ -24,7 +26,7 @@ public class GarlicCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Food", "Ingredient", "Healing"};
+        return new String[] { "Food", "Ingredient", "Healing" };
     }
 
     @Override

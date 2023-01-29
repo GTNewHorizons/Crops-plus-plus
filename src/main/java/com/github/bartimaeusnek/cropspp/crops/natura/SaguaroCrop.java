@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import mods.natura.common.NContent;
+
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.crops.cpp.CactiCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import ic2.api.crops.ICropTile;
-import mods.natura.common.NContent;
-import net.minecraft.item.ItemStack;
 
 public class SaguaroCrop extends CactiCrop {
 
@@ -26,7 +28,7 @@ public class SaguaroCrop extends CactiCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Food", "Cactus"};
+        return new String[] { "Green", "Food", "Cactus" };
     }
 
     @Override

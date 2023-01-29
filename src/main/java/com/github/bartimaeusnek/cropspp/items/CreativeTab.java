@@ -1,9 +1,10 @@
 package com.github.bartimaeusnek.cropspp.items;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import com.github.bartimaeusnek.croploadcore.ModsLoaded;
+import com.github.bartimaeusnek.croploadcore.OreDict;
 
 public final class CreativeTab extends CreativeTabs {
 

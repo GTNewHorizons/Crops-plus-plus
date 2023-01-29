@@ -1,16 +1,19 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
-import com.github.bartimaeusnek.croploadcore.OreDict;
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.crops.ICropTile;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicFoodCrop;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.crops.ICropTile;
+
 public class TurnipCrop extends BasicFoodCrop {
+
     public TurnipCrop() {
         super();
         OreDict.BSget("crop" + this.name(), this);
@@ -29,7 +32,7 @@ public class TurnipCrop extends BasicFoodCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Food", "Purple", "Carrots"};
+        return new String[] { "Food", "Purple", "Carrots" };
     }
 
     @SideOnly(Side.CLIENT)

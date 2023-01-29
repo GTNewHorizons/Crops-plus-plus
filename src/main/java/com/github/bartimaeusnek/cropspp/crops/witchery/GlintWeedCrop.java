@@ -1,12 +1,14 @@
 package com.github.bartimaeusnek.cropspp.crops.witchery;
 
+import net.minecraft.item.ItemStack;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicWitcheryCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.item.ItemStack;
 
 public class GlintWeedCrop extends BasicWitcheryCrop {
+
     public GlintWeedCrop() {
         super();
         OreDict.BSget("crop" + name().replaceAll(" ", ""), this);
@@ -19,7 +21,7 @@ public class GlintWeedCrop extends BasicWitcheryCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Orange", "Flower", "Magic"};
+        return new String[] { "Orange", "Flower", "Magic" };
     }
 
     @Override

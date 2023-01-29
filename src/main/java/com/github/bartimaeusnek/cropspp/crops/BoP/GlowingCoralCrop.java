@@ -1,12 +1,15 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
-import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import ic2.api.crops.ICropTile;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import biomesoplenty.api.content.BOPCBlocks;
+
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+import ic2.api.crops.ICropTile;
 
 public class GlowingCoralCrop extends BasicDecorationCrop {
 
@@ -31,7 +34,7 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Water", "Light", "Shiny"};
+        return new String[] { "Water", "Light", "Shiny" };
     }
 
     @Override

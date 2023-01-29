@@ -1,29 +1,32 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import biomesoplenty.api.content.BOPCBlocks;
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
-import com.github.bartimaeusnek.cropspp.CCropUtility;
-import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
-import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
-import ic2.api.crops.Crops;
-import ic2.api.crops.ICropTile;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import biomesoplenty.api.content.BOPCBlocks;
+
+import com.github.bartimaeusnek.croploadcore.ModsLoaded;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
+import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
+
+import ic2.api.crops.Crops;
+import ic2.api.crops.ICropTile;
+
 public class CactiCrop extends BasicDecorationCrop {
 
     public CactiCrop() {
-        if (ModsLoaded.BoP)
-            Crops.instance.registerBaseSeed(
-                    new ItemStack(BOPCBlocks.plants, 1, 12),
-                    com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
-                    1,
-                    1,
-                    1,
-                    1);
+        if (ModsLoaded.BoP) Crops.instance.registerBaseSeed(
+                new ItemStack(BOPCBlocks.plants, 1, 12),
+                com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
+                1,
+                1,
+                1,
+                1);
     }
 
     @Override
@@ -38,7 +41,7 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Green", "Cactus"};
+        return new String[] { "Green", "Cactus" };
     }
 
     @Override

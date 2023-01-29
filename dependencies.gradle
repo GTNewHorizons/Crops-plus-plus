@@ -26,6 +26,6 @@ dependencies {
     }
     compileOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
 
-    runtime("com.github.GTNewHorizons:CodeChickenLib:1.1.5.4:dev")
-    runtime("curse.maven:witchery-69673:2234410") //allow CropLoadCore to run in dev
+    runtimeOnly("com.github.GTNewHorizons:CodeChickenLib:1.1.5.4:dev")
+    runtimeOnly("curse.maven:witchery-69673:2234410") //allow CropLoadCore to run in dev
 }

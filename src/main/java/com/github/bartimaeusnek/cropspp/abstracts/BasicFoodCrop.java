@@ -1,8 +1,9 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
-import ic2.api.crops.ICropTile;
 import java.util.Arrays;
 import java.util.List;
+
+import ic2.api.crops.ICropTile;
 
 public abstract class BasicFoodCrop extends BasicDecorationCrop {
 
@@ -39,7 +40,7 @@ public abstract class BasicFoodCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Food"};
+        return new String[] { "Food" };
     }
 
     @Override

@@ -1,8 +1,7 @@
 package com.github.bartimaeusnek.cropspp.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class CppBerries extends ItemFood {
 
     public IIcon[] icons;
 
-    public String[] textureNames = new String[] {"huckle", "sugarbeet" /*, more names*/};
+    public String[] textureNames = new String[] { "huckle", "sugarbeet" /* , more names */ };
 
     public CppBerries() {
         super(1, 0.4F, false);
@@ -58,10 +60,7 @@ public class CppBerries extends ItemFood {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        return (new StringBuilder())
-                .append("item.berry.")
-                .append(textureNames[itemstack.getItemDamage()])
-                .toString();
+        return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
     }
 
     @SideOnly(Side.CLIENT)
@@ -86,7 +85,7 @@ public class CppBerries extends ItemFood {
                 list.add("Industrial Sugar!");
                 break;
             }
-                // other cases
+            // other cases
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+
 import biomesoplenty.api.content.BOPCBlocks;
+
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import ic2.api.crops.ICropTile;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 
 public class Bamboo extends BasicCrop {
 
@@ -37,14 +39,14 @@ public class Bamboo extends BasicCrop {
             case 3:
                 return 0; // not colorful
             case 4:
-                return 3; //  weed-like
+                return 3; // weed-like
             default:
                 return 0;
         }
     }
 
     public String[] attributes() {
-        return new String[] {"Green", "Pointed", "Edgy"};
+        return new String[] { "Green", "Pointed", "Edgy" };
     }
 
     public int maxSize() {

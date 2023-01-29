@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.commands;
 
-import com.github.bartimaeusnek.cropspp.ConfigValues;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.util.ChatComponentText;
+
+import com.github.bartimaeusnek.cropspp.ConfigValues;
 
 public class EnableDebug extends CommandBase {
 

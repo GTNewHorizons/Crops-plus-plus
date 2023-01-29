@@ -1,14 +1,16 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 import ic2.api.crops.ICropTile;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
@@ -24,7 +26,7 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
     @Override
     public String[] attributes() {
-        return new String[] {"Magic", "Silver", "Toxic"};
+        return new String[] { "Magic", "Silver", "Toxic" };
     }
 
     @Override
@@ -43,10 +45,8 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
         boolean r = false;
         if (ConfigValues.debug) r = crop.getSize() < 3;
         else if (crop.getSize() <= 1) r = crop.getSize() <= 1;
-        else if (crop.getSize() == 2)
-            r = (crop.getSize() == 2
-                    && (crop.isBlockBelow("blockQuicksilver")
-                            || !(OreDictionary.doesOreNameExist("blockQuicksilver"))));
+        else if (crop.getSize() == 2) r = (crop.getSize() == 2
+                && (crop.isBlockBelow("blockQuicksilver") || !(OreDictionary.doesOreNameExist("blockQuicksilver"))));
         return r;
     }
 
