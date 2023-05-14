@@ -9,16 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
-import thaumcraft.api.ItemApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.common.items.ItemManaBean;
-
 import com.github.bartimaeusnek.croploadcore.BlockGetterTC;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
+
 import ic2.api.crops.ICropTile;
+import thaumcraft.api.ItemApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.common.items.ItemManaBean;
 
 public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 

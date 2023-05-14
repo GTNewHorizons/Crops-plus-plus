@@ -5,9 +5,9 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.cropspp.crops.BoP.*;
+
+import biomesoplenty.api.content.BOPCBlocks;
 
 public class BoPLoader {
 

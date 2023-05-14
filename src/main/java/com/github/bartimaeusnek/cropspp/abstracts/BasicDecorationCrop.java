@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.abstracts;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
+
 import ic2.api.crops.ICropTile;
 
 public abstract class BasicDecorationCrop extends BasicBerryCrop {

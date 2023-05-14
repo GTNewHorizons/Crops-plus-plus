@@ -7,13 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
 
+import biomesoplenty.api.content.BOPCBlocks;
 import ic2.api.crops.Crops;
 import ic2.api.crops.ICropTile;
 

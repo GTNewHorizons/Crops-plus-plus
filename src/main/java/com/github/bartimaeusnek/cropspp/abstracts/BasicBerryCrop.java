@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
+
 import ic2.api.crops.ICropTile;
 
 public abstract class BasicBerryCrop extends BasicCrop {

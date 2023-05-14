@@ -6,8 +6,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import speiger.src.crops.api.ICropCardInfo;
-
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.Cropspp;
@@ -16,6 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.ICropTile;
+import speiger.src.crops.api.ICropCardInfo;
 
 public abstract class BasicCrop extends CropCard implements ICropCardInfo {
 

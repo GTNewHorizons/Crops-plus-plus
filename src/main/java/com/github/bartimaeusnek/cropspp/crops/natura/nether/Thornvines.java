@@ -1,13 +1,13 @@
 package com.github.bartimaeusnek.cropspp.crops.natura.nether;
 
-import mods.natura.common.NContent;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
+
 import ic2.api.crops.ICropTile;
+import mods.natura.common.NContent;
 
 public class Thornvines extends VineCrop {
 
