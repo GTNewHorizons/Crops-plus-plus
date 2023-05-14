@@ -3,14 +3,14 @@ package com.github.bartimaeusnek.cropspp.crops.cpp;
 import java.util.Collections;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
-
 import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
+
 import ic2.api.crops.ICropTile;
+import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
 
 public class SpacePlantCrop extends BasicCrop {
 

@@ -3,9 +3,9 @@ package com.github.bartimaeusnek.cropspp.crops.BoP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.cropspp.crops.cpp.VineCrop;
+
+import biomesoplenty.api.content.BOPCBlocks;
 import ic2.api.crops.ICropTile;
 
 public class FloweringVinesCrop extends VineCrop {

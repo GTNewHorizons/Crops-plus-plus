@@ -2,10 +2,10 @@ package com.github.bartimaeusnek.cropspp.crops.TF;
 
 import net.minecraft.item.ItemStack;
 
-import twilightforest.item.TFItems;
-
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
+
 import ic2.api.crops.ICropTile;
+import twilightforest.item.TFItems;
 
 public class TorchberryCrop extends BasicCrop {
 

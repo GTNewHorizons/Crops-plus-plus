@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import twilightforest.item.TFItems;
-
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.crops.TF.KnighmetalCrop;
 import com.github.bartimaeusnek.cropspp.crops.TF.MossCrop;
 import com.github.bartimaeusnek.cropspp.crops.TF.TorchberryCrop;
+
+import twilightforest.item.TFItems;
 
 public class TwilightForestLoader {
 

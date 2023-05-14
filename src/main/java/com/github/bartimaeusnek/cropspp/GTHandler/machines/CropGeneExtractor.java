@@ -4,6 +4,7 @@ import static gregtech.api.enums.Textures.BlockIcons.*;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import com.github.bartimaeusnek.cropspp.GTHandler.CPP_UITextures;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
@@ -166,13 +167,17 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     }
 
     @Override
-    public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
+    public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
         if (ItemList.Circuit_Integrated.isStackEqual(aStack, true, true)
                 || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
             return isValidSlot(aIndex) && aStack != null
                     && aIndex < mInventory.length
                     && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
-                    && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
+                    && allowPutStack(
+                            getBaseMetaTileEntity(),
+                            aIndex,
+                            ForgeDirection.getOrientation(ordinalSide),
+                            aStack);
         return false;
     }
 

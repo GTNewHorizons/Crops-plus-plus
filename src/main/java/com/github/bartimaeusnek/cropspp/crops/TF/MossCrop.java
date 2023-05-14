@@ -4,15 +4,14 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import twilightforest.block.TFBlocks;
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.croploadcore.MyRandom;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 
+import biomesoplenty.api.content.BOPCBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.crops.ICropTile;
+import twilightforest.block.TFBlocks;
 
 public class MossCrop extends BasicDecorationCrop {
 

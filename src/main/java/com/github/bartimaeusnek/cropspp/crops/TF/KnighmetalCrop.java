@@ -5,6 +5,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
+
 import ic2.api.crops.ICropTile;
 
 public class KnighmetalCrop extends BasicTinkerBerryCrop {

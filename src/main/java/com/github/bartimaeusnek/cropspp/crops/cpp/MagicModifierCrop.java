@@ -9,6 +9,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.crops.TC.PrimordialPearlBerryCrop;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
+
 import ic2.api.crops.ICropTile;
 
 public class MagicModifierCrop extends PrimordialPearlBerryCrop {

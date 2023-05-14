@@ -3,10 +3,10 @@ package com.github.bartimaeusnek.cropspp.crops.BoP;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
+
+import biomesoplenty.api.content.BOPCBlocks;
 import ic2.api.crops.ICropTile;
 
 public class Bamboo extends BasicCrop {

@@ -1,11 +1,11 @@
 package com.github.bartimaeusnek.cropspp.crops.natura.nether;
 
-import mods.natura.common.NContent;
-
 import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.cropspp.abstracts.BasicNetherBerryCrop;
+
 import ic2.api.crops.ICropTile;
+import mods.natura.common.NContent;
 
 public class BlightberryCrop extends BasicNetherBerryCrop {
 

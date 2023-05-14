@@ -6,9 +6,9 @@ import java.util.List;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import biomesoplenty.api.content.BOPCBlocks;
-
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
+
+import biomesoplenty.api.content.BOPCBlocks;
 import ic2.api.crops.ICropTile;
 
 public class GlowflowerCrop extends BasicDecorationCrop {
