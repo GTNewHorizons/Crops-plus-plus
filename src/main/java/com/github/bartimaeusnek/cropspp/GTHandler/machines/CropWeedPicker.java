@@ -5,6 +5,7 @@ import static gregtech.api.enums.GT_Values.V;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.github.bartimaeusnek.cropspp.items.CppItems;
@@ -62,11 +63,11 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public boolean canInsertItem(int aIndex, ItemStack aStack, int aSide) {
+    public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
         return isValidSlot(aIndex) && aStack != null
                 && aIndex < mInventory.length
                 && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
-                && allowPutStack(getBaseMetaTileEntity(), aIndex, (byte) aSide, aStack);
+                && allowPutStack(getBaseMetaTileEntity(), aIndex, ForgeDirection.getOrientation(ordinalSide), aStack);
     }
 
     @Override
@@ -181,7 +182,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public boolean isFacingValid(byte aFacing) {
+    public boolean isFacingValid(ForgeDirection facing) {
         return true;
     }
 
@@ -191,12 +192,12 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public boolean isInputFacing(byte aSide) {
+    public boolean isInputFacing(ForgeDirection side) {
         return true;
     }
 
     @Override
-    public boolean isOutputFacing(byte aSide) {
+    public boolean isOutputFacing(ForgeDirection side) {
         return false;
     }
 
@@ -246,10 +247,11 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     }
 
     @Override
-    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex,
-            boolean aActive, boolean aRedstone) {
-        return new ITexture[] { Textures.BlockIcons.MACHINE_CASINGS[mTier][aColorIndex + 1],
-                (aSide == 0 || aSide == 1) ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
+    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
+            int colorIndex, boolean active, boolean redstoneLevel) {
+        return new ITexture[] { Textures.BlockIcons.MACHINE_CASINGS[mTier][colorIndex + 1],
+                (side == ForgeDirection.DOWN || side == ForgeDirection.UP)
+                        ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
                         : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP) };
     }
 
