@@ -793,7 +793,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 true);
 
         if (ModsLoaded.BoP) GT_ModHandler.addCompressionRecipe(
-                GT_ModHandler.getModItem("BiomesOPlenty", "tile.treeMoss", 8L),
+                GT_ModHandler.getModItem("BiomesOPlenty", "treeMoss", 8L),
                 Ic2Items.plantBall.copy());
 
         if (!ModsLoaded.dreamcraft) {
