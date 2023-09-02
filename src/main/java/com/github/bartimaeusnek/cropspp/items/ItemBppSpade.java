@@ -90,8 +90,7 @@ public class ItemBppSpade extends ItemTool {
                                         crop.getScanLevel()));
                     } else if (crop.getCrop().getGain(crop) != null && crop.getCrop().canBeHarvested(crop))
                         StackUtil.dropAsEntity(world, x, y, z, crop.getCrop().getGain(crop));
-                    // StackUtil.dropAsEntity(world, x, y, z, crop.generateSeeds(crop.getCrop(), crop.getGrowth(),
-                    // crop.getGain(), crop.getResistance(), crop.getScanLevel()));
+
                 }
                 crop.reset();
                 return true;

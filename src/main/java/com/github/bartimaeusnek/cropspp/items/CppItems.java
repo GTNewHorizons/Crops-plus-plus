@@ -23,11 +23,7 @@ public final class CppItems {
     public static final Item Modifier = new Modifier();
     public static final ItemStack ModifierSpace = new ItemStack(Modifier, 1, 0);
     public static final ItemStack ModifierMagic = new ItemStack(Modifier, 1, 1);
-    // public final static ItemStack ModifierAnti = new ItemStack(Modifier, 1, 3);
     public static final ItemStack Trophy = new ItemStack(Modifier, 1, 2);
-    // public final static ItemStack Gr = new ItemStack(Modifier, 1, 4);
-    // public final static ItemStack Ga = new ItemStack(Modifier, 1, 5);
-    // public final static ItemStack Re = new ItemStack(Modifier, 1, 6);
     public static final Item CppBerries = new CppBerries();
     public static final Item CppPotions = new CppPotions();
 
@@ -39,7 +35,6 @@ public final class CppItems {
             GameRegistry.registerItem(Modifier, "Modifier");
             GameRegistry.registerCustomItemStack("ModifierSpace", ModifierSpace);
             GameRegistry.registerCustomItemStack("ModifierMagic", ModifierMagic);
-            // GameRegistry.registerCustomItemStack("ModifierAnti", ModifierAnti);
             GameRegistry.registerCustomItemStack("Trophy", Trophy);
             if (ModsLoaded.GT) GameRegistry.registerItem(CppPotions, "BppPotions");
             GameRegistry.registerItem(CppBerries, "foodBerries");

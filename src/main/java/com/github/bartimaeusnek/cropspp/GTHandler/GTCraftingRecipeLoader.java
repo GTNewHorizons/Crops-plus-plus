@@ -88,7 +88,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 CropItemList.cropGeneExtractorZPM.get(1L),
                 bitsd,
                 new Object[] { "RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_ZPM, 'T', ItemList.Emitter_ZPM, 'R',
-                        ItemList.Sensor_ZPM, 'C', OrePrefixes.circuit.get(Materials.Superconductor), 'W',
+                        ItemList.Sensor_ZPM, 'C', OrePrefixes.circuit.get(Materials.SuperconductorUHV), 'W',
                         OrePrefixes.cableGt01.get(Materials.Naquadah) });
         GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropGeneExtractorUV.get(1L),
@@ -148,7 +148,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_ZPM, 'F',
                         ItemList.Field_Generator_ZPM, 'E', ItemList.Emitter_ZPM, 'C',
-                        OrePrefixes.circuit.get(Materials.Superconductor), 'W',
+                        OrePrefixes.circuit.get(Materials.SuperconductorUHV), 'W',
                         OrePrefixes.cableGt04.get(Materials.Naquadah) });
         GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorUV.get(1L),
@@ -205,7 +205,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 CropItemList.cropSynthesiserZPM.get(1L),
                 bitsd,
                 new Object[] { "FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_ZPM, 'F', ItemList.Field_Generator_ZPM,
-                        'E', ItemList.Emitter_ZPM, 'C', OrePrefixes.circuit.get(Materials.Superconductor), 'W',
+                        'E', ItemList.Emitter_ZPM, 'C', OrePrefixes.circuit.get(Materials.SuperconductorUHV), 'W',
                         OrePrefixes.cableGt04.get(Materials.Naquadah) });
         GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropSynthesiserUV.get(1L),

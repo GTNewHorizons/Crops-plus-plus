@@ -345,8 +345,7 @@ public class GTVanillaMachineRecipeLoader implements Runnable {
                 220,
                 120,
                 false);
-        // GT_Values.RA.addDistilleryRecipe(GT_Utility.getIntegratedCircuit(1), new FluidStack(BppFluids.Mash,100), new
-        // FluidStack(FluidRegistry.getFluid("potion.wine"), 20), 22, 24, false);
+
         GT_Values.RA.addDistilleryRecipe(
                 GT_Utility.getIntegratedCircuit(4),
                 new FluidStack(CppFluids.Mash, 200),
@@ -419,9 +418,7 @@ public class GTVanillaMachineRecipeLoader implements Runnable {
                 Materials.Empty.getCells(1),
                 10,
                 8);
-        // GT_Values.RA.addMixerRecipe(new ItemStack(Items.reeds,64),GT_Values.NI, GT_Values.NI, GT_Values.NI,
-        // GT_Values.NI, GT_Values.NI, Materials.Water.getFluid(1000L),new
-        // FluidStack(FluidRegistry.getFluid("potion.reedwater"),1000),GT_Values.NI, 1200,8);
+
         GT_Values.RA.addMixerRecipe(
                 Materials.Water.getCells(1),
                 new ItemStack(Items.sugar),
