@@ -97,23 +97,25 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4) return new ItemStack(Item.getItemById(32), 1, 0);
+        if (crop.getSize() == 4) {
+            return new ItemStack(Item.getItemById(32), 1, 0);
+        }
+        int metaId9, otherMetaId;
         if (crop.getSize() == 3) {
-            random = MyRandom.intrandom(0, 10);
-            switch (random) {
-                case 9:
-                    return new ItemStack(Item.getItemById(175), 1, 3);
-                default:
-                    return new ItemStack(Item.getItemById(31), 1, 2);
-            }
+            metaId9 = 3;
+            otherMetaId = 2;
+        } else {
+            metaId9 = 2;
+            otherMetaId = 1;
         }
+
         random = MyRandom.intrandom(0, 10);
-        switch (random) {
-            case 9:
-                return new ItemStack(Item.getItemById(175), 1, 2);
-            default:
-                return new ItemStack(Item.getItemById(31), 1, 1);
+        if (random == 9) {
+            return new ItemStack(Item.getItemById(175), 1, metaId9);
         }
+
+        return new ItemStack(Item.getItemById(31), 1, otherMetaId);
+
     }
 
     @Override
