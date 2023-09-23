@@ -7,7 +7,12 @@ import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.crops.natura.SaguaroCrop;
-import com.github.bartimaeusnek.cropspp.crops.natura.nether.*;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.BasicNetherShroomCrop;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.BlightberryCrop;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.DuskberryCrop;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.SkyberryCrop;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.StingberryCrop;
+import com.github.bartimaeusnek.cropspp.crops.natura.nether.Thornvines;
 
 public class NaturaLoader {
 

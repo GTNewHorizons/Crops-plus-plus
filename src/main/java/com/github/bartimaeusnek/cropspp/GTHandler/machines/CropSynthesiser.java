@@ -17,9 +17,9 @@ import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
-import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
+import gregtech.api.enums.SoundResource;
 import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -46,8 +46,6 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
                         "Can process crops up to tier " + getMaxCropTier(aTier) },
                 4,
                 1,
-                "Crop_Synthesizer.png",
-                "",
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
                         TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
@@ -74,20 +72,13 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
                         TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
     }
 
-    public CropSynthesiser(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures,
-            String mGUIName, String mNEIName) {
-        super(mName, mTier, 16, mDescriptionArray, mTextures, 4, 1, mGUIName, mNEIName);
+    public CropSynthesiser(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
+        super(mName, mTier, 16, mDescriptionArray, mTextures, 4, 1);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity arg0) {
-        return new CropSynthesiser(
-                this.mName,
-                this.mTier,
-                this.mDescriptionArray,
-                this.mTextures,
-                this.mGUIName,
-                this.mNEIName);
+        return new CropSynthesiser(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
     }
 
     public static int getMaxCropTier(int mTier) {
@@ -160,7 +151,7 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient((String) GregTech_API.sSoundList.get(212), 10, 1.0F, aX, aY, aZ);
+            GT_Utility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
         }
     }
 

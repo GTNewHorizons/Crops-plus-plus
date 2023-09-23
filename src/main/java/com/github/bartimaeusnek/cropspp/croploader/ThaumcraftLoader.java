@@ -3,7 +3,11 @@ package com.github.bartimaeusnek.cropspp.croploader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.bartimaeusnek.cropspp.crops.TC.*;
+import com.github.bartimaeusnek.cropspp.crops.TC.BasicManaBeanCrop;
+import com.github.bartimaeusnek.cropspp.crops.TC.CinderpearlCrop;
+import com.github.bartimaeusnek.cropspp.crops.TC.MagicMetalBerryCrop;
+import com.github.bartimaeusnek.cropspp.crops.TC.PrimordialPearlBerryCrop;
+import com.github.bartimaeusnek.cropspp.crops.TC.ShimmerleafCrop;
 
 public class ThaumcraftLoader {
 
