@@ -3,7 +3,14 @@ package com.github.bartimaeusnek.cropspp.croploader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.bartimaeusnek.cropspp.crops.witchery.*;
+import com.github.bartimaeusnek.cropspp.crops.witchery.BelladonnaCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.EmberMossCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.GlintWeedCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.MandragoraCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.SnowbellCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.SpanishMossCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.WaterArtichokeCrop;
+import com.github.bartimaeusnek.cropspp.crops.witchery.WolfsBaneCrop;
 
 public class WitcheryLoader {
 

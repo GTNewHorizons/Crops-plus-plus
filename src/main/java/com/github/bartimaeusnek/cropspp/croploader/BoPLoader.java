@@ -5,7 +5,15 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.cropspp.crops.BoP.*;
+import com.github.bartimaeusnek.cropspp.crops.BoP.Bamboo;
+import com.github.bartimaeusnek.cropspp.crops.BoP.BoPBerryCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.EyebulbCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.FloweringVinesCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.GlowflowerCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.GlowingCoralCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.IvyCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.TurnipCrop;
+import com.github.bartimaeusnek.cropspp.crops.BoP.WildCarrotsCrop;
 
 import biomesoplenty.api.content.BOPCBlocks;
 
