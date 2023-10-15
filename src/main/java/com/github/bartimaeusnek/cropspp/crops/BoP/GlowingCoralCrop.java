@@ -54,7 +54,7 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.isBlockBelow(Blocks.glowstone)) return new ItemStack(BOPCBlocks.coral1, 2, 15);
-        else return new ItemStack(BOPCBlocks.coral1, 1, 15);
+        // glow stone below doubles the yield
+        return new ItemStack(BOPCBlocks.coral1, crop.isBlockBelow(Blocks.glowstone) ? 2 : 1, 15);
     }
 }

@@ -51,6 +51,7 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
+        // id 106 = vines
         if (crop.getSize() == 3) return new ItemStack(Item.getItemById(106), 2, 0);
         else if (crop.getSize() == 4) return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
         else return null;
