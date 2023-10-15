@@ -27,7 +27,7 @@ public class TurnipCrop extends BasicFoodCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + this.name());
+        return CCropUtility.getCopiedOreStack("cropTurnip");
     }
 
     @Override
