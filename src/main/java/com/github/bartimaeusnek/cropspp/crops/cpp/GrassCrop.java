@@ -100,11 +100,13 @@ public class GrassCrop extends BasicDecorationCrop {
         if (crop.getSize() == 3) {
             // 175:3 = large fern
             // 31:2 = Tall Grass (Fern)
-            return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 3) : new ItemStack(Item.getItemById(31), 1, 2);
+            return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 3)
+                    : new ItemStack(Item.getItemById(31), 1, 2);
         }
         // 175:3 = Double Tall Grass
         // 31:1 = Tall Grass
-        return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 2) : new ItemStack(Item.getItemById(31), 1, 1);
+        return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 2)
+                : new ItemStack(Item.getItemById(31), 1, 1);
     }
 
     @Override

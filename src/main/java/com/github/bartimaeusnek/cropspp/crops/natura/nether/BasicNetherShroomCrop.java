@@ -90,10 +90,14 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         switch (this.shroomType) {
-            case Blue: return new ItemStack(NContent.glowshroom, 1, 2);
-            case Green: return new ItemStack(NContent.glowshroom, 1, 0);
-            case Purple: return new ItemStack(NContent.glowshroom, 1, 1);
-            default: return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+            case Blue:
+                return new ItemStack(NContent.glowshroom, 1, 2);
+            case Green:
+                return new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple:
+                return new ItemStack(NContent.glowshroom, 1, 1);
+            default:
+                return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
         }
     }
 
@@ -105,10 +109,14 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     @Override
     public ItemStack getDisplayItem() {
         switch (this.shroomType) {
-            case Blue: return new ItemStack(NContent.glowshroom, 1, 2);
-            case Green: return new ItemStack(NContent.glowshroom, 1, 0);
-            case Purple: return new ItemStack(NContent.glowshroom, 1, 1);
-            default: return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+            case Blue:
+                return new ItemStack(NContent.glowshroom, 1, 2);
+            case Green:
+                return new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple:
+                return new ItemStack(NContent.glowshroom, 1, 1);
+            default:
+                return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
         }
     }
 }
