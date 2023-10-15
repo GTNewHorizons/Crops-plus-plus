@@ -55,7 +55,7 @@ public class GlowflowerCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.isBlockBelow(Blocks.glowstone)) return new ItemStack(BOPCBlocks.flowers, 2, 3);
-        else return new ItemStack(BOPCBlocks.flowers, 1, 3);
+        // glow stone below doubles the yield
+        return new ItemStack(BOPCBlocks.flowers, crop.isBlockBelow(Blocks.glowstone) ? 2 : 1, 3);
     }
 }

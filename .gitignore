@@ -22,3 +22,4 @@ bin/
 .settings
 .idea
 run/
+layout.json
