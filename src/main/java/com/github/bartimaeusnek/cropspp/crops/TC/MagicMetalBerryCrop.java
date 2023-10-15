@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
@@ -40,11 +39,9 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
         if (crop.getSize() >= this.maxSize()) return false;
         if (ConfigValues.debug) return true;
         if (crop.getSize() <= this.maxSize() - 1)
-            return
-                crop.isBlockBelow("blockThaumium")
-                || crop.isBlockBelow("blockThauminite")
-                || crop.isBlockBelow("blockIron")
-                || crop.isBlockBelow("blockVoid");
+            return crop.isBlockBelow("blockThaumium") || crop.isBlockBelow("blockThauminite")
+                    || crop.isBlockBelow("blockIron")
+                    || crop.isBlockBelow("blockVoid");
         // final growth stage doesn't care about light level, it was like that before, I'm just keeping it as is
         else return crop.getLightLevel() <= 10;
 
@@ -59,7 +56,8 @@ public class MagicMetalBerryCrop extends BasicTinkerBerryCrop {
     public ItemStack getGain(ICropTile crop) {
         // note: you can change the block after it's fully grown to set the harvest type, it can be abused but the
         // effort required at a large scale isn't very worth it in terms of lag.
-        if (crop.isBlockBelow("blockThaumium") || crop.isBlockBelow("blockIron")) return CCropUtility.getCopiedOreStack("nuggetThaumium");
+        if (crop.isBlockBelow("blockThaumium") || crop.isBlockBelow("blockIron"))
+            return CCropUtility.getCopiedOreStack("nuggetThaumium");
         else if (crop.isBlockBelow("blockVoid")) return CCropUtility.getCopiedOreStack("nuggetVoid");
         else if (crop.isBlockBelow("blockThauminite")) return CCropUtility.getCopiedOreStack("nuggetThauminite");
         else return null;

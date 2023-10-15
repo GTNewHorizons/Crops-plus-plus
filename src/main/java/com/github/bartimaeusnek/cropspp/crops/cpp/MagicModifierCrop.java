@@ -70,7 +70,8 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
         boolean ret = false;
         if (crop.getSize() >= this.maxSize()) return false;
         else if (ConfigValues.debug) return true;
-        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow("blockIchorium") || !OreDictionary.doesOreNameExist("blockIchorium");
+        else if (crop.getSize() >= this.maxSize() - 1)
+            return crop.isBlockBelow("blockIchorium") || !OreDictionary.doesOreNameExist("blockIchorium");
         else return true;
     }
 

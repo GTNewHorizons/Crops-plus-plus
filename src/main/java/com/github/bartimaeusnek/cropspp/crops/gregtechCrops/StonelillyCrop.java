@@ -71,9 +71,11 @@ public class StonelillyCrop extends BasicDecorationCrop {
             case "White":
                 return crop.isBlockBelow("blockMarble") || crop.isBlockBelow("blockDiorite");
             case "Gray":
-                return crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone) || crop.isBlockBelow("blockAndesite");
+                return crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
+                        || crop.isBlockBelow("blockAndesite");
             case "Yellow":
-                return crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand) || crop.isBlockBelow(Blocks.sandstone);
+                return crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
+                        || crop.isBlockBelow(Blocks.sandstone);
             case "Nether":
                 return crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick);
             default:
@@ -146,36 +148,28 @@ public class StonelillyCrop extends BasicDecorationCrop {
     public ItemStack getGain(ICropTile crop) {
         switch (color) {
             case "Red": {
-                if (crop.isBlockBelow("stoneGraniteRed"))
-                    return Materials.GraniteRed.getDust(9);
-                if (crop.isBlockBelow("blockGranite"))
-                    return CCropUtility.getCopiedOreStack("blockGranite");
+                if (crop.isBlockBelow("stoneGraniteRed")) return Materials.GraniteRed.getDust(9);
+                if (crop.isBlockBelow("blockGranite")) return CCropUtility.getCopiedOreStack("blockGranite");
                 break;
             }
             case "Black": {
-                if (crop.isBlockBelow("stoneGraniteBlack"))
-                    return Materials.GraniteBlack.getDust(9);
-                if (crop.isBlockBelow("stoneBasalt"))
-                    return Materials.Basalt.getDust(9);
+                if (crop.isBlockBelow("stoneGraniteBlack")) return Materials.GraniteBlack.getDust(9);
+                if (crop.isBlockBelow("stoneBasalt")) return Materials.Basalt.getDust(9);
                 break;
             }
             case "White": {
-                if (crop.isBlockBelow("blockMarble"))
-                    return Materials.Marble.getDust(9);
-                if (crop.isBlockBelow("blockDiorite"))
-                    return CCropUtility.getCopiedOreStack("blockDiorite");
+                if (crop.isBlockBelow("blockMarble")) return Materials.Marble.getDust(9);
+                if (crop.isBlockBelow("blockDiorite")) return CCropUtility.getCopiedOreStack("blockDiorite");
                 break;
             }
             case "Gray": {
                 if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone))
                     return Materials.Stone.getDust(9);
-                if (crop.isBlockBelow("blockAndesite"))
-                    return CCropUtility.getCopiedOreStack("blockAndesite");
+                if (crop.isBlockBelow("blockAndesite")) return CCropUtility.getCopiedOreStack("blockAndesite");
                 break;
             }
             case "Yellow": {
-                if (crop.isBlockBelow(Blocks.end_stone))
-                    return Materials.Endstone.getDust(2);
+                if (crop.isBlockBelow(Blocks.end_stone)) return Materials.Endstone.getDust(2);
                 if ((crop.isBlockBelow(Blocks.sand)) || (crop.isBlockBelow(Blocks.sandstone)))
                     return new ItemStack(Blocks.sand, 4);
                 break;

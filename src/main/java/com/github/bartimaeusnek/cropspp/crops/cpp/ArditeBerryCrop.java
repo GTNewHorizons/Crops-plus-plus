@@ -1,10 +1,9 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
-import com.github.bartimaeusnek.cropspp.CCropUtility;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 
