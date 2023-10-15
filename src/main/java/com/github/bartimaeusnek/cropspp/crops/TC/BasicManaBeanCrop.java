@@ -62,7 +62,8 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // Requires no humidity but nutrients.
-        return (int) ((double) humidity * 1.3 + (double) nutrients * 1 + (double) air * 0.7);
+        // Doc seems incorrect, but anyhow i've inverted it for safety sake
+        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air * 0.7);
     }
 
     @Override

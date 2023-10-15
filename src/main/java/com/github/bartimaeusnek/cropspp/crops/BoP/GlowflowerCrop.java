@@ -44,7 +44,7 @@ public class GlowflowerCrop extends BasicDecorationCrop {
 
     @Override
     public int getEmittedLight(ICropTile crop) {
-        if (crop.getSize() == this.maxSize()) return 7;
+        if (crop.getSize() >= this.maxSize()) return 7;
         else return 0;
     }
 

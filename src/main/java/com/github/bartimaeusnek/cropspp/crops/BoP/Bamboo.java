@@ -25,6 +25,7 @@ public class Bamboo extends BasicCrop {
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        // no documentation on the intended effect, so i'm leaving it as is
         return (int) ((double) humidity * 1.3D + (double) nutrients * 1.2D + (double) air * 0.8D);
     }
 
@@ -66,8 +67,7 @@ public class Bamboo extends BasicCrop {
     }
 
     public ItemStack getGain(ICropTile crop) {
-        final int size = crop.getSize();
-        return size > 1 ? new ItemStack(BOPCBlocks.bamboo, crop.getSize() - 1) : null;
+        return crop.getSize() > 1 ? new ItemStack(BOPCBlocks.bamboo, crop.getSize() - 1) : null;
     }
 
     public int growthDuration(ICropTile crop) {

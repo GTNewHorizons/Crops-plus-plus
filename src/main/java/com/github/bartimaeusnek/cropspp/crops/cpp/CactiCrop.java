@@ -65,7 +65,7 @@ public class CactiCrop extends BasicDecorationCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // Requires more humidity than nutrients or air, but not much more
-        return (int) ((double) humidity * 0.5 + (double) nutrients * 1.25 + (double) air * 1.25);
+        return (int) ((double) humidity / 0.5 + (double) nutrients / 1.25D + (double) air / 1.25D);
     }
 
     @Override

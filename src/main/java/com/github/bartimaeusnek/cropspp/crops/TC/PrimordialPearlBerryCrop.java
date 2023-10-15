@@ -57,7 +57,10 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // Requires Tons of everything
-        return (int) ((double) humidity * 2 + (double) nutrients * 2 + (double) air * 2);
+        // used to be able to grow with 2 humidity, 2 nutrients, and 2 air quality pretty well
+        // now this crop will be a propper pain in the ass to grow (about 4x slower
+        // it can even die off if you don't handle it carefully
+        return (int) ((double) humidity / 2 + (double) nutrients / 2 + (double) air / 2);
     }
 
     @Override
