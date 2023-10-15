@@ -54,7 +54,7 @@ public class Bamboo extends BasicCrop {
     }
 
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 3;
+        return crop.getSize() < this.maxSize();
     }
 
     public boolean canBeHarvested(ICropTile crop) {
@@ -62,11 +62,12 @@ public class Bamboo extends BasicCrop {
     }
 
     public int getOptimalHavestSize(ICropTile crop) {
-        return 3;
+        return this.maxSize();
     }
 
     public ItemStack getGain(ICropTile crop) {
-        return new ItemStack(BOPCBlocks.bamboo, crop.getSize() - 1);
+        final int size = crop.getSize();
+        return size > 1 ? new ItemStack(BOPCBlocks.bamboo, crop.getSize() - 1) : null;
     }
 
     public int growthDuration(ICropTile crop) {

@@ -21,7 +21,7 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -46,14 +46,14 @@ public class FloweringVinesCrop extends VineCrop {
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() >= 3;
+        return crop.getSize() >= this.maxSize() - 1;
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         // id 106 = vines
-        if (crop.getSize() == 3) return new ItemStack(Item.getItemById(106), 2, 0);
-        else if (crop.getSize() == 4) return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
+        if (crop.getSize() >= this.maxSize()) return new ItemStack(BOPCBlocks.flowerVine, 2, 0);
+        else if (crop.getSize() == this.maxSize() - 1) return new ItemStack(Item.getItemById(106), 2, 0);
         else return null;
     }
 
