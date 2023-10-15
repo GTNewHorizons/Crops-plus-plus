@@ -17,8 +17,6 @@ import ic2.api.crops.ICropTile;
 
 public class GrassCrop extends BasicDecorationCrop {
 
-    private int random;
-
     public GrassCrop() {
         super();
         OreDict.BSget("cropGrass", this);
@@ -97,28 +95,21 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
+        // 32 = dead bush
         if (crop.getSize() == 4) return new ItemStack(Item.getItemById(32), 1, 0);
         if (crop.getSize() == 3) {
-            random = MyRandom.intrandom(0, 10);
-            switch (random) {
-                case 9:
-                    return new ItemStack(Item.getItemById(175), 1, 3);
-                default:
-                    return new ItemStack(Item.getItemById(31), 1, 2);
-            }
+            // 175:3 = large fern
+            // 31:2 = Tall Grass (Fern)
+            return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 3) : new ItemStack(Item.getItemById(31), 1, 2);
         }
-        random = MyRandom.intrandom(0, 10);
-        switch (random) {
-            case 9:
-                return new ItemStack(Item.getItemById(175), 1, 2);
-            default:
-                return new ItemStack(Item.getItemById(31), 1, 1);
-        }
+        // 175:3 = Double Tall Grass
+        // 31:1 = Tall Grass
+        return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 2) : new ItemStack(Item.getItemById(31), 1, 1);
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -128,11 +119,12 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Arrays.asList(new String[] { "Is a weed", "Hurt Player on collision, when fully grown" });
+        return Arrays.asList("Is a weed", "Hurt Player on collision, when fully grown");
     }
 
     @Override
     public ItemStack getDisplayItem() {
+        // 31:1 Tall Grass
         return new ItemStack(Item.getItemById(31), 1, 1);
     }
 }

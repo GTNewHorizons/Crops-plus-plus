@@ -46,12 +46,12 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 4;
+        return crop.getSize() >= this.maxSize();
     }
 
     @Override
@@ -92,7 +92,10 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return thaumcraft.api.ItemApi.getItem("itemEldritchObject", 3);
+        // this actually has a chance of giving us a pre-existing item stack that may have a non-1 stackCount
+        ItemStack is = thaumcraft.api.ItemApi.getItem("itemEldritchObject", 3).copy();
+        is.stackSize = 1;
+        return is;
     }
 
     @Override

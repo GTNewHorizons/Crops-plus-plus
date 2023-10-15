@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import com.github.bartimaeusnek.cropspp.CCropUtility;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -32,10 +33,7 @@ public class ArditeBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if ((crop.isBlockBelow("blockArdite") || ConfigValues.debug)
-                && OreDictionary.getOres("nuggetArdite").size() != 0) {
-            return OreDictionary.getOres("nuggetArdite").get(OreDictionary.getOres("nuggetArdite").size() - 1);
-        } else return null;
+        return CCropUtility.getCopiedOreStack("nuggetArdite");
     }
 
     @Override

@@ -35,11 +35,13 @@ public class VineCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
+        // 106 = vines
         return new ItemStack(Item.getItemById(106), 2, 0);
     }
 
     @Override
     public ItemStack getDisplayItem() {
+        // 106 = vines
         return new ItemStack(Item.getItemById(106), 2, 0);
     }
 }

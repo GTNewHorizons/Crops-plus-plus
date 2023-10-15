@@ -22,7 +22,7 @@ public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
 
-        if (crop.getSize() == 4 && crop.isBlockBelow("itemSkull")) {
+        if (crop.getSize() >= this.maxSize() && crop.isBlockBelow("itemSkull")) {
             return new ItemStack(TinkerWorld.oreBerries, 6, 5);
         } else return new ItemStack(TinkerWorld.oreBerries, 2, 5);
     }
@@ -35,7 +35,7 @@ public class EssenceOreBerryCrop extends BasicTinkerBerryCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() >= 2 ? 3000 : 500;
+        return crop.getSize() >= this.maxSize() - 2 ? 3000 : 500;
     }
 
     @Override

@@ -68,20 +68,12 @@ public class SpacePlantCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        boolean ret = false;
-        if (ConfigValues.debug) ret = (crop.getSize() < (maxSize() - 1));
-        if (crop.getSize() == 3) {
-            // if((new ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
-            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,3)))||(new
-            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
-            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,4)))||(new
-            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
-            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,5)))||(new
-            // ItemStack(crop.getWorld().getBlock((crop.getLocation().posX), (crop.getLocation().posY-1),
-            // (crop.getLocation().posZ))).equals(new ItemStack(GCBlocks.blockMoon,1,14))))
-            if (crop.isBlockBelow(GCBlocks.blockMoon)) ret = true;
-        } else if (crop.getSize() < 3) ret = true;
-        return ret;
+        if (crop.getSize() >= this.maxSize()) return false;
+        else if (ConfigValues.debug) return true;
+        // this also includes the GC ores from the moon
+        // in nh we have an ore dict for "rockMoon", should probably use that instead
+        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow(GCBlocks.blockMoon);
+        else return true;
     }
 
     @Override

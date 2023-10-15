@@ -61,18 +61,17 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
 
     @Override
     public int getEmittedLight(ICropTile crop) {
-        if (crop.getSize() == 4) return 4;
+        if (crop.getSize() == this.maxSize()) return 4;
         else return 0;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
         boolean ret = false;
-        if (crop.getSize() < 3) ret = true;
-        else if ((crop.getSize() == 3 && crop.isBlockBelow("blockIchorium"))
-                || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium")))
-            ret = true;
-        return ret;
+        if (crop.getSize() >= this.maxSize()) return false;
+        else if (ConfigValues.debug) return true;
+        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow("blockIchorium") || !OreDictionary.doesOreNameExist("blockIchorium");
+        else return true;
     }
 
     @Override
