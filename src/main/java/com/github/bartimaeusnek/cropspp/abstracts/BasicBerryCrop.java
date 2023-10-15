@@ -38,7 +38,7 @@ public abstract class BasicBerryCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 3;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -56,9 +56,7 @@ public abstract class BasicBerryCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        if (crop.getSize() == 2) return 200;
-        return 700;
+        return ConfigValues.debug ? 1 : (crop.getSize() <= this.maxSize() - 1 ? 200 : 700);
     }
 
     @Override

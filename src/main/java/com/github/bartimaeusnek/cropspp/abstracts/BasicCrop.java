@@ -35,12 +35,12 @@ public abstract class BasicCrop extends CropCard implements ICropCardInfo {
 
     @Override
     public boolean canCross(ICropTile crop) {
-        return crop.getSize() == maxSize();
+        return crop.getSize() >= maxSize();
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == maxSize();
+        return crop.getSize() >= maxSize();
     }
 
     @Override

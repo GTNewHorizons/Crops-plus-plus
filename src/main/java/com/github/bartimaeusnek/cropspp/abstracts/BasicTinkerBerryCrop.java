@@ -54,11 +54,11 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        boolean r;
-        if (ConfigValues.debug) r = crop.getSize() < 4;
-        else r = crop.getSize() < 1 || crop.getSize() == 3 && crop.isBlockBelow(hasBlock())
-                || (crop.getLightLevel() <= 10 && crop.getSize() < 3); // Codepiece by DaeFennek <3
-        return r;
+        if (crop.getSize() >= this.maxSize()) return false;
+        else if (ConfigValues.debug || crop.getSize() < 1) return true;
+        else if (crop.getSize() < this.maxSize() - 1) return crop.getLightLevel() <= 10;
+        else if (crop.getSize() == this.maxSize() - 1) return crop.isBlockBelow(hasBlock());
+        return false;
     }
 
     @Override

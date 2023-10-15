@@ -38,8 +38,7 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        if (crop.getSize() < 1) return true;
-        else return crop.getSize() < 3;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -56,7 +55,6 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        return crop.getSize() == 2 ? 300 : 700;
+        return ConfigValues.debug ? 1 : crop.getSize() >= this.maxSize() - 1 ? 300 : 700;
     }
 }
