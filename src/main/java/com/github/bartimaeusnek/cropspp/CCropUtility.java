@@ -22,9 +22,17 @@ import ic2.core.Ic2Items;
 public class CCropUtility {
 
     public static ItemStack getCopiedOreStack(String name) {
+        return getCopiedOreStack(name, 1);
+    }
+
+    public static ItemStack getCopiedOreStack(String name, int count) {
         ArrayList<ItemStack> ores = OreDictionary.getOres(name);
-        ItemStack stack = ores.size() != 0 ? ores.get(ores.size() - 1) : null;
-        return stack == null ? null : stack.copy();
+        if (ores.isEmpty()) return null;
+        ItemStack stack =  ores.get(ores.size() - 1).copy();
+        // always define stack size since the ore item stacks
+        // in the ore dictionary are mutable and therefore prone to UB
+        stack.stackSize = count;
+        return stack;
     }
 
     public static boolean isRainingOn(ICropTile crop) {
