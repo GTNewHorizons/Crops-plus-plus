@@ -10,6 +10,8 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
+// This class is no longer in use
+@Deprecated()
 public class PreloadTextures {
 
     @SubscribeEvent

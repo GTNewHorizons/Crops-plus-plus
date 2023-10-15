@@ -11,6 +11,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.crops.ICropTile;
 import ic2.core.Ic2Items;
 
+// This class is no longer in use
+@Deprecated
 public class BasicBonsaiCrop extends ic2.api.crops.CropCard {
 
     private String name;

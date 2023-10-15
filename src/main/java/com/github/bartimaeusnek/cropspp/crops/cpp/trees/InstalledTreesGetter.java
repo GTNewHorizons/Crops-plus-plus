@@ -22,6 +22,8 @@ import com.github.bartimaeusnek.cropspp.Cropspp;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import ic2.api.crops.CropCard;
 
+// This class is no longer in use
+@Deprecated
 public class InstalledTreesGetter {
 
     public static List<CropCard> saved;

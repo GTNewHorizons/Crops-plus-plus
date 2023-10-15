@@ -12,6 +12,8 @@ import com.github.bartimaeusnek.cropspp.Cropspp;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+// This class is no longer in use
+@Deprecated
 @SideOnly(Side.CLIENT)
 public class BonsaiRenderer extends TextureAtlasSprite {
 
