@@ -10,6 +10,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import ic2.api.crops.CropCard;
 
+// This class is no longer in use
+@Deprecated
 public class OredictHandler {
 
     public OredictHandler() {
