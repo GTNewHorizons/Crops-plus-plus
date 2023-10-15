@@ -12,7 +12,7 @@ public class BarleyCrop extends BasicFoodCrop {
 
     public BarleyCrop() {
         super();
-        OreDict.BSget("crop" + name().replaceAll(" ", ""), this);
+        OreDict.BSget("crop" + this.name().replaceAll(" ", ""), this);
     }
 
     @Override
@@ -37,12 +37,12 @@ public class BarleyCrop extends BasicFoodCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4 && crop.getLightLevel() >= 9;
+        return crop.getSize() < this.maxSize() && crop.getLightLevel() >= 9;
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 4;
+        return crop.getSize() >= this.maxSize();
     }
 
     @Override

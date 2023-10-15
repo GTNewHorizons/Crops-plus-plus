@@ -66,7 +66,8 @@ public class TorchberryCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getLightLevel() <= 10 && crop.getSize() < maxSize();
+        // do the static check before the world check please
+        return crop.getSize() < maxSize() && crop.getLightLevel() <= 10;
     }
 
     @Override

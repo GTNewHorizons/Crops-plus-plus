@@ -11,12 +11,26 @@ import mods.natura.common.NContent;
 
 public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
-    private String name;
+    private enum ShroomType {
+        Blue,
+        Green,
+        Purple,
+        Other
+    }
+
+    private final String name;
+    private final ShroomType shroomType;
 
     public BasicNetherShroomCrop(String color) {
         super();
         if (color.equals("Purple") || color.equals("Blue") || color.equals("Green")) this.name = color + " Glowshroom";
         else this.name = "Glowshroom";
+
+        // just cache it, the old implementation was doing string.contains checks at runtime...
+        if (color.contains("Blue")) this.shroomType = ShroomType.Blue;
+        else if (color.contains("Green")) this.shroomType = ShroomType.Green;
+        else if (color.contains("Purple")) this.shroomType = ShroomType.Purple;
+        else this.shroomType = ShroomType.Other;
     }
 
     @Override
@@ -58,7 +72,7 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     }
 
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 2;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -75,12 +89,12 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        ItemStack r;
-        if (name.contains("Blue")) r = new ItemStack(NContent.glowshroom, 1, 2);
-        else if (name.contains("Green")) r = new ItemStack(NContent.glowshroom, 1, 0);
-        else if (name.contains("Purple")) r = new ItemStack(NContent.glowshroom, 1, 1);
-        else r = new ItemStack(BOPCBlocks.mushrooms, 1, 3);
-        return r;
+        switch (this.shroomType) {
+            case Blue: return new ItemStack(NContent.glowshroom, 1, 2);
+            case Green: return new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple: return new ItemStack(NContent.glowshroom, 1, 1);
+            default: return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+        }
     }
 
     @Override
@@ -90,11 +104,11 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        ItemStack r;
-        if (name.contains("Blue")) r = new ItemStack(NContent.glowshroom, 1, 2);
-        else if (name.contains("Green")) r = new ItemStack(NContent.glowshroom, 1, 0);
-        else if (name.contains("Purple")) r = new ItemStack(NContent.glowshroom, 1, 1);
-        else r = new ItemStack(BOPCBlocks.mushrooms, 1, 3);
-        return r;
+        switch (this.shroomType) {
+            case Blue: return new ItemStack(NContent.glowshroom, 1, 2);
+            case Green: return new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple: return new ItemStack(NContent.glowshroom, 1, 1);
+            default: return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+        }
     }
 }

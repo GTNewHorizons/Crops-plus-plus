@@ -41,13 +41,13 @@ public class WaterlillyCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        ItemStack ret = getDisplayItem();
-        if (MyRandom.intrandom(0, 10) > 8) ret = new ItemStack(Items.dye, 2, 9);
-        return ret;
+        // pink dye or lily pad
+        return MyRandom.intrandom(0, 10) > 8 ? new ItemStack(Items.dye, 2, 9) : getDisplayItem();
     }
 
     @Override
     public ItemStack getDisplayItem() {
+        // lily pad
         return new ItemStack(Item.getItemById(111), 2);
     }
 }

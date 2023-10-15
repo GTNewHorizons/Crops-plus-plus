@@ -51,11 +51,11 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        if (blockCrystal == null) blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0);
-        if (crop.getSize() == maxSize()) return false;
-        if (crop.getSize() > 1) {
-            return crop.isBlockBelow(blockCrystal);
-        } else return true;
+        // crystal block exists? no growing
+        if (crop.getSize() >= maxSize()) return false;
+        else if (blockCrystal == null && (blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0)) == null) return false;
+        else if (crop.getSize() > 1) return crop.isBlockBelow(blockCrystal);
+        return true;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 2 ? 1200 : 800;
+        return crop.getSize() >= this.maxSize() - 1 ? 1200 : 800;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         ItemStack bean = this.getDisplayItem().copy();
-        if (blockCrystal == null) blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0);
+        if (blockCrystal == null && (blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0)) == null) return null;
         World w = crop.getWorld();
         ChunkCoordinates location = crop.getLocation();
         int option = 0;

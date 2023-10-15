@@ -47,9 +47,9 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4
-                && (crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal"))) {
-            return new ItemStack(twilightforest.item.TFItems.armorShard).splitStack(4);
-        } else return new ItemStack(twilightforest.item.TFItems.armorShard);
+        if (crop.getSize() < this.maxSize() || !((crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal")))) {
+            return new ItemStack(twilightforest.item.TFItems.armorShard, 1);
+        }
+        return new ItemStack(twilightforest.item.TFItems.armorShard, 4);
     }
 }

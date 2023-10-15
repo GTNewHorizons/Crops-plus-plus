@@ -142,7 +142,7 @@ public class GarnydniaCrop extends BasicCrop {
 
     @Override
     public boolean canBeHarvested(ICropTile iCropTile) {
-        return iCropTile.getSize() == this.maxSize();
+        return iCropTile.getSize() >= this.maxSize();
     }
 
     @Override

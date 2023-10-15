@@ -43,12 +43,10 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        boolean r = false;
-        if (ConfigValues.debug) r = crop.getSize() < 3;
-        else if (crop.getSize() <= 1) r = crop.getSize() <= 1;
-        else if (crop.getSize() == 2) r = (crop.getSize() == 2
-                && (crop.isBlockBelow("blockQuicksilver") || !(OreDictionary.doesOreNameExist("blockQuicksilver"))));
-        return r;
+        if (crop.getSize() >= this.maxSize()) return false;
+        else if (ConfigValues.debug) return true;
+        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow("blockQuicksilver") || !OreDictionary.doesOreNameExist("blockQuicksilver");
+        return true;
     }
 
     @Override
