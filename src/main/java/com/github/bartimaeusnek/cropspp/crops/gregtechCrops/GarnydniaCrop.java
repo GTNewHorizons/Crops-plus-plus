@@ -38,6 +38,7 @@ public class GarnydniaCrop extends BasicCrop {
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        // no documentation so i'm leaving it alone instead of inverting the effect
         return (int) Math.floor((double) humidity * 0.5 + (double) nutrients * 2.0 + (double) air * 0.5);
     }
 

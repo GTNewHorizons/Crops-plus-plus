@@ -86,7 +86,7 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        return (int) ((double) humidity * 0.8 + (double) nutrients * 1.4 + (double) air * 0.8);
+        return (int) ((double) humidity / 0.8D + (double) nutrients / 1.4D + (double) air / 0.8D);
     }
 
     @Override
