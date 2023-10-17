@@ -12,9 +12,11 @@ import mods.natura.common.NContent;
 
 public class MaloberryCrop extends BasicBerryCrop {
 
+    private static final String cropOreName = "cropMaloberry";
+
     public MaloberryCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget(cropOreName, this);
         OreDict.BSget("cropGooseberry", this);
     }
 
@@ -29,12 +31,12 @@ public class MaloberryCrop extends BasicBerryCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 3);
-        else return CCropUtility.getCopiedOreStack("crop" + this.name());
+        else return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
         if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 3);
-        else return OreDict.ISget("crop" + this.name());
+        else return OreDict.ISget(cropOreName);
     }
 }

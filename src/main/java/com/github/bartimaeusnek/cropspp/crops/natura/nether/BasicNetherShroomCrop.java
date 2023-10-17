@@ -34,13 +34,18 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     }
 
     @Override
+    public int tier() {
+        return 3;
+    }
+
+    @Override
     public String name() {
         return name;
     }
 
     @Override
-    public int tier() {
-        return 3;
+    public String[] attributes() {
+        return new String[] { "Food", "Mushroom", "Ingredient", "Nether" };
     }
 
     @Override
@@ -62,29 +67,28 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
     }
 
     @Override
-    public int growthDuration(ICropTile crop) {
-        return ConfigValues.debug ? 1 : 600;
-    }
-
-    @Override
-    public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 2;
-    }
-
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < this.maxSize();
-    }
-
-    @Override
     public int maxSize() {
         return 2;
     }
 
     @Override
-    public String[] attributes() {
-        String[] r;
-        r = new String[] { "Food", "Mushroom", "Ingredient", "Nether" };
-        return r;
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        return 1;
+    }
+
+    @Override
+    public boolean canBeHarvested(ICropTile crop) {
+        return crop.getSize() >= this.maxSize();
+    }
+
+    @Override
+    public int growthDuration(ICropTile crop) {
+        return ConfigValues.debug ? 1 : 600;
+    }
+
+    @Override
+    public boolean canGrow(ICropTile crop) {
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
@@ -99,11 +103,6 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
             default:
                 return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
         }
-    }
-
-    @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
-        return 1;
     }
 
     @Override

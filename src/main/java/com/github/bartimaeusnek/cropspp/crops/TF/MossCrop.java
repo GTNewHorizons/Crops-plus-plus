@@ -16,13 +16,13 @@ import twilightforest.block.TFBlocks;
 public class MossCrop extends BasicDecorationCrop {
 
     @Override
-    public String name() {
-        return "Moss";
+    public int tier() {
+        return 4;
     }
 
     @Override
-    public int tier() {
-        return 4;
+    public String name() {
+        return "Moss";
     }
 
     @Override
@@ -32,12 +32,10 @@ public class MossCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        byte r = (byte) MyRandom.intrandom(0, 100);
-        if (r < 5) {
-            return new ItemStack(TFBlocks.plant, 1, 3);
-        } else if (r > 5 && r < 35) {
-            return new ItemStack(BOPCBlocks.moss, 1, 0);
-        } else return new ItemStack(BOPCBlocks.treeMoss, 1, 0);
+        int r = MyRandom.intrandom(0, 100);
+        if (r < 5) return new ItemStack(TFBlocks.plant, 1, 3);
+        else if (r > 5 && r < 35) return new ItemStack(BOPCBlocks.moss, 1, 0);
+        else return new ItemStack(BOPCBlocks.treeMoss, 1, 0);
     }
 
     @SideOnly(Side.CLIENT)

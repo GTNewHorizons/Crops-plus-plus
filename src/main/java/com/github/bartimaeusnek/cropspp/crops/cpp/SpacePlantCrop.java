@@ -19,23 +19,13 @@ public class SpacePlantCrop extends BasicCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(CppItems.Modifier, 1, 0);
-    }
-
-    @Override
-    public int growthDuration(ICropTile crop) {
-        return ConfigValues.debug ? 1 : 5000;
+    public int tier() {
+        return 13;
     }
 
     @Override
     public String name() {
         return "Space Plant";
-    }
-
-    @Override
-    public int tier() {
-        return 13;
     }
 
     @Override
@@ -67,13 +57,29 @@ public class SpacePlantCrop extends BasicCrop {
     }
 
     @Override
+    public int growthDuration(ICropTile crop) {
+        return ConfigValues.debug ? 1 : 5000;
+    }
+
+    @Override
+    public boolean canBeHarvested(ICropTile crop) {
+        return crop.getSize() >= this.maxSize();
+    }
+
+    @Override
     public boolean canGrow(ICropTile crop) {
         if (crop.getSize() >= this.maxSize()) return false;
         else if (ConfigValues.debug) return true;
-        // this also includes the GC ores from the moon
-        // in nh we have an ore dict for "rockMoon", should probably use that instead
+        // This also includes the GC ores from the moon
+        // in nh we have an ore dict for "rockMoon", we could use that instead but,
+        // that ore dict name doesn't exist by default, let's net do that
         else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow(GCBlocks.blockMoon);
         else return true;
+    }
+
+    @Override
+    public ItemStack getGain(ICropTile crop) {
+        return new ItemStack(CppItems.Modifier, 1, 0);
     }
 
     @Override
@@ -82,12 +88,7 @@ public class SpacePlantCrop extends BasicCrop {
     }
 
     @Override
-    public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == this.maxSize();
-    }
-
-    @Override
-    public ItemStack getGain(ICropTile crop) {
+    public ItemStack getDisplayItem() {
         return new ItemStack(CppItems.Modifier, 1, 0);
     }
 }

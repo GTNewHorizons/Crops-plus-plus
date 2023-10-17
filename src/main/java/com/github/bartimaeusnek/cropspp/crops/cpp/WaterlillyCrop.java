@@ -29,14 +29,14 @@ public class WaterlillyCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        return crop.isBlockBelow(Blocks.water) || crop.isBlockBelow(Blocks.flowing_water) ? 225 : 550;
+    public String[] attributes() {
+        return new String[] { "Blue", "Water", "Green" };
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Blue", "Water", "Green" };
+    public int growthDuration(ICropTile crop) {
+        if (ConfigValues.debug) return 1;
+        return crop.isBlockBelow(Blocks.water) || crop.isBlockBelow(Blocks.flowing_water) ? 225 : 550;
     }
 
     @Override

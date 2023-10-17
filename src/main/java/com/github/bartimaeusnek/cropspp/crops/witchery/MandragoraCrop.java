@@ -11,9 +11,12 @@ import ic2.api.crops.ICropTile;
 
 public class MandragoraCrop extends BasicWitcheryCrop {
 
+    private static final String seedOreName = "seedMandrake";
+    private static final String cropOreName = "itemMandrake";
+
     public MandragoraCrop() {
         super();
-        OreDict.BSget("seedMandrake", this);
+        OreDict.BSget(seedOreName, this);
     }
 
     @Override
@@ -27,17 +30,17 @@ public class MandragoraCrop extends BasicWitcheryCrop {
     }
 
     @Override
-    public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("itemMandrake");
-    }
-
-    @Override
     public float dropGainChance() {
         return (float) (((Math.pow(0.95, (float) tier())) * ConfigValues.BerryGain) * 0.5);
     }
 
     @Override
+    public ItemStack getGain(ICropTile crop) {
+        return CCropUtility.getCopiedOreStack(cropOreName);
+    }
+
+    @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("itemMandrake");
+        return OreDict.ISget(cropOreName);
     }
 }

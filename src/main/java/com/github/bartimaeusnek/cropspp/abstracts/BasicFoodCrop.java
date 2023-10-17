@@ -50,7 +50,7 @@ public abstract class BasicFoodCrop extends BasicDecorationCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < this.maxSize() && crop.getLightLevel() >= 9;
+        return super.canGrow(crop) && crop.getLightLevel() >= 9;
     }
 
     @Override

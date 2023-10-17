@@ -18,8 +18,8 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(BOPCBlocks.coral1, 1, 15);
+    public int tier() {
+        return super.tier() + 4;
     }
 
     @Override
@@ -28,18 +28,8 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public int tier() {
-        return super.tier() + 4;
-    }
-
-    @Override
     public String[] attributes() {
         return new String[] { "Water", "Light", "Shiny" };
-    }
-
-    @Override
-    public List<String> getCropInformation() {
-        return Arrays.asList("Needs a block of Glowstone below to incrase yield", "Emits light.");
     }
 
     @Override
@@ -48,13 +38,18 @@ public class GlowingCoralCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < this.maxSize();
-    }
-
-    @Override
     public ItemStack getGain(ICropTile crop) {
         // glow stone below doubles the yield
         return new ItemStack(BOPCBlocks.coral1, crop.isBlockBelow(Blocks.glowstone) ? 2 : 1, 15);
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList("Needs a block of Glowstone below to increase yield", "Emits light.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return new ItemStack(BOPCBlocks.coral1, 1, 15);
     }
 }

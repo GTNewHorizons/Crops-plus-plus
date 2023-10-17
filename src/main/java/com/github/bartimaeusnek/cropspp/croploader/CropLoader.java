@@ -218,7 +218,7 @@ public class CropLoader {
             if (bHasCropObj.get(i) && cropObjs().get(i) != null) Crops.instance.registerCrop(cropObjs().get(i));
         }
         if (bHasCropObj.get(bHasCropObj.size() - 1)) {
-            Bonsais.registerAllBonais();
+            Bonsais.registerAllBonsais();
         }
     }
 

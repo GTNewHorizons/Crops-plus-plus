@@ -12,32 +12,37 @@ import mods.natura.common.NContent;
 
 public class BlackberryCrop extends BasicBerryCrop {
 
+    private static final String cropOreName = "cropBlackberry";
+
     public BlackberryCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget(cropOreName, this);
     }
 
+    @Override
     public String name() {
         return "Blackberry";
     }
 
-    public String[] attributes() {
-        return new String[] { "Berry", "Food", "Black" }; // purple like CropVenomilia
-    }
-
+    @Override
     public String discoveredBy() {
         return "Ancient cultures";
     }
 
     @Override
+    public String[] attributes() {
+        return new String[] { "Berry", "Food", "Black" }; // purple like CropVenomilia
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
         if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
-        else return CCropUtility.getCopiedOreStack("crop" + this.name());
+        else return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
         if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
-        else return OreDict.ISget("crop" + this.name());
+        else return OreDict.ISget(cropOreName);
     }
 }

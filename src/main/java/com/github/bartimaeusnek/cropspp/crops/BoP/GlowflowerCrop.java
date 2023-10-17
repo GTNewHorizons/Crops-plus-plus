@@ -18,11 +18,6 @@ public class GlowflowerCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(BOPCBlocks.flowers, 1, 3);
-    }
-
-    @Override
     public int tier() {
         return super.tier() + 2;
     }
@@ -38,24 +33,24 @@ public class GlowflowerCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < this.maxSize();
-    }
-
-    @Override
     public int getEmittedLight(ICropTile crop) {
         if (crop.getSize() >= this.maxSize()) return 7;
         else return 0;
     }
 
     @Override
-    public List<String> getCropInformation() {
-        return Arrays.asList("Needs a block of Glowstone below to incrase yield", "Emits light when fully grown.");
-    }
-
-    @Override
     public ItemStack getGain(ICropTile crop) {
         // glow stone below doubles the yield
         return new ItemStack(BOPCBlocks.flowers, crop.isBlockBelow(Blocks.glowstone) ? 2 : 1, 3);
+    }
+
+    @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList("Needs a block of Glowstone below to increase yield", "Emits light when fully grown.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return new ItemStack(BOPCBlocks.flowers, 1, 3);
     }
 }

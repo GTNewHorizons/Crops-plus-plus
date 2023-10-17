@@ -23,11 +23,6 @@ public class SugarBeetCrop extends BasicFoodCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(CppItems.CppBerries, 1, 1);
-    }
-
-    @Override
     public String name() {
         return "Sugar Beet";
     }
@@ -35,6 +30,11 @@ public class SugarBeetCrop extends BasicFoodCrop {
     @Override
     public String[] attributes() {
         return new String[] { "Food", "White", "Ingredient" };
+    }
+
+    @Override
+    public ItemStack getGain(ICropTile var1) {
+        return new ItemStack(CppItems.CppBerries, 1, 1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -49,7 +49,7 @@ public class SugarBeetCrop extends BasicFoodCrop {
     }
 
     @Override
-    public ItemStack getGain(ICropTile var1) {
+    public ItemStack getDisplayItem() {
         return new ItemStack(CppItems.CppBerries, 1, 1);
     }
 }

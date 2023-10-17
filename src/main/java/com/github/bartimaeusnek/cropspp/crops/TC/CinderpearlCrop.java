@@ -17,7 +17,7 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
 
     public CinderpearlCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget("cropCinderpearl", this);
     }
 
     @Override
@@ -26,24 +26,18 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Magic", "Blaze", "Nether" };
-    }
-
-    @Override
     public String discoveredBy() {
         return "bartimaeusnek and mitchej123";
     }
 
     @Override
-    public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        return crop.getSize() == 1 ? 2250 : 1750;
+    public String[] attributes() {
+        return new String[] { "Magic", "Blaze", "Nether" };
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        if (crop.getSize() >= this.maxSize()) return false;
+        if (!super.canGrow(crop)) return false;
         if (ConfigValues.debug) return true;
         if (crop.getSize() >= this.maxSize() - 1)
             return crop.isBlockBelow("blockBlaze") || !OreDictionary.doesOreNameExist("blockBlaze");
@@ -51,8 +45,10 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+    public int growthDuration(ICropTile crop) {
+        if (ConfigValues.debug) return 1;
+        // first stage is longer
+        return crop.getSize() <= 1 ? 2250 : 1750;
     }
 
     @Override
@@ -63,5 +59,10 @@ public class CinderpearlCrop extends BasicThaumcraftCrop {
     @Override
     public List<String> getCropInformation() {
         return Collections.singletonList("Needs a block of Blaze below to fully mature.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return OreDict.ISget("crop" + this.name());
     }
 }
