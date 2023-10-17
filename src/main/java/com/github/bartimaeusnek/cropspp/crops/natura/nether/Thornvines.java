@@ -31,13 +31,13 @@ public class Thornvines extends VineCrop {
     }
 
     @Override
-    public ItemStack getGain(ICropTile crop) {
-        return new ItemStack(NContent.thornVines, 2);
+    public String[] attributes() {
+        return new String[] { "Nether", "Climbable", "Bad" };
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Nether", "Climbable", "Bad" };
+    public ItemStack getGain(ICropTile crop) {
+        return new ItemStack(NContent.thornVines, 2);
     }
 
     @Override

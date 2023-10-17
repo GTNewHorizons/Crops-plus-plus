@@ -10,9 +10,11 @@ import ic2.api.crops.ICropTile;
 
 public class GlintWeedCrop extends BasicWitcheryCrop {
 
+    private static final String cropOreName = "cropGlintWeed";
+
     public GlintWeedCrop() {
         super();
-        OreDict.BSget("crop" + name().replaceAll(" ", ""), this);
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
@@ -27,11 +29,11 @@ public class GlintWeedCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + name().replaceAll(" ", ""));
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name().replaceAll(" ", ""));
+        return OreDict.ISget(cropOreName);
     }
 }

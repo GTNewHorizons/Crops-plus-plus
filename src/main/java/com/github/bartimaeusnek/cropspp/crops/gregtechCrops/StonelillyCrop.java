@@ -15,7 +15,7 @@ import ic2.api.crops.ICropTile;
 
 public class StonelillyCrop extends BasicDecorationCrop {
 
-    private String color;
+    private final String color;
 
     public StonelillyCrop(String color) {
         super();
@@ -55,14 +55,22 @@ public class StonelillyCrop extends BasicDecorationCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == (this.maxSize() - 1) && crop.isBlockBelow(Blocks.end_stone) ? 550 : 300;
+        // this used to check if the crop was on final stage with end stone
+        // I added a check to only do this check when it's yellow stone lily
+        // since it's the only one that can even use it to grow.
+        if (this.color.equals("Yellow") && crop.getSize() >= this.maxSize() - 1 && crop.isBlockBelow(Blocks.end_stone))
+            return 550;
+        return 300;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
+        if (!super.canGrow(crop)) return false;
         // debug Override
-        if (crop.getSize() >= this.maxSize()) return false;
-        if (ConfigValues.debug || crop.getSize() < this.maxSize() - 1) return true;
+        if (ConfigValues.debug) return true;
+        // if crop is not on last stage, it can grow anyway
+        if (crop.getSize() < this.maxSize() - 1) return true;
+        // if crop is on last stage, it needs the block
         switch (color) {
             case "Red":
                 return crop.isBlockBelow("stoneGraniteRed") || crop.isBlockBelow("blockGranite");
@@ -180,6 +188,7 @@ public class StonelillyCrop extends BasicDecorationCrop {
                 break;
             }
         }
+        // this is user error if this executes, not a UB
         return null;
     }
 }

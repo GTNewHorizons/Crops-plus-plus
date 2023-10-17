@@ -14,23 +14,26 @@ public class TorchberryCrop extends BasicCrop {
     }
 
     @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
+    public int tier() {
         return 2;
     }
 
-    public String discoveredBy() {
-        return "Minepolz320";
-    }
-
+    @Override
     public String name() {
         return "Torchberry";
     }
 
     @Override
-    public int tier() {
-        return 2;
+    public String discoveredBy() {
+        return "Minepolz320";
     }
 
+    @Override
+    public String[] attributes() {
+        return new String[] { "Berry", "Glow", "Shimmer" };
+    }
+
+    @Override
     public int stat(int n) {
         switch (n) {
             case 0:
@@ -48,6 +51,7 @@ public class TorchberryCrop extends BasicCrop {
         }
     }
 
+    @Override
     public int getEmittedLight(ICropTile crop) {
         switch (crop.getSize()) {
             case 1:
@@ -65,14 +69,8 @@ public class TorchberryCrop extends BasicCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        // do the static check before the world check please
-        return crop.getSize() < maxSize() && crop.getLightLevel() <= 10;
-    }
-
-    @Override
-    public String[] attributes() {
-        return new String[] { "Berry", "Glow", "Shimmer" };
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        return 2;
     }
 
     @Override
@@ -80,7 +78,20 @@ public class TorchberryCrop extends BasicCrop {
         return crop.getSize() == 1 ? 100 : 150;
     }
 
+    @Override
+    public boolean canGrow(ICropTile crop) {
+        // do the static check before the world check please
+        return super.canGrow(crop) && crop.getLightLevel() <= 10;
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
         return new ItemStack(TFItems.torchberries, 1);
     }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return new ItemStack(TFItems.torchberries, 1);
+    }
+
 }

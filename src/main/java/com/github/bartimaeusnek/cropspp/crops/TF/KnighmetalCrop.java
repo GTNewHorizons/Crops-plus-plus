@@ -20,11 +20,6 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(twilightforest.item.TFItems.armorShard);
-    }
-
-    @Override
     public String name() {
         return "Knightly " + BasicTinkerBerryCrop.OBname();
     }
@@ -42,15 +37,20 @@ public class KnighmetalCrop extends BasicTinkerBerryCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() >= 2 ? 4500 : 1000;
+        return crop.getSize() >= this.maxSize() - 1 ? 4500 : 1000;
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         if (crop.getSize() < this.maxSize()
-                || !((crop.isBlockBelow("blockKnightmetal") || !OreDictionary.doesOreNameExist("blockKnightmetal")))) {
+                || !((crop.isBlockBelow(this.hasBlock()) || !OreDictionary.doesOreNameExist(this.hasBlock())))) {
             return new ItemStack(twilightforest.item.TFItems.armorShard, 1);
         }
         return new ItemStack(twilightforest.item.TFItems.armorShard, 4);
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return new ItemStack(twilightforest.item.TFItems.armorShard);
     }
 }

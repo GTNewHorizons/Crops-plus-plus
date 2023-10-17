@@ -10,19 +10,21 @@ import ic2.api.crops.ICropTile;
 
 public class GarlicCrop extends BasicDecorationCrop {
 
+    private static final String cropOreName = "cropGarlic";
+
     public GarlicCrop() {
         super();
-        OreDict.BSget("crop" + name(), this);
-    }
-
-    @Override
-    public String name() {
-        return "Garlic";
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
     public int tier() {
         return super.tier() + 2;
+    }
+
+    @Override
+    public String name() {
+        return "Garlic";
     }
 
     @Override
@@ -32,11 +34,11 @@ public class GarlicCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + name());
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+        return OreDict.ISget(cropOreName);
     }
 }

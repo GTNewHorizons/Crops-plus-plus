@@ -10,19 +10,21 @@ import ic2.api.crops.ICropTile;
 
 public class EmberMossCrop extends BasicWitcheryCrop {
 
+    private static final String cropOreName = "cropEmberMoss";
+
     public EmberMossCrop() {
         super();
-        OreDict.BSget("crop" + name().replaceAll(" ", ""), this);
-    }
-
-    @Override
-    public String name() {
-        return "Ember Moss";
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
     public int tier() {
         return 7;
+    }
+
+    @Override
+    public String name() {
+        return "Ember Moss";
     }
 
     @Override
@@ -32,11 +34,11 @@ public class EmberMossCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + name().replaceAll(" ", ""));
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name().replaceAll(" ", ""));
+        return OreDict.ISget(cropOreName);
     }
 }

@@ -10,9 +10,11 @@ import ic2.api.crops.ICropTile;
 
 public class WaterArtichokeCrop extends BasicWitcheryCrop {
 
+    private static final String cropOreName = "cropArtichoke";
+
     public WaterArtichokeCrop() {
         super();
-        OreDict.BSget("cropArtichoke", this);
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
@@ -27,11 +29,11 @@ public class WaterArtichokeCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("cropArtichoke");
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("cropArtichoke");
+        return OreDict.ISget(cropOreName);
     }
 }

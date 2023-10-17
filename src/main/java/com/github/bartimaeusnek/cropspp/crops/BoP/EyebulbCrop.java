@@ -12,7 +12,7 @@ public class EyebulbCrop extends BasicDecorationCrop {
 
     public EyebulbCrop() {
         super();
-        OreDict.BSget("crop" + name(), this);
+        OreDict.BSget("cropEyebulb", this);
     }
 
     @Override
