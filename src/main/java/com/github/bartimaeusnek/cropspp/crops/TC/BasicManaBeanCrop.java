@@ -10,10 +10,10 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 import com.github.bartimaeusnek.croploadcore.BlockGetterTC;
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 
+import ic2.api.crops.Crops;
 import ic2.api.crops.ICropTile;
 import thaumcraft.api.ItemApi;
 import thaumcraft.api.aspects.Aspect;
@@ -28,7 +28,23 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     public BasicManaBeanCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        // it used to use a method that actually do nothing, at least this works
+        Crops.instance.registerBaseSeed(thaumcraft.api.ItemApi.getItem("itemManaBean", 0), this, 1, 1, 1, 1);
+    }
+
+    @Override
+    public String name() {
+        return "Mana Bean";
+    }
+
+    @Override
+    public String discoveredBy() {
+        return "kuba6000";
+    }
+
+    @Override
+    public String[] attributes() {
+        return new String[] { "Berry", "Bean", "Magic", "Colorful" };
     }
 
     @Override
@@ -50,8 +66,15 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     }
 
     @Override
+    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        // Requires no humidity but nutrients.
+        // Doc seems incorrect, but anyhow i've inverted it for safety sake
+        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air * 0.7);
+    }
+
+    @Override
     public boolean canGrow(ICropTile crop) {
-        // crystal block exists? no growing
+        // crystal cluster doesn't exist? no growing
         if (crop.getSize() >= maxSize()) return false;
         else if (blockCrystal == null && (blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0)) == null)
             return false;
@@ -60,26 +83,9 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     }
 
     @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires no humidity but nutrients.
-        // Doc seems incorrect, but anyhow i've inverted it for safety sake
-        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air * 0.7);
-    }
-
-    @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
         return crop.getSize() >= this.maxSize() - 1 ? 1200 : 800;
-    }
-
-    @Override
-    public String[] attributes() {
-        return new String[] { "Berry", "Bean", "Magic", "Colorful" };
-    }
-
-    @Override
-    public String name() {
-        return "Mana Bean";
     }
 
     @Override
@@ -105,6 +111,11 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     }
 
     @Override
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a Crystal Cluster below to fully mature.");
+    }
+
+    @Override
     public ItemStack getDisplayItem() {
         if (manaBean == null) {
             aspects = new ArrayList<>(5);
@@ -119,13 +130,4 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
         return manaBean;
     }
 
-    @Override
-    public String discoveredBy() {
-        return "kuba6000";
-    }
-
-    @Override
-    public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a Crystal Cluster below to fully mature.");
-    }
 }

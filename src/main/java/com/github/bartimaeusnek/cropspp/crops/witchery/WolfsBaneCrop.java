@@ -10,9 +10,12 @@ import ic2.api.crops.ICropTile;
 
 public class WolfsBaneCrop extends BasicWitcheryCrop {
 
+    private final static String seedOreName = "seedWolfsBane";
+    private static final String cropOreName = "itemWolfsBane";
+
     public WolfsBaneCrop() {
         super();
-        OreDict.BSget("seedWolfsBane", this);
+        OreDict.BSget(seedOreName, this);
     }
 
     @Override
@@ -27,11 +30,11 @@ public class WolfsBaneCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("itemWolfsBane");
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("itemWolfsBane");
+        return OreDict.ISget(cropOreName);
     }
 }

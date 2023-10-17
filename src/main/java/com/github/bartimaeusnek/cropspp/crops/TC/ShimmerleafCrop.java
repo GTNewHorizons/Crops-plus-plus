@@ -17,12 +17,17 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
     public ShimmerleafCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget("cropShimmerleaf", this);
     }
 
     @Override
     public String name() {
         return "Shimmerleaf";
+    }
+
+    @Override
+    public String discoveredBy() {
+        return "bartimaeusnek and DreamMasterXXL";
     }
 
     @Override
@@ -33,12 +38,8 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 1 ? 2250 : 1750;
-    }
-
-    @Override
-    public String discoveredBy() {
-        return "bartimaeusnek and DreamMasterXXL";
+        // first stage is longer
+        return crop.getSize() <= 1 ? 2250 : 1750;
     }
 
     @Override
@@ -51,11 +52,6 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
-    }
-
-    @Override
     public ItemStack getGain(ICropTile crop) {
         return CCropUtility.getCopiedOreStack("crop" + this.name());
     }
@@ -63,5 +59,10 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
     @Override
     public List<String> getCropInformation() {
         return Collections.singletonList("Needs a block of Quicksilver below to fully mature.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return OreDict.ISget("crop" + this.name());
     }
 }

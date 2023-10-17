@@ -74,7 +74,7 @@ public enum Bonsais {
         load = modID == null || Loader.isModLoaded(modID);
     }
 
-    public static void registerAllBonais() {
+    public static void registerAllBonsais() {
         for (Bonsais bonsai : Bonsais.values()) {
             if (bonsai.load) {
                 Crops.instance.registerCrop(bonsai.getBonsais());
@@ -95,6 +95,7 @@ public enum Bonsais {
         String[] additionalDescription;
         int[] chances;
         String[] pathToSprites;
+        final int maxChance;
 
         public InternalVanillaBonsais(String name, int tier, String[] attributes, String discoveredBy, ItemStack[] gain,
                 int[] chances, String[] pathToSprites, String[] additionalDescription) {
@@ -106,16 +107,23 @@ public enum Bonsais {
             this.additionalDescription = additionalDescription;
             this.chances = chances;
             this.pathToSprites = pathToSprites;
+            this.maxChance = maxChance(chances);
         }
 
-        @Override
-        public String name() {
-            return name + " Bonsai";
+        private static int maxChance(int[] chances) {
+            int max = 0;
+            for (int chance : chances) max = Math.max(max, chance);
+            return max;
         }
 
         @Override
         public int tier() {
             return tier;
+        }
+
+        @Override
+        public String name() {
+            return name + " Bonsai";
         }
 
         @Override
@@ -129,38 +137,29 @@ public enum Bonsais {
         }
 
         @Override
-        public int maxSize() {
-            return 3;
-        }
-
-        @Override
         public String discoveredBy() {
             return discoveredBy;
         }
 
         @Override
-        public boolean canGrow(ICropTile iCropTile) {
-            return iCropTile.getSize() < maxSize();
+        public int maxSize() {
+            return 3;
         }
 
         @Override
-        public ItemStack getGain(ICropTile iCropTile) {
-            int max = 0;
-            for (int chanch : chances) {
-                max = Math.max(chanch, max);
-            }
+        public int growthDuration(ICropTile crop) {
+            return ConfigValues.debug ? 1 : super.growthDuration(crop) * 3;
+        }
+
+        @Override
+        public ItemStack getGain(ICropTile crop) {
             XSTR rand = new XSTR();
-            int roll = rand.nextInt(max);
+            int roll = rand.nextInt(maxChance);
             for (int i = chances.length - 1; i >= 0; i--) {
                 if (chances[i] >= roll) {
                     ItemStack ret = gain[i].copy();
-                    int moreorless = rand.nextInt(4);
-                    if (rand.nextBoolean()) ret.stackSize += moreorless;
-                    else {
-                        if (rand.nextBoolean()) ret.stackSize -= moreorless;
-                        if (ret.stackSize < 0) ret = null;
-                    }
-                    return ret;
+                    ret.stackSize += rand.nextInt(7) - 3;
+                    return ret.stackSize <= 0 ? null : ret;
                 }
             }
             return null;
@@ -179,11 +178,6 @@ public enum Bonsais {
                     textures[i] = iconRegister.registerIcon(pathToSprites[i]);
                 }
             }
-        }
-
-        @Override
-        public int growthDuration(ICropTile crop) {
-            return ConfigValues.debug ? 1 : super.growthDuration(crop) * 3;
         }
 
         @Override

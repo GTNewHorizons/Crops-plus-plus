@@ -37,11 +37,6 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < this.maxSize();
-    }
-
-    @Override
     public List<String> getCropInformation() {
         return Arrays
                 .asList("Has increased Nutrient requirements (x1.5)", "Has decreased humidity requirements (x0.5)");

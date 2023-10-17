@@ -54,16 +54,15 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        if (crop.getSize() >= this.maxSize()) return false;
-        else if (ConfigValues.debug || crop.getSize() < 1) return true;
-        else if (crop.getSize() < this.maxSize() - 1) return crop.getLightLevel() <= 10;
-        else if (crop.getSize() == this.maxSize() - 1) return crop.isBlockBelow(hasBlock());
-        return false;
+        if (!canGrowBase(crop)) return false;
+        else if (ConfigValues.debug) return true;
+        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow(hasBlock());
+        return crop.getLightLevel() <= 10;
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() >= 3;
+        return crop.getSize() >= this.maxSize() - 1;
     }
 
     @Override

@@ -10,30 +10,35 @@ import ic2.api.crops.ICropTile;
 
 public class StrawberryCrop extends BasicBerryCrop {
 
+    private static final String cropOreName = "cropStrawberry";
+
     public StrawberryCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget(cropOreName, this);
     }
 
+    @Override
     public String name() {
         return "Strawberry";
     }
 
-    public String[] attributes() {
-        return new String[] { "Berry", "Food", "Red" }; // Red like CropRedWheat, CropNetherWart
-    }
-
+    @Override
     public String discoveredBy() {
         return "Ancient cultures";
     }
 
     @Override
+    public String[] attributes() {
+        return new String[] { "Berry", "Food", "Red" }; // Red like CropRedWheat, CropNetherWart
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + this.name());
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+        return OreDict.ISget(cropOreName);
     }
 }
