@@ -114,7 +114,7 @@ public class StonelillyCrop extends BasicDecorationCrop {
                 return new String[] { color, "Stone", "Evil" };
             default:
                 // if this line executes consider it a UB
-                return null;
+                return new String[] { color, "Stone" };
         }
     }
 

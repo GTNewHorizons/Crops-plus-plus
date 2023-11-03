@@ -17,7 +17,10 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        return ConfigValues.debug ? 1 : (crop.getSize() == this.maxSize() - 1 ? 2200 : 1800);
+        if (ConfigValues.debug) return 1;
+        // last stage is longer
+        if (crop.getSize() >= this.maxSize() - 1) return 2200;
+        return 1800;
     }
 
     @Override

@@ -43,7 +43,7 @@ public class CobaltBerryCrop extends BasicTinkerBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("nuggetArdite");
+        return CCropUtility.getCopiedOreStack("nuggetCobalt");
     }
 
     @Override
