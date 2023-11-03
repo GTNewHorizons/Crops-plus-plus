@@ -1,5 +1,8 @@
 package com.github.bartimaeusnek.cropspp.crops.BoP;
 
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
@@ -28,8 +31,7 @@ public class Bamboo extends BasicCrop {
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // no documentation on the intended effect, so i'm leaving it as is
-        return (int) ((double) humidity * 1.3D + (double) nutrients * 1.2D + (double) air * 0.8D);
+        return (int) ((double) humidity / 1.3D + (double) nutrients / 1.2D + (double) air / 0.8D);
     }
 
     @Override
@@ -91,5 +93,12 @@ public class Bamboo extends BasicCrop {
             CCropUtility.damageEntity(entity, 1);
         }
         return false;
+    }
+
+    public List<String> getCropInformation() {
+        return Arrays.asList(
+                "Has increased humidity requirements (x1.3)",
+                "Has increased nutrient requirements (x1.2)",
+                "Has decreased humidity and air requirements (x0.8)");
     }
 }

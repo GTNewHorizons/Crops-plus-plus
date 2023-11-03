@@ -46,7 +46,7 @@ public abstract class BasicBerryCrop extends BasicCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // Requires more humidity than nutrients or air, but not much more
-        return (int) ((double) humidity / 1.2D + (double) nutrients / 0.9D + (double) air / 0.9D);
+        return (int) ((double) humidity / 0.9D + (double) nutrients / 1.2D + (double) air / 0.9D);
     }
 
     @Override

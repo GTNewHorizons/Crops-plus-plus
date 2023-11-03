@@ -1,6 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -67,7 +67,7 @@ public class GarnydniaCrop extends BasicCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // no documentation so i'm leaving it alone instead of inverting the effect
-        return (int) Math.floor((double) humidity * 0.5 + (double) nutrients * 2.0 + (double) air * 0.5);
+        return (int) Math.floor((double) humidity / 0.5D + (double) nutrients / 2.0D + (double) air / 0.5D);
     }
 
     @Override
@@ -169,7 +169,10 @@ public class GarnydniaCrop extends BasicCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a block or ore of Yellow or Red Garnet below to fully mature.");
+        return Arrays.asList(
+                "Needs a block or ore of Yellow or Red Garnet below to fully mature.",
+                "Has decreased humidity and air requirements (x0.5)",
+                "Has increased nutrient requirements (x2.0)");
     }
 
     @Override
