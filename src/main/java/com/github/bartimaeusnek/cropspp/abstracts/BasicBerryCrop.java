@@ -51,7 +51,10 @@ public abstract class BasicBerryCrop extends BasicCrop {
 
     @Override
     public int growthDuration(ICropTile crop) {
-        return ConfigValues.debug ? 1 : (crop.getSize() <= this.maxSize() - 1 ? 200 : 700);
+        if (ConfigValues.debug) return 1;
+        // last stage is faster
+        if (crop.getSize() >= this.maxSize() - 1) return 200;
+        return 700;
     }
 
     @Override

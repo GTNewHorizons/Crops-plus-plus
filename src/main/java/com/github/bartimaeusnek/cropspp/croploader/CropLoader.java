@@ -131,7 +131,6 @@ public class CropLoader {
         p.add(new CropLoader(new BlackberryCrop(), null));
         p.add(new CropLoader(new BlueberryCrop(), null));
         p.add(new CropLoader(new RaspberryCrop(), null));
-        // p.add(new WeedCrop());
 
         /*
          * if (lokko12.berriespp.ConfigValures.ayo_bonsai) if (InstalledTreesGetter.savedNames != null) for(int i=0; i <
