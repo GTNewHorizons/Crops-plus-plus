@@ -1,7 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -67,9 +67,7 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires no humidity but nutrients.
-        // Doc seems incorrect, but anyhow i've inverted it for safety sake
-        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air * 0.7);
+        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air / 0.7);
     }
 
     @Override
@@ -112,7 +110,10 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a Crystal Cluster below to fully mature.");
+        return Arrays.asList(
+                "Needs a Crystal Cluster below to fully mature.",
+                "Has increased humidity requirements (x1.3)",
+                "Has decreased air requirements (x0.7)");
     }
 
     @Override
