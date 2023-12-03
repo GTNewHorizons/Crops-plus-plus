@@ -152,16 +152,14 @@ public final class Cropspp {
             if (ModsLoaded.dreamcraft) CropItemList.cropSynthesiserUHV.set(
                     new CropSynthesiser(12527, "Advanced Crop Synthesiser IIX", "Advanced Crop Synthesiser IIX", 9)
                             .getStackForm(1L));
+            new CppFluids();
         }
+        CppItems.register_Items();
+        CppItems.OreDictItems();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent init) {
-        if (ModsLoaded.GT) {
-            final CppFluids CppFluids = new CppFluids();
-        }
-        CppItems.register_Items();
-        CppItems.OreDictItems();
         CppItems.register_recipes();
         BiomeHumidityBonus.apply();
     }
