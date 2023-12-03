@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.GTHandler;
 
 import java.util.Locale;
 
+import gregtech.api.enums.TierEU;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,16 @@ import gregtech.api.util.GT_Utility;
 import ic2.api.item.IC2Items;
 import ic2.core.Ic2Items;
 
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sCompressorRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sDistillationRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sDistilleryRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sFermentingRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sMixerRecipes;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GT_RecipeBuilder.TICKS;
+
 public class GTNHMachineRecipeLoader implements Runnable {
 
     public GTNHMachineRecipeLoader() {
@@ -39,428 +50,772 @@ public class GTNHMachineRecipeLoader implements Runnable {
         // Magic Modifier = Primordial Pearl,
 
         // StonePlant
-        GT_Values.RA.addCompressorRecipe(Materials.Marble.getDust(9), Materials.Marble.getBlocks(1), 300, 2); // Materials.Marble.getPlates(1),
-                                                                                                              // 300,
-                                                                                                              // 2);
-        GT_Values.RA.addCompressorRecipe(Materials.GraniteRed.getDust(1), Materials.GraniteRed.getPlates(1), 300, 2);
-        GT_Values.RA
-                .addCompressorRecipe(Materials.GraniteBlack.getDust(1), Materials.GraniteBlack.getPlates(1), 300, 2);
-        GT_Values.RA.addCompressorRecipe(Materials.Stone.getPlates(9), new ItemStack(Blocks.stone), 300, 2);
-        // GT_Values.RA.addCompressorRecipe(Materials.Marble.getPlates(9), Materials.Marble.getBlocks(1),300,2);
-        GT_Values.RA.addCompressorRecipe(
-                Materials.GraniteRed.getPlates(9),
-                new ItemStack(GregTech_API.sBlockGranites, 1, 8),
-                300,
-                2);
-        GT_Values.RA.addCompressorRecipe(
-                Materials.GraniteBlack.getPlates(9),
-                new ItemStack(GregTech_API.sBlockGranites),
-                300,
-                2);
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.Marble.getDust(9)
+                )
+                .itemOutputs(
+                        Materials.Marble.getBlocks(1)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.GraniteRed.getDust(1)
+                )
+                .itemOutputs(
+                        Materials.GraniteRed.getPlates(1)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.GraniteBlack.getDust(1)
+                )
+                .itemOutputs(
+                        Materials.GraniteBlack.getPlates(1)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.Stone.getPlates(9)
+                )
+                .itemOutputs(
+                        new ItemStack(Blocks.stone)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.GraniteRed.getPlates(9)
+                )
+                .itemOutputs(
+                        new ItemStack(GregTech_API.sBlockGranites, 1, 8)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.GraniteBlack.getPlates(9)
+                )
+                .itemOutputs(
+                        new ItemStack(GregTech_API.sBlockGranites)
+                )
+                .duration(15 * SECONDS)
+                .eut(2)
+                .addTo(sCompressorRecipes);
+
 
         // honey related
-        GT_Values.RA.addCentrifugeRecipe(
-                GT_Utility.getIntegratedCircuit(9),
-                GT_Values.NI,
-                new FluidStack(FluidRegistry.getFluid("for.honey"), 1000),
-                GT_Values.NF,
-                new ItemStack(Items.sugar, 9, 0),
-                GT_Values.NI,
-                GT_Values.NI,
-                GT_Values.NI,
-                GT_Values.NI,
-                GT_Values.NI,
-                new int[] { 10000 },
-                1020,
-                8,
-                false);
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(9)
+                )
+                .itemOutputs(
+                        new ItemStack(Items.sugar, 9, 0)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("for.honey"), 1000)
+                )
+                .duration(51 * SECONDS)
+                .eut(8)
+                .addTo(sCentrifugeRecipes);
+
         if (Mods.BiomesOPlenty.isModLoaded()) {
-            GT_Values.RA.addCentrifugeRecipe(
-                    GT_Utility.getIntegratedCircuit(9),
-                    GT_Values.NI,
-                    new FluidStack(FluidRegistry.getFluid("honey"), 1000),
-                    GT_Values.NF,
-                    new ItemStack(Items.sugar, 9, 0),
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    new int[] { 10000 },
-                    1020,
-                    8,
-                    false);
-            GT_Values.RA.addCentrifugeRecipe(
-                    GT_Utility.getIntegratedCircuit(1),
-                    GT_Values.NI,
-                    new FluidStack(FluidRegistry.getFluid("honey"), 1000),
-                    new FluidStack(FluidRegistry.getFluid("for.honey"), 1000),
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    GT_Values.NI,
-                    new int[] {},
-                    1020,
-                    8,
-                    false);
+
+            GT_Values.RA.stdBuilder()
+                    .itemInputs(
+                            GT_Utility.getIntegratedCircuit(9)
+                    )
+                    .itemOutputs(
+                            new ItemStack(Items.sugar, 9, 0)
+                    )
+                    .fluidInputs(
+                            new FluidStack(FluidRegistry.getFluid("honey"), 1000)
+                    )
+                    .duration(51 * SECONDS)
+                    .eut(8)
+                    .addTo(sCentrifugeRecipes);
+
+            GT_Values.RA.stdBuilder()
+                    .itemInputs(
+                            GT_Utility.getIntegratedCircuit(1)
+                    )
+                    .fluidInputs(
+                            new FluidStack(FluidRegistry.getFluid("honey"), 1000)
+                    )
+                    .fluidOutputs(
+                            new FluidStack(FluidRegistry.getFluid("for.honey"), 1000)
+                    )
+                    .duration(51 * SECONDS)
+                    .eut(8)
+                    .addTo(sCentrifugeRecipes);
+
         }
 
         // Ethanol related
 
         for (int i = 0; i < CppPotions.textureNames.length; i++) {
-            GT_Values.RA.addFluidCannerRecipe(
-                    new ItemStack(CppItems.CppPotions, 1, i),
-                    new ItemStack(Items.glass_bottle),
-                    GT_Values.NF,
-                    new FluidStack(
-                            FluidRegistry.getFluid("potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)),
-                            250));
-            GT_Values.RA.addFluidCannerRecipe(
-                    new ItemStack(Items.glass_bottle),
-                    new ItemStack(CppItems.CppPotions, 1, i),
-                    new FluidStack(
-                            FluidRegistry.getFluid("potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)),
-                            250),
-                    GT_Values.NF);
+
+            GT_Values.RA.stdBuilder()
+                    .itemInputs(
+                            new ItemStack(CppItems.CppPotions, 1, i)
+                    )
+                    .itemOutputs(
+                            new ItemStack(Items.glass_bottle)
+                    )
+                    .fluidOutputs(
+                            new FluidStack(FluidRegistry.getFluid("potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)), 250)
+                    )
+                    .duration(4 * TICKS)
+                    .eut(1)
+                    .addTo(sFluidCannerRecipes);
+
+            GT_Values.RA.stdBuilder()
+                    .itemInputs(
+                            new ItemStack(Items.glass_bottle)
+                    )
+                    .itemOutputs(
+                            new ItemStack(CppItems.CppPotions, 1, i)
+                    )
+                    .fluidInputs(
+                            new FluidStack(FluidRegistry.getFluid("potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)), 250)
+                    )
+                    .duration(4 * TICKS)
+                    .eut(1)
+                    .addTo(sFluidCannerRecipes);
+
         }
 
-        GT_Values.RA.addFermentingRecipe(
-                new FluidStack(CppFluids.Mash, 10),
-                new FluidStack(CppFluids.Wash, 8),
-                1000,
-                false);
-        GT_Values.RA.addFermentingRecipe(
-                new FluidStack(CppFluids.Wash, 20),
-                new FluidStack(FluidRegistry.getFluid("potion.wine"), 8),
-                1000,
-                false);
-        GT_Values.RA.addFermentingRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.wheatyjuice"), 10),
-                new FluidStack(CppFluids.FWheat, 8),
-                1020,
-                false);
-        GT_Values.RA.addFermentingRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.reedwater"), 10),
-                new FluidStack(CppFluids.FReed, 8),
-                1020,
-                false);
 
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.rum"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(580L), Materials.Water.getFluid(420L) },
-                new ItemStack(Items.sugar),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.piratebrew"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(800L), Materials.Water.getFluid(200L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.beer"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(45L), Materials.Water.getFluid(955L) },
-                IC2Items.getItem("fertilizer"),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.darkbeer"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(75L), Materials.Water.getFluid(925L) },
-                IC2Items.getItem("fertilizer"),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.cider"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(100L), Materials.Water.getFluid(900L) },
-                IC2Items.getItem("fertilizer"),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.wine"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(120L), Materials.Water.getFluid(880L) },
-                IC2Items.getItem("fertilizer"),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(400L), Materials.Water.getFluid(600L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(160L), Materials.Water.getFluid(840L) },
-                new ItemStack(Items.sugar, 8, 0),
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.Korn, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(320L), Materials.Water.getFluid(680L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.DKorn, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(380L), Materials.Water.getFluid(620L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.SWhine, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(700L), Materials.Water.getFluid(300L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.GHP, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(750L), Materials.Water.getFluid(250L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.jagi, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(350L), Materials.Water.getFluid(650L) },
-                GT_Values.NI,
-                80,
-                180);
-        GT_Values.RA.addDistillationTowerRecipe(
-                new FluidStack(CppFluids.njagi, 1000),
-                new FluidStack[] { Materials.Ethanol.getFluid(350L), Materials.Water.getFluid(650L) },
-                GT_Values.NI,
-                80,
-                180);
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.Mash, 10)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.Wash, 8)
+                )
+                .duration(50 * SECONDS)
+                .eut(2)
+                .addTo(sFermentingRecipes);
 
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(FluidRegistry.getFluid("potion.rum"), 100),
-                Materials.Ethanol.getFluid(50L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(2),
-                new FluidStack(FluidRegistry.getFluid("potion.rum"), 100),
-                Materials.Water.getFluid(42L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 100),
-                Materials.Ethanol.getFluid(35L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(2),
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 100),
-                Materials.Water.getFluid(60L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(CppFluids.Korn, 100),
-                Materials.Ethanol.getFluid(25L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(2),
-                new FluidStack(CppFluids.Korn, 100),
-                Materials.Water.getFluid(68L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(CppFluids.DKorn, 100),
-                Materials.Ethanol.getFluid(30L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(2),
-                new FluidStack(CppFluids.DKorn, 100),
-                Materials.Water.getFluid(62L),
-                16,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(CppFluids.FWheat, 80),
-                new FluidStack(CppFluids.Korn, 1),
-                22,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(2),
-                new FluidStack(CppFluids.FWheat, 95),
-                new FluidStack(CppFluids.DKorn, 1),
-                24,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(3),
-                new FluidStack(CppFluids.FWheat, 100),
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 1),
-                28,
-                64,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(4),
-                new FluidStack(CppFluids.FWheat, 200),
-                new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 3),
-                28,
-                64,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(5),
-                new FluidStack(CppFluids.FWheat, 1000),
-                Materials.Ethanol.getFluid(4L),
-                220,
-                120,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(CppFluids.FReed, 100),
-                new FluidStack(CppFluids.SWhine, 7),
-                22,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(4),
-                new FluidStack(CppFluids.FReed, 200),
-                new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 4),
-                24,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(5),
-                new FluidStack(CppFluids.FReed, 1000),
-                Materials.Ethanol.getFluid(5L),
-                220,
-                120,
-                false);
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.Wash, 20)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.wine"), 8)
+                )
+                .duration(50 * SECONDS)
+                .eut(2)
+                .addTo(sFermentingRecipes);
 
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(4),
-                new FluidStack(CppFluids.Mash, 200),
-                new FluidStack(FluidRegistry.getFluid("biomass"), 4),
-                24,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(1),
-                new FluidStack(CppFluids.Wash, 100),
-                new FluidStack(CppFluids.GHP, 6),
-                22,
-                24,
-                false);
-        GT_Values.RA.addDistilleryRecipe(
-                GT_Utility.getIntegratedCircuit(4),
-                new FluidStack(CppFluids.Wash, 100),
-                new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 14),
-                24,
-                24,
-                false);
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.wheatyjuice"), 10)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.FWheat, 8)
+                )
+                .duration(51 * SECONDS)
+                .eut(2)
+                .addTo(sFermentingRecipes);
 
-        GT_Values.RA.addMixerRecipe(
-                new ItemStack(Items.sugar, 32, 0),
-                new ItemStack(Items.dye, 4, 1),
-                new ItemStack(Items.dye, 4, 11),
-                new ItemStack(Items.dye, 4, 2),
-                Materials.Water.getCells(4),
-                GT_Values.NI,
-                new FluidStack(CppFluids.GHP, 375),
-                new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 4375),
-                Materials.Empty.getCells(4),
-                10,
-                8);
-        GT_Values.RA.addMixerRecipe(
-                new ItemStack(Items.sugar, 8, 0),
-                new ItemStack(Items.dye, 1, 1),
-                new ItemStack(Items.dye, 1, 11),
-                new ItemStack(Items.dye, 1, 2),
-                Materials.Water.getCells(1),
-                GT_Values.NI,
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 500),
-                new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1500),
-                Materials.Empty.getCells(1),
-                10,
-                8);
-        GT_Values.RA.addMixerRecipe(
-                new ItemStack(Items.sugar, 8, 0),
-                new ItemStack(Items.dye, 1, 1),
-                new ItemStack(Items.dye, 1, 11),
-                new ItemStack(Items.dye, 1, 2),
-                Materials.Water.getCells(1),
-                GT_Values.NI,
-                new FluidStack(CppFluids.Korn, 1000),
-                new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 2000),
-                Materials.Empty.getCells(1),
-                10,
-                8);
-        GT_Values.RA.addMixerRecipe(
-                new ItemStack(Items.sugar, 8, 0),
-                new ItemStack(Items.dye, 1, 1),
-                new ItemStack(Items.dye, 1, 11),
-                new ItemStack(Items.dye, 1, 2),
-                Materials.Water.getCells(1),
-                GT_Values.NI,
-                new FluidStack(CppFluids.DKorn, 750),
-                new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1750),
-                Materials.Empty.getCells(1),
-                10,
-                8);
-        GT_Values.RA.addMixerRecipe(
-                Materials.Water.getCells(1),
-                GT_Values.NI,
-                GT_Values.NI,
-                GT_Values.NI,
-                Materials.Ethanol.getFluid(1000L),
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 2500),
-                Materials.Empty.getCells(1),
-                10,
-                8);
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.reedwater"), 10)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.FReed, 8)
+                )
+                .duration(51 * SECONDS)
+                .eut(2)
+                .addTo(sFermentingRecipes);
 
-        GT_Values.RA.addMixerRecipe(
-                Materials.Water.getCells(1),
-                new ItemStack(Items.sugar),
-                GT_Values.NI,
-                GT_Values.NI,
-                new FluidStack(CppFluids.SWhine, 5000),
-                new FluidStack(FluidRegistry.getFluid("potion.rum"), 6000),
-                Materials.Empty.getCells(1),
-                10,
-                8);
-        GT_Values.RA.addMixerRecipe(
-                new ItemStack(Items.sugar, 8, 0),
-                OreDict.ISget("cropSpiceleaf"),
-                OreDict.ISget("cropGinger"),
-                new ItemStack(Items.dye, 1, 2),
-                Materials.Water.getCells(1),
-                GT_Values.NI,
-                new FluidStack(FluidRegistry.getFluid("potion.vodka"), 4000),
-                new FluidStack(CppFluids.njagi, 5000),
-                Materials.Empty.getCells(1),
-                10,
-                8);
 
-        GT_Values.RA.addMixerRecipe(
-                ItemList.Crop_Drop_Chilly.get(1),
-                Materials.CosmicNeutronium.getDustTiny(1),
-                ItemList.Crop_Drop_Lemon.get(64),
-                ItemList.Crop_Drop_TeaLeaf.get(64),
-                CppItems.ModifierMagic.splitStack(8),
-                CppItems.ModifierSpace.splitStack(9),
-                new FluidStack(CppFluids.njagi, 50000),
-                new FluidStack(CppFluids.jagi, 250),
-                GT_Values.NI,
-                1,
-                30720);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.rum"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(580L), Materials.Water.getFluid(420L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.piratebrew"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(800L), Materials.Water.getFluid(200L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.beer"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(45L), Materials.Water.getFluid(955L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.darkbeer"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(75L), Materials.Water.getFluid(925L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.cider"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(100L), Materials.Water.getFluid(900L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.wine"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(120L), Materials.Water.getFluid(880L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(400L), Materials.Water.getFluid(600L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(160L), Materials.Water.getFluid(840L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.Korn, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(320L), Materials.Water.getFluid(680L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.DKorn, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(380L), Materials.Water.getFluid(620L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.SWhine, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(700L), Materials.Water.getFluid(300L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.GHP, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(750L), Materials.Water.getFluid(250L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.jagi, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(350L), Materials.Water.getFluid(650L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .fluidInputs(
+                        new FluidStack(CppFluids.njagi, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(350L), Materials.Water.getFluid(650L))
+                .duration(4 * SECONDS)
+                .eut(180)
+                .addTo(sDistillationRecipes);
+
+
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.rum"), 100)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(50L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(2)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.rum"), 100)
+                )
+                .fluidOutputs(
+                        Materials.Water.getFluid(42L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 100)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(35L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(2)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 100)
+                )
+                .fluidOutputs(
+                        Materials.Water.getFluid(60L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Korn, 100)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(25L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(2)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Korn, 100)
+                )
+                .fluidOutputs(
+                        Materials.Water.getFluid(68L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.DKorn, 100)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(30L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(2)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.DKorn, 100)
+                )
+                .fluidOutputs(
+                        Materials.Water.getFluid(62L)
+                )
+                .duration(16 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FWheat, 80)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.Korn, 1)
+                )
+                .duration(1 * SECONDS + 2 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(2)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FWheat, 95)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.DKorn, 1)
+                )
+                .duration(1 * SECONDS + 4 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(3)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FWheat, 100)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 1)
+                )
+                .duration(1 * SECONDS + 8 * TICKS)
+                .eut(64)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(4)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FWheat, 200)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 3)
+                )
+                .duration(1 * SECONDS + 8 * TICKS)
+                .eut(64)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(5)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FWheat, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(4L)
+                )
+                .duration(11 * SECONDS)
+                .eut(TierEU.RECIPE_MV)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FReed, 100)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.SWhine, 7)
+                )
+                .duration(1 * SECONDS + 2 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(4)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FReed, 200)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 4)
+                )
+                .duration(1 * SECONDS + 4 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(5)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.FReed, 1000)
+                )
+                .fluidOutputs(
+                        Materials.Ethanol.getFluid(5L)
+                )
+                .duration(11 * SECONDS)
+                .eut(TierEU.RECIPE_MV)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(4)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Mash, 200)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("biomass"), 4)
+                )
+                .duration(1 * SECONDS + 4 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Wash, 100)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.GHP, 6)
+                )
+                .duration(1 * SECONDS + 2 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        GT_Utility.getIntegratedCircuit(4)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Wash, 100)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("fermentedbiomass"), 14)
+                )
+                .duration(1 * SECONDS + 4 * TICKS)
+                .eut(24)
+                .addTo(sDistilleryRecipes);
+
+
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        new ItemStack(Items.sugar, 32, 0),
+                        new ItemStack(Items.dye, 4, 1),
+                        new ItemStack(Items.dye, 4, 11),
+                        new ItemStack(Items.dye, 4, 2),
+                        Materials.Water.getCells(4)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(4)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.GHP, 375)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 4375)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        new ItemStack(Items.sugar, 8, 0),
+                        new ItemStack(Items.dye, 1, 1),
+                        new ItemStack(Items.dye, 1, 11),
+                        new ItemStack(Items.dye, 1, 2),
+                        Materials.Water.getCells(1)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 500)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1500)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        new ItemStack(Items.sugar, 8, 0),
+                        new ItemStack(Items.dye, 1, 1),
+                        new ItemStack(Items.dye, 1, 11),
+                        new ItemStack(Items.dye, 1, 2),
+                        Materials.Water.getCells(1)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.Korn, 1000)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 2000)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        new ItemStack(Items.sugar, 8, 0),
+                        new ItemStack(Items.dye, 1, 1),
+                        new ItemStack(Items.dye, 1, 11),
+                        new ItemStack(Items.dye, 1, 2),
+                        Materials.Water.getCells(1)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.DKorn, 750)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.alcopops"), 1750)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        new ItemStack(Items.sugar, 8, 0),
+                        OreDict.ISget("cropSpiceleaf"),
+                        OreDict.ISget("cropGinger"),
+                        new ItemStack(Items.dye, 1, 2),
+                        Materials.Water.getCells(1)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 4000)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.njagi, 5000)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        ItemList.Crop_Drop_Chilly.get(1),
+                        Materials.CosmicNeutronium.getDustTiny(1),
+                        ItemList.Crop_Drop_Lemon.get(64),
+                        ItemList.Crop_Drop_TeaLeaf.get(64),
+                        CppItems.ModifierMagic.splitStack(8),
+                        CppItems.ModifierSpace.splitStack(9)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.njagi, 50000)
+                )
+                .fluidOutputs(
+                        new FluidStack(CppFluids.jagi, 250)
+                )
+                .duration(1 * TICKS)
+                .eut(TierEU.RECIPE_LuV)
+                .addTo(sMixerRecipes);
+
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.Water.getCells(1)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        Materials.Ethanol.getFluid(1000L)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.vodka"), 2500)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+        GT_Values.RA.stdBuilder()
+                .itemInputs(
+                        Materials.Water.getCells(1),
+                        new ItemStack(Items.sugar)
+                )
+                .itemOutputs(
+                        Materials.Empty.getCells(1)
+                )
+                .fluidInputs(
+                        new FluidStack(CppFluids.SWhine, 5000)
+                )
+                .fluidOutputs(
+                        new FluidStack(FluidRegistry.getFluid("potion.rum"), 6000)
+                )
+                .duration(10 * TICKS)
+                .eut(8)
+                .addTo(sMixerRecipes);
+
+
 
         // Brewery
         if (OreDictionary.getOres("listAllberry").size() >= 1)
@@ -474,8 +829,6 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 FluidRegistry.getFluid("potion.weakness"),
                 CppFluids.Mash,
                 false);
-        // GT_Values.RA.addBrewingRecipe(new ItemStack(BppItems.BppBerries,1,1),
-        // Materials.Water.getFluid(1000L).getFluid(), FluidRegistry.getFluid("potion.reedwater"), false);
 
         // Sugar Related
         GT_Values.RA
