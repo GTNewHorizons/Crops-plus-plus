@@ -2,7 +2,6 @@ package com.github.bartimaeusnek.cropspp.crops.natura;
 
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
@@ -76,7 +75,7 @@ public class CottonCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (!ModsLoaded.Natura) return CCropUtility.getCopiedOreStack("crop" + this.name());
+        if (!Mods.Natura.isModLoaded()) return CCropUtility.getCopiedOreStack("crop" + this.name());
         else return new ItemStack(NContent.plantItem, 1, 3);
     }
 }

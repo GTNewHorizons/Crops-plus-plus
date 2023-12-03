@@ -9,17 +9,16 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 import com.github.bartimaeusnek.cropspp.items.CppPotions;
 
-import cpw.mods.fml.common.Loader;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.Mods;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
@@ -75,7 +74,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 1020,
                 8,
                 false);
-        if (ModsLoaded.BoP) {
+        if (Mods.BiomesOPlenty.isModLoaded()) {
             GT_Values.RA.addCentrifugeRecipe(
                     GT_Utility.getIntegratedCircuit(9),
                     GT_Values.NI,
@@ -551,14 +550,16 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 600,
                 48);
 
-        if (ModsLoaded.BoP) GT_Values.RA.addChemicalRecipe(
-                GT_ModHandler.getModItem("BiomesOPlenty", "food", 16L),
-                Materials.Salt.getDust(2),
-                Materials.SulfuricAcid.getFluid(432L),
-                new FluidStack(FluidRegistry.getFluid("dye.chemical.dyered"), 288),
-                new ItemStack(Items.sugar),
-                600,
-                48);
+        if (Mods.BiomesOPlenty.isModLoaded()) {
+            GT_Values.RA.addChemicalRecipe(
+                    GT_ModHandler.getModItem("BiomesOPlenty", "food", 16L),
+                    Materials.Salt.getDust(2),
+                    Materials.SulfuricAcid.getFluid(432L),
+                    new FluidStack(FluidRegistry.getFluid("dye.chemical.dyered"), 288),
+                    new ItemStack(Items.sugar),
+                    600,
+                    48);
+        }
 
         GT_Values.RA.addChemicalRecipe(
                 new ItemStack(CppItems.CppBerries, 16, 0),
@@ -569,7 +570,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 600,
                 48);
 
-        if (ModsLoaded.Natura) {
+        if (Mods.Natura.isModLoaded()) {
             GT_Values.RA.addChemicalRecipe(
                     GT_ModHandler.getModItem("Natura", "berry.nether", 16L, 0),
                     Materials.Salt.getDust(2),
@@ -670,14 +671,16 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 new ItemStack[] { Materials.Ledox.getDust(1) },
                 240,
                 7680);
-        if (Loader.isModLoaded("Avaritia")) GT_Values.RA.addMultiblockChemicalRecipe(
-                new ItemStack[] { GT_ModHandler.getModItem("Avaritia", "Resource", 1L, 1),
-                        new ItemStack(CppItems.Modifier, 32, 0) },
-                new FluidStack[] { Materials.UUMatter.getFluid(100L) },
-                null,
-                new ItemStack[] { Materials.MysteriousCrystal.getDust(1) },
-                240,
-                122880);
+        if (Mods.Avaritia.isModLoaded()) {
+            GT_Values.RA.addMultiblockChemicalRecipe(
+                    new ItemStack[] { GT_ModHandler.getModItem("Avaritia", "Resource", 1L, 1),
+                            new ItemStack(CppItems.Modifier, 32, 0) },
+                    new FluidStack[] { Materials.UUMatter.getFluid(100L) },
+                    null,
+                    new ItemStack[] { Materials.MysteriousCrystal.getDust(1) },
+                    240,
+                    122880);
+        }
         GT_Values.RA.addMultiblockChemicalRecipe(
                 new ItemStack[] { Materials.MeteoricIron.getDust(1), new ItemStack(CppItems.Modifier, 64, 0) },
                 new FluidStack[] { Materials.UUMatter
@@ -695,7 +698,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 120,
                 500000);
 
-        if (ModsLoaded.TC) {
+        if (Mods.Thaumcraft.isModLoaded()) {
             // Magic Modifier PrimP
             GT_Values.RA.addExtractorRecipe(
                     GT_ModHandler.getModItem("Thaumcraft", "ItemEldritchObject", 1, 3),
@@ -707,15 +710,8 @@ public class GTNHMachineRecipeLoader implements Runnable {
                     GT_ModHandler.getModItem("Thaumcraft", "ItemResource", 16L, 14),
                     2400,
                     128);
-            if (!ModsLoaded.dreamcraft) GT_Values.RA.addAutoclaveRecipe(
-                    new ItemStack(CppItems.Modifier, 16, 1),
-                    Materials.UUMatter.getFluid(52L),
-                    GT_ModHandler.getModItem("Thaumcraft", "ItemEldritchObject", 1, 3),
-                    10000,
-                    24000,
-                    384,
-                    false);
-            else GT_Values.RA.addAutoclaveRecipe(
+
+            GT_Values.RA.addAutoclaveRecipe(
                     new ItemStack(CppItems.Modifier, 16, 1),
                     Materials.UUMatter.getFluid(52L),
                     com.dreammaster.item.ItemList.PrimordialPearlFragment.getIS().splitStack(3),
@@ -723,6 +719,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                     24000,
                     384,
                     false);
+
             GT_Values.RA.addAutoclaveRecipe(
                     GT_ModHandler.getModItem("Thaumcraft", "ItemResource", 32L, 14),
                     Materials.UUMatter.getFluid(500L),
@@ -786,45 +783,10 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 7680,
                 true);
 
-        if (ModsLoaded.BoP) GT_ModHandler.addCompressionRecipe(
-                GT_ModHandler.getModItem("BiomesOPlenty", "treeMoss", 8L),
-                Ic2Items.plantBall.copy());
-
-        if (!ModsLoaded.dreamcraft) {
-            if (ModsLoaded.BoP) {
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("BiomesOPlenty", "flowers", 2L, 3),
-                        new ItemStack(Items.glowstone_dust, 1, 32767),
-                        300,
-                        2);
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("BiomesOPlenty", "mushrooms", 2L, 3),
-                        new ItemStack(Items.glowstone_dust, 1, 32767),
-                        300,
-                        2);
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 2L, 15),
-                        new ItemStack(Items.glowstone_dust, 8, 32767),
-                        300,
-                        2);
-            }
-            if (ModsLoaded.Natura) {
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("Natura", "Glowshroom", 2L, 0),
-                        new ItemStack(Items.glowstone_dust, 1, 32767),
-                        300,
-                        2);
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("Natura", "Glowshroom", 2L, 1),
-                        new ItemStack(Items.glowstone_dust, 1, 32767),
-                        300,
-                        2);
-                GT_Values.RA.addExtractorRecipe(
-                        GT_ModHandler.getModItem("Natura", "Glowshroom", 2L, 2),
-                        new ItemStack(Items.glowstone_dust, 1, 32767),
-                        300,
-                        2);
-            }
+        if (Mods.BiomesOPlenty.isModLoaded()) {
+            GT_ModHandler.addCompressionRecipe(
+                    GT_ModHandler.getModItem("BiomesOPlenty", "treeMoss", 8L),
+                    Ic2Items.plantBall.copy());
         }
 
         // Not a noob trophy.
@@ -940,15 +902,5 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 Materials.Water.getFluid(1000L).getFluid(),
                 FluidRegistry.getFluid("potion.strength"),
                 false);
-
-        /*
-         * if (ModsLoaded.dreamcraft) for (int i=0; i<OreDictionary.getOres("blockUnstable").size();i++) for (int j=0;
-         * j<OreDictionary.getOres("ingotBedrockium").size();j++) GT_Values.RA.addMultiblockChemicalRecipe(new
-         * ItemStack[]
-         * {OreDictionary.getOres("blockUnstable").get(i),OreDictionary.getOres("ingotBedrockium").get(j),GT_ModHandler.
-         * getModItem("Thaumcraft","ItemEldritchObject",1,3)} , new FluidStack[] {new
-         * FluidStack(FluidRegistry.getFluid("mutagen"),1000),Materials.UUMatter.getFluid(1000L)}, GT_Values.NI, new
-         * ItemStack[] {new ItemStack(BppItems.Modifier,1,6)}, 2400, 8192);
-         */
     }
 }

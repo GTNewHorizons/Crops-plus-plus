@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 
 import gregtech.api.enums.ItemList;
@@ -96,7 +95,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 new Object[] { "RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_UV, 'T', ItemList.Emitter_UV, 'R',
                         ItemList.Sensor_UV, 'C', OrePrefixes.circuit.get(Materials.Infinite), 'W',
                         OrePrefixes.cableGt01.get(Materials.NaquadahAlloy) });
-        if (ModsLoaded.dreamcraft) GT_ModHandler.addCraftingRecipe(
+        GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropGeneExtractorUHV.get(1L),
                 bitsd,
                 new Object[] { "RTR", aTextWireHull, "CRC", 'M', ItemList.Hull_MAX, 'T', ItemList.Emitter_UHV, 'R',
@@ -157,7 +156,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                         ItemList.Field_Generator_UV, 'E', ItemList.Emitter_UV, 'C',
                         OrePrefixes.circuit.get(Materials.Infinite), 'W',
                         OrePrefixes.cableGt04.get(Materials.NaquadahAlloy) });
-        if (ModsLoaded.dreamcraft) GT_ModHandler.addCraftingRecipe(
+        GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorUHV.get(1L),
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_MAX, 'F',
@@ -213,7 +212,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 new Object[] { "FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_UV, 'F', ItemList.Field_Generator_UV,
                         'E', ItemList.Emitter_UV, 'C', OrePrefixes.circuit.get(Materials.Infinite), 'W',
                         OrePrefixes.cableGt04.get(Materials.NaquadahAlloy) });
-        if (ModsLoaded.dreamcraft) GT_ModHandler.addCraftingRecipe(
+        GT_ModHandler.addCraftingRecipe(
                 CropItemList.cropSynthesiserUHV.get(1L),
                 bitsd,
                 new Object[] { "FCF", aTextCableHull, "EEE", 'M', ItemList.Hull_MAX, 'F', ItemList.Field_Generator_UHV,

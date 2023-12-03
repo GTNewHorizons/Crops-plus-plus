@@ -1,11 +1,12 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
+import static gregtech.api.enums.Mods.BiomesOPlenty;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.crops.natura.SaguaroCrop;
 import com.github.bartimaeusnek.cropspp.crops.natura.nether.BasicNetherShroomCrop;
 import com.github.bartimaeusnek.cropspp.crops.natura.nether.BlightberryCrop;
@@ -39,10 +40,12 @@ public class NaturaLoader {
                         new ItemStack(mods.natura.common.NContent.glowshroom, 1, 1)));
         p.add(new CropLoader(new SaguaroCrop(), new ItemStack(mods.natura.common.NContent.seedFood, 1, 0)));
 
-        if (ModsLoaded.BoP) p.add(
-                new CropLoader(
-                        new BasicNetherShroomCrop("Yellow"),
-                        new ItemStack(biomesoplenty.api.content.BOPCBlocks.mushrooms, 1, 3)));
+        if (BiomesOPlenty.isModLoaded()) {
+            p.add(
+                    new CropLoader(
+                            new BasicNetherShroomCrop("Yellow"),
+                            new ItemStack(biomesoplenty.api.content.BOPCBlocks.mushrooms, 1, 3)));
+        }
 
         return p;
     }

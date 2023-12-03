@@ -1,6 +1,12 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
 import static com.github.bartimaeusnek.cropspp.ConfigValues.c;
+import static gregtech.api.enums.Mods.BiomesOPlenty;
+import static gregtech.api.enums.Mods.PamsHarvestCraft;
+import static gregtech.api.enums.Mods.Thaumcraft;
+import static gregtech.api.enums.Mods.TinkerConstruct;
+import static gregtech.api.enums.Mods.TwilightForest;
+import static gregtech.api.enums.Mods.Witchery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +14,6 @@ import java.util.List;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.croploadcore.config;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
@@ -31,8 +36,8 @@ import com.github.bartimaeusnek.cropspp.crops.natura.RaspberryCrop;
 import com.github.bartimaeusnek.cropspp.crops.natura.SaguaroCrop;
 import com.github.bartimaeusnek.cropspp.crops.witchery.GarlicCrop;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import gregtech.api.enums.Mods;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 
@@ -80,40 +85,39 @@ public class CropLoader {
          * Add your crops with base seed here by p.add(new CropLoader(new YourCropClass(),YourItem));
          */
 
-        if (Loader.isModLoaded("TwilightForest")) {
+        if (TwilightForest.isModLoaded()) {
             p.addAll(TwilightForestLoader.load());
         }
-        if (ModsLoaded.dreamcraft) {
-            p.addAll(DreamCraftLoader.load());
-        }
-        if (ModsLoaded.GT) {
-            p.addAll(GTLoader.load());
-        }
-        if (ModsLoaded.Natura) p.addAll(NaturaLoader.load());
-        else {
+
+        p.addAll(DreamCraftLoader.load());
+        p.addAll(GTLoader.load());
+
+        if (Mods.Natura.isModLoaded()) {
+            p.addAll(NaturaLoader.load());
+        } else {
             p.add(new CropLoader(new SaguaroCrop(), null));
         }
-        if (ModsLoaded.Natura || ModsLoaded.PHC) {
+        if (Mods.Natura.isModLoaded() || PamsHarvestCraft.isModLoaded()) {
             p.add(new CropLoader(new CottonCrop(), null));
         }
 
-        if (ModsLoaded.TConstruct) {
+        if (TinkerConstruct.isModLoaded()) {
             p.addAll(TConstructLoader.load());
         }
-        if (ModsLoaded.BoP) {
+        if (BiomesOPlenty.isModLoaded()) {
             p.addAll(BoPLoader.BoPLoaderList());
         }
 
-        if (ModsLoaded.TC) {
+        if (Thaumcraft.isModLoaded()) {
             p.addAll(ThaumcraftLoader.load());
         }
-        if (ModsLoaded.witchery) {
+        if (Witchery.isModLoaded()) {
             p.addAll(WitcheryLoader.load());
         }
-        if (ModsLoaded.witchery || ModsLoaded.PHC) {
+        if (Witchery.isModLoaded() || PamsHarvestCraft.isModLoaded()) {
             p.add(new CropLoader(new GarlicCrop(), null));
         }
-        if (ModsLoaded.BoP || ModsLoaded.PHC) {
+        if (BiomesOPlenty.isModLoaded() || PamsHarvestCraft.isModLoaded()) {
             p.add(new CropLoader(new BarleyCrop(), null));
         }
 
@@ -131,20 +135,7 @@ public class CropLoader {
         p.add(new CropLoader(new BlackberryCrop(), null));
         p.add(new CropLoader(new BlueberryCrop(), null));
         p.add(new CropLoader(new RaspberryCrop(), null));
-        // p.add(new WeedCrop());
 
-        /*
-         * if (lokko12.berriespp.ConfigValures.ayo_bonsai) if (InstalledTreesGetter.savedNames != null) for(int i=0; i <
-         * InstalledTreesGetter.savedNames.size(); ++i) { if( Operators.AND(Operators.NOR(
-         * InstalledTreesGetter.savedNames.get(i).contains("Shimmerleaf"),InstalledTreesGetter.savedNames.get(i).
-         * contains("Cinderpearl") ) ,
-         * Operators.NOR(InstalledTreesGetter.savedNames.get(i).contains("Vishroom"),InstalledTreesGetter.savedNames.get
-         * (i).contains("Ethereal Bloom")))) { p.add(new CropLoader(new
-         * BasicBonsaiCrop(InstalledTreesGetter.savedNames.get(i),
-         * "bpp:"+InstalledTreesGetter.BaseSeed.get(i).getIconIndex().getIconName().replaceAll(":","_")
-         * ,InstalledTreesGetter.savedDrop.get(i)),InstalledTreesGetter.BaseSeed.get(i))); } } else
-         * Berriespp.bpplogger.info("Something wrent wrong at getting Trees, BonsaiGen Disabled!");
-         */
         return p;
     }
 

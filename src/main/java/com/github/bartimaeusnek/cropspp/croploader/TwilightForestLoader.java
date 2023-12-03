@@ -1,11 +1,12 @@
 package com.github.bartimaeusnek.cropspp.croploader;
 
+import static gregtech.api.enums.Mods.BiomesOPlenty;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.crops.TF.KnighmetalCrop;
 import com.github.bartimaeusnek.cropspp.crops.TF.MossCrop;
 import com.github.bartimaeusnek.cropspp.crops.TF.TorchberryCrop;
@@ -19,7 +20,7 @@ public class TwilightForestLoader {
         p.add(new CropLoader(new KnighmetalCrop(), null));
         p.add(new CropLoader(new TorchberryCrop(), new ItemStack(TFItems.torchberries, 1, 0)));
 
-        if (ModsLoaded.BoP) {
+        if (BiomesOPlenty.isModLoaded()) {
             p.add(new CropLoader(new MossCrop(), null));
         }
 
