@@ -170,12 +170,8 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
         builder.widget(
-                createProgressBar(
-                        GT_UITextures.PROGRESSBAR_ARROW,
-                        20,
-                        ProgressBar.Direction.RIGHT,
-                        new Pos2d(78, 24),
-                        new Size(20, 18)));
+                new ProgressBar().setTexture(GT_UITextures.PROGRESSBAR_ARROW, 20)
+                        .setDirection(ProgressBar.Direction.RIGHT).setPos(new Pos2d(78, 24)).setSize(new Size(20, 18)));
     }
 
     @Override

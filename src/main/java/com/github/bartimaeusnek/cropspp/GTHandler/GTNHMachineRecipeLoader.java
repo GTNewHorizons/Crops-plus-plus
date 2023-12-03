@@ -26,7 +26,6 @@ import static gregtech.api.util.GT_RecipeBuilder.TICKS;
 
 import java.util.Locale;
 
-import gregtech.api.recipe.RecipeMaps;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -46,6 +45,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.Mods;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.enums.TierEU;
+import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
@@ -130,8 +130,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
         }
 
         GT_Values.RA.stdBuilder().fluidInputs(new FluidStack(CppFluids.Mash, 10))
-                .fluidOutputs(new FluidStack(CppFluids.Wash, 8)).duration(50 * SECONDS).eut(2)
-                .addTo(fermentingRecipes);
+                .fluidOutputs(new FluidStack(CppFluids.Wash, 8)).duration(50 * SECONDS).eut(2).addTo(fermentingRecipes);
 
         GT_Values.RA.stdBuilder().fluidInputs(new FluidStack(CppFluids.Wash, 20))
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.wine"), 8)).duration(50 * SECONDS).eut(2)
@@ -627,7 +626,8 @@ public class GTNHMachineRecipeLoader implements Runnable {
                     .fluidInputs(
                             Materials.UUMatter
                                     .getFluid((Materials.Osmium.getNeutrons() + Materials.Osmium.getProtons()) * 1000))
-                    .duration(1 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_LuV).addTo(multiblockChemicalReactorRecipes);
+                    .duration(1 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_LuV)
+                    .addTo(multiblockChemicalReactorRecipes);
 
         }
 
