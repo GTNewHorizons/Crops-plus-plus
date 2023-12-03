@@ -1,5 +1,10 @@
 package com.github.bartimaeusnek.cropspp.GTHandler;
 
+import static gregtech.api.enums.Mods.Avaritia;
+import static gregtech.api.enums.Mods.BiomesOPlenty;
+import static gregtech.api.enums.Mods.GalacticraftCore;
+import static gregtech.api.enums.Mods.Natura;
+import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sAutoclaveRecipes;
 import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sBrewingRecipes;
 import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
@@ -86,7 +91,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("for.honey"), 1000)).duration(51 * SECONDS).eut(8)
                 .addTo(sCentrifugeRecipes);
 
-        if (Mods.BiomesOPlenty.isModLoaded()) {
+        if (BiomesOPlenty.isModLoaded()) {
 
             GT_Values.RA.stdBuilder().itemInputs(GT_Utility.getIntegratedCircuit(9))
                     .itemOutputs(new ItemStack(Items.sugar, 9, 0))
@@ -455,10 +460,10 @@ public class GTNHMachineRecipeLoader implements Runnable {
 
         }
 
-        if (Mods.BiomesOPlenty.isModLoaded()) {
+        if (BiomesOPlenty.isModLoaded()) {
 
             GT_Values.RA.stdBuilder()
-                    .itemInputs(GT_ModHandler.getModItem("BiomesOPlenty", "food", 16), Materials.Salt.getDust(2))
+                    .itemInputs(GT_ModHandler.getModItem(BiomesOPlenty.ID, "food", 16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyered"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
@@ -470,28 +475,28 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyepurple"), 288))
                 .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
 
-        if (Mods.Natura.isModLoaded()) {
+        if (Natura.isModLoaded()) {
 
             GT_Values.RA.stdBuilder()
-                    .itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 0), Materials.Salt.getDust(2))
+                    .itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 0), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyelime"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
 
             GT_Values.RA.stdBuilder()
-                    .itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 1), Materials.Salt.getDust(2))
+                    .itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 1), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyelightgray"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
 
             GT_Values.RA.stdBuilder()
-                    .itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 2), Materials.Salt.getDust(2))
+                    .itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 2), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyelightblue"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
 
             GT_Values.RA.stdBuilder()
-                    .itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 3), Materials.Salt.getDust(2))
+                    .itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 3), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyelime"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(sChemicalRecipes);
@@ -554,7 +559,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
 
             GT_Values.RA.stdBuilder()
                     .itemInputs(
-                            GT_ModHandler.getModItem("Avaritia", "Resource", 1, 1),
+                            GT_ModHandler.getModItem(Avaritia.ID, "Resource", 1, 1),
                             new ItemStack(CppItems.Modifier, 32, 0))
                     .itemOutputs(Materials.MysteriousCrystal.getDust(1)).fluidInputs(Materials.UUMatter.getFluid(100))
                     .duration(12 * SECONDS).eut(TierEU.RECIPE_ZPM).addTo(sMultiblockChemicalRecipes);
@@ -578,12 +583,12 @@ public class GTNHMachineRecipeLoader implements Runnable {
         if (Mods.Thaumcraft.isModLoaded()) {
             // Magic Modifier PrimP
 
-            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Thaumcraft", "ItemEldritchObject", 1, 3))
+            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Thaumcraft.ID, "ItemEldritchObject", 1, 3))
                     .itemOutputs(new ItemStack(CppItems.Modifier, 8, 1)).duration(6 * SECONDS + 8 * TICKS).eut(4)
                     .addTo(sExtractorRecipes);
 
             GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 1, 1))
-                    .itemOutputs(GT_ModHandler.getModItem("Thaumcraft", "ItemResource", 16, 14))
+                    .itemOutputs(GT_ModHandler.getModItem(Thaumcraft.ID, "ItemResource", 16, 14))
                     .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(sExtractorRecipes);
 
             GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 16, 1))
@@ -591,7 +596,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                     .fluidInputs(Materials.UUMatter.getFluid(52)).duration(20 * MINUTES).eut(384)
                     .addTo(sAutoclaveRecipes);
 
-            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Thaumcraft", "ItemResource", 32, 14))
+            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Thaumcraft.ID, "ItemResource", 32, 14))
                     .itemOutputs(new ItemStack(CppItems.Modifier, 1, 1)).fluidInputs(Materials.UUMatter.getFluid(500))
                     .duration(2 * MINUTES).eut(TierEU.RECIPE_MV).addTo(sAutoclaveRecipes);
 
@@ -638,13 +643,13 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .duration(1 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_IV).addTo(sMultiblockChemicalRecipes);
 
         // coral buff
-        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("BiomesOPlenty", "coral1", 64, 15))
+        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(BiomesOPlenty.ID, "coral1", 64, 15))
                 .itemOutputs(Materials.Sunnarium.getDust(4)).fluidInputs(Materials.UUMatter.getFluid(2))
                 .duration(12 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_IV).requiresCleanRoom()
                 .addTo(sAutoclaveRecipes);
 
-        if (Mods.BiomesOPlenty.isModLoaded()) {
-            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("BiomesOPlenty", "treeMoss", 8))
+        if (BiomesOPlenty.isModLoaded()) {
+            GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(BiomesOPlenty.ID, "treeMoss", 8))
                     .itemOutputs(Ic2Items.plantBall.copy()).duration(15 * SECONDS).eut(2).addTo(sCompressorRecipes);
         }
 
@@ -658,11 +663,10 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .addTo(sFluidExtractionRecipes);
 
         // Chem Refine
-
         GT_Values.RA.stdBuilder()
                 .itemInputs(
                         new ItemStack(CppItems.Modifier, 9, 0),
-                        GT_ModHandler.getModItem("GalacticraftCore", "item.meteoricIronRaw", 1, 0))
+                        GT_ModHandler.getModItem(GalacticraftCore.ID, "item.meteoricIronRaw", 1, 0))
                 .itemOutputs(Materials.MeteoricIron.getDust(4)).fluidInputs(Materials.Water.getFluid(1000))
                 .duration(12 * SECONDS).eut(TierEU.RECIPE_HV).addTo(sMultiblockChemicalRecipes);
 
@@ -727,22 +731,22 @@ public class GTNHMachineRecipeLoader implements Runnable {
 
         // Potions from Netherberries
 
-        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 0))
+        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 0))
                 .fluidInputs(Materials.Water.getFluid(750))
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.regen"), 750))
                 .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(sBrewingRecipes);
 
-        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 1))
+        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 1))
                 .fluidInputs(Materials.Water.getFluid(750))
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.nightvision"), 750))
                 .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(sBrewingRecipes);
 
-        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 2))
+        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 2))
                 .fluidInputs(Materials.Water.getFluid(750))
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.speed"), 750))
                 .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(sBrewingRecipes);
 
-        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem("Natura", "berry.nether", 16, 3))
+        GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Natura.ID, "berry.nether", 16, 3))
                 .fluidInputs(Materials.Water.getFluid(750))
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.strength"), 750))
                 .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(sBrewingRecipes);
