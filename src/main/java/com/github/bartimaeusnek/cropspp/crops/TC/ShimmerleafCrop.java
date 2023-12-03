@@ -17,12 +17,17 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
 
     public ShimmerleafCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        OreDict.BSget("cropShimmerleaf", this);
     }
 
     @Override
     public String name() {
         return "Shimmerleaf";
+    }
+
+    @Override
+    public String discoveredBy() {
+        return "bartimaeusnek and DreamMasterXXL";
     }
 
     @Override
@@ -33,27 +38,17 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 1 ? 2250 : 1750;
-    }
-
-    @Override
-    public String discoveredBy() {
-        return "bartimaeusnek and DreamMasterXXL";
+        // first stage is longer
+        return crop.getSize() <= 1 ? 2250 : 1750;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        boolean r = false;
-        if (ConfigValues.debug) r = crop.getSize() < 3;
-        else if (crop.getSize() <= 1) r = crop.getSize() <= 1;
-        else if (crop.getSize() == 2) r = (crop.getSize() == 2
-                && (crop.isBlockBelow("blockQuicksilver") || !(OreDictionary.doesOreNameExist("blockQuicksilver"))));
-        return r;
-    }
-
-    @Override
-    public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+        if (crop.getSize() >= this.maxSize()) return false;
+        else if (ConfigValues.debug) return true;
+        else if (crop.getSize() >= this.maxSize() - 1)
+            return crop.isBlockBelow("blockQuicksilver") || !OreDictionary.doesOreNameExist("blockQuicksilver");
+        return true;
     }
 
     @Override
@@ -64,5 +59,10 @@ public class ShimmerleafCrop extends BasicThaumcraftCrop {
     @Override
     public List<String> getCropInformation() {
         return Collections.singletonList("Needs a block of Quicksilver below to fully mature.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return OreDict.ISget("crop" + this.name());
     }
 }

@@ -2,13 +2,11 @@ package com.github.bartimaeusnek.cropspp.crops.TConstruct;
 
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicTinkerBerryCrop;
 
-import ic2.api.crops.ICropTile;
 import tconstruct.world.TinkerWorld;
 
-public class GoldOreBerryCrop extends BasicTinkerBerryCrop {
+public class GoldOreBerryCrop extends BasicTConstructOreBerryCrop {
 
     public GoldOreBerryCrop() {
         super();
@@ -20,10 +18,8 @@ public class GoldOreBerryCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
-    public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4 && crop.isBlockBelow("blockGold")) {
-            return new ItemStack(TinkerWorld.oreBerries, 6, 1);
-        } else return new ItemStack(TinkerWorld.oreBerries, 2, 1);
+    public String[] attributes() {
+        return new String[] { "OreBerry", "Gold", "Metal" };
     }
 
     @Override
@@ -32,18 +28,8 @@ public class GoldOreBerryCrop extends BasicTinkerBerryCrop {
     }
 
     @Override
-    public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        return crop.getSize() >= 2 ? 3000 : 500;
+    public ItemStack getDropItem(int amount) {
+        return new ItemStack(TinkerWorld.oreBerries, amount, 1);
     }
 
-    @Override
-    public String[] attributes() {
-        return new String[] { "OreBerry", "Gold", "Metal" };
-    }
-
-    @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(TinkerWorld.oreBerries, 6, 1);
-    }
 }

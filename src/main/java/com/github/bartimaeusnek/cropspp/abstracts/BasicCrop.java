@@ -28,6 +28,16 @@ public abstract class BasicCrop extends CropCard implements ICropCardInfo {
         }
     }
 
+    // be DRY, not WET
+    @Override
+    public boolean canGrow(ICropTile crop) {
+        return this.canGrowBase(crop);
+    }
+
+    protected boolean canGrowBase(ICropTile crop) {
+        return crop.getSize() < this.maxSize();
+    }
+
     @Override
     public float dropGainChance() {
         return (float) ((Math.pow(0.95, (float) tier())) * ConfigValues.BerryGain);
@@ -35,12 +45,12 @@ public abstract class BasicCrop extends CropCard implements ICropCardInfo {
 
     @Override
     public boolean canCross(ICropTile crop) {
-        return crop.getSize() == maxSize();
+        return crop.getSize() >= maxSize();
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == maxSize();
+        return crop.getSize() >= maxSize();
     }
 
     @Override

@@ -20,15 +20,13 @@ import ic2.api.crops.ICropTile;
 public class CactiCrop extends BasicDecorationCrop {
 
     public CactiCrop() {
-        if (BiomesOPlenty.isModLoaded()) {
-            Crops.instance.registerBaseSeed(
-                    new ItemStack(BOPCBlocks.plants, 1, 12),
-                    com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
-                    1,
-                    1,
-                    1,
-                    1);
-        }
+        if (BiomesOPlenty.isModLoaded()) Crops.instance.registerBaseSeed(
+                new ItemStack(BOPCBlocks.plants, 1, 12),
+                com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
+                1,
+                1,
+                1,
+                1);
     }
 
     @Override
@@ -47,14 +45,27 @@ public class CactiCrop extends BasicDecorationCrop {
     }
 
     @Override
+    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        // Requires more humidity than nutrients or air, but not much more
+        return (int) ((double) humidity / 0.5 + (double) nutrients / 1.25D + (double) air / 1.25D);
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
-        if ((BiomesOPlenty.isModLoaded() && crop.getSize() == 2)) return new ItemStack(BOPCBlocks.plants, 1, 12);
+        if (BiomesOPlenty.isModLoaded() && crop.getSize() >= this.maxSize() - 1)
+            return new ItemStack(BOPCBlocks.plants, 1, 12);
         else return new ItemStack(Item.getItemById(81), 1, 0);
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() >= 2;
+        return crop.getSize() >= this.maxSize() - 1;
+    }
+
+    @Override
+    public boolean onEntityCollision(ICropTile crop, Entity entity) {
+        if (!entity.isSneaking()) CCropUtility.damageEntity(entity, 1);
+        return super.onEntityCollision(crop, entity);
     }
 
     @Override
@@ -63,21 +74,6 @@ public class CactiCrop extends BasicDecorationCrop {
                 "Has increased air and nutrients requirements (x1.25)",
                 "Has decreased humidity requirements (x0.5)",
                 "Hurt Player on collision");
-    }
-
-    @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires more humidity than nutrients or air, but not much more
-        return (int) ((double) humidity * 0.5 + (double) nutrients * 1.25 + (double) air * 1.25);
-    }
-
-    @Override
-    public boolean onEntityCollision(ICropTile crop, Entity entity) {
-
-        if (!entity.isSneaking()) {
-            CCropUtility.damageEntity(entity, 1);
-        }
-        return super.onEntityCollision(crop, entity);
     }
 
     @Override

@@ -37,12 +37,6 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        if (crop.getSize() < 1) return true;
-        else return crop.getSize() < 3;
-    }
-
-    @Override
     public List<String> getCropInformation() {
         return Arrays
                 .asList("Has increased Nutrient requirements (x1.5)", "Has decreased humidity requirements (x0.5)");
@@ -51,12 +45,14 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
         // Requires no humidity but nutrients.
-        return (int) ((double) humidity * 0.5 + (double) nutrients * 1.5 + (double) air * 1);
+        return (int) ((double) humidity / 0.5D + (double) nutrients / 1.5D + (double) air);
     }
 
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 2 ? 300 : 700;
+        // last stage is faster
+        if (crop.getSize() >= this.maxSize() - 1) return 300;
+        return 700;
     }
 }

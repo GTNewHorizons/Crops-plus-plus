@@ -30,9 +30,9 @@ import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
-import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
+import gregtech.api.enums.SoundResource;
 import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -57,10 +57,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
                         "1 for Specimen, 2 for Growth, 3 for Gain, 4 for Resistance", "Takes in 1A",
                         "Needs crop's (tier+2)/2 as Voltage level, round down (Tier 5 crop needs 7/2=~3=HV)",
                         "Can process crops up to tier " + getMaxCropTier(aTier) },
-                2,
                 1,
-                "Crop_Gen_Extractor.png",
-                "",
+                1,
                 TextureFactory.of(
                         TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
                         TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
@@ -87,21 +85,13 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
                         TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
     }
 
-    public CropGeneExtractor(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures,
-            String mGUIName, String mNEIName) {
-        super(mName, mTier, 1, mDescriptionArray, mTextures, 2, 1, mGUIName, mNEIName);
-        // TODO Auto-generated constructor stub
+    public CropGeneExtractor(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
+        super(mName, mTier, 1, mDescriptionArray, mTextures, 1, 1);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity arg0) {
-        return new CropGeneExtractor(
-                this.mName,
-                this.mTier,
-                this.mDescriptionArray,
-                this.mTextures,
-                this.mGUIName,
-                this.mNEIName);
+        return new CropGeneExtractor(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
     }
 
     public static int getMaxCropTier(int mTier) {
@@ -111,19 +101,12 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     @Override
     public int checkRecipe(boolean skipOC) {
         ItemStack aStack = getInputAt(0);
-        ItemStack bStack = getInputAt(1);
+        ItemStack bStack = getStackInSlot(getCircuitSlot());
         ItemStack tosave = getSpecialSlot();
 
-        if (ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)
-                && ItemList.Circuit_Integrated.isStackEqual(aStack, true, true)) {
-            ItemStack helper = bStack;
-            bStack = aStack;
-            aStack = helper;
-        }
-
         if (ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)
-                && ItemList.Circuit_Integrated.isStackEqual(bStack, true, true)
-                && ItemList.Tool_DataOrb.isStackEqual(tosave, false, true)) {
+                && ItemList.Tool_DataOrb.isStackEqual(tosave, false, true)
+                && bStack != null) {
             NBTTagCompound tNBT = aStack.getTagCompound();
             if (tNBT == null || tNBT.getString("name").isEmpty()) return DID_NOT_FIND_RECIPE;
             if (getOutputAt(0) != null) return DID_NOT_FIND_RECIPE;
@@ -166,14 +149,13 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
                 return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
             return FOUND_AND_SUCCESSFULLY_USED_RECIPE;
         }
-
         return DID_NOT_FIND_RECIPE;
     }
 
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient((String) GregTech_API.sSoundList.get(212), 10, 1.0F, aX, aY, aZ);
+            GT_Utility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
         }
     }
 
@@ -183,21 +165,20 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
-        if (ItemList.Circuit_Integrated.isStackEqual(aStack, true, true)
-                || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
-            return isValidSlot(aIndex) && aStack != null
-                    && aIndex < mInventory.length
-                    && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
-                    && allowPutStack(
-                            getBaseMetaTileEntity(),
-                            aIndex,
-                            ForgeDirection.getOrientation(ordinalSide),
-                            aStack);
+        if (ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) return isValidSlot(aIndex) && aStack != null
+                && aIndex < mInventory.length
+                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && allowPutStack(getBaseMetaTileEntity(), aIndex, ForgeDirection.getOrientation(ordinalSide), aStack);
         return false;
     }
 
     @Override
     public boolean useModularUI() {
+        return true;
+    }
+
+    @Override
+    public boolean allowSelectCircuit() {
         return true;
     }
 
@@ -215,13 +196,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     protected SlotWidget createItemInputSlot(int index, IDrawable[] backgrounds, Pos2d pos) {
-        if (index == 0) {
-            return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
-                    .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_CIRCUIT);
-        } else {
-            return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
-                    .setBackground(getGUITextureSet().getItemSlot(), CPP_UITextures.OVERLAY_SLOT_SEED);
-        }
+        return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
+                .setBackground(getGUITextureSet().getItemSlot(), CPP_UITextures.OVERLAY_SLOT_SEED);
     }
 
     @Override

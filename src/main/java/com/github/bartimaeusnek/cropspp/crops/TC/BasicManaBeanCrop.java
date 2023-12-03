@@ -1,7 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.TC;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -10,10 +10,10 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 import com.github.bartimaeusnek.croploadcore.BlockGetterTC;
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicThaumcraftCrop;
 
+import ic2.api.crops.Crops;
 import ic2.api.crops.ICropTile;
 import thaumcraft.api.ItemApi;
 import thaumcraft.api.aspects.Aspect;
@@ -28,7 +28,23 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     public BasicManaBeanCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
+        // it used to use a method that actually do nothing, at least this works
+        Crops.instance.registerBaseSeed(thaumcraft.api.ItemApi.getItem("itemManaBean", 0), this, 1, 1, 1, 1);
+    }
+
+    @Override
+    public String name() {
+        return "Mana Bean";
+    }
+
+    @Override
+    public String discoveredBy() {
+        return "kuba6000";
+    }
+
+    @Override
+    public String[] attributes() {
+        return new String[] { "Berry", "Bean", "Magic", "Colorful" };
     }
 
     @Override
@@ -50,40 +66,31 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        if (blockCrystal == null) blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0);
-        if (crop.getSize() == maxSize()) return false;
-        if (crop.getSize() > 1) {
-            return crop.isBlockBelow(blockCrystal);
-        } else return true;
+    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        return (int) ((double) humidity / 1.3D + (double) nutrients + (double) air / 0.7);
     }
 
     @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        // Requires no humidity but nutrients.
-        return (int) ((double) humidity * 1.3 + (double) nutrients * 1 + (double) air * 0.7);
+    public boolean canGrow(ICropTile crop) {
+        // crystal cluster doesn't exist? no growing
+        if (crop.getSize() >= maxSize()) return false;
+        else if (blockCrystal == null && (blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0)) == null)
+            return false;
+        else if (crop.getSize() > 1) return crop.isBlockBelow(blockCrystal);
+        return true;
     }
 
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 2 ? 1200 : 800;
-    }
-
-    @Override
-    public String[] attributes() {
-        return new String[] { "Berry", "Bean", "Magic", "Colorful" };
-    }
-
-    @Override
-    public String name() {
-        return "Mana Bean";
+        return crop.getSize() >= this.maxSize() - 1 ? 1200 : 800;
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
         ItemStack bean = this.getDisplayItem().copy();
-        if (blockCrystal == null) blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0);
+        if (blockCrystal == null && (blockCrystal = BlockGetterTC.getBlock_asBlock("blockCrystal", 0)) == null)
+            return null;
         World w = crop.getWorld();
         ChunkCoordinates location = crop.getLocation();
         int option = 0;
@@ -102,6 +109,14 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
     }
 
     @Override
+    public List<String> getCropInformation() {
+        return Arrays.asList(
+                "Needs a Crystal Cluster below to fully mature.",
+                "Has increased humidity requirements (x1.3)",
+                "Has decreased air requirements (x0.7)");
+    }
+
+    @Override
     public ItemStack getDisplayItem() {
         if (manaBean == null) {
             aspects = new ArrayList<>(5);
@@ -116,13 +131,4 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
         return manaBean;
     }
 
-    @Override
-    public String discoveredBy() {
-        return "kuba6000";
-    }
-
-    @Override
-    public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a Crystal Cluster below to fully mature.");
-    }
 }

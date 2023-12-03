@@ -43,12 +43,12 @@ public class BoPBerryCrop extends BasicBerryCrop {
 
     @Override
     public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 3;
+        return crop.getSize() < this.maxSize();
     }
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 3;
+        return crop.getSize() >= this.maxSize();
     }
 
     @Override

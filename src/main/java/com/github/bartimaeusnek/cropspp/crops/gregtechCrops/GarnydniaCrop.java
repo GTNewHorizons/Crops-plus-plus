@@ -1,6 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -27,18 +27,23 @@ public class GarnydniaCrop extends BasicCrop {
     }
 
     @Override
-    public String name() {
-        return "Garnydinia";
-    }
-
-    @Override
     public int tier() {
         return 7;
     }
 
     @Override
-    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        return (int) Math.floor((double) humidity * 0.5 + (double) nutrients * 2.0 + (double) air * 0.5);
+    public String name() {
+        return "Garnydinia";
+    }
+
+    @Override
+    public String discoveredBy() {
+        return "moronwmachinegun";
+    }
+
+    @Override
+    public String[] attributes() {
+        return new String[] { "Shiny", "Crystal", "Red", "Yellow", "Metal" };
     }
 
     @Override
@@ -60,8 +65,9 @@ public class GarnydniaCrop extends BasicCrop {
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Shiny", "Crystal", "Red", "Yellow", "Metal" };
+    public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+        // no documentation so i'm leaving it alone instead of inverting the effect
+        return (int) Math.floor((double) humidity / 0.5D + (double) nutrients / 2.0D + (double) air / 0.5D);
     }
 
     @Override
@@ -70,19 +76,22 @@ public class GarnydniaCrop extends BasicCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile iCropTile) {
-        return iCropTile.getSize() < 2 || iCropTile.getSize() == 2 && isBlockBelow(iCropTile);
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        return 1;
+    }
+
+    @Override
+    public boolean canGrow(ICropTile crop) {
+        if (!super.canGrow(crop)) return false;
+        if (crop.getSize() >= this.maxSize() - 1) return isBlockBelow(crop);
+        return true;
     }
 
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        if (crop.getSize() == 0) return 3300;
-        return crop.getSize() == this.maxSize() - 1 ? 550 : 300;
-    }
-
-    public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a block or ore of Yellow or Red Garnet below to fully mature.");
+        // this used to have a stage 0 of 3300 ticks, but stage 0 is never a thing sadly.
+        return crop.getSize() >= this.maxSize() - 1 ? 550 : 300;
     }
 
     /**
@@ -130,13 +139,8 @@ public class GarnydniaCrop extends BasicCrop {
     }
 
     @Override
-    public String discoveredBy() {
-        return "moronwmachinegun";
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile iCropTile) {
-        return iCropTile.getSize() == this.maxSize();
+        return iCropTile.getSize() >= this.maxSize();
     }
 
     @Override
@@ -160,8 +164,11 @@ public class GarnydniaCrop extends BasicCrop {
     }
 
     @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
-        return 1;
+    public List<String> getCropInformation() {
+        return Arrays.asList(
+                "Needs a block or ore of Yellow or Red Garnet below to fully mature.",
+                "Has decreased humidity and air requirements (x0.5)",
+                "Has increased nutrient requirements (x2.0)");
     }
 
     @Override

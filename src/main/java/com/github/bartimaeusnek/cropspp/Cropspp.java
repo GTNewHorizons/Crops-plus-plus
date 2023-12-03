@@ -36,8 +36,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
                 + "after:ExtraTrees; "
                 + "after:witchery; "
                 + "after:gregtech; "
-                + "after:TwilightForest; "
-                + "after:dreamcraft; ")
+                + "after:TwilightForest; ")
 public final class Cropspp {
 
     public static final String name = "Crops++";
@@ -51,7 +50,6 @@ public final class Cropspp {
     @EventHandler
     public void preInit(FMLPreInitializationEvent preinit) {
         CropLoader.load(preinit);
-
         new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1);
         CropItemList.cropGeneExtractorLV.set(
                 new CropGeneExtractor(12501, "Basic Crop Gene Extractor", "Basic Crop Gene Extractor", 1)
@@ -134,14 +132,14 @@ public final class Cropspp {
         CropItemList.cropSynthesiserUHV.set(
                 new CropSynthesiser(12527, "Advanced Crop Synthesiser IIX", "Advanced Crop Synthesiser IIX", 9)
                         .getStackForm(1L));
+        new CppFluids();
+
+        CppItems.register_Items();
+        CppItems.OreDictItems();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent init) {
-        final CppFluids CppFluids = new CppFluids();
-
-        CppItems.register_Items();
-        CppItems.OreDictItems();
         CppItems.register_recipes();
         BiomeHumidityBonus.apply();
     }

@@ -10,9 +10,12 @@ import ic2.api.crops.ICropTile;
 
 public class SnowbellCrop extends BasicWitcheryCrop {
 
+    private static final String seedOreName = "seedSnowbell";
+    private static final String cropOreName = "cropSnowbell";
+
     public SnowbellCrop() {
         super();
-        OreDict.BSget("seed" + name(), this);
+        OreDict.BSget(seedOreName, this);
     }
 
     @Override
@@ -27,11 +30,11 @@ public class SnowbellCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("item" + name());
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("item" + this.name());
+        return OreDict.ISget(cropOreName);
     }
 }

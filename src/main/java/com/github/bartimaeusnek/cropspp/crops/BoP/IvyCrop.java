@@ -19,23 +19,8 @@ public class IvyCrop extends VineCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 3;
-    }
-
-    @Override
-    public int maxSize() {
-        return 3;
-    }
-
-    @Override
     public String name() {
         return "Ivy";
-    }
-
-    @Override
-    public String discoveredBy() {
-        return "bartimaeusnek";
     }
 
     @Override
@@ -44,8 +29,18 @@ public class IvyCrop extends VineCrop {
     }
 
     @Override
+    public String discoveredBy() {
+        return "bartimaeusnek";
+    }
+
+    @Override
+    public int maxSize() {
+        return 3;
+    }
+
+    @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 3;
+        return crop.getSize() >= this.maxSize();
     }
 
     @Override

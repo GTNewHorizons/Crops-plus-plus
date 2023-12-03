@@ -17,8 +17,6 @@ import ic2.api.crops.ICropTile;
 
 public class GrassCrop extends BasicDecorationCrop {
 
-    private int random;
-
     public GrassCrop() {
         super();
         OreDict.BSget("cropGrass", this);
@@ -27,6 +25,21 @@ public class GrassCrop extends BasicDecorationCrop {
     @Override
     public int tier() {
         return 0;
+    }
+
+    @Override
+    public String name() {
+        return "Grass";
+    }
+
+    @Override
+    public String[] attributes() {
+        return new String[] { "Green", "Bad" };
+    }
+
+    @Override
+    public boolean isWeed(ICropTile crop) {
+        return true;
     }
 
     @Override
@@ -48,8 +61,8 @@ public class GrassCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public String name() {
-        return "Grass";
+    public int maxSize() {
+        return 4;
     }
 
     @Override
@@ -58,8 +71,34 @@ public class GrassCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public boolean isWeed(ICropTile crop) {
-        return true;
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        return (byte) ((int) crop.getSize() - 1);
+    }
+
+    @Override
+    public boolean canBeHarvested(ICropTile crop) {
+        return crop.getSize() > 1;
+    }
+
+    @Override
+    public float dropGainChance() {
+        return (float) 1;
+    }
+
+    @Override
+    public ItemStack getGain(ICropTile crop) {
+        // 32 = dead bush
+        if (crop.getSize() >= this.maxSize()) return new ItemStack(Item.getItemById(32), 1, 0);
+        if (crop.getSize() == this.maxSize() - 1) {
+            // 175:3 = large fern
+            // 31:2 = Tall Grass (Fern)
+            return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 3)
+                    : new ItemStack(Item.getItemById(31), 1, 2);
+        }
+        // 175:3 = Double Tall Grass
+        // 31:1 = Tall Grass
+        return MyRandom.intrandom(0, 10) == 9 ? new ItemStack(Item.getItemById(175), 1, 2)
+                : new ItemStack(Item.getItemById(31), 1, 1);
     }
 
     @Override
@@ -76,65 +115,13 @@ public class GrassCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public float dropGainChance() {
-        return (float) 1;
-    }
-
-    @Override
-    public int maxSize() {
-        return 4;
-    }
-
-    @Override
-    public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() > 1;
-    }
-
-    @Override
-    public String[] attributes() {
-        return new String[] { "Green", "Bad" };
-    }
-
-    @Override
-    public ItemStack getGain(ICropTile crop) {
-        if (crop.getSize() == 4) {
-            return new ItemStack(Item.getItemById(32), 1, 0);
-        }
-        int metaId9, otherMetaId;
-        if (crop.getSize() == 3) {
-            metaId9 = 3;
-            otherMetaId = 2;
-        } else {
-            metaId9 = 2;
-            otherMetaId = 1;
-        }
-
-        random = MyRandom.intrandom(0, 10);
-        if (random == 9) {
-            return new ItemStack(Item.getItemById(175), 1, metaId9);
-        }
-
-        return new ItemStack(Item.getItemById(31), 1, otherMetaId);
-
-    }
-
-    @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4;
-    }
-
-    @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
-        return (byte) ((int) crop.getSize() - 1);
-    }
-
-    @Override
     public List<String> getCropInformation() {
-        return Arrays.asList(new String[] { "Is a weed", "Hurt Player on collision, when fully grown" });
+        return Arrays.asList("Is a weed", "Hurt Player on collision, when fully grown");
     }
 
     @Override
     public ItemStack getDisplayItem() {
+        // 31:1 Tall Grass
         return new ItemStack(Item.getItemById(31), 1, 1);
     }
 }

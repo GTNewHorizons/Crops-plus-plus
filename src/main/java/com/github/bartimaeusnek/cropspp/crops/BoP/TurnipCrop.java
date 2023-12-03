@@ -14,10 +14,12 @@ import ic2.api.crops.ICropTile;
 
 public class TurnipCrop extends BasicFoodCrop {
 
+    private static final String cropOreName = "cropTurnip";
+
     public TurnipCrop() {
         super();
-        OreDict.BSget("crop" + this.name(), this);
-        OreDict.BSget("seed" + this.name(), this);
+        // this used to register both crop and seed, but it was redundant thanks to the crop loader core code
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
@@ -26,13 +28,13 @@ public class TurnipCrop extends BasicFoodCrop {
     }
 
     @Override
-    public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + this.name());
+    public String[] attributes() {
+        return new String[] { "Food", "Purple", "Carrots" };
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Food", "Purple", "Carrots" };
+    public ItemStack getGain(ICropTile crop) {
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @SideOnly(Side.CLIENT)
@@ -48,6 +50,6 @@ public class TurnipCrop extends BasicFoodCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+        return OreDict.ISget(cropOreName);
     }
 }

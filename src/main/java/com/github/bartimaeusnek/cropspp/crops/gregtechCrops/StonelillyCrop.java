@@ -15,7 +15,7 @@ import ic2.api.crops.ICropTile;
 
 public class StonelillyCrop extends BasicDecorationCrop {
 
-    private String color;
+    private final String color;
 
     public StonelillyCrop(String color) {
         super();
@@ -55,95 +55,67 @@ public class StonelillyCrop extends BasicDecorationCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == (this.maxSize() - 1) && crop.isBlockBelow(Blocks.end_stone) ? 550 : 300;
+        // this used to check if the crop was on final stage with end stone
+        // I added a check to only do this check when it's yellow stone lily
+        // since it's the only one that can even use it to grow.
+        if (this.color.equals("Yellow") && crop.getSize() >= this.maxSize() - 1 && crop.isBlockBelow(Blocks.end_stone))
+            return 550;
+        return 300;
     }
 
     @Override
     public boolean canGrow(ICropTile crop) {
+        if (!super.canGrow(crop)) return false;
         // debug Override
-        if (ConfigValues.debug) return crop.getSize() < this.maxSize();
-
-        boolean ret = false;
-        switch (crop.getSize()) {
-            case 0: {
-                ret = true;
-                break;
-            }
-            case 1: {
-                ret = true;
-                break;
-            }
-            case 2: {
-                switch (color) {
-                    case "Red": {
-                        if (crop.isBlockBelow("stoneGraniteRed") || crop.isBlockBelow("blockGranite")) ret = true;
-                        break;
-                    }
-                    case "Black": {
-                        if (crop.isBlockBelow("stoneGraniteBlack") || crop.isBlockBelow("stoneBasalt")) ret = true;
-                        break;
-                    }
-                    case "White": {
-                        if (crop.isBlockBelow("blockMarble") || crop.isBlockBelow("blockDiorite")) ret = true;
-                        break;
-                    }
-                    case "Gray": {
-                        if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
-                                || crop.isBlockBelow("blockAndesite"))
-                            ret = true;
-                        break;
-                    }
-                    case "Yellow": {
-                        if (crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
-                                || crop.isBlockBelow(Blocks.sandstone))
-                            ret = true;
-                        break;
-                    }
-                    case "Nether": {
-                        if (crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick)) ret = true;
-                        break;
-                    }
-                }
-            }
+        if (ConfigValues.debug) return true;
+        // if crop is not on last stage, it can grow anyway
+        if (crop.getSize() < this.maxSize() - 1) return true;
+        // if crop is on last stage, it needs the block
+        switch (color) {
+            case "Red":
+                return crop.isBlockBelow("stoneGraniteRed") || crop.isBlockBelow("blockGranite");
+            case "Black":
+                return crop.isBlockBelow("stoneGraniteBlack") || crop.isBlockBelow("stoneBasalt");
+            case "White":
+                return crop.isBlockBelow("blockMarble") || crop.isBlockBelow("blockDiorite");
+            case "Gray":
+                return crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
+                        || crop.isBlockBelow("blockAndesite");
+            case "Yellow":
+                return crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
+                        || crop.isBlockBelow(Blocks.sandstone);
+            case "Nether":
+                return crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick);
+            default:
+                // if this line executes consider it a UB
+                return false;
         }
-        return ret;
     }
 
     @Override
     public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
-        return (int) ((double) humidity * 0.8 + (double) nutrients * 1.4 + (double) air * 0.8);
+        return (int) ((double) humidity / 0.8D + (double) nutrients / 1.4D + (double) air / 0.8D);
     }
 
     @Override
     public String[] attributes() {
-        String[] ret = null;
         switch (color) {
-            case "Red": {
-                ret = new String[] { color, "Stone", "Fire" };
-                break;
-            }
-            case "Black": {
-                ret = new String[] { color, "Stone", "Dark" };
-                break;
-            }
-            case "White": {
-                ret = new String[] { color, "Stone", "Shiny" };
-                break;
-            }
-            case "Gray": {
-                ret = new String[] { color, "Stone", "Metal" };
-                break;
-            }
-            case "Yellow": {
-                ret = new String[] { color, "Stone", "Alien" };
-                break;
-            }
-            case "Nether": {
-                ret = new String[] { color, "Stone", "Evil" };
-                break;
-            }
+            case "Red":
+                return new String[] { color, "Stone", "Fire" };
+            case "Black":
+                return new String[] { color, "Stone", "Dark" };
+            case "White":
+                return new String[] { color, "Stone", "Shiny" };
+            case "Gray":
+                return new String[] { color, "Stone", "Metal" };
+            case "Yellow":
+                return new String[] { color, "Stone", "Alien" };
+            case "Nether":
+                return new String[] { color, "Stone", "Evil" };
+            default:
+                // if this line executes consider it a UB
+                return new String[] { color, "Stone" };
         }
-        return ret;
     }
 
     @Override
@@ -182,41 +154,41 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        ItemStack ret = null;
         switch (color) {
             case "Red": {
-                if (crop.isBlockBelow("stoneGraniteRed")) ret = Materials.GraniteRed.getDust(9);
-                if (crop.isBlockBelow("blockGranite")) ret = CCropUtility.getCopiedOreStack("blockGranite");
+                if (crop.isBlockBelow("stoneGraniteRed")) return Materials.GraniteRed.getDust(9);
+                if (crop.isBlockBelow("blockGranite")) return CCropUtility.getCopiedOreStack("blockGranite");
                 break;
             }
             case "Black": {
-                if (crop.isBlockBelow("stoneGraniteBlack")) ret = Materials.GraniteBlack.getDust(9);
-                if (crop.isBlockBelow("stoneBasalt")) ret = Materials.Basalt.getDust(9);
+                if (crop.isBlockBelow("stoneGraniteBlack")) return Materials.GraniteBlack.getDust(9);
+                if (crop.isBlockBelow("stoneBasalt")) return Materials.Basalt.getDust(9);
                 break;
             }
             case "White": {
-                if (crop.isBlockBelow("blockMarble")) ret = Materials.Marble.getDust(9);
-                if (crop.isBlockBelow("blockDiorite")) ret = CCropUtility.getCopiedOreStack("blockDiorite");
+                if (crop.isBlockBelow("blockMarble")) return Materials.Marble.getDust(9);
+                if (crop.isBlockBelow("blockDiorite")) return CCropUtility.getCopiedOreStack("blockDiorite");
                 break;
             }
             case "Gray": {
                 if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone))
-                    ret = Materials.Stone.getDust(9);
-                if (crop.isBlockBelow("blockAndesite")) ret = CCropUtility.getCopiedOreStack("blockAndesite");
+                    return Materials.Stone.getDust(9);
+                if (crop.isBlockBelow("blockAndesite")) return CCropUtility.getCopiedOreStack("blockAndesite");
                 break;
             }
             case "Yellow": {
-                if (crop.isBlockBelow(Blocks.end_stone)) ret = Materials.Endstone.getDust(2);
+                if (crop.isBlockBelow(Blocks.end_stone)) return Materials.Endstone.getDust(2);
                 if ((crop.isBlockBelow(Blocks.sand)) || (crop.isBlockBelow(Blocks.sandstone)))
-                    ret = new ItemStack(Blocks.sand, 4);
+                    return new ItemStack(Blocks.sand, 4);
                 break;
             }
             case "Nether": {
-                if (crop.isBlockBelow(Blocks.netherrack)) ret = Materials.Netherrack.getDust(9);
-                if (crop.isBlockBelow(Blocks.nether_brick)) ret = Materials.Netherrack.getDust(9);
+                if (crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick))
+                    return Materials.Netherrack.getDust(9);
                 break;
             }
         }
-        return ret;
+        // this is user error if this executes, not a UB
+        return null;
     }
 }

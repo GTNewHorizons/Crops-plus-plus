@@ -17,6 +17,23 @@ import ic2.api.crops.ICropTile;
 
 public class GoldfishCrop extends BasicDecorationCrop {
 
+    // be DRY, not WET
+    private static final String screamSoundId = "mob.ghast.scream";
+
+    private boolean ShouldInteract(ICropTile crop, EntityPlayer player) {
+        if (!ConfigValues.ILoveScreaming) return true;
+        player.playSound(screamSoundId, getScreamVolume(crop), getScreamPitch(crop));
+        return true;
+    }
+
+    private float getScreamVolume(ICropTile crop) {
+        return crop.getSize() >= this.maxSize() ? 5.0f : crop.getSize();
+    }
+
+    private float getScreamPitch(ICropTile crop) {
+        return crop.getSize() >= this.maxSize() ? 0.5f : (this.maxSize() + 1) + (-1) * crop.getSize();
+    }
+
     public GoldfishCrop() {
         super();
     }
@@ -24,11 +41,6 @@ public class GoldfishCrop extends BasicDecorationCrop {
     @Override
     public int tier() {
         return 4;
-    }
-
-    @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(CppItems.Goldfisch);
     }
 
     @Override
@@ -47,33 +59,33 @@ public class GoldfishCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public boolean rightclick(ICropTile crop, EntityPlayer player) {
-        if (!ConfigValues.ILoveScreaming) return crop.harvest(true);
+    public ItemStack getGain(ICropTile crop) {
+        return new ItemStack(CppItems.Goldfisch);
+    }
 
-        boolean ret;
-        if (((int) crop.getSize()) != this.maxSize()) {
-            player.playSound("mob.ghast.scream", crop.getSize(), (maxSize() + 1) + (-1) * crop.getSize());
-            ret = crop.harvest(true);
-        } else if (((int) crop.getSize()) == this.maxSize()) {
-            player.playSound("mob.ghast.scream", 5, (float) 0.5);
-            ret = crop.harvest(true);
-        } else ret = false;
-        return ret;
+    @Override
+    public void tick(ICropTile crop) {
+        if (ConfigValues.ILoveScreaming) {
+            if (MyRandom.intrandom(512, 0) == 42) {
+                crop.getWorld().playSoundEffect(
+                        crop.getLocation().posX,
+                        crop.getLocation().posY,
+                        crop.getLocation().posZ,
+                        screamSoundId,
+                        this.getScreamVolume(crop),
+                        this.getScreamPitch(crop));
+            }
+        }
+    }
+
+    @Override
+    public boolean rightclick(ICropTile crop, EntityPlayer player) {
+        return ShouldInteract(crop, player) && crop.harvest(true);
     }
 
     @Override
     public boolean leftclick(ICropTile crop, EntityPlayer player) {
-        if (!ConfigValues.ILoveScreaming) return crop.pick(true);
-
-        boolean ret;
-        if (((int) crop.getSize()) != this.maxSize()) {
-            player.playSound("mob.ghast.scream", crop.getSize(), (maxSize() + 1) + (-1) * crop.getSize());
-            ret = crop.pick(true);
-        } else if (((int) crop.getSize()) == this.maxSize()) {
-            player.playSound("mob.ghast.scream", 5, (float) 0.5);
-            ret = crop.pick(true);
-        } else ret = false;
-        return ret;
+        return ShouldInteract(crop, player) && crop.pick(true);
     }
 
     @Override
@@ -82,18 +94,11 @@ public class GoldfishCrop extends BasicDecorationCrop {
 
         if (entity instanceof EntityLivingBase) {
             if (entity instanceof EntityPlayer) {
-                if (((int) crop.getSize()) != this.maxSize())
-                    entity.playSound("mob.ghast.scream", crop.getSize(), (maxSize() + 1) + (-1) * crop.getSize());
-                else if (((int) crop.getSize()) == this.maxSize()) entity.playSound("mob.ghast.scream", 5, (float) 0.5);
+                entity.playSound(screamSoundId, this.getScreamVolume(crop), this.getScreamPitch(crop));
             }
-            return ((EntityLivingBase) entity).isSprinting();
+            return entity.isSprinting();
         }
         return false;
-    }
-
-    @Override
-    public ItemStack getGain(ICropTile crop) {
-        return new ItemStack(CppItems.Goldfisch);
     }
 
     @Override
@@ -102,24 +107,8 @@ public class GoldfishCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public void tick(ICropTile crop) {
-        if (ConfigValues.ILoveScreaming) {
-            if (MyRandom.intrandom(512, 0) == 42) {
-                if (crop.getSize() != this.maxSize()) crop.getWorld().playSoundEffect(
-                        crop.getLocation().posX,
-                        crop.getLocation().posY,
-                        crop.getLocation().posZ,
-                        "mob.ghast.scream",
-                        crop.getSize(),
-                        (maxSize() + 1) + (-1) * crop.getSize());
-                else if (crop.getSize() == this.maxSize()) crop.getWorld().playSoundEffect(
-                        crop.getLocation().posX,
-                        crop.getLocation().posY,
-                        crop.getLocation().posZ,
-                        "mob.ghast.scream",
-                        crop.getSize(),
-                        (maxSize() + 1) + (-1) * crop.getSize());
-            }
-        }
+    public ItemStack getDisplayItem() {
+        return new ItemStack(CppItems.Goldfisch);
     }
+
 }

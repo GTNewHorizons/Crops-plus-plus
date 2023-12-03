@@ -10,9 +10,12 @@ import ic2.api.crops.ICropTile;
 
 public class BelladonnaCrop extends BasicWitcheryCrop {
 
+    private static final String seedOreName = "seedBelladonna";
+    private static final String cropOreName = "itemBelladonna";
+
     public BelladonnaCrop() {
         super();
-        OreDict.BSget("seed" + name(), this);
+        OreDict.BSget(seedOreName, this);
     }
 
     @Override
@@ -27,11 +30,11 @@ public class BelladonnaCrop extends BasicWitcheryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("item" + name());
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("item" + this.name());
+        return OreDict.ISget(cropOreName);
     }
 }

@@ -14,10 +14,12 @@ import ic2.api.crops.ICropTile;
 
 public class WildCarrotsCrop extends BasicFoodCrop {
 
+    private static final String cropOreName = "cropWildcarrots";
+
     public WildCarrotsCrop() {
         super();
-        OreDict.BSget("cropWildcarrots", this);
-        OreDict.BSget("seedWildcarrots", this);
+        // this used to register both crop and seed, but it was redundant thanks to the crop loader core code
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
@@ -26,8 +28,13 @@ public class WildCarrotsCrop extends BasicFoodCrop {
     }
 
     @Override
+    public String[] attributes() {
+        return new String[] { "Food", "White", "Carrots" };
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("cropWildcarrots");
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @SideOnly(Side.CLIENT)
@@ -42,12 +49,7 @@ public class WildCarrotsCrop extends BasicFoodCrop {
     }
 
     @Override
-    public String[] attributes() {
-        return new String[] { "Food", "White", "Carrots" };
-    }
-
-    @Override
     public ItemStack getDisplayItem() {
-        return OreDict.ISget("cropWildcarrots");
+        return OreDict.ISget(cropOreName);
     }
 }

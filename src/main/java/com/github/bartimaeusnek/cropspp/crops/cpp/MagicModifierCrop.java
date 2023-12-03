@@ -19,13 +19,29 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     }
 
     @Override
+    public int tier() {
+        return 13;
+    }
+
+    @Override
     public String name() {
         return "Magical Nightshade";
     }
 
     @Override
-    public int tier() {
-        return 13;
+    public String discoveredBy() {
+        return "bartimaeusnek";
+    }
+
+    @Override
+    public int getEmittedLight(ICropTile crop) {
+        if (crop.getSize() == this.maxSize()) return 4;
+        else return 0;
+    }
+
+    @Override
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        return 1;
     }
 
     @Override
@@ -44,8 +60,12 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     }
 
     @Override
-    public List<String> getCropInformation() {
-        return Collections.singletonList("Needs a block of Ichorium below to fully mature.");
+    public boolean canGrow(ICropTile crop) {
+        if (!this.canGrowBase(crop)) return false;
+        else if (ConfigValues.debug) return true;
+        else if (crop.getSize() >= this.maxSize() - 1)
+            return crop.isBlockBelow("blockIchorium") || !OreDictionary.doesOreNameExist("blockIchorium");
+        else return true;
     }
 
     @Override
@@ -60,38 +80,17 @@ public class MagicModifierCrop extends PrimordialPearlBerryCrop {
     }
 
     @Override
-    public int getEmittedLight(ICropTile crop) {
-        if (crop.getSize() == 4) return 4;
-        else return 0;
-    }
-
-    @Override
-    public boolean canGrow(ICropTile crop) {
-        boolean ret = false;
-        if (crop.getSize() < 3) ret = true;
-        else if ((crop.getSize() == 3 && crop.isBlockBelow("blockIchorium"))
-                || (crop.getSize() == 3 && !OreDictionary.doesOreNameExist("blockIchorium")))
-            ret = true;
-        return ret;
-    }
-
-    @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
-        return 1;
-    }
-
-    @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(CppItems.Modifier, 1, 1);
-    }
-
-    @Override
     public ItemStack getGain(ICropTile crop) {
         return new ItemStack(CppItems.Modifier, 1, 1);
     }
 
     @Override
-    public String discoveredBy() {
-        return "bartimaeusnek";
+    public List<String> getCropInformation() {
+        return Collections.singletonList("Needs a block of Ichorium below to fully mature.");
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return new ItemStack(CppItems.Modifier, 1, 1);
     }
 }

@@ -10,19 +10,21 @@ import ic2.api.crops.ICropTile;
 
 public class BarleyCrop extends BasicFoodCrop {
 
+    private static final String cropOreName = "cropBarley";
+
     public BarleyCrop() {
         super();
-        OreDict.BSget("crop" + name().replaceAll(" ", ""), this);
-    }
-
-    @Override
-    public String name() {
-        return "Barley";
+        OreDict.BSget(cropOreName, this);
     }
 
     @Override
     public int tier() {
         return 2;
+    }
+
+    @Override
+    public String name() {
+        return "Barley";
     }
 
     @Override
@@ -36,22 +38,18 @@ public class BarleyCrop extends BasicFoodCrop {
     }
 
     @Override
-    public boolean canGrow(ICropTile crop) {
-        return crop.getSize() < 4 && crop.getLightLevel() >= 9;
-    }
-
-    @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 4;
-    }
-
-    @Override
-    public ItemStack getDisplayItem() {
-        return OreDict.ISget("crop" + this.name());
+        return crop.getSize() >= this.maxSize();
     }
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return CCropUtility.getCopiedOreStack("crop" + this.name());
+        return CCropUtility.getCopiedOreStack(cropOreName);
     }
+
+    @Override
+    public ItemStack getDisplayItem() {
+        return OreDict.ISget(cropOreName);
+    }
+
 }

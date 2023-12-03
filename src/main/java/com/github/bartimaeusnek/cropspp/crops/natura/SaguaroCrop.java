@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import static gregtech.api.enums.Mods.Natura;
+
 import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
@@ -31,9 +33,27 @@ public class SaguaroCrop extends CactiCrop {
     }
 
     @Override
+    public byte getSizeAfterHarvest(ICropTile crop) {
+        if (crop.getSize() >= this.maxSize() - 1) return 1;
+        else return 2;
+    }
+
+    @Override
+    public boolean canBeHarvested(ICropTile crop) {
+        return crop.getSize() >= this.maxSize() - 1;
+    }
+
+    @Override
+    public int growthDuration(ICropTile crop) {
+        // used to have a 450 growth time for stage > 2
+        // but that was impossible to reach since the crop reaches maturity at 3
+        return ConfigValues.debug ? 1 : 225;
+    }
+
+    @Override
     public ItemStack getGain(ICropTile crop) {
-        if (Mods.Natura.isModLoaded()) {
-            if (crop.getSize() == 2) return new ItemStack(NContent.saguaro, 2, 0);
+        if (Natura.isModLoaded()) {
+            if (crop.getSize() == this.maxSize() - 1) return new ItemStack(NContent.saguaro, 2, 0);
             else return new ItemStack(NContent.seedFood, 3, 0);
         } else {
             return new ItemStack(CppItems.BerryItems, 1, 4);
@@ -41,25 +61,8 @@ public class SaguaroCrop extends CactiCrop {
     }
 
     @Override
-    public int growthDuration(ICropTile crop) {
-        if (ConfigValues.debug) return 1;
-        return crop.getSize() > 2 ? 450 : 225;
-    }
-
-    @Override
-    public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() >= 2;
-    }
-
-    @Override
-    public byte getSizeAfterHarvest(ICropTile crop) {
-        if (crop.getSize() == 2) return 1;
-        else return 2;
-    }
-
-    @Override
     public ItemStack getDisplayItem() {
-        if (Mods.Natura.isModLoaded()) return new ItemStack(NContent.seedFood, 3, 0);
+        if (Natura.isModLoaded()) return new ItemStack(NContent.seedFood, 3, 0);
         else return new ItemStack(CppItems.BerryItems, 1, 4);
     }
 }

@@ -18,7 +18,9 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
     @Override
     public int growthDuration(ICropTile crop) {
         if (ConfigValues.debug) return 1;
-        return crop.getSize() == 2 ? 2200 : 1800;
+        // last stage is longer
+        if (crop.getSize() >= this.maxSize() - 1) return 2200;
+        return 1800;
     }
 
     @Override
@@ -46,6 +48,6 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
 
     @Override
     public boolean canBeHarvested(ICropTile crop) {
-        return crop.getSize() == 3;
+        return crop.getSize() >= this.maxSize();
     }
 }

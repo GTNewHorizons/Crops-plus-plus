@@ -19,11 +19,6 @@ public class PapyrusCrop extends BasicDecorationCrop {
     }
 
     @Override
-    public ItemStack getDisplayItem() {
-        return new ItemStack(Items.paper, 1, 0);
-    }
-
-    @Override
     public String name() {
         return "Papyrus";
     }
@@ -35,6 +30,11 @@ public class PapyrusCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
+        return new ItemStack(Items.paper, 1, 0);
+    }
+
+    @Override
+    public ItemStack getDisplayItem() {
         return new ItemStack(Items.paper, 1, 0);
     }
 }
