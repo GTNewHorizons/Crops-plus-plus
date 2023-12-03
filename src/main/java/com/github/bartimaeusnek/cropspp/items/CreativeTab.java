@@ -1,10 +1,11 @@
 package com.github.bartimaeusnek.cropspp.items;
 
-import gregtech.api.enums.Mods;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import com.github.bartimaeusnek.croploadcore.OreDict;
+
+import gregtech.api.enums.Mods;
 
 public final class CreativeTab extends CreativeTabs {
 
