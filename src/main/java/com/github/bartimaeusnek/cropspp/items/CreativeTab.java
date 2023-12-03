@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.items;
 
+import gregtech.api.enums.Mods;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
