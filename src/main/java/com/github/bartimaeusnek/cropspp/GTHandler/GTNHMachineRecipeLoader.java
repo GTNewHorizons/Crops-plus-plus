@@ -658,10 +658,6 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .itemOutputs(CppItems.Trophy).duration(29826 * HOURS + 9 * MINUTES + 42 * SECONDS + 7 * TICKS).eut(8)
                 .addTo(extruderRecipes);
 
-        GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 1, 0)).outputChances(5000)
-                .fluidOutputs(Materials.UUMatter.getFluid(2)).duration(6 * SECONDS + 8 * TICKS).eut(4)
-                .addTo(fluidExtractionRecipes);
-
         // Chem Refine
         GT_Values.RA.stdBuilder()
                 .itemInputs(
