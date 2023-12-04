@@ -24,12 +24,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.gtnewhorizons.modularui.api.drawable.FallbackableUITexture;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
-import com.gtnewhorizons.modularui.api.math.Size;
-import com.gtnewhorizons.modularui.api.screen.ModularWindow;
-import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
-import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
 import gregtech.api.enums.GT_Values;
@@ -40,6 +37,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
+import gregtech.api.recipe.BasicUIProperties;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.behaviors.Behaviour_DataOrb;
@@ -199,12 +197,12 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
         return true;
     }
 
+    private static final FallbackableUITexture progressBarTexture = GT_UITextures
+            .fallbackableProgressbar("crop_synthesiser", GT_UITextures.PROGRESSBAR_ARROW);
+
     @Override
-    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
-        super.addUIWidgets(builder, buildContext);
-        builder.widget(
-                new ProgressBar().setTexture(GT_UITextures.PROGRESSBAR_ARROW, 20)
-                        .setDirection(ProgressBar.Direction.RIGHT).setPos(new Pos2d(78, 24)).setSize(new Size(20, 18)));
+    protected BasicUIProperties getUIProperties() {
+        return super.getUIProperties().toBuilder().progressBarTexture(progressBarTexture).build();
     }
 
     @Override

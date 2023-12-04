@@ -22,12 +22,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.github.bartimaeusnek.cropspp.GTHandler.CPP_UITextures;
+import com.gtnewhorizons.modularui.api.drawable.FallbackableUITexture;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
-import com.gtnewhorizons.modularui.api.math.Size;
-import com.gtnewhorizons.modularui.api.screen.ModularWindow;
-import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
-import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
 import gregtech.api.enums.GT_Values;
@@ -183,12 +180,12 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
         return true;
     }
 
+    private static final FallbackableUITexture progressBarTexture = GT_UITextures
+            .fallbackableProgressbar("crop_gene_extractor", GT_UITextures.PROGRESSBAR_ARROW);
+
     @Override
-    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
-        super.addUIWidgets(builder, buildContext);
-        builder.widget(
-                new ProgressBar().setTexture(GT_UITextures.PROGRESSBAR_ARROW, 20)
-                        .setDirection(ProgressBar.Direction.RIGHT).setPos(new Pos2d(78, 24)).setSize(new Size(20, 18)));
+    protected BasicUIProperties getUIProperties() {
+        return super.getUIProperties().toBuilder().progressBarTexture(progressBarTexture).build();
     }
 
     @Override
