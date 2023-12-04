@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.croploader;
 
 import static com.github.bartimaeusnek.cropspp.ConfigValues.c;
 import static gregtech.api.enums.Mods.BiomesOPlenty;
+import static gregtech.api.enums.Mods.Natura;
 import static gregtech.api.enums.Mods.PamsHarvestCraft;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.enums.Mods.TinkerConstruct;
@@ -37,7 +38,6 @@ import com.github.bartimaeusnek.cropspp.crops.natura.SaguaroCrop;
 import com.github.bartimaeusnek.cropspp.crops.witchery.GarlicCrop;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import gregtech.api.enums.Mods;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 
@@ -92,12 +92,12 @@ public class CropLoader {
         p.addAll(DreamCraftLoader.load());
         p.addAll(GTLoader.load());
 
-        if (Mods.Natura.isModLoaded()) {
+        if (Natura.isModLoaded()) {
             p.addAll(NaturaLoader.load());
         } else {
             p.add(new CropLoader(new SaguaroCrop(), null));
         }
-        if (Mods.Natura.isModLoaded() || PamsHarvestCraft.isModLoaded()) {
+        if (Natura.isModLoaded() || PamsHarvestCraft.isModLoaded()) {
             p.add(new CropLoader(new CottonCrop(), null));
         }
 

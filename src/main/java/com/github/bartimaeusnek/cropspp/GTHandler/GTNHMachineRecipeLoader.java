@@ -359,14 +359,11 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .addTo(mixerRecipes);
 
         // Brewery
-        if (OreDictionary.getOres("listAllberry").size() >= 1) {
-            for (int i = 0; i < OreDictionary.getOres("listAllberry").size(); i++) {
+        for (ItemStack itemStack : OreDictionary.getOres("listAllberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16)).fluidInputs(Materials.Water.getFluid(750))
+                    .fluidOutputs(new FluidStack(CppFluids.Mash, 750)).duration(6 * SECONDS + 8 * TICKS).eut(4)
+                    .addTo(brewingRecipes);
 
-                GT_Values.RA.stdBuilder().itemInputs(OreDictionary.getOres("listAllberry").get(i).splitStack(16))
-                        .fluidInputs(Materials.Water.getFluid(750)).fluidOutputs(new FluidStack(CppFluids.Mash, 750))
-                        .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(brewingRecipes);
-
-            }
         }
 
         GT_Values.RA.stdBuilder().itemInputs(new ItemStack(Items.sugar, 8))
@@ -381,78 +378,56 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .addTo(extractorRecipes);
 
         // Dyes from Plants
-        for (int i = 0; i < OreDictionary.getOres("cropBlackberry").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(
-                            OreDictionary.getOres("cropBlackberry").get(i).splitStack(16),
-                            Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropBlackberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyeblack"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
 
         }
-        for (int i = 0; i < OreDictionary.getOres("cropBlueberry").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(OreDictionary.getOres("cropBlueberry").get(i).splitStack(16), Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropBlueberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyeblue"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
 
         }
-        for (int i = 0; i < OreDictionary.getOres("cropRaspberry").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(OreDictionary.getOres("cropRaspberry").get(i).splitStack(16), Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropRaspberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyepink"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
         }
-        for (int i = 0; i < OreDictionary.getOres("cropVine").size(); i++) {
-            if (!OreDictionary.getOres("cropVine").get(i).getUnlocalizedName().equals("tile.Thornvines")) {
-
-                GT_Values.RA.stdBuilder()
-                        .itemInputs(OreDictionary.getOres("cropVine").get(i).splitStack(16), Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropVine")) {
+            if (!itemStack.getUnlocalizedName().equals("tile.Thornvines")) {
+                GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                         .fluidInputs(Materials.SulfuricAcid.getFluid(432))
                         .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyegreen"), 288))
                         .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
             } else {
-
-                GT_Values.RA.stdBuilder()
-                        .itemInputs(OreDictionary.getOres("cropVine").get(i).splitStack(16), Materials.Salt.getDust(2))
+                GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                         .fluidInputs(Materials.SulfuricAcid.getFluid(432))
                         .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyeyellow"), 288))
                         .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
 
             }
         }
-        for (int i = 0; i < OreDictionary.getOres("cropCacti").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(OreDictionary.getOres("cropCacti").get(i).splitStack(16), Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropCacti")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyegreen"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
 
         }
-        for (int i = 0; i < OreDictionary.getOres("cropGooseberry").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(
-                            OreDictionary.getOres("cropGooseberry").get(i).splitStack(16),
-                            Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropGooseberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyeyellow"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);
 
         }
-        for (int i = 0; i < OreDictionary.getOres("cropStrawberry").size(); i++) {
-
-            GT_Values.RA.stdBuilder()
-                    .itemInputs(
-                            OreDictionary.getOres("cropStrawberry").get(i).splitStack(16),
-                            Materials.Salt.getDust(2))
+        for (ItemStack itemStack : OreDictionary.getOres("cropStrawberry")) {
+            GT_Values.RA.stdBuilder().itemInputs(itemStack.splitStack(16), Materials.Salt.getDust(2))
                     .itemOutputs(new ItemStack(Items.sugar)).fluidInputs(Materials.SulfuricAcid.getFluid(432))
                     .fluidOutputs(new FluidStack(FluidRegistry.getFluid("dye.chemical.dyered"), 288))
                     .duration(30 * SECONDS).eut(48).addTo(chemicalReactorRecipes);

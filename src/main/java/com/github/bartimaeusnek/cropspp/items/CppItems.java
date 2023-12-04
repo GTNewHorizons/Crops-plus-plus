@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.items;
 
+import static gregtech.api.enums.Mods.Natura;
 import static gregtech.api.enums.Mods.PamsHarvestCraft;
 
 import net.minecraft.init.Items;
@@ -11,7 +12,6 @@ import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import gregtech.api.enums.Mods;
 import ic2.core.Ic2Items;
 
 public final class CppItems {
@@ -46,7 +46,7 @@ public final class CppItems {
                 GameRegistry.registerItem(new ItemBppWateringCan(), "itemWateringCan");
                 GameRegistry.registerItem(new Weedmaker(), "debugitemWeedmaker");
             }
-            if (!Mods.Natura.isModLoaded()) {
+            if (!Natura.isModLoaded()) {
                 GameRegistry.registerItem(BerryItems, "berry");
                 GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(BerryItems, 1, 0));
                 GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(BerryItems, 1, 1));
@@ -96,7 +96,7 @@ public final class CppItems {
             OreDictionary.registerOre("cropSugarbeet", new ItemStack(CppBerries, 1, 1));
         }
 
-        if (!Mods.Natura.isModLoaded()) {
+        if (!Natura.isModLoaded()) {
             ItemStack[] BerryItemsS = new ItemStack[5];
             for (int i = 0; i < 5; ++i) {
                 BerryItemsS[i] = new ItemStack(BerryItems, i);
