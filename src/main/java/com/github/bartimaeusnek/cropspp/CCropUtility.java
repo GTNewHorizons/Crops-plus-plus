@@ -43,26 +43,25 @@ public class CCropUtility {
             return false;
         }
 
-        // If somthing goin on
-        if (world.isRaining()) {
-            BiomeGenBase biomegenbase = world.getBiomeGenForCoords(cord.posX, cord.posZ);
-
-            if (biomegenbase == null) {
-                return false;
-            }
-
-            // No rain
-            if (!biomegenbase.canSpawnLightningBolt()) {
-                return false;
-            }
-
-            // Is raining on block
-            if (world.canBlockSeeTheSky(cord.posX, cord.posY + 1, cord.posZ)) {
-                return true;
-            }
+        if (!world.isRaining()) {
+            return false;
         }
 
-        return false;
+        // If somthing goin on
+        BiomeGenBase biomegenbase = world.getBiomeGenForCoords(cord.posX, cord.posZ);
+
+        if (biomegenbase == null) {
+            return false;
+        }
+
+        // No rain
+        if (!biomegenbase.canSpawnLightningBolt()) {
+            return false;
+        }
+
+        // Is raining on block
+        return world.canBlockSeeTheSky(cord.posX, cord.posY + 1, cord.posZ);
+
     }
 
     public static void damageEntity(Entity ent, float damage) {

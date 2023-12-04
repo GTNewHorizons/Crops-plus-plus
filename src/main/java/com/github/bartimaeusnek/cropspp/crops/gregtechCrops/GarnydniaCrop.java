@@ -100,48 +100,42 @@ public class GarnydniaCrop extends BasicCrop {
     public boolean isBlockBelow(ICropTile aCrop) {
         if (aCrop == null) {
             return false;
-        } else {
-            for (int i = 1; i < this.getrootslength(aCrop); ++i) {
-                Block tBlock = aCrop.getWorld()
-                        .getBlock(aCrop.getLocation().posX, aCrop.getLocation().posY - i, aCrop.getLocation().posZ);
-                if (tBlock instanceof GT_Block_Ores_Abstract) {
-                    TileEntity tTileEntity = aCrop.getWorld().getTileEntity(
-                            aCrop.getLocation().posX,
-                            aCrop.getLocation().posY - i,
-                            aCrop.getLocation().posZ);
-                    if (tTileEntity instanceof GT_TileEntity_Ores) {
-                        Materials tMaterial = GregTech_API.sGeneratedMaterials[((GT_TileEntity_Ores) tTileEntity).mMetaData
-                                % 1000];
-                        if (tMaterial != null && tMaterial != Materials._NULL) {
-                            if (tMaterial == Materials.GarnetRed || tMaterial == Materials.GarnetYellow) {
-                                return true;
-                            }
+        }
 
-                            return false;
-                        }
-                    }
-                } else {
-                    int tMetaID = aCrop.getWorld().getBlockMetadata(
-                            aCrop.getLocation().posX,
-                            aCrop.getLocation().posY - i,
-                            aCrop.getLocation().posZ);
-                    ItemData tAssotiation = GT_OreDictUnificator.getAssociation(new ItemStack(tBlock, 1, tMetaID));
-                    if (tAssotiation != null && tAssotiation.mPrefix.toString().startsWith("ore")
-                            && (tAssotiation.mMaterial.mMaterial == Materials.GarnetRed
-                                    || tAssotiation.mMaterial.mMaterial == Materials.GarnetYellow)) {
-                        return true;
-                    }
+        for (int i = 1; i < this.getrootslength(aCrop); ++i) {
+            Block tBlock = aCrop.getWorld()
+                    .getBlock(aCrop.getLocation().posX, aCrop.getLocation().posY - i, aCrop.getLocation().posZ);
 
-                    if (tAssotiation != null && tAssotiation.mPrefix == OrePrefixes.block
-                            && (tAssotiation.mMaterial.mMaterial == Materials.GarnetRed
-                                    || tAssotiation.mMaterial.mMaterial == Materials.GarnetYellow)) {
-                        return true;
+            if (tBlock instanceof GT_Block_Ores_Abstract) {
+                TileEntity tTileEntity = aCrop.getWorld().getTileEntity(
+                        aCrop.getLocation().posX,
+                        aCrop.getLocation().posY - i,
+                        aCrop.getLocation().posZ);
+                if (tTileEntity instanceof GT_TileEntity_Ores) {
+                    Materials tMaterial = GregTech_API.sGeneratedMaterials[((GT_TileEntity_Ores) tTileEntity).mMetaData
+                            % 1000];
+                    if (tMaterial != null && tMaterial != Materials._NULL) {
+                        return tMaterial == Materials.GarnetRed || tMaterial == Materials.GarnetYellow;
                     }
                 }
+            } else {
+                int tMetaID = aCrop.getWorld().getBlockMetadata(
+                        aCrop.getLocation().posX,
+                        aCrop.getLocation().posY - i,
+                        aCrop.getLocation().posZ);
+                ItemData tAssotiation = GT_OreDictUnificator.getAssociation(new ItemStack(tBlock, 1, tMetaID));
+                if (tAssotiation != null
+                        && (tAssotiation.mPrefix.toString().startsWith("ore")
+                                || tAssotiation.mPrefix == OrePrefixes.block)
+                        && (tAssotiation.mMaterial.mMaterial == Materials.GarnetRed
+                                || tAssotiation.mMaterial.mMaterial == Materials.GarnetYellow)) {
+                    return true;
+                }
             }
-
-            return false;
         }
+
+        return false;
+
     }
 
     @Override
@@ -155,7 +149,9 @@ public class GarnydniaCrop extends BasicCrop {
         ItemStack drop;
         if (XSTR.XSTR_INSTANCE.nextInt(100) >= 50) dropMat = Materials.GarnetRed;
         else dropMat = Materials.GarnetYellow;
+
         int chance = XSTR.XSTR_INSTANCE.nextInt(100);
+
         if (chance >= 95) drop = GT_OreDictUnificator.get(OrePrefixes.gemExquisite, dropMat, 1);
         else if (chance >= 80) drop = dropMat.getGems(1);
         else if (chance == 42) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, Materials.GarnetSand, 1);

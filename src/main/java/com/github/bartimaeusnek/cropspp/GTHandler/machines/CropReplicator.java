@@ -1,6 +1,21 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
-import static gregtech.api.enums.Textures.BlockIcons.*;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_GLOW;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -155,12 +170,8 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
         builder.widget(
-                createProgressBar(
-                        GT_UITextures.PROGRESSBAR_ARROW,
-                        20,
-                        ProgressBar.Direction.RIGHT,
-                        new Pos2d(78, 24),
-                        new Size(20, 18)));
+                new ProgressBar().setTexture(GT_UITextures.PROGRESSBAR_ARROW, 20)
+                        .setDirection(ProgressBar.Direction.RIGHT).setPos(new Pos2d(78, 24)).setSize(new Size(20, 18)));
     }
 
     @Override

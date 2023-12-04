@@ -1,6 +1,21 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
-import static gregtech.api.enums.Textures.BlockIcons.*;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_GLOW;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +38,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
+import gregtech.api.recipe.BasicUIProperties;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.behaviors.Behaviour_DataOrb;
@@ -171,12 +187,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
         builder.widget(
-                createProgressBar(
-                        GT_UITextures.PROGRESSBAR_ARROW,
-                        20,
-                        ProgressBar.Direction.RIGHT,
-                        new Pos2d(78, 24),
-                        new Size(20, 18)));
+                new ProgressBar().setTexture(GT_UITextures.PROGRESSBAR_ARROW, 20)
+                        .setDirection(ProgressBar.Direction.RIGHT).setPos(new Pos2d(78, 24)).setSize(new Size(20, 18)));
     }
 
     @Override
@@ -186,8 +198,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     }
 
     @Override
-    protected SlotWidget createSpecialSlot(IDrawable[] backgrounds, Pos2d pos) {
-        return (SlotWidget) super.createSpecialSlot(backgrounds, pos)
+    protected SlotWidget createSpecialSlot(IDrawable[] backgrounds, Pos2d pos, BasicUIProperties uiProperties) {
+        return (SlotWidget) super.createSpecialSlot(backgrounds, pos, uiProperties)
                 .setGTTooltip(() -> mTooltipCache.getData("bpp.machines.special_slot.tooltip"))
                 .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_DATA_ORB);
     }

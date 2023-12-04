@@ -1,11 +1,13 @@
 package com.github.bartimaeusnek.cropspp.items;
 
+import static gregtech.api.enums.Mods.Natura;
+import static gregtech.api.enums.Mods.PamsHarvestCraft;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 
@@ -23,11 +25,7 @@ public final class CppItems {
     public static final Item Modifier = new Modifier();
     public static final ItemStack ModifierSpace = new ItemStack(Modifier, 1, 0);
     public static final ItemStack ModifierMagic = new ItemStack(Modifier, 1, 1);
-    // public final static ItemStack ModifierAnti = new ItemStack(Modifier, 1, 3);
     public static final ItemStack Trophy = new ItemStack(Modifier, 1, 2);
-    // public final static ItemStack Gr = new ItemStack(Modifier, 1, 4);
-    // public final static ItemStack Ga = new ItemStack(Modifier, 1, 5);
-    // public final static ItemStack Re = new ItemStack(Modifier, 1, 6);
     public static final Item CppBerries = new CppBerries();
     public static final Item CppPotions = new CppPotions();
 
@@ -39,9 +37,8 @@ public final class CppItems {
             GameRegistry.registerItem(Modifier, "Modifier");
             GameRegistry.registerCustomItemStack("ModifierSpace", ModifierSpace);
             GameRegistry.registerCustomItemStack("ModifierMagic", ModifierMagic);
-            // GameRegistry.registerCustomItemStack("ModifierAnti", ModifierAnti);
             GameRegistry.registerCustomItemStack("Trophy", Trophy);
-            if (ModsLoaded.GT) GameRegistry.registerItem(CppPotions, "BppPotions");
+            GameRegistry.registerItem(CppPotions, "BppPotions");
             GameRegistry.registerItem(CppBerries, "foodBerries");
             GameRegistry.registerCustomItemStack("berryHuckle", new ItemStack(CppBerries, 1, 0));
             GameRegistry.registerCustomItemStack("sugarbeet", new ItemStack(CppBerries, 1, 1));
@@ -49,7 +46,7 @@ public final class CppItems {
                 GameRegistry.registerItem(new ItemBppWateringCan(), "itemWateringCan");
                 GameRegistry.registerItem(new Weedmaker(), "debugitemWeedmaker");
             }
-            if (!ModsLoaded.Natura) {
+            if (!Natura.isModLoaded()) {
                 GameRegistry.registerItem(BerryItems, "berry");
                 GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(BerryItems, 1, 0));
                 GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(BerryItems, 1, 1));
@@ -62,26 +59,26 @@ public final class CppItems {
 
     public static final void register_recipes() {
         if (ConfigValues.Items) {
-            if (!ModsLoaded.GT) {
-                GameRegistry.addRecipe(
-                        itemSpadeStack,
-                        " P ",
-                        "PWP",
-                        " S ",
-                        'P',
-                        OreDict.ISget("plateDenseSteel"),
-                        'W',
-                        Ic2Items.weedingTrowel.getItem(),
-                        'S',
-                        Items.stick);
-                GameRegistry.addShapelessRecipe(new ItemStack(Items.sugar, 8), new ItemStack(CppBerries, 1, 1));
-                GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
-                GameRegistry.addShapelessRecipe(
-                        new ItemStack(Items.gold_nugget, 9),
-                        new ItemStack(Goldfisch),
-                        new ItemStack(Items.flint));
-            }
-            if (!ModsLoaded.PHC) {
+
+            GameRegistry.addRecipe(
+                    itemSpadeStack,
+                    " P ",
+                    "PWP",
+                    " S ",
+                    'P',
+                    OreDict.ISget("plateDenseSteel"),
+                    'W',
+                    Ic2Items.weedingTrowel.getItem(),
+                    'S',
+                    Items.stick);
+            GameRegistry.addShapelessRecipe(new ItemStack(Items.sugar, 8), new ItemStack(CppBerries, 1, 1));
+            GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Items.gold_nugget, 9),
+                    new ItemStack(Goldfisch),
+                    new ItemStack(Items.flint));
+
+            if (!PamsHarvestCraft.isModLoaded()) {
                 GameRegistry.addShapelessRecipe(new ItemStack(Items.fish), new ItemStack(Goldfisch));
                 GameRegistry.addSmelting(new ItemStack(Goldfisch), new ItemStack(Items.cooked_fished), 0);
             }
@@ -99,7 +96,7 @@ public final class CppItems {
             OreDictionary.registerOre("cropSugarbeet", new ItemStack(CppBerries, 1, 1));
         }
 
-        if (!ModsLoaded.Natura) {
+        if (!Natura.isModLoaded()) {
             ItemStack[] BerryItemsS = new ItemStack[5];
             for (int i = 0; i < 5; ++i) {
                 BerryItemsS[i] = new ItemStack(BerryItems, i);

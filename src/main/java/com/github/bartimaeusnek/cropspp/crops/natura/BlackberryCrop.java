@@ -1,8 +1,9 @@
 package com.github.bartimaeusnek.cropspp.crops.natura;
 
+import static gregtech.api.enums.Mods.Natura;
+
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicBerryCrop;
@@ -36,13 +37,13 @@ public class BlackberryCrop extends BasicBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
+        if (Natura.isModLoaded()) return new ItemStack(NContent.berryItem, 3, 2);
         else return CCropUtility.getCopiedOreStack(cropOreName);
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        if (ModsLoaded.Natura) return new ItemStack(NContent.berryItem, 3, 2);
+        if (Natura.isModLoaded()) return new ItemStack(NContent.berryItem, 3, 2);
         else return OreDict.ISget(cropOreName);
     }
 }

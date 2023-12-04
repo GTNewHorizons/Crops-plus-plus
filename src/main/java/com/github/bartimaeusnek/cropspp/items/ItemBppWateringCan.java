@@ -71,40 +71,51 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
             float hitX, float hitY, float hitZ) {
-        if (world.isRemote) return false;
-        readFromToNBT(stack);
-        if (content >= 144) {
-            TileEntity te = world.getTileEntity(x, y, z);
-            if (te instanceof TileEntityCrop) {
-                TileEntityCrop crop = (TileEntityCrop) te;
-                if (crop.getCrop() != null) {
-                    if (debug) {
-                        if (crop.getSize() < crop.getCrop().maxSize()) crop.size++;
-                        if (nutrient) crop.applyFertilizer(true);
-                        crop.waterStorage += 144;
-                        content -= 144;
-                        crop.updateState();
-                        writeToNBT(stack);
-                        return true;
-                    } else {
-                        if (nutrient) crop.applyFertilizer(true);
-                        crop.waterStorage += 144;
-                        content -= 144;
-                        crop.updateState();
-                        writeToNBT(stack);
-                        return true;
-                    }
-                }
-            }
+        if (world.isRemote) {
+            return false;
         }
-        return false;
+
+        readFromToNBT(stack);
+        if (content < 144) {
+            return false;
+        }
+
+        TileEntity te = world.getTileEntity(x, y, z);
+        if (!(te instanceof TileEntityCrop)) {
+            return false;
+        }
+
+        TileEntityCrop crop = (TileEntityCrop) te;
+        if (crop.getCrop() == null) {
+            return false;
+        }
+
+        if (debug && crop.getSize() < crop.getCrop().maxSize()) {
+            crop.size++;
+        }
+
+        if (nutrient) {
+            crop.applyFertilizer(true);
+        }
+
+        crop.waterStorage += 144;
+        content -= 144;
+        crop.updateState();
+        writeToNBT(stack);
+        return true;
     }
 
     @Override
     public FluidStack getFluid(ItemStack container) {
-        return content == 0 ? null
-                : nutrient ? FluidRegistry.getFluidStack("fluid.fertiliser", content)
-                        : new FluidStack(FluidRegistry.WATER, content);
+        if (content == 0) {
+            return null;
+        }
+
+        if (nutrient) {
+            return FluidRegistry.getFluidStack("fluid.fertiliser", content);
+        }
+
+        return new FluidStack(FluidRegistry.WATER, content);
     }
 
     @Override
@@ -114,24 +125,32 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
 
     @Override
     public int fill(ItemStack stack, FluidStack resource, boolean doFill) {
-        if (resource == null || resource.getFluid() == null) return 0;
+        if (resource == null || resource.getFluid() == null) {
+            return 0;
+        }
 
-        if (!nutrient || content == 0) if ((resource.getFluid().equals(FluidRegistry.WATER)
-                || resource.getFluid().equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid()))) {
-                    boolean fert = false;
-                    if (FluidRegistry.getFluidStack("fluid.fertiliser", content) != null) if (resource.getFluid()
-                            .equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid()))
-                        fert = true;
-                    int toFill = Math.min(resource.amount, (getCapacity(null) - content));
-                    if (!doFill) return toFill;
-                    else {
-                        nutrient = fert;
-                        content = toFill;
-                        writeToNBT(stack);
-                        return toFill;
-                    }
-                }
+        if (nutrient && content != 0) {
+            return 0;
+        }
+
+        if (resource.getFluid().equals(FluidRegistry.WATER)
+                || resource.getFluid().equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid())) {
+            boolean fert = FluidRegistry.getFluidStack("fluid.fertiliser", content) != null
+                    && resource.getFluid().equals(FluidRegistry.getFluidStack("fluid.fertiliser", content).getFluid());
+
+            int toFill = Math.min(resource.amount, (getCapacity(null) - content));
+
+            if (doFill) {
+                nutrient = fert;
+                content = toFill;
+                writeToNBT(stack);
+            }
+
+            return toFill;
+        }
+
         return 0;
+
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.github.bartimaeusnek.cropspp.crops.cpp;
 
+import static gregtech.api.enums.Mods.BiomesOPlenty;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
 import com.github.bartimaeusnek.cropspp.CCropUtility;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicDecorationCrop;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
@@ -19,7 +20,7 @@ import ic2.api.crops.ICropTile;
 public class CactiCrop extends BasicDecorationCrop {
 
     public CactiCrop() {
-        if (ModsLoaded.BoP) Crops.instance.registerBaseSeed(
+        if (BiomesOPlenty.isModLoaded()) Crops.instance.registerBaseSeed(
                 new ItemStack(BOPCBlocks.plants, 1, 12),
                 com.github.bartimaeusnek.cropspp.croploader.CropLoader.CropunpackerCC(new CropLoader(this)),
                 1,
@@ -51,7 +52,8 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (ModsLoaded.BoP && crop.getSize() >= this.maxSize() - 1) return new ItemStack(BOPCBlocks.plants, 1, 12);
+        if (BiomesOPlenty.isModLoaded() && crop.getSize() >= this.maxSize() - 1)
+            return new ItemStack(BOPCBlocks.plants, 1, 12);
         else return new ItemStack(Item.getItemById(81), 1, 0);
     }
 

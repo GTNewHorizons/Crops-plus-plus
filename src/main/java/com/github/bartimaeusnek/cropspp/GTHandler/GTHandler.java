@@ -1,7 +1,5 @@
 package com.github.bartimaeusnek.cropspp.GTHandler;
 
-import com.github.bartimaeusnek.croploadcore.ModsLoaded;
-
 public class GTHandler implements Runnable {
 
     private static Runnable MachineReps;
@@ -9,8 +7,7 @@ public class GTHandler implements Runnable {
 
     public GTHandler() {
         super();
-        if (ModsLoaded.dreamcraft) MachineReps = new GTNHMachineRecipeLoader();
-        else MachineReps = new GTVanillaMachineRecipeLoader();
+        MachineReps = new GTNHMachineRecipeLoader();
         CraftingReps = new GTCraftingRecipeLoader();
     }
 
