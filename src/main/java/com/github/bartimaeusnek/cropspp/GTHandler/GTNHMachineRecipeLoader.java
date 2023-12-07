@@ -633,7 +633,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .itemOutputs(CppItems.Trophy).duration(29826 * HOURS + 9 * MINUTES + 42 * SECONDS + 7 * TICKS).eut(8)
                 .addTo(extruderRecipes);
         // Space Flower UUM
-        GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 1, 0)).outputChances(1)
+        GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 1, 0))
                 .fluidOutputs(Materials.UUMatter.getFluid(2L)).duration(6 * SECONDS + 8 * TICKS).eut(4)
                 .addTo(fluidExtractionRecipes);
 
