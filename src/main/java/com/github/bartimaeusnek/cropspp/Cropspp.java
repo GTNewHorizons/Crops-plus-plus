@@ -40,11 +40,11 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 public final class Cropspp {
 
     public static final String name = "Crops++";
-    public static final String version = "GRADLETOKEN_VERSION";
+    public static final String version = Tags.VERSION;
     public static final String modID = "berriespp";
     public static final Logger cpplogger = LogManager.getLogger(name);
 
-    @Instance(value = "Crops++")
+    @Instance(modID)
     public static Cropspp instance;
 
     @EventHandler
