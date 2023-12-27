@@ -1,73 +1,98 @@
 package com.github.bartimaeusnek.cropspp.items;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import gregtech.api.enums.ItemList;
 
-public class CppPotions extends Item {
+public class CppPotions extends ItemPotion {
 
-    public static final String[] textureNames = new String[] { "FWheat", "Korn", "DKorn", "FReed", "SWhine", "Mash",
-            "Wash", "GHP", "jagi", "njagi" /* , more names */
+    public static final String[] textureNames = { "FWheat", "Korn", "DKorn", "FReed", "SWhine", "Mash", "Wash", "GHP",
+            "jagi", "njagi" /* , more names */
     };
     public IIcon[] icons;
 
     public CppPotions() {
         super();
-        this.setHasSubtypes(true);
         this.setCreativeTab(CreativeTab.cpp);
-        this.setMaxDamage(0);
-        this.setMaxStackSize(1);
-        this.bFull3D = false;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int meta) {
         if (meta < textureNames.length) return icons[meta];
         else return icons[0];
+    }
+
+    @Override
+    public IIcon getIconFromDamageForRenderPass(int p_77618_1_, int p_77618_2_) {
+        return this.getIconFromDamage(p_77618_1_);
+    }
+
+    @Override
+    public int getColorFromDamage(int p_77620_1_) {
+        return 0xFFFFFF;
+    }
+
+    @Override
+    public int getColorFromItemStack(ItemStack p_82790_1_, int p_82790_2_) {
+        return 0xFFFFFF;
+    }
+
+    @Override
+    public boolean requiresMultipleRenderPasses() {
+        return false;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack p_77636_1_) {
+        return false;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         this.icons = new IIcon[textureNames.length];
-
-        /*
-         * for (int i = 0; i < this.icons.length; ++i) { this.icons[i] = iconRegister.registerIcon("bpp:potion_" +
-         * textureNames[i]+"_bottled"); }
-         */
-        this.icons[0] = gregtech.api.enums.ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
-        this.icons[1] = gregtech.api.enums.ItemList.Bottle_Vodka.get(1).getIconIndex();
-        this.icons[2] = gregtech.api.enums.ItemList.Bottle_Vodka.get(1).getIconIndex();
-        this.icons[3] = gregtech.api.enums.ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
-        this.icons[4] = gregtech.api.enums.ItemList.Bottle_Vodka.get(1).getIconIndex();
-        this.icons[5] = gregtech.api.enums.ItemList.Bottle_Hops_Juice.get(1).getIconIndex();
-        this.icons[6] = gregtech.api.enums.ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
-        this.icons[7] = gregtech.api.enums.ItemList.Bottle_Vodka.get(1).getIconIndex();
+        this.icons[0] = ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
+        this.icons[1] = ItemList.Bottle_Vodka.get(1).getIconIndex();
+        this.icons[2] = ItemList.Bottle_Vodka.get(1).getIconIndex();
+        this.icons[3] = ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
+        this.icons[4] = ItemList.Bottle_Vodka.get(1).getIconIndex();
+        this.icons[5] = ItemList.Bottle_Hops_Juice.get(1).getIconIndex();
+        this.icons[6] = ItemList.Bottle_Apple_Juice.get(1).getIconIndex();
+        this.icons[7] = ItemList.Bottle_Vodka.get(1).getIconIndex();
         this.icons[8] = iconRegister.registerIcon("bpp:potion_jagi_bottled");
         this.icons[9] = iconRegister.registerIcon("bpp:potion_jagi_bottled");
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        if (itemstack.getItemDamage() < textureNames.length) return (new StringBuilder()).append("potion.")
-                .append(textureNames[itemstack.getItemDamage()]).append(".bottled").toString();
-        else return (new StringBuilder()).append("potion.").append(textureNames[0]).append(".bottled").toString();
+        int meta = itemstack.getItemDamage();
+        if (meta >= textureNames.length) {
+            meta = 0;
+        }
+        return new StringBuilder().append("potion.").append(textureNames[meta]).append(".bottled").toString();
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemStackDisplayName(ItemStack p_77653_1_) {
+        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(p_77653_1_) + ".name")).trim();
+    }
+
     @Override
     public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> list) {
         for (int i = 0; i < textureNames.length; ++i) {
@@ -76,122 +101,101 @@ public class CppPotions extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0: {
+            case 0 -> {
                 list.add("It stinks.");
-                break;
             }
-            case 1: {
+            case 1 -> {
                 list.add("Korn? Eww, you'll get a headache!");
-                break;
             }
-            case 2: {
+            case 2 -> {
                 list.add("Doppelkorn? German Vodka!");
-                break;
             }
-            case 3: {
+            case 3 -> {
                 list.add("It stinks.");
-                break;
             }
-            case 4: {
+            case 4 -> {
                 list.add("Too Strong.");
-                break;
             }
-            case 5: {
+            case 5 -> {
                 list.add("Soo Sweet");
-                break;
             }
-            case 6: {
+            case 6 -> {
                 list.add("It stinks.");
-                break;
             }
-            case 7: {
+            case 7 -> {
                 list.add("Too Strong.");
-                break;
             }
-            case 8: {
+            case 8 -> {
                 list.add("Das ist des J\u00e4gers' Eherenschild,");
                 list.add("dass er besch\u00fctzt und hegt sein Wild,");
                 list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
                 list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
                 list.add("");
                 list.add("It will give 1h potioneffects!");
-                break;
             }
-            case 9: {
+            case 9 -> {
                 list.add("Das ist des J\u00e4gers' Eherenschild,");
                 list.add("dass er besch\u00fctzt und hegt sein Wild,");
                 list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
                 list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
                 list.add("");
                 list.add("It smells like fake J\u00e4germeister...");
-                break;
             }
             // other cases
         }
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player) {
+    public List<PotionEffect> getEffects(ItemStack p_77832_1_) {
+        return p_77832_1_ == null ? Collections.emptyList() : this.getEffects(p_77832_1_.getItemDamage());
+    }
 
-        switch (par1ItemStack.getItemDamage()) {
-            case 0: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
-                break;
+    @Override
+    public List<PotionEffect> getEffects(int p_77834_1_) {
+        List<PotionEffect> effects = new ArrayList<>();
+        switch (p_77834_1_) {
+            case 0, 3, 6 -> {
+                effects.add(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
             }
-            case 1: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 5 * 20, 1));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 2));
-                break;
+            case 1 -> {
+                effects.add(new PotionEffect(Potion.regeneration.id, 5 * 20, 1));
+                effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 2));
             }
-            case 2: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10 * 20, 2));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 1));
-                break;
+            case 2 -> {
+                effects.add(new PotionEffect(Potion.regeneration.id, 10 * 20, 2));
+                effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 1));
             }
-            case 3: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
-                break;
+            case 4, 7 -> {
+                effects.add(new PotionEffect(Potion.harm.id, 20 * 2, 0));
+                effects.add(new PotionEffect(Potion.poison.id, 20 * 8, 0));
+                effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
             }
-            case 4: {
-                player.addPotionEffect(new PotionEffect(Potion.harm.id, 20 * 2, 0));
-                player.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 8, 0));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
-                break;
+            case 5 -> {
+                effects.add(new PotionEffect(Potion.regeneration.id, 20 * 4, 0));
             }
-            case 5: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20 * 4, 0));
-                break;
+            case 8 -> {
+                effects.add(new PotionEffect(Potion.regeneration.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.damageBoost.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.digSpeed.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.fireResistance.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.waterBreathing.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.resistance.id, 20 * 60 * 60, 100));
+                effects.add(new PotionEffect(Potion.confusion.id, 20 * 60 * 60, 4));
             }
-            case 6: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
-                break;
-            }
-            case 7: {
-                player.addPotionEffect(new PotionEffect(Potion.harm.id, 20 * 2, 0));
-                player.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 8, 0));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
-                break;
-            }
-            case 8: {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20 * 60 * 60, 100));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 20 * 60 * 60, 4));
-                break;
-            }
-            case 9: {
-                player.addPotionEffect(new PotionEffect(Potion.harm.id, 20 * 2, 0));
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20 * 20, 4));
-                player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
-                break;
+            case 9 -> {
+                effects.add(new PotionEffect(Potion.harm.id, 20 * 2, 0));
+                effects.add(new PotionEffect(Potion.regeneration.id, 20 * 20, 4));
+                effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
             }
         }
-        return new ItemStack(Items.glass_bottle);
+        return effects;
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
+        player.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
+        return itemStackIn;
     }
 }
