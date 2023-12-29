@@ -4,19 +4,19 @@ dependencies {
     api("com.github.GTNewHorizons:CropLoadCore:0.1.10:dev")
     api("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
 
-    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.44.102:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.45.13:dev")
     compileOnly(deobf("https://media.forgecdn.net/files/2499/612/BiomesOPlenty-1.7.10-2.1.0.2308-universal.jar"))
     compileOnly("com.github.GTNewHorizons:twilightforest:2.5.1:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:TinkersConstruct:1.10.12-GTNH:dev")
+    compileOnly("com.github.GTNewHorizons:TinkersConstruct:1.10.13-GTNH:dev")
     compileOnly("com.github.GTNewHorizons:Natura:2.5.7:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.2.47:dev") {
+    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.3.2:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:Galacticraft:3.0.74-GTNH:dev") {
+    compileOnly("com.github.GTNewHorizons:Galacticraft:3.1.1-GTNH:dev") {
         transitive = false
     }
     compileOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
@@ -24,8 +24,8 @@ dependencies {
     // for testing
     //runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     //runtimeOnly("com.github.GTNewHorizons:twilightforest:2.5.1:dev")
-    //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.10.12-GTNH:dev")
+    //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.10.13-GTNH:dev")
     //runtimeOnly("com.github.GTNewHorizons:Natura:2.5.7:dev")
-    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.2.47:dev")
-    //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.0.74-GTNH:dev")
+    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.3.2:dev")
+    //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.1.1-GTNH:dev")
 }
