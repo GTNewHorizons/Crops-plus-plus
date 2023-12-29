@@ -59,7 +59,7 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         list.add("Max Capacity:");
         list.add(Integer.toString(getCapacity(null)));
         list.add("Contains:");

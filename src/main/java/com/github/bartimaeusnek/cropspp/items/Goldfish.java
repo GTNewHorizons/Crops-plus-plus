@@ -21,7 +21,7 @@ public class Goldfish extends ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         list.add("Hozuki no Reitetsu! A truely hellish planimal?!");
     }
 

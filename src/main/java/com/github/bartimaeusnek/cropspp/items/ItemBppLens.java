@@ -26,7 +26,7 @@ public class ItemBppLens extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List list, boolean p_77624_4_) {
+    public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List<String> list, boolean p_77624_4_) {
         list.add("A Simple Lens to determine Crop Species");
         list.add("Indestructible.");
     }

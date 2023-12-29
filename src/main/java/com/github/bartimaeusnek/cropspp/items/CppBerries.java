@@ -65,7 +65,7 @@ public class CppBerries extends ItemFood {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> list) {
         for (int i = 0; i < textureNames.length; ++i) {
             list.add(new ItemStack(item, 1, i));
         }
@@ -73,7 +73,7 @@ public class CppBerries extends ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
             case 0: {
                 list.add("Huckle-dae-Duckle-dae-Doo");

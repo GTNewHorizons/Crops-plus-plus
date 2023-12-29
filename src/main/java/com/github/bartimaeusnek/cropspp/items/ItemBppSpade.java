@@ -27,7 +27,7 @@ import ic2.core.util.StackUtil;
 
 public class ItemBppSpade extends ItemTool {
 
-    private static Set BlocksAffected = Sets.newHashSet(
+    private static Set<Block> BlocksAffected = Sets.newHashSet(
             new Block[] { Blocks.grass, Blocks.dirt, Blocks.snow_layer, Blocks.farmland, Blocks.mycelium,
                     StackUtil.getBlock(ic2.core.Ic2Items.crop) });
 
@@ -42,7 +42,7 @@ public class ItemBppSpade extends ItemTool {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         list.add("Weeding Trowel, Shovel and Hoe in one Item!");
         list.add("Has a higher chanche of yielding seedbags!");
         list.add("Indestructible");

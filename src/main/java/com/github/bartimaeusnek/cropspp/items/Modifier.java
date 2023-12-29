@@ -34,7 +34,7 @@ public class Modifier extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage() % textureNames.length) {
             case 0:
                 list.add("Space Radiation caught in a Flower!");
@@ -72,7 +72,7 @@ public class Modifier extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> list) {
         for (int i = 0; i < textureNames.length; ++i) {
             list.add(new ItemStack(item, 1, i));
         }

@@ -73,7 +73,7 @@ public class NaturaBerryItems extends ItemFood {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         for (int var4 = 0; var4 < this.icons.length; ++var4) {
             par3List.add(new ItemStack(par1, 1, var4));
         }
