@@ -52,7 +52,7 @@ public class CactiCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        if (BiomesOPlenty.isModLoaded() && crop.getSize() >= this.maxSize() - 1)
+        if (BiomesOPlenty.isModLoaded() && crop.getSize() == this.maxSize() - 1)
             return new ItemStack(BOPCBlocks.plants, 1, 12);
         else return new ItemStack(Item.getItemById(81), 1, 0);
     }
