@@ -76,8 +76,11 @@ public final class Cropspp {
                 new CropGeneExtractor(12508, "Advanced Crop Gene Extractor VII", "Advanced Crop Gene Extractor VII", 8)
                         .getStackForm(1L));
         CropItemList.cropGeneExtractorUHV.set(
-                new CropGeneExtractor(12509, "Advanced Crop Gene Extractor IIX", "Advanced Crop Gene Extractor IIX", 9)
-                        .getStackForm(1L));
+                new CropGeneExtractor(
+                        12509,
+                        "Advanced Crop Gene Extractor VIII",
+                        "Advanced Crop Gene Extractor VIII",
+                        9).getStackForm(1L));
 
         CropItemList.cropReplicatorLV
                 .set(new CropReplicator(12510, "Basic Crop Replicator", "Basic Crop Replicator", 1).getStackForm(1L));
@@ -103,7 +106,7 @@ public final class Cropspp {
                 new CropReplicator(12517, "Advanced Crop Replicator VII", "Advanced Crop Replicator VII", 8)
                         .getStackForm(1L));
         CropItemList.cropReplicatorUHV.set(
-                new CropReplicator(12518, "Advanced Crop Replicator IIX", "Advanced Crop Replicator IIX", 9)
+                new CropReplicator(12518, "Advanced Crop Replicator VIII", "Advanced Crop Replicator VIII", 9)
                         .getStackForm(1L));
 
         CropItemList.cropSynthesiserLV.set(
@@ -130,7 +133,7 @@ public final class Cropspp {
                 new CropSynthesiser(12526, "Advanced Crop Synthesiser VII", "Advanced Crop Synthesiser VII", 8)
                         .getStackForm(1L));
         CropItemList.cropSynthesiserUHV.set(
-                new CropSynthesiser(12527, "Advanced Crop Synthesiser IIX", "Advanced Crop Synthesiser IIX", 9)
+                new CropSynthesiser(12527, "Advanced Crop Synthesiser VIII", "Advanced Crop Synthesiser VIII", 9)
                         .getStackForm(1L));
         new CppFluids();
 
