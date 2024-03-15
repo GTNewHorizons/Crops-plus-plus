@@ -76,8 +76,11 @@ public final class Cropspp {
                 new CropGeneExtractor(12508, "Advanced Crop Gene Extractor VII", "Advanced Crop Gene Extractor VII", 8)
                         .getStackForm(1L));
         CropItemList.cropGeneExtractorUHV.set(
-                new CropGeneExtractor(12509, "Advanced Crop Gene Extractor VIII", "Advanced Crop Gene Extractor VIII", 9)
-                        .getStackForm(1L));
+                new CropGeneExtractor(
+                        12509,
+                        "Advanced Crop Gene Extractor VIII",
+                        "Advanced Crop Gene Extractor VIII",
+                        9).getStackForm(1L));
 
         CropItemList.cropReplicatorLV
                 .set(new CropReplicator(12510, "Basic Crop Replicator", "Basic Crop Replicator", 1).getStackForm(1L));
