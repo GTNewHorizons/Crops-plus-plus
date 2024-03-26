@@ -73,8 +73,13 @@ public class SpacePlantCrop extends BasicCrop {
         // This also includes the GC ores from the moon
         // in nh we have an ore dict for "rockMoon", we could use that instead but,
         // that ore dict name doesn't exist by default, let's net do that
-        else if (crop.getSize() >= this.maxSize() - 1) return crop.isBlockBelow(GCBlocks.blockMoon);
-        else return true;
+        else if (crop.getSize() >= this.maxSize() - 1) {
+            if (ConfigValues.isGalacticCraftLoaded) {
+                return crop.isBlockBelow(GCBlocks.blockMoon);
+            } else {
+                return true;
+            }
+        } else return true;
     }
 
     @Override

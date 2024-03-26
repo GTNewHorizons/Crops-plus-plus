@@ -2,6 +2,8 @@ package com.github.bartimaeusnek.cropspp;
 
 import com.github.bartimaeusnek.croploadcore.config;
 
+import cpw.mods.fml.common.Loader;
+
 public class ConfigValues {
 
     public static config c;
@@ -17,4 +19,5 @@ public class ConfigValues {
     public static boolean ILoveScreaming = false;
     public static boolean BootsProtect = false;
     public static float BootsDamageChance = 1.0f;
+    public static boolean isGalacticCraftLoaded = Loader.isModLoaded("GalacticraftCore");
 }
