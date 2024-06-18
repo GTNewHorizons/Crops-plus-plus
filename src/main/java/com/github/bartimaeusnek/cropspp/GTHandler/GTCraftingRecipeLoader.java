@@ -226,7 +226,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                         | GT_ModHandler.RecipeBits.REVERSIBLE,
                 new Object[] { " fL", " Sr", "S  ", 'L',
                         GT_OreDictUnificator.get(OrePrefixes.lens, Materials.Glass, 1L), 'S',
-                        new ItemStack(Items.stick) });
+                        GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Wood, 1L) });
         GT_ModHandler.addCraftingRecipe(
                 GT_OreDictUnificator.get(OrePrefixes.lens, Materials.Glass, 1L),
                 GT_ModHandler.RecipeBits.NOT_REMOVABLE,
