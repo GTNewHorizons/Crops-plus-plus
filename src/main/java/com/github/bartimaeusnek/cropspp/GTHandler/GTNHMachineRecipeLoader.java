@@ -565,11 +565,13 @@ public class GTNHMachineRecipeLoader implements Runnable {
                     .itemOutputs(GT_ModHandler.getModItem(Thaumcraft.ID, "ItemResource", 16, 14))
                     .duration(6 * SECONDS + 8 * TICKS).eut(4).addTo(extractorRecipes);
 
-            GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 16, 1))
-                    .itemOutputs(com.dreammaster.item.ItemList.PrimordialPearlFragment.getIS().splitStack(3))
-                    .fluidInputs(Materials.UUMatter.getFluid(52)).duration(20 * MINUTES).eut(384)
-                    .addTo(RecipeMaps.autoclaveRecipes);
+            if (Mods.NewHorizonsCoreMod.isModLoaded()) {
 
+                GT_Values.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 16, 1))
+                        .itemOutputs(com.dreammaster.item.ItemList.PrimordialPearlFragment.getIS().splitStack(3))
+                        .fluidInputs(Materials.UUMatter.getFluid(52)).duration(20 * MINUTES).eut(384)
+                        .addTo(RecipeMaps.autoclaveRecipes);
+            }
             GT_Values.RA.stdBuilder().itemInputs(GT_ModHandler.getModItem(Thaumcraft.ID, "ItemResource", 32, 14))
                     .itemOutputs(new ItemStack(CppItems.Modifier, 1, 1)).fluidInputs(Materials.UUMatter.getFluid(500))
                     .duration(2 * MINUTES).eut(TierEU.RECIPE_MV).addTo(RecipeMaps.autoclaveRecipes);
