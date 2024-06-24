@@ -128,7 +128,7 @@ public class CppPotions extends ItemPotion {
                 list.add("Too Strong.");
             }
             case 8 -> {
-                list.add("Das ist des J\u00e4gers' Eherenschild,");
+                list.add("Das ist des J\u00e4gers' Ehrenschild,");
                 list.add("dass er besch\u00fctzt und hegt sein Wild,");
                 list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
                 list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
@@ -136,7 +136,7 @@ public class CppPotions extends ItemPotion {
                 list.add("It will give 1h potioneffects!");
             }
             case 9 -> {
-                list.add("Das ist des J\u00e4gers' Eherenschild,");
+                list.add("Das ist des J\u00e4gers' Ehrenschild,");
                 list.add("dass er besch\u00fctzt und hegt sein Wild,");
                 list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
                 list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
