@@ -1,18 +1,15 @@
 package com.github.bartimaeusnek.cropspp.items;
 
 import static gregtech.api.enums.Mods.Natura;
-import static gregtech.api.enums.Mods.PamsHarvestCraft;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import ic2.core.Ic2Items;
 
 public final class CppItems {
 
@@ -58,31 +55,7 @@ public final class CppItems {
     }
 
     public static final void register_recipes() {
-        if (ConfigValues.Items) {
-
-            GameRegistry.addRecipe(
-                    itemSpadeStack,
-                    " P ",
-                    "PWP",
-                    " S ",
-                    'P',
-                    OreDict.ISget("plateDenseSteel"),
-                    'W',
-                    Ic2Items.weedingTrowel.getItem(),
-                    'S',
-                    Items.stick);
-            GameRegistry.addShapelessRecipe(new ItemStack(Items.sugar, 8), new ItemStack(CppBerries, 1, 1));
-            GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
-            GameRegistry.addShapelessRecipe(
-                    new ItemStack(Items.gold_nugget, 9),
-                    new ItemStack(Goldfisch),
-                    new ItemStack(Items.flint));
-
-            if (!PamsHarvestCraft.isModLoaded()) {
-                GameRegistry.addShapelessRecipe(new ItemStack(Items.fish), new ItemStack(Goldfisch));
-                GameRegistry.addSmelting(new ItemStack(Goldfisch), new ItemStack(Items.cooked_fished), 0);
-            }
-        }
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
     }
 
     public static final void OreDictItems() {
