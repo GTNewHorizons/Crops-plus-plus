@@ -171,11 +171,6 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     }
 
     @Override
-    public boolean useModularUI() {
-        return true;
-    }
-
-    @Override
     public boolean allowSelectCircuit() {
         return true;
     }

@@ -192,11 +192,6 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
         return false;
     }
 
-    @Override
-    public boolean useModularUI() {
-        return true;
-    }
-
     private static final FallbackableUITexture progressBarTexture = GT_UITextures
             .fallbackableProgressbar("crop_synthesiser", GT_UITextures.PROGRESSBAR_ARROW);
 
