@@ -27,22 +27,22 @@ import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.SoundResource;
-import gregtech.api.gui.modularui.GT_UITextures;
+import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
+import gregtech.api.metatileentity.implementations.MTEBasicMachine;
 import gregtech.api.recipe.BasicUIProperties;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_Utility;
+import gregtech.api.util.GTUtility;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 
-public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
+public class CropReplicator extends MTEBasicMachine {
 
     public CropReplicator(int aID, String aName, String aNameRegional, int aTier) {
         super(
@@ -100,13 +100,13 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
         ItemStack aStack = getInputAt(0);
         ItemStack bStack = getInputAt(1);
 
-        if (GT_Utility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true)
+        if (GTUtility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true)
                 && ItemList.IC2_Crop_Seeds.isStackEqual(bStack, true, true)) {
             ItemStack helper = bStack;
             bStack = aStack;
             aStack = helper;
         }
-        if (GT_Utility.areUnificationsEqual(bStack, Materials.UUMatter.getCells(1), true)
+        if (GTUtility.areUnificationsEqual(bStack, Materials.UUMatter.getCells(1), true)
                 && ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) {
             NBTTagCompound tNBT = aStack.getTagCompound();
 
@@ -123,7 +123,7 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
             aStack.stackSize -= 1;
             this.mOutputItems[1] = Materials.Empty.getCells(card.tier());
 
-            long power = GT_Values.V[(card.tier() + 2) / 2];
+            long power = GTValues.V[(card.tier() + 2) / 2];
             power *= mAmperage;
             calculateOverclockedNess((int) (power - (power / 10)), 12000);
             if (mMaxProgresstime == Integer.MAX_VALUE - 1 && mEUt == Integer.MAX_VALUE - 1)
@@ -136,7 +136,7 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
+            GTUtility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
         }
     }
 
@@ -146,11 +146,11 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
 
     @Override
     public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
-        if (GT_Utility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true)
+        if (GTUtility.areUnificationsEqual(aStack, Materials.UUMatter.getCells(1), true)
                 || ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true))
             return isValidSlot(aIndex) && aStack != null
                     && aIndex < mInventory.length
-                    && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                    && (mInventory[aIndex] == null || GTUtility.areStacksEqual(aStack, mInventory[aIndex]))
                     && allowPutStack(
                             getBaseMetaTileEntity(),
                             aIndex,
@@ -159,8 +159,8 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
         return false;
     }
 
-    private static final FallbackableUITexture progressBarTexture = GT_UITextures
-            .fallbackableProgressbar("crop_replicator", GT_UITextures.PROGRESSBAR_ARROW);
+    private static final FallbackableUITexture progressBarTexture = GTUITextures
+            .fallbackableProgressbar("crop_replicator", GTUITextures.PROGRESSBAR_ARROW);
 
     @Override
     protected BasicUIProperties getUIProperties() {
@@ -171,7 +171,7 @@ public class CropReplicator extends GT_MetaTileEntity_BasicMachine {
     protected SlotWidget createItemInputSlot(int index, IDrawable[] backgrounds, Pos2d pos) {
         if (index == 0) {
             return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
-                    .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_CANISTER);
+                    .setBackground(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_CANISTER);
         } else {
             return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
                     .setBackground(getGUITextureSet().getItemSlot(), CPP_UITextures.OVERLAY_SLOT_SEED);

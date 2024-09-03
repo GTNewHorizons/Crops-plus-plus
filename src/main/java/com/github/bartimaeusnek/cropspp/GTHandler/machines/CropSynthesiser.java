@@ -29,22 +29,22 @@ import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.SoundResource;
-import gregtech.api.gui.modularui.GT_UITextures;
+import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
+import gregtech.api.metatileentity.implementations.MTEBasicMachine;
 import gregtech.api.recipe.BasicUIProperties;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_Utility;
-import gregtech.common.items.behaviors.Behaviour_DataOrb;
+import gregtech.api.util.GTUtility;
+import gregtech.common.items.behaviors.BehaviourDataOrb;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 
-public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
+public class CropSynthesiser extends MTEBasicMachine {
 
     public CropSynthesiser(int aID, String aName, String aNameRegional, int aTier) {
         super(
@@ -115,7 +115,7 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
             HashMap<String, String> CropStats = new HashMap<>();
 
             for (byte i = 0; i <= 3; ++i)
-                CropStats.put(Behaviour_DataOrb.getDataTitle(aStacks[i]), Behaviour_DataOrb.getDataName(aStacks[i]));
+                CropStats.put(BehaviourDataOrb.getDataTitle(aStacks[i]), BehaviourDataOrb.getDataName(aStacks[i]));
 
             String owner = CropStats.get("Crop-Specimen-Scan");
             String name = owner.split(":")[1];
@@ -149,7 +149,7 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
 
             this.mFluid.amount -= neededUUM;
 
-            long power = GT_Values.V[(card.tier() + 2) / 2];
+            long power = GTValues.V[(card.tier() + 2) / 2];
             power *= mAmperage;
 
             calculateOverclockedNess((int) (power - (power / 10)), 12000);
@@ -164,7 +164,7 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
+            GTUtility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
         }
     }
 
@@ -187,13 +187,13 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
     public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
         if (ItemList.Tool_DataOrb.isStackEqual(aStack, false, true)) return isValidSlot(aIndex) && aStack != null
                 && aIndex < mInventory.length
-                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && (mInventory[aIndex] == null || GTUtility.areStacksEqual(aStack, mInventory[aIndex]))
                 && allowPutStack(getBaseMetaTileEntity(), aIndex, ForgeDirection.getOrientation(ordinalSide), aStack);
         return false;
     }
 
-    private static final FallbackableUITexture progressBarTexture = GT_UITextures
-            .fallbackableProgressbar("crop_synthesiser", GT_UITextures.PROGRESSBAR_ARROW);
+    private static final FallbackableUITexture progressBarTexture = GTUITextures
+            .fallbackableProgressbar("crop_synthesiser", GTUITextures.PROGRESSBAR_ARROW);
 
     @Override
     protected BasicUIProperties getUIProperties() {
@@ -203,6 +203,6 @@ public class CropSynthesiser extends GT_MetaTileEntity_BasicMachine {
     @Override
     protected SlotWidget createItemInputSlot(int index, IDrawable[] backgrounds, Pos2d pos) {
         return (SlotWidget) super.createItemInputSlot(index, backgrounds, pos)
-                .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_DATA_ORB);
+                .setBackground(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_DATA_ORB);
     }
 }

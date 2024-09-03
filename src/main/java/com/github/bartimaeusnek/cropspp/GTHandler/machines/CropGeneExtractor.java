@@ -27,22 +27,22 @@ import com.gtnewhorizons.modularui.api.drawable.IDrawable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 
-import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.SoundResource;
-import gregtech.api.gui.modularui.GT_UITextures;
+import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine;
+import gregtech.api.metatileentity.implementations.MTEBasicMachine;
 import gregtech.api.recipe.BasicUIProperties;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_Utility;
-import gregtech.common.items.behaviors.Behaviour_DataOrb;
+import gregtech.api.util.GTUtility;
+import gregtech.common.items.behaviors.BehaviourDataOrb;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 
-public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
+public class CropGeneExtractor extends MTEBasicMachine {
 
     public CropGeneExtractor(int aID, String aName, String aNameRegional, int aTier) {
         super(
@@ -122,26 +122,26 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
 
             switch (bStack.getItemDamage()) {
                 case 1:
-                    Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Specimen-Scan");
-                    Behaviour_DataOrb
+                    BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Specimen-Scan");
+                    BehaviourDataOrb
                             .setDataName(this.mOutputItems[0], tNBT.getString("owner") + ":" + tNBT.getString("name"));
                     break;
                 case 2:
-                    Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Growth-Scan");
-                    Behaviour_DataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[0]));
+                    BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Growth-Scan");
+                    BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[0]));
                     break;
                 case 3:
-                    Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Gain-Scan");
-                    Behaviour_DataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[1]));
+                    BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Gain-Scan");
+                    BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[1]));
                     break;
                 case 4:
-                    Behaviour_DataOrb.setDataTitle(this.mOutputItems[0], "Crop-Resistance-Scan");
-                    Behaviour_DataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[2]));
+                    BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Resistance-Scan");
+                    BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[2]));
                     break;
                 default:
                     break;
             }
-            long power = GT_Values.V[(card.tier() + 2) / 2];
+            long power = GTValues.V[(card.tier() + 2) / 2];
             calculateOverclockedNess((int) (power - (power / 10)), 6000);
             if (mMaxProgresstime == Integer.MAX_VALUE - 1 && mEUt == Integer.MAX_VALUE - 1)
                 return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
@@ -153,7 +153,7 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     public void startSoundLoop(byte aIndex, double aX, double aY, double aZ) {
         super.startSoundLoop(aIndex, aX, aY, aZ);
         if (aIndex == 1) {
-            GT_Utility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
+            GTUtility.doSoundAtClient(SoundResource.IC2_MACHINES_MAGNETIZER_LOOP, 10, 1.0F, aX, aY, aZ);
         }
     }
 
@@ -165,7 +165,7 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
         if (ItemList.IC2_Crop_Seeds.isStackEqual(aStack, true, true)) return isValidSlot(aIndex) && aStack != null
                 && aIndex < mInventory.length
-                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && (mInventory[aIndex] == null || GTUtility.areStacksEqual(aStack, mInventory[aIndex]))
                 && allowPutStack(getBaseMetaTileEntity(), aIndex, ForgeDirection.getOrientation(ordinalSide), aStack);
         return false;
     }
@@ -175,8 +175,8 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
         return true;
     }
 
-    private static final FallbackableUITexture progressBarTexture = GT_UITextures
-            .fallbackableProgressbar("crop_gene_extractor", GT_UITextures.PROGRESSBAR_ARROW);
+    private static final FallbackableUITexture progressBarTexture = GTUITextures
+            .fallbackableProgressbar("crop_gene_extractor", GTUITextures.PROGRESSBAR_ARROW);
 
     @Override
     protected BasicUIProperties getUIProperties() {
@@ -193,6 +193,6 @@ public class CropGeneExtractor extends GT_MetaTileEntity_BasicMachine {
     protected SlotWidget createSpecialSlot(IDrawable[] backgrounds, Pos2d pos, BasicUIProperties uiProperties) {
         return (SlotWidget) super.createSpecialSlot(backgrounds, pos, uiProperties)
                 .setGTTooltip(() -> mTooltipCache.getData("bpp.machines.special_slot.tooltip"))
-                .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_DATA_ORB);
+                .setBackground(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_DATA_ORB);
     }
 }

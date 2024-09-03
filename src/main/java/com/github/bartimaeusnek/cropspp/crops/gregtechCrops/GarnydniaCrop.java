@@ -10,14 +10,14 @@ import net.minecraft.tileentity.TileEntity;
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 
-import gregtech.api.GregTech_API;
+import gregtech.api.GregTechAPI;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.objects.ItemData;
 import gregtech.api.objects.XSTR;
-import gregtech.api.util.GT_OreDictUnificator;
-import gregtech.common.blocks.GT_Block_Ores_Abstract;
-import gregtech.common.blocks.GT_TileEntity_Ores;
+import gregtech.api.util.GTOreDictUnificator;
+import gregtech.common.blocks.BlockOresAbstract;
+import gregtech.common.blocks.TileEntityOres;
 import ic2.api.crops.ICropTile;
 
 public class GarnydniaCrop extends BasicCrop {
@@ -106,13 +106,13 @@ public class GarnydniaCrop extends BasicCrop {
             Block tBlock = aCrop.getWorld()
                     .getBlock(aCrop.getLocation().posX, aCrop.getLocation().posY - i, aCrop.getLocation().posZ);
 
-            if (tBlock instanceof GT_Block_Ores_Abstract) {
+            if (tBlock instanceof BlockOresAbstract) {
                 TileEntity tTileEntity = aCrop.getWorld().getTileEntity(
                         aCrop.getLocation().posX,
                         aCrop.getLocation().posY - i,
                         aCrop.getLocation().posZ);
-                if (tTileEntity instanceof GT_TileEntity_Ores) {
-                    Materials tMaterial = GregTech_API.sGeneratedMaterials[((GT_TileEntity_Ores) tTileEntity).mMetaData
+                if (tTileEntity instanceof TileEntityOres) {
+                    Materials tMaterial = GregTechAPI.sGeneratedMaterials[((TileEntityOres) tTileEntity).mMetaData
                             % 1000];
                     if (tMaterial != null && tMaterial != Materials._NULL) {
                         return tMaterial == Materials.GarnetRed || tMaterial == Materials.GarnetYellow;
@@ -123,7 +123,7 @@ public class GarnydniaCrop extends BasicCrop {
                         aCrop.getLocation().posX,
                         aCrop.getLocation().posY - i,
                         aCrop.getLocation().posZ);
-                ItemData tAssotiation = GT_OreDictUnificator.getAssociation(new ItemStack(tBlock, 1, tMetaID));
+                ItemData tAssotiation = GTOreDictUnificator.getAssociation(new ItemStack(tBlock, 1, tMetaID));
                 if (tAssotiation != null
                         && (tAssotiation.mPrefix.toString().startsWith("ore")
                                 || tAssotiation.mPrefix == OrePrefixes.block)
@@ -152,13 +152,13 @@ public class GarnydniaCrop extends BasicCrop {
 
         int chance = XSTR.XSTR_INSTANCE.nextInt(100);
 
-        if (chance >= 95) drop = GT_OreDictUnificator.get(OrePrefixes.gemExquisite, dropMat, 1);
+        if (chance >= 95) drop = GTOreDictUnificator.get(OrePrefixes.gemExquisite, dropMat, 1);
         else if (chance >= 80) drop = dropMat.getGems(1);
-        else if (chance == 42) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, Materials.GarnetSand, 1);
+        else if (chance == 42) drop = GTOreDictUnificator.get(OrePrefixes.crushedPurified, Materials.GarnetSand, 1);
         else if (chance >= 40) drop = dropMat.getDust(1);
-        else if (chance == 23) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
+        else if (chance == 23) drop = GTOreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
         else if (chance >= 20) drop = dropMat.getDustSmall(1);
-        else if (chance == 13 || chance == 17) drop = GT_OreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
+        else if (chance == 13 || chance == 17) drop = GTOreDictUnificator.get(OrePrefixes.crushedPurified, dropMat, 1);
         else drop = dropMat.getDustTiny(1);
         return drop;
     }
