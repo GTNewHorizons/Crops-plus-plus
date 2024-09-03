@@ -1,6 +1,6 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
-import static gregtech.api.enums.GT_Values.V;
+import static gregtech.api.enums.GTValues.V;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,18 +17,18 @@ import com.gtnewhorizons.modularui.common.widget.TextWidget;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
-import gregtech.api.gui.modularui.GT_UIInfos;
-import gregtech.api.gui.modularui.GT_UITextures;
+import gregtech.api.gui.modularui.GTUIInfos;
+import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
+import gregtech.api.metatileentity.implementations.MTEHatch;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_Utility;
-import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_Pump;
+import gregtech.api.util.GTUtility;
+import gregtech.common.tileentities.machines.basic.MTEPump;
 import ic2.core.crop.TileEntityCrop;
 
-public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
+public class CropWeedPicker extends MTEHatch {
 
     public CropWeedPicker(int aID, String aName, String aNameRegional, int aTier) {
         super(
@@ -66,7 +66,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     public boolean canInsertItem(int aIndex, ItemStack aStack, int ordinalSide) {
         return isValidSlot(aIndex) && aStack != null
                 && aIndex < mInventory.length
-                && (mInventory[aIndex] == null || GT_Utility.areStacksEqual(aStack, mInventory[aIndex]))
+                && (mInventory[aIndex] == null || GTUtility.areStacksEqual(aStack, mInventory[aIndex]))
                 && allowPutStack(getBaseMetaTileEntity(), aIndex, ForgeDirection.getOrientation(ordinalSide), aStack);
     }
 
@@ -108,15 +108,13 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
         if (this.getBaseMetaTileEntity().isServerSide()) {
 
             if (!((this.getBaseMetaTileEntity().isAllowedToWork())
-                    && (GT_Utility.areStacksEqual(mInventory[0], CppItems.itemSpadeStack)
-                            || GT_Utility.areStacksEqual(mInventory[0], ic2.core.Ic2Items.weedingTrowel))
+                    && (GTUtility.areStacksEqual(mInventory[0], CppItems.itemSpadeStack)
+                            || GTUtility.areStacksEqual(mInventory[0], ic2.core.Ic2Items.weedingTrowel))
                     && (this.getFluid().amount >= 20)
-                    && (this.getBaseMetaTileEntity()
-                            .isUniversalEnergyStored(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier)))))
+                    && (this.getBaseMetaTileEntity().isUniversalEnergyStored(MTEPump.getEuUsagePerTier(this.mTier)))))
                 return;
 
-            this.getBaseMetaTileEntity()
-                    .decreaseStoredEnergyUnits(GT_MetaTileEntity_Pump.getEuUsagePerTier(this.mTier), true);
+            this.getBaseMetaTileEntity().decreaseStoredEnergyUnits(MTEPump.getEuUsagePerTier(this.mTier), true);
             this.getFluid().amount -= 20;
 
             int xmin = this.getBaseMetaTileEntity().getXCoord() > 0
@@ -157,7 +155,7 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer) {
-        GT_UIInfos.openGTTileEntityUI(aBaseMetaTileEntity, aPlayer);
+        GTUIInfos.openGTTileEntityUI(aBaseMetaTileEntity, aPlayer);
         return true;
     }
 
@@ -271,14 +269,14 @@ public class CropWeedPicker extends GT_MetaTileEntity_Hatch {
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         builder.widget(
-                new DrawableWidget().setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK).setPos(7, 16).setSize(71, 45))
+                new DrawableWidget().setDrawable(GTUITextures.PICTURE_SCREEN_BLACK).setPos(7, 16).setSize(71, 45))
                 .widget(
                         new SlotWidget(inventoryHandler, getInputSlot())
-                                .setBackground(getGUITextureSet().getItemSlot(), GT_UITextures.OVERLAY_SLOT_IN)
+                                .setBackground(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_IN)
                                 .setPos(79, 16))
                 .widget(new TextWidget("Liquid Amount").setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 20)).widget(
                         TextWidget
-                                .dynamicString(() -> GT_Utility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
+                                .dynamicString(() -> GTUtility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
                                 .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 30));
     }
 }
