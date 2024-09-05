@@ -1,6 +1,7 @@
 package com.github.bartimaeusnek.cropspp.items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -28,8 +29,8 @@ import ic2.core.util.StackUtil;
 public class ItemBppSpade extends ItemTool {
 
     private static final Set<Block> BlocksAffected = Sets.newHashSet(
-            new Block[] { Blocks.grass, Blocks.dirt, Blocks.snow_layer, Blocks.farmland, Blocks.mycelium,
-                    StackUtil.getBlock(ic2.core.Ic2Items.crop) });
+            Blocks.grass, Blocks.dirt, Blocks.snow_layer, Blocks.farmland, Blocks.mycelium,
+            StackUtil.getBlock(Ic2Items.crop));
 
     public ItemBppSpade() {
         super(1.0F, Item.ToolMaterial.IRON, BlocksAffected);
@@ -55,7 +56,7 @@ public class ItemBppSpade extends ItemTool {
         TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof TileEntityCrop crop) {
             if (crop.getCrop() != null) {
-                if (crop.getCrop() instanceof ic2.api.crops.CropCard && crop.getCrop().tier() >= 1) {
+                if (crop.getCrop() != null && crop.getCrop().tier() >= 1) {
                     float i = crop.getCrop().tier()
                             + 5 * ((((-crop.getResistance()) / 2) + crop.getGain() + crop.getGrowth()) / 21);
                     if (MyRandom.intrandom(100, 0) <= 100 * Operators.csig(i, 12, false)) {
@@ -75,7 +76,7 @@ public class ItemBppSpade extends ItemTool {
                     }
                 } else {
                     StackUtil.dropAsEntity(world, x, y, z, new ItemStack(Ic2Items.weed.getItem(), crop.size));
-                    if (!(crop.getCrop().name() == "weed")) {
+                    if (!(crop.getCrop().name().equals("weed"))) {
                         if (crop.getSize() == crop.getCrop().maxSize()) StackUtil.dropAsEntity(
                                 world,
                                 x,

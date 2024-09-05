@@ -115,7 +115,7 @@ public class CropGeneExtractor extends MTEBasicMachine {
             GrGaRe[0] = tNBT.getByte("growth");
             GrGaRe[1] = tNBT.getByte("gain");
             GrGaRe[2] = tNBT.getByte("resistance");
-            this.mOutputItems[0] = ItemList.Tool_DataOrb.get(1L, new Object[0]);
+            this.mOutputItems[0] = ItemList.Tool_DataOrb.get(1L);
 
             aStack.stackSize -= 1;
             tosave.stackSize -= 1;

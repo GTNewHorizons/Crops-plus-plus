@@ -165,8 +165,6 @@ public final class Cropspp {
 
         CropItemList.cropWeedPicker.set(new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1).getStackForm(1));
 
-        new CppFluids();
-
         CppItems.register_Items();
         CppItems.OreDictItems();
     }
