@@ -167,11 +167,12 @@ public class CropLoader {
         c = new config(preinit, "berriespp.cfg");
         c.tConfig.addCustomCategoryComment(
                 "System",
-                "enable or disable system config:"
-                        + "\nDebug will set all crops groth duration to 1 and disable all requirements.(aka. \"Cheatmode\")"
-                        + "\nBonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)"
-                        + "\nWiP Items are not finished items."
-                        + "\nItems will enable/disable all items.");
+                """
+                        enable or disable system config:
+                        Debug will set all crops groth duration to 1 and disable all requirements.(aka. "Cheatmode")
+                        Bonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)
+                        WiP Items are not finished items.
+                        Items will enable/disable all items.""");
         ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
         ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
         ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
@@ -185,10 +186,12 @@ public class CropLoader {
         bHasCropObj.add(c.tConfig.get("Crops", "Bonsai", true).getBoolean(true));
         c.tConfig.addCustomCategoryComment(
                 "Gain",
-                "Set custom gain modifiers here:" + "\n Tinker's Construct Berries' Gain is not modified by All Crops."
-                        + "\n Primordial Berry's gain is absolut"
-                        + "\n Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period"
-                        + "\n IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks");
+                """
+                        Set custom gain modifiers here:
+                         Tinker's Construct Berries' Gain is not modified by All Crops.
+                         Primordial Berry's gain is absolut
+                         Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period
+                         IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks""");
         ConfigValues.BerryGain = (float) c.tConfig.get("Gain", "All crops", (float) 1).getDouble(1);
         ConfigValues.TConstructBerryGain = (float) c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1)
                 .getDouble(1);
