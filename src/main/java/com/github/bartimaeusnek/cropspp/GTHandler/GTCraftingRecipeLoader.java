@@ -16,20 +16,11 @@ import gregtech.api.util.GTOreDictUnificator;
 import ic2.core.Ic2Items;
 
 public class GTCraftingRecipeLoader implements Runnable {
-
-    private static final String aTextWire1 = "wire.";
-    private static final String aTextCable1 = "cable.";
-    private static final String aTextWire2 = " Wire";
-    private static final String aTextCable2 = " Cable";
-    private static final String aTextPlate = "PPP";
-    private static final String aTextPlateWrench = "PwP";
-    private static final String aTextPlateMotor = "PMP";
     private static final String aTextCableHull = "CMC";
     private static final String aTextWireHull = "WMW";
     private static final String aTextWireChest = "WTW";
-    private static final String aTextWireCoil = "WCW";
     private static final String aTextMotorWire = "EWE";
-    private static final String aTextWirePump = "WPW";
+
 
     private static final long bitsd = GTModHandler.RecipeBits.DISMANTLEABLE | GTModHandler.RecipeBits.NOT_REMOVABLE
             | GTModHandler.RecipeBits.REVERSIBLE;
