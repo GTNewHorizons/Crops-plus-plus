@@ -49,20 +49,14 @@ public class BasicManaBeanCrop extends BasicThaumcraftCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 0; // a bit chemical
-            case 1:
-                return 4; // edible
-            case 2:
-                return 0; // strong defensive properties
-            case 3:
-                return 4; // quite colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 0; // a bit chemical
+            case 1 -> 4; // edible
+            case 2 -> 0; // strong defensive properties
+            case 3 -> 4; // quite colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

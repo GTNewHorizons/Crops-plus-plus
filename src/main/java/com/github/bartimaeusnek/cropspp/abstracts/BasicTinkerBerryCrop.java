@@ -36,20 +36,14 @@ public abstract class BasicTinkerBerryCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 3; // Industrial Crop
-            case 1:
-                return 0; // NOT Edible
-            case 2:
-                return 4; // strong defensive properties
-            case 3:
-                return 1; // a bit colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 3; // Industrial Crop
+            case 1 -> 0; // NOT Edible
+            case 2 -> 4; // strong defensive properties
+            case 3 -> 1; // a bit colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

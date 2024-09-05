@@ -35,32 +35,23 @@ public class TorchberryCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 2; // chemical
-            case 1:
-                return 0; // not edible
-            case 2:
-                return 0; // has defensive properties
-            case 3:
-                return 2; // colorful
-            case 4:
-                return 1; // weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 2; // chemical
+            case 1 -> 0; // not edible
+            case 2 -> 0; // has defensive properties
+            case 3 -> 2; // colorful
+            case 4 -> 1; // weed-like
+            default -> 0;
+        };
     }
 
     @Override
     public int getEmittedLight(ICropTile crop) {
-        switch (crop.getSize()) {
-            case 1:
-                return 3;
-            case 3:
-                return 7;
-            default:
-                return 0;
-        }
+        return switch (crop.getSize()) {
+            case 1 -> 3;
+            case 3 -> 7;
+            default -> 0;
+        };
     }
 
     @Override

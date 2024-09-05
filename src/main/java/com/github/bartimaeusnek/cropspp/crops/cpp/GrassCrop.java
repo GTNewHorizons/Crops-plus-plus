@@ -44,20 +44,14 @@ public class GrassCrop extends BasicDecorationCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 0; // not chemical
-            case 1:
-                return 0; // not edible
-            case 2:
-                return 0; // no defensive properties
-            case 3:
-                return 3; // primarily decorative
-            case 4:
-                return 4; // weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 0; // not chemical
+            case 1 -> 0; // not edible
+            case 2 -> 0; // no defensive properties
+            case 3 -> 3; // primarily decorative
+            case 4 -> 4; // weed-like
+            default -> 0;
+        };
     }
 
     @Override

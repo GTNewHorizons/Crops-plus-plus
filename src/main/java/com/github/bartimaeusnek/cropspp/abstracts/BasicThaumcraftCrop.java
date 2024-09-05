@@ -25,20 +25,14 @@ public abstract class BasicThaumcraftCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 2; // Kinda Industrial Crop
-            case 1:
-                return 0; // NOT Edible
-            case 2:
-                return 0; // NO defensive properties
-            case 3:
-                return 2; // Kinda colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 2; // Kinda Industrial Crop
+            case 1 -> 0; // NOT Edible
+            case 2 -> 0; // NO defensive properties
+            case 3 -> 2; // Kinda colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

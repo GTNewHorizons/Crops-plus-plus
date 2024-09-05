@@ -48,20 +48,14 @@ public class GarnydniaCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 4; // chemical
-            case 1:
-                return 0; // not edible
-            case 2:
-                return 2; // a bit defense
-            case 3:
-                return 4; // quite colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 4; // chemical
+            case 1 -> 0; // not edible
+            case 2 -> 2; // a bit defense
+            case 3 -> 4; // quite colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

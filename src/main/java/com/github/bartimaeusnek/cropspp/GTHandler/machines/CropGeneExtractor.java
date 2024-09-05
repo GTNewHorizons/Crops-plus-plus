@@ -121,25 +121,24 @@ public class CropGeneExtractor extends MTEBasicMachine {
             tosave.stackSize -= 1;
 
             switch (bStack.getItemDamage()) {
-                case 1:
+                case 1 -> {
                     BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Specimen-Scan");
                     BehaviourDataOrb
                             .setDataName(this.mOutputItems[0], tNBT.getString("owner") + ":" + tNBT.getString("name"));
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Growth-Scan");
                     BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[0]));
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Gain-Scan");
                     BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[1]));
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     BehaviourDataOrb.setDataTitle(this.mOutputItems[0], "Crop-Resistance-Scan");
                     BehaviourDataOrb.setDataName(this.mOutputItems[0], Byte.toString(GrGaRe[2]));
-                    break;
-                default:
-                    break;
+                }
+                default -> {}
             }
             long power = GTValues.V[(card.tier() + 2) / 2];
             calculateOverclockedNess((int) (power - (power / 10)), 6000);

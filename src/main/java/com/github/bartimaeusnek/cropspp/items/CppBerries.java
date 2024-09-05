@@ -75,16 +75,16 @@ public class CppBerries extends ItemFood {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0: {
+            case 0 -> {
                 list.add("Huckle-dae-Duckle-dae-Doo");
                 list.add("A sweet treat!");
-                break;
             }
-            case 1: {
+            case 1 -> {
                 list.add("A sweet beet, commonly found in France, Germany, Russia and China.");
                 list.add("Industrial Sugar!");
-                break;
             }
+            default -> {}
+
             // other cases
         }
     }

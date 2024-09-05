@@ -20,20 +20,14 @@ public abstract class BasicNetherBerryCrop extends BasicBerryCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 1; // a bit chemical
-            case 1:
-                return 3; // kinda edible
-            case 2:
-                return 4; // strong defensive properties
-            case 3:
-                return 4; // quite colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 1; // a bit chemical
+            case 1 -> 3; // kinda edible
+            case 2 -> 4; // strong defensive properties
+            case 3 -> 4; // quite colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

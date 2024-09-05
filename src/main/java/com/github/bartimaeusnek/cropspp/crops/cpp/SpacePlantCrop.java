@@ -30,20 +30,14 @@ public class SpacePlantCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 8; // chemical
-            case 1:
-                return 0; // edible
-            case 2:
-                return 0; // defensive properties
-            case 3:
-                return 4; // colorful
-            case 4:
-                return 0; // weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 8; // chemical
+            case 1 -> 0; // edible
+            case 2 -> 0; // defensive properties
+            case 3 -> 4; // colorful
+            case 4 -> 0; // weed-like
+            default -> 0;
+        };
     }
 
     @Override
