@@ -66,7 +66,7 @@ public class CCropUtility {
 
     public static void damageEntity(Entity ent, float damage) {
 
-        if (!(ent instanceof EntityLivingBase)) {
+        if (!(ent instanceof EntityLivingBase elTarget)) {
             return;
         }
 
@@ -77,15 +77,13 @@ public class CCropUtility {
         }
 
         // If Damage disabled Stop doing this
-        if (ent instanceof EntityPlayer) {
-            EntityPlayer pl = (EntityPlayer) ent;
+        if (ent instanceof EntityPlayer pl) {
             if (pl.capabilities.disableDamage) {
                 return;
             }
         }
 
         // Getting Equipment to check
-        EntityLivingBase elTarget = (EntityLivingBase) ent;
         ItemStack boots = elTarget.getEquipmentInSlot(1);
 
         if (boots != null) {

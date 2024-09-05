@@ -53,8 +53,7 @@ public class ItemBppSpade extends ItemTool {
             float hitX, float hitY, float hitZ) {
         if (!IC2.platform.isSimulating()) return false;
         TileEntity te = world.getTileEntity(x, y, z);
-        if (te instanceof TileEntityCrop) {
-            TileEntityCrop crop = (TileEntityCrop) te;
+        if (te instanceof TileEntityCrop crop) {
             if (crop.getCrop() != null) {
                 if (crop.getCrop() instanceof ic2.api.crops.CropCard && crop.getCrop().tier() >= 1) {
                     float i = crop.getCrop().tier()

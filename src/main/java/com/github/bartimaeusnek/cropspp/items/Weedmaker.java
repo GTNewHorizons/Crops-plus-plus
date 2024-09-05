@@ -24,8 +24,7 @@ public class Weedmaker extends Item {
             float hitX, float hitY, float hitZ) {
         if (!IC2.platform.isSimulating()) return false;
         TileEntity te = world.getTileEntity(x, y, z);
-        if (te instanceof TileEntityCrop) {
-            TileEntityCrop crop = (TileEntityCrop) te;
+        if (te instanceof TileEntityCrop crop) {
             crop.setCrop(ic2.core.crop.IC2Crops.weed);
             ++crop.weedlevel;
         }
