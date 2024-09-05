@@ -17,7 +17,7 @@ import com.github.bartimaeusnek.cropspp.crops.cpp.CobaltBerryCrop;
 public class TConstructLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new IronOreBerryCrop(), new ItemStack(tconstruct.world.TinkerWorld.oreBerries, 1, 0)));
         p.add(new CropLoader(new GoldOreBerryCrop(), new ItemStack(tconstruct.world.TinkerWorld.oreBerries, 1, 1)));
         p.add(new CropLoader(new CopperOreBerryCrop(), new ItemStack(tconstruct.world.TinkerWorld.oreBerries, 1, 2)));

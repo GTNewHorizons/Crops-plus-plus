@@ -9,7 +9,7 @@ import com.github.bartimaeusnek.cropspp.crops.gregtechCrops.StonelillyCrop;
 public class GTLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new StonelillyCrop("Red"), null));
         p.add(new CropLoader(new StonelillyCrop("Black"), null));
         p.add(new CropLoader(new StonelillyCrop("Gray"), null));

@@ -46,7 +46,7 @@ import ic2.api.crops.Crops;
 
 public class CropLoader {
 
-    private static final List<Boolean> bHasCropObj = new ArrayList<Boolean>();
+    private static final List<Boolean> bHasCropObj = new ArrayList<>();
     private static final List<CropLoader> list = cropLoader();
     private final CropCard cropObj;
     private ItemStack baseseed;
@@ -79,7 +79,7 @@ public class CropLoader {
 
     public static List<CropLoader> cropLoader() {
 
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
 
         /*
          * Add your crops with base seed here by p.add(new CropLoader(new YourCropClass(),YourItem));
@@ -140,7 +140,7 @@ public class CropLoader {
     }
 
     private static List<CropCard> cropObjs() {
-        List<CropCard> p = new ArrayList<CropCard>();
+        List<CropCard> p = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCC(list.get(i)));
         }
@@ -148,7 +148,7 @@ public class CropLoader {
     }
 
     private static List<ItemStack> setBaseSeed() {
-        List<ItemStack> p = new ArrayList<ItemStack>();
+        List<ItemStack> p = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCG(list.get(i)));
         }
@@ -156,7 +156,7 @@ public class CropLoader {
     }
 
     private static List<String> setnames() {
-        List<String> s = new ArrayList<String>();
+        List<String> s = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             s.add(cropObjs().get(i).name());
         }
@@ -218,7 +218,7 @@ public class CropLoader {
 
     public static void registerBaseSeed() {
 
-        List<ItemStack> baseseed = new ArrayList<ItemStack>(setBaseSeed());
+        List<ItemStack> baseseed = new ArrayList<>(setBaseSeed());
 
         for (int i = 0; i < list.size(); ++i) {
             if (baseseed.get(i) != null && cropObjs().get(i) != null)

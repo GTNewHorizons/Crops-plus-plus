@@ -11,7 +11,7 @@ import com.github.bartimaeusnek.cropspp.crops.cpp.SpacePlantCrop;
 public class DreamCraftLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new SpacePlantCrop(), null));
         p.add(new CropLoader(new MagicModifierCrop(), ModifierMagic));
         return p;
