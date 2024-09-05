@@ -22,6 +22,34 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorEV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorIV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorLV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorLuV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorMV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorUHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorUV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropGeneExtractorZPM;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorEV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorIV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorLV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorLuV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorMV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorUHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorUV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropReplicatorZPM;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserEV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserIV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserLV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserLuV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserMV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUHV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUV;
+import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserZPM;
+
 @Mod(
         modid = Cropspp.modID,
         name = Cropspp.name,
@@ -50,91 +78,93 @@ public final class Cropspp {
     @EventHandler
     public void preInit(FMLPreInitializationEvent preinit) {
         CropLoader.load(preinit);
-        new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1);
         CropItemList.cropGeneExtractorLV.set(
-                new CropGeneExtractor(12501, "Basic Crop Gene Extractor", "Basic Crop Gene Extractor", 1)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorLV.ID, "Basic Crop Gene Extractor", "Basic Crop Gene Extractor", 1)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorMV.set(
-                new CropGeneExtractor(12502, "Advanced Crop Gene Extractor I", "Advanced Crop Gene Extractor I", 2)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorMV.ID, "Advanced Crop Gene Extractor I", "Advanced Crop Gene Extractor I", 2)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorHV.set(
-                new CropGeneExtractor(12503, "Advanced Crop Gene Extractor II", "Advanced Crop Gene Extractor II", 3)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorHV.ID, "Advanced Crop Gene Extractor II", "Advanced Crop Gene Extractor II", 3)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorEV.set(
-                new CropGeneExtractor(12504, "Advanced Crop Gene Extractor III", "Advanced Crop Gene Extractor III", 4)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorEV.ID, "Advanced Crop Gene Extractor III", "Advanced Crop Gene Extractor III", 4)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorIV.set(
-                new CropGeneExtractor(12505, "Advanced Crop Gene Extractor IV", "Advanced Crop Gene Extractor IV", 5)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorIV.ID, "Advanced Crop Gene Extractor IV", "Advanced Crop Gene Extractor IV", 5)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorLuV.set(
-                new CropGeneExtractor(12506, "Advanced Crop Gene Extractor V", "Advanced Crop Gene Extractor V", 6)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorLuV.ID, "Advanced Crop Gene Extractor V", "Advanced Crop Gene Extractor V", 6)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorZPM.set(
-                new CropGeneExtractor(12507, "Advanced Crop Gene Extractor VI", "Advanced Crop Gene Extractor VI", 7)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorZPM.ID, "Advanced Crop Gene Extractor VI", "Advanced Crop Gene Extractor VI", 7)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorUV.set(
-                new CropGeneExtractor(12508, "Advanced Crop Gene Extractor VII", "Advanced Crop Gene Extractor VII", 8)
-                        .getStackForm(1L));
+                new CropGeneExtractor(cropGeneExtractorUV.ID, "Advanced Crop Gene Extractor VII", "Advanced Crop Gene Extractor VII", 8)
+                        .getStackForm(1));
         CropItemList.cropGeneExtractorUHV.set(
                 new CropGeneExtractor(
-                        12509,
+                        cropGeneExtractorUHV.ID,
                         "Advanced Crop Gene Extractor VIII",
                         "Advanced Crop Gene Extractor VIII",
-                        9).getStackForm(1L));
+                        9).getStackForm(1));
 
         CropItemList.cropReplicatorLV
-                .set(new CropReplicator(12510, "Basic Crop Replicator", "Basic Crop Replicator", 1).getStackForm(1L));
+                .set(new CropReplicator(cropReplicatorLV.ID, "Basic Crop Replicator", "Basic Crop Replicator", 1).getStackForm(1));
         CropItemList.cropReplicatorMV.set(
-                new CropReplicator(12511, "Advanced Crop Replicator I", "Advanced Crop Replicator I", 2)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorMV.ID, "Advanced Crop Replicator I", "Advanced Crop Replicator I", 2)
+                        .getStackForm(1));
         CropItemList.cropReplicatorHV.set(
-                new CropReplicator(12512, "Advanced Crop Replicator II", "Advanced Crop Replicator II", 3)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorHV.ID, "Advanced Crop Replicator II", "Advanced Crop Replicator II", 3)
+                        .getStackForm(1));
         CropItemList.cropReplicatorEV.set(
-                new CropReplicator(12513, "Advanced Crop Replicator III", "Advanced Crop Replicator III", 4)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorEV.ID, "Advanced Crop Replicator III", "Advanced Crop Replicator III", 4)
+                        .getStackForm(1));
         CropItemList.cropReplicatorIV.set(
-                new CropReplicator(12514, "Advanced Crop Replicator IV", "Advanced Crop Replicator IV", 5)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorIV.ID, "Advanced Crop Replicator IV", "Advanced Crop Replicator IV", 5)
+                        .getStackForm(1));
         CropItemList.cropReplicatorLuV.set(
-                new CropReplicator(12515, "Advanced Crop Replicator V", "Advanced Crop Replicator V", 6)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorLuV.ID, "Advanced Crop Replicator V", "Advanced Crop Replicator V", 6)
+                        .getStackForm(1));
         CropItemList.cropReplicatorZPM.set(
-                new CropReplicator(12516, "Advanced Crop Replicator VI", "Advanced Crop Replicator VI", 7)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorZPM.ID, "Advanced Crop Replicator VI", "Advanced Crop Replicator VI", 7)
+                        .getStackForm(1));
         CropItemList.cropReplicatorUV.set(
-                new CropReplicator(12517, "Advanced Crop Replicator VII", "Advanced Crop Replicator VII", 8)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorUV.ID, "Advanced Crop Replicator VII", "Advanced Crop Replicator VII", 8)
+                        .getStackForm(1));
         CropItemList.cropReplicatorUHV.set(
-                new CropReplicator(12518, "Advanced Crop Replicator VIII", "Advanced Crop Replicator VIII", 9)
-                        .getStackForm(1L));
+                new CropReplicator(cropReplicatorUHV.ID, "Advanced Crop Replicator VIII", "Advanced Crop Replicator VIII", 9)
+                        .getStackForm(1));
 
         CropItemList.cropSynthesiserLV.set(
-                new CropSynthesiser(12519, "Basic Crop Synthesiser", "Basic Crop Synthesiser", 1).getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserLV.ID, "Basic Crop Synthesiser", "Basic Crop Synthesiser", 1).getStackForm(1));
         CropItemList.cropSynthesiserMV.set(
-                new CropSynthesiser(12520, "Advanced Crop Synthesiser I", "Advanced Crop Synthesiser I", 2)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserMV.ID, "Advanced Crop Synthesiser I", "Advanced Crop Synthesiser I", 2)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserHV.set(
-                new CropSynthesiser(12521, "Advanced Crop Synthesiser II", "Advanced Crop Synthesiser II", 3)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserHV.ID, "Advanced Crop Synthesiser II", "Advanced Crop Synthesiser II", 3)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserEV.set(
-                new CropSynthesiser(12522, "Advanced Crop Synthesiser III", "Advanced Crop Synthesiser III", 4)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserEV.ID, "Advanced Crop Synthesiser III", "Advanced Crop Synthesiser III", 4)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserIV.set(
-                new CropSynthesiser(12523, "Advanced Crop Synthesiser IV", "Advanced Crop Synthesiser IV", 5)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserIV.ID, "Advanced Crop Synthesiser IV", "Advanced Crop Synthesiser IV", 5)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserLuV.set(
-                new CropSynthesiser(12524, "Advanced Crop Synthesiser V", "Advanced Crop Synthesiser V", 6)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserLuV.ID, "Advanced Crop Synthesiser V", "Advanced Crop Synthesiser V", 6)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserZPM.set(
-                new CropSynthesiser(12525, "Advanced Crop Synthesiser VI", "Advanced Crop Synthesiser VI", 7)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserZPM.ID, "Advanced Crop Synthesiser VI", "Advanced Crop Synthesiser VI", 7)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserUV.set(
-                new CropSynthesiser(12526, "Advanced Crop Synthesiser VII", "Advanced Crop Synthesiser VII", 8)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserUV.ID, "Advanced Crop Synthesiser VII", "Advanced Crop Synthesiser VII", 8)
+                        .getStackForm(1));
         CropItemList.cropSynthesiserUHV.set(
-                new CropSynthesiser(12527, "Advanced Crop Synthesiser VIII", "Advanced Crop Synthesiser VIII", 9)
-                        .getStackForm(1L));
+                new CropSynthesiser(cropSynthesiserUHV.ID, "Advanced Crop Synthesiser VIII", "Advanced Crop Synthesiser VIII", 9)
+                        .getStackForm(1));
+
+        CropItemList.cropWeedPicker.set(new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1).getStackForm(1));
+
         new CppFluids();
 
         CppItems.register_Items();

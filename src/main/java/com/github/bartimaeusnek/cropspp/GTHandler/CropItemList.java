@@ -41,7 +41,8 @@ public enum CropItemList implements IItemContainer {
     cropSynthesiserLuV,
     cropSynthesiserZPM,
     cropSynthesiserUV,
-    cropSynthesiserUHV,;
+    cropSynthesiserUHV,
+    cropWeedPicker;
 
     private ItemStack mStack;
     private boolean mHasNotBeenSet = true;
