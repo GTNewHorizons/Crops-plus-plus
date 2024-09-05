@@ -9,7 +9,7 @@ import gregtech.api.GregTechAPI;
 public class AlkoholImpure extends Fluid implements Runnable {
 
     public long percentage;
-    private String texture;
+    private final String texture;
 
     public AlkoholImpure(String name, long d, String texture) {
         super(name);

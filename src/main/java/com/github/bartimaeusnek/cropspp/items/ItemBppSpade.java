@@ -27,7 +27,7 @@ import ic2.core.util.StackUtil;
 
 public class ItemBppSpade extends ItemTool {
 
-    private static Set<Block> BlocksAffected = Sets.newHashSet(
+    private static final Set<Block> BlocksAffected = Sets.newHashSet(
             new Block[] { Blocks.grass, Blocks.dirt, Blocks.snow_layer, Blocks.farmland, Blocks.mycelium,
                     StackUtil.getBlock(ic2.core.Ic2Items.crop) });
 

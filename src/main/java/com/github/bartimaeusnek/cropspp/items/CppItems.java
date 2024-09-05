@@ -26,7 +26,7 @@ public final class CppItems {
     public static final Item CppBerries = new CppBerries();
     public static final Item CppPotions = new CppPotions();
 
-    public static final void register_Items() {
+    public static void register_Items() {
         if (ConfigValues.Items) {
             GameRegistry.registerItem(itemLens, "itemLens");
             GameRegistry.registerItem(itemSpade, "itemSpade");
@@ -54,11 +54,11 @@ public final class CppItems {
         }
     }
 
-    public static final void register_recipes() {
+    public static void register_recipes() {
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 2, 5), new ItemStack(CppBerries, 1, 0));
     }
 
-    public static final void OreDictItems() {
+    public static void OreDictItems() {
         if (ConfigValues.Items) {
             OreDictionary.registerOre("listAllfishraw", new ItemStack(Goldfisch));
             OreDictionary.registerOre("listAllberry", new ItemStack(CppBerries, 1, 0));

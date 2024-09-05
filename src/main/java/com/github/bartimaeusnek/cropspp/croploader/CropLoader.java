@@ -46,9 +46,9 @@ import ic2.api.crops.Crops;
 
 public class CropLoader {
 
-    private static List<Boolean> bHasCropObj = new ArrayList<Boolean>();
-    private static List<CropLoader> list = cropLoader();
-    private CropCard cropObj;
+    private static final List<Boolean> bHasCropObj = new ArrayList<Boolean>();
+    private static final List<CropLoader> list = cropLoader();
+    private final CropCard cropObj;
     private ItemStack baseseed;
 
     /*
@@ -77,7 +77,7 @@ public class CropLoader {
         return new CropLoader(cropObj, OreDict.ISget("crop" + cropObj.name()));
     }
 
-    public static final List<CropLoader> cropLoader() {
+    public static List<CropLoader> cropLoader() {
 
         List<CropLoader> p = new ArrayList<CropLoader>();
 
@@ -139,7 +139,7 @@ public class CropLoader {
         return p;
     }
 
-    private static final List<CropCard> cropObjs() {
+    private static List<CropCard> cropObjs() {
         List<CropCard> p = new ArrayList<CropCard>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCC(list.get(i)));
@@ -147,7 +147,7 @@ public class CropLoader {
         return p;
     }
 
-    private static final List<ItemStack> setBaseSeed() {
+    private static List<ItemStack> setBaseSeed() {
         List<ItemStack> p = new ArrayList<ItemStack>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCG(list.get(i)));
@@ -155,7 +155,7 @@ public class CropLoader {
         return p;
     }
 
-    private static final List<String> setnames() {
+    private static List<String> setnames() {
         List<String> s = new ArrayList<String>();
         for (int i = 0; i < list.size(); ++i) {
             s.add(cropObjs().get(i).name());
