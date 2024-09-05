@@ -85,7 +85,7 @@ public class CppPotions extends ItemPotion {
         if (meta >= textureNames.length) {
             meta = 0;
         }
-        return "potion."+textureNames[meta]+".bottled";
+        return "potion." + textureNames[meta] + ".bottled";
     }
 
     @Override
@@ -116,11 +116,9 @@ public class CppPotions extends ItemPotion {
                 list.add("");
                 if (stack.getItemDamage() == 8) {
                     list.add("It will give 1h potioneffects!");
-                }
-                else{
+                } else {
                     list.add("It smells like fake Jägermeister...");
                 }
-
 
             }
             // other cases

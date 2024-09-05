@@ -1,7 +1,6 @@
 package com.github.bartimaeusnek.cropspp.items;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -29,7 +28,11 @@ import ic2.core.util.StackUtil;
 public class ItemBppSpade extends ItemTool {
 
     private static final Set<Block> BlocksAffected = Sets.newHashSet(
-            Blocks.grass, Blocks.dirt, Blocks.snow_layer, Blocks.farmland, Blocks.mycelium,
+            Blocks.grass,
+            Blocks.dirt,
+            Blocks.snow_layer,
+            Blocks.farmland,
+            Blocks.mycelium,
             StackUtil.getBlock(Ic2Items.crop));
 
     public ItemBppSpade() {

@@ -28,7 +28,7 @@ public class StonelillyCrop extends BasicDecorationCrop {
             case "Red" -> Materials.GraniteRed.getDust(9);
             case "Black" -> Materials.GraniteBlack.getDust(9);
             case "White" -> Materials.Marble.getDust(9);
-            case "Gray" ->  Materials.Stone.getDust(9);
+            case "Gray" -> Materials.Stone.getDust(9);
             case "Yellow" -> Materials.Endstone.getDust(2);
             case "Nether" -> Materials.Netherrack.getDust(9);
             default -> new ItemStack(Blocks.cobblestone);
@@ -81,14 +81,14 @@ public class StonelillyCrop extends BasicDecorationCrop {
     @Override
     public String[] attributes() {
         return switch (color) {
-            case "Red" -> new String[]{color, "Stone", "Fire"};
-            case "Black" -> new String[]{color, "Stone", "Dark"};
-            case "White" -> new String[]{color, "Stone", "Shiny"};
-            case "Gray" -> new String[]{color, "Stone", "Metal"};
-            case "Yellow" -> new String[]{color, "Stone", "Alien"};
-            case "Nether" -> new String[]{color, "Stone", "Evil"};
+            case "Red" -> new String[] { color, "Stone", "Fire" };
+            case "Black" -> new String[] { color, "Stone", "Dark" };
+            case "White" -> new String[] { color, "Stone", "Shiny" };
+            case "Gray" -> new String[] { color, "Stone", "Metal" };
+            case "Yellow" -> new String[] { color, "Stone", "Alien" };
+            case "Nether" -> new String[] { color, "Stone", "Evil" };
             // if this line executes consider it a UB
-            default -> new String[]{color, "Stone"};
+            default -> new String[] { color, "Stone" };
         };
     }
 

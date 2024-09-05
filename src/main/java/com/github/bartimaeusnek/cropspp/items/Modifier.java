@@ -55,8 +55,9 @@ public class Modifier extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        if (itemstack.getItemDamage() < textureNames.length) return "item_Modifier_"+textureNames[itemstack.getItemDamage()];
-        else return "item_Modifier_"+textureNames[0];
+        if (itemstack.getItemDamage() < textureNames.length)
+            return "item_Modifier_" + textureNames[itemstack.getItemDamage()];
+        else return "item_Modifier_" + textureNames[0];
     }
 
     @Override

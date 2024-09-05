@@ -60,7 +60,7 @@ public class CppBerries extends ItemFood {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        return "item.berry."+textureNames[itemstack.getItemDamage()];
+        return "item.berry." + textureNames[itemstack.getItemDamage()];
     }
 
     @SideOnly(Side.CLIENT)

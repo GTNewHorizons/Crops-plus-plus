@@ -16,11 +16,11 @@ import gregtech.api.util.GTOreDictUnificator;
 import ic2.core.Ic2Items;
 
 public class GTCraftingRecipeLoader implements Runnable {
+
     private static final String aTextCableHull = "CMC";
     private static final String aTextWireHull = "WMW";
     private static final String aTextWireChest = "WTW";
     private static final String aTextMotorWire = "EWE";
-
 
     private static final long bitsd = GTModHandler.RecipeBits.DISMANTLEABLE | GTModHandler.RecipeBits.NOT_REMOVABLE
             | GTModHandler.RecipeBits.REVERSIBLE;
@@ -104,8 +104,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_MV, 'F',
                         ItemList.Field_Generator_MV, 'E', ItemList.Emitter_MV, 'C',
-                        OrePrefixes.circuit.get(Materials.HV), 'W',
-                        OrePrefixes.cableGt04.get(Materials.AnyCopper) });
+                        OrePrefixes.circuit.get(Materials.HV), 'W', OrePrefixes.cableGt04.get(Materials.AnyCopper) });
         GTModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorHV.get(1L),
                 bitsd,
@@ -117,15 +116,13 @@ public class GTCraftingRecipeLoader implements Runnable {
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_EV, 'F',
                         ItemList.Field_Generator_EV, 'E', ItemList.Emitter_EV, 'C',
-                        OrePrefixes.circuit.get(Materials.IV), 'W',
-                        OrePrefixes.cableGt04.get(Materials.Aluminium) });
+                        OrePrefixes.circuit.get(Materials.IV), 'W', OrePrefixes.cableGt04.get(Materials.Aluminium) });
         GTModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorIV.get(1L),
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_IV, 'F',
                         ItemList.Field_Generator_IV, 'E', ItemList.Emitter_IV, 'C',
-                        OrePrefixes.circuit.get(Materials.LuV), 'W',
-                        OrePrefixes.cableGt04.get(Materials.Tungsten) });
+                        OrePrefixes.circuit.get(Materials.LuV), 'W', OrePrefixes.cableGt04.get(Materials.Tungsten) });
         GTModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorLuV.get(1L),
                 bitsd,
@@ -138,8 +135,7 @@ public class GTCraftingRecipeLoader implements Runnable {
                 bitsd,
                 new Object[] { "CFC", aTextCableHull, aTextMotorWire, 'M', ItemList.Hull_ZPM, 'F',
                         ItemList.Field_Generator_ZPM, 'E', ItemList.Emitter_ZPM, 'C',
-                        OrePrefixes.circuit.get(Materials.UV), 'W',
-                        OrePrefixes.cableGt04.get(Materials.Naquadah) });
+                        OrePrefixes.circuit.get(Materials.UV), 'W', OrePrefixes.cableGt04.get(Materials.Naquadah) });
         GTModHandler.addCraftingRecipe(
                 CropItemList.cropReplicatorUV.get(1L),
                 bitsd,

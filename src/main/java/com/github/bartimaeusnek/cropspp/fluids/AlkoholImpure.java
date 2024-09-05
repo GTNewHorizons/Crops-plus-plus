@@ -1,10 +1,10 @@
 package com.github.bartimaeusnek.cropspp.fluids;
 
-import gregtech.api.enums.Mods;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import gregtech.api.GregTechAPI;
+import gregtech.api.enums.Mods;
 
 public class AlkoholImpure extends Fluid implements Runnable {
 

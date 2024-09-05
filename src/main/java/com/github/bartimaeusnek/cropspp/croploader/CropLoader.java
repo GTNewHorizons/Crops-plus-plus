@@ -184,14 +184,12 @@ public class CropLoader {
             bHasCropObj.add(c.tConfig.get("Crops", setnames().get(i), true).getBoolean(true));
         }
         bHasCropObj.add(c.tConfig.get("Crops", "Bonsai", true).getBoolean(true));
-        c.tConfig.addCustomCategoryComment(
-                "Gain",
-                """
-                        Set custom gain modifiers here:
-                         Tinker's Construct Berries' Gain is not modified by All Crops.
-                         Primordial Berry's gain is absolut
-                         Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period
-                         IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks""");
+        c.tConfig.addCustomCategoryComment("Gain", """
+                Set custom gain modifiers here:
+                 Tinker's Construct Berries' Gain is not modified by All Crops.
+                 Primordial Berry's gain is absolut
+                 Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period
+                 IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks""");
         ConfigValues.BerryGain = (float) c.tConfig.get("Gain", "All crops", (float) 1).getDouble(1);
         ConfigValues.TConstructBerryGain = (float) c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1)
                 .getDouble(1);
