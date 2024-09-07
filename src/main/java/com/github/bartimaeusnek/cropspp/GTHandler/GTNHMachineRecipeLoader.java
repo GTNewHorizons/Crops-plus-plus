@@ -115,13 +115,11 @@ public class GTNHMachineRecipeLoader implements Runnable {
             if (potion == null) continue;
 
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(CppItems.CppPotions, 1, i))
-                    .itemOutputs(new ItemStack(Items.glass_bottle))
-                    .fluidOutputs(new FluidStack(potion, 250))
+                    .itemOutputs(new ItemStack(Items.glass_bottle)).fluidOutputs(new FluidStack(potion, 250))
                     .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
 
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(Items.glass_bottle))
-                    .itemOutputs(new ItemStack(CppItems.CppPotions, 1, i))
-                    .fluidInputs(new FluidStack(potion, 250))
+                    .itemOutputs(new ItemStack(CppItems.CppPotions, 1, i)).fluidInputs(new FluidStack(potion, 250))
                     .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
 
         }
