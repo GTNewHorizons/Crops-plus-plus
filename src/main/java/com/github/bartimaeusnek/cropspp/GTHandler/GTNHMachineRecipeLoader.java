@@ -547,7 +547,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .fluidInputs(
                         Materials.UUMatter
                                 .getFluid((Materials.Neutronium.getNeutrons() + Materials.Neutronium.getProtons())))
-                .duration(6 * SECONDS).eut(500000).addTo(multiblockChemicalReactorRecipes);
+                .duration(6 * SECONDS).eut(TierEU.RECIPE_UV).addTo(multiblockChemicalReactorRecipes);
 
         if (Mods.Thaumcraft.isModLoaded()) {
             // Magic Modifier PrimP
