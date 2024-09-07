@@ -60,7 +60,7 @@ public class CppBerries extends ItemFood {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
+        return "item.berry." + textureNames[itemstack.getItemDamage()];
     }
 
     @SideOnly(Side.CLIENT)
@@ -75,16 +75,16 @@ public class CppBerries extends ItemFood {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0: {
+            case 0 -> {
                 list.add("Huckle-dae-Duckle-dae-Doo");
                 list.add("A sweet treat!");
-                break;
             }
-            case 1: {
+            case 1 -> {
                 list.add("A sweet beet, commonly found in France, Germany, Russia and China.");
                 list.add("Industrial Sugar!");
-                break;
             }
+            default -> {}
+
             // other cases
         }
     }

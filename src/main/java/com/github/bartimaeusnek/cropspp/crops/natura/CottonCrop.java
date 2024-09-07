@@ -37,24 +37,12 @@ public class CottonCrop extends BasicDecorationCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0: {
-                return 4;
-            }
-            case 1: {
-                return 4;
-            }
-            case 2: {
-                return 0;
-            }
-            case 3: {
-                return 0;
-            }
-            case 4: {
-                return 2;
-            }
-        }
-        return 0;
+        return switch (n) {
+            case 0, 1 -> 4;
+            case 2, 3 -> 0;
+            case 4 -> 2;
+            default -> 0;
+        };
     }
 
     @Override

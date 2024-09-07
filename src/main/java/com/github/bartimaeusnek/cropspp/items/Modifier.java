@@ -36,20 +36,10 @@ public class Modifier extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage() % textureNames.length) {
-            case 0:
-                list.add("Space Radiation caught in a Flower!");
-                break;
-            case 1:
-                list.add("Pure Magic!");
-                break;
-            case 2:
-                list.add("Challenge Accepted!");
-                break;
-            /*
-             * case 3: list.add("!stooR-rettaM-itnA"); break; case 4: list.add("Boosts the Growth-Statt of a plant!");
-             * break; case 5: list.add("Boosts the Gain-Statt of a plant!"); break; case 6:
-             * list.add("Boosts the Resistance-Statt of a plant!"); break;
-             */
+            case 0 -> list.add("Space Radiation caught in a Flower!");
+            case 1 -> list.add("Pure Magic!");
+            case 2 -> list.add("Challenge Accepted!");
+            default -> {}
         }
     }
 
@@ -65,9 +55,9 @@ public class Modifier extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-        if (itemstack.getItemDamage() < textureNames.length) return (new StringBuilder()).append("item_Modifier_")
-                .append(textureNames[itemstack.getItemDamage()]).toString();
-        else return (new StringBuilder()).append("item_Modifier_").append(textureNames[0]).toString();
+        if (itemstack.getItemDamage() < textureNames.length)
+            return "item_Modifier_" + textureNames[itemstack.getItemDamage()];
+        else return "item_Modifier_" + textureNames[0];
     }
 
     @Override

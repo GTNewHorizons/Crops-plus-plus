@@ -25,20 +25,14 @@ public class BoPBerryCrop extends BasicBerryCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 0; // not chemical
-            case 1:
-                return 4; // very edible
-            case 2:
-                return 0; // no defensive properties
-            case 3:
-                return 4; // quite colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 0; // not chemical
+            case 1 -> 4; // very edible
+            case 2 -> 0; // no defensive properties
+            case 3 -> 4; // quite colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override

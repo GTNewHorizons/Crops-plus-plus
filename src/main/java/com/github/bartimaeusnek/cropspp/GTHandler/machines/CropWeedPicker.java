@@ -137,9 +137,7 @@ public class CropWeedPicker extends MTEHatch {
                     TileEntity possibleCrop = this.getBaseMetaTileEntity().getWorld()
                             .getTileEntity(x, this.getBaseMetaTileEntity().getYCoord(), z);
 
-                    if (!(possibleCrop instanceof TileEntityCrop)) continue;
-
-                    TileEntityCrop cropTE = (TileEntityCrop) possibleCrop;
+                    if (!(possibleCrop instanceof TileEntityCrop cropTE)) continue;
 
                     if (cropTE.getCrop() == null) continue;
 

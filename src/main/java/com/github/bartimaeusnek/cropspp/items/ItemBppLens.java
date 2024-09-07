@@ -44,7 +44,7 @@ public class ItemBppLens extends Item {
             else return false;
             if (((TileEntityCrop) te).getScanLevel() < 1) {
                 ((TileEntityCrop) te).setScanLevel((byte) 1);
-                ((TileEntityCrop) te).markDirty();
+                te.markDirty();
             }
             return true;
         }

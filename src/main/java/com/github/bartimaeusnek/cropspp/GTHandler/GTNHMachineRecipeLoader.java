@@ -29,6 +29,7 @@ import java.util.Locale;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -109,22 +110,16 @@ public class GTNHMachineRecipeLoader implements Runnable {
 
         for (int i = 0; i < CppPotions.textureNames.length; i++) {
 
+            Fluid potion = FluidRegistry.getFluid("potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH));
+
+            if (potion == null) continue;
+
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(CppItems.CppPotions, 1, i))
-                    .itemOutputs(new ItemStack(Items.glass_bottle))
-                    .fluidOutputs(
-                            new FluidStack(
-                                    FluidRegistry.getFluid(
-                                            "potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)),
-                                    250))
+                    .itemOutputs(new ItemStack(Items.glass_bottle)).fluidOutputs(new FluidStack(potion, 250))
                     .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
 
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(Items.glass_bottle))
-                    .itemOutputs(new ItemStack(CppItems.CppPotions, 1, i))
-                    .fluidInputs(
-                            new FluidStack(
-                                    FluidRegistry.getFluid(
-                                            "potion." + CppPotions.textureNames[i].toLowerCase(Locale.ENGLISH)),
-                                    250))
+                    .itemOutputs(new ItemStack(CppItems.CppPotions, 1, i)).fluidInputs(new FluidStack(potion, 250))
                     .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
 
         }

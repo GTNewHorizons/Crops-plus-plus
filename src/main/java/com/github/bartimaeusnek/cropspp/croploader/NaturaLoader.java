@@ -21,7 +21,7 @@ public class NaturaLoader {
 
     public static List<CropLoader> load() {
 
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
 
         p.add(new CropLoader(new BlightberryCrop(), new ItemStack(NContent.netherBerryItem, 1, 0)));
         p.add(new CropLoader(new DuskberryCrop(), new ItemStack(NContent.netherBerryItem, 1, 1)));

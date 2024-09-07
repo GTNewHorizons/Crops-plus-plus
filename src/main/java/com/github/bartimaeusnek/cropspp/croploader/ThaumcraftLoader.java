@@ -12,7 +12,7 @@ import com.github.bartimaeusnek.cropspp.crops.TC.ShimmerleafCrop;
 public class ThaumcraftLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new PrimordialPearlBerryCrop(), thaumcraft.api.ItemApi.getItem("itemEldritchObject", 3)));
         p.add(new CropLoader(new MagicMetalBerryCrop(), thaumcraft.api.ItemApi.getItem("itemResource", 17)));
         p.add(new CropLoader(new ShimmerleafCrop(), null));

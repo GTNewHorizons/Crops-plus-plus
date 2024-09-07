@@ -1,16 +1,15 @@
 package com.github.bartimaeusnek.cropspp.fluids;
 
-import static gregtech.api.enums.GTValues.RES_PATH_BLOCK;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import gregtech.api.GregTechAPI;
+import gregtech.api.enums.Mods;
 
 public class AlkoholImpure extends Fluid implements Runnable {
 
     public long percentage;
-    private String texture;
+    private final String texture;
 
     public AlkoholImpure(String name, long d, String texture) {
         super(name);
@@ -26,7 +25,8 @@ public class AlkoholImpure extends Fluid implements Runnable {
 
     @Override
     public void run() {
-        setIcons(GregTechAPI.sBlockIcons.registerIcon(RES_PATH_BLOCK + "fluids/fluid." + texture));
+        String ResourcePath = Mods.GregTech.getResourceLocation("fluids/fluid." + texture).toString();
+        setIcons(GregTechAPI.sBlockIcons.registerIcon(ResourcePath));
     }
 
     public long getPercentage() {

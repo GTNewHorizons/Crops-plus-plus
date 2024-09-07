@@ -15,7 +15,7 @@ import com.github.bartimaeusnek.cropspp.crops.witchery.WolfsBaneCrop;
 public class WitcheryLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
 
         p.add(new CropLoader(new GlintWeedCrop(), null));
         p.add(new CropLoader(new SpanishMossCrop(), null));

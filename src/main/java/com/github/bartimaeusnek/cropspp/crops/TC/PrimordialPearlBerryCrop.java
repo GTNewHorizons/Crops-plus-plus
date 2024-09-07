@@ -43,20 +43,14 @@ public class PrimordialPearlBerryCrop extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 0; // not chemical
-            case 1:
-                return 0; // not edible
-            case 2:
-                return 0; // no defensive properties
-            case 3:
-                return 12; // immensely colorful
-            case 4:
-                return 0; // not weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 0; // not chemical
+            case 1 -> 0; // not edible
+            case 2 -> 0; // no defensive properties
+            case 3 -> 12; // immensely colorful
+            case 4 -> 0; // not weed-like
+            default -> 0;
+        };
     }
 
     @Override

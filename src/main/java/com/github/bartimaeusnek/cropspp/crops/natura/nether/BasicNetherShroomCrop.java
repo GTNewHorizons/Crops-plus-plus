@@ -50,20 +50,14 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 1; // a bit chemical
-            case 1:
-                return 3; // kinda edible
-            case 2:
-                return 0; // no defensive properties
-            case 3:
-                return 4; // quite colorful
-            case 4:
-                return 0; // not particularly weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 1; // a bit chemical
+            case 1 -> 3; // kinda edible
+            case 2 -> 0; // no defensive properties
+            case 3 -> 4; // quite colorful
+            case 4 -> 0; // not particularly weed-like
+            default -> 0;
+        };
     }
 
     @Override
@@ -93,29 +87,21 @@ public class BasicNetherShroomCrop extends BasicNetherBerryCrop {
 
     @Override
     public ItemStack getGain(ICropTile crop) {
-        switch (this.shroomType) {
-            case Blue:
-                return new ItemStack(NContent.glowshroom, 1, 2);
-            case Green:
-                return new ItemStack(NContent.glowshroom, 1, 0);
-            case Purple:
-                return new ItemStack(NContent.glowshroom, 1, 1);
-            default:
-                return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
-        }
+        return switch (this.shroomType) {
+            case Blue -> new ItemStack(NContent.glowshroom, 1, 2);
+            case Green -> new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple -> new ItemStack(NContent.glowshroom, 1, 1);
+            default -> new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+        };
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        switch (this.shroomType) {
-            case Blue:
-                return new ItemStack(NContent.glowshroom, 1, 2);
-            case Green:
-                return new ItemStack(NContent.glowshroom, 1, 0);
-            case Purple:
-                return new ItemStack(NContent.glowshroom, 1, 1);
-            default:
-                return new ItemStack(BOPCBlocks.mushrooms, 1, 3);
-        }
+        return switch (this.shroomType) {
+            case Blue -> new ItemStack(NContent.glowshroom, 1, 2);
+            case Green -> new ItemStack(NContent.glowshroom, 1, 0);
+            case Purple -> new ItemStack(NContent.glowshroom, 1, 1);
+            default -> new ItemStack(BOPCBlocks.mushrooms, 1, 3);
+        };
     }
 }

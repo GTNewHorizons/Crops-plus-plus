@@ -81,11 +81,10 @@ public class ItemBppWateringCan extends Item implements IFluidContainerItem {
         }
 
         TileEntity te = world.getTileEntity(x, y, z);
-        if (!(te instanceof TileEntityCrop)) {
+        if (!(te instanceof TileEntityCrop crop)) {
             return false;
         }
 
-        TileEntityCrop crop = (TileEntityCrop) te;
         if (crop.getCrop() == null) {
             return false;
         }

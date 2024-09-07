@@ -21,7 +21,7 @@ public class BoPLoader {
 
     public static List<CropLoader> BoPLoaderList() {
 
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new BoPBerryCrop(), new ItemStack(biomesoplenty.api.content.BOPCItems.food, 1, 0)));
         p.add(
                 new CropLoader(

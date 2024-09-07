@@ -36,20 +36,14 @@ public class Bamboo extends BasicCrop {
 
     @Override
     public int stat(int n) {
-        switch (n) {
-            case 0:
-                return 0; // not chemical
-            case 1:
-                return 0; // not edible
-            case 2:
-                return 3; // has defensive properties
-            case 3:
-                return 0; // not colorful
-            case 4:
-                return 3; // weed-like
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 0 -> 0; // not chemical
+            case 1 -> 0; // not edible
+            case 2 -> 3; // has defensive properties
+            case 3 -> 0; // not colorful
+            case 4 -> 3; // weed-like
+            default -> 0;
+        };
     }
 
     @Override

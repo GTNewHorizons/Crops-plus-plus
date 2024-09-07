@@ -46,9 +46,9 @@ import ic2.api.crops.Crops;
 
 public class CropLoader {
 
-    private static List<Boolean> bHasCropObj = new ArrayList<Boolean>();
-    private static List<CropLoader> list = cropLoader();
-    private CropCard cropObj;
+    private static final List<Boolean> bHasCropObj = new ArrayList<>();
+    private static final List<CropLoader> list = cropLoader();
+    private final CropCard cropObj;
     private ItemStack baseseed;
 
     /*
@@ -77,9 +77,9 @@ public class CropLoader {
         return new CropLoader(cropObj, OreDict.ISget("crop" + cropObj.name()));
     }
 
-    public static final List<CropLoader> cropLoader() {
+    public static List<CropLoader> cropLoader() {
 
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
 
         /*
          * Add your crops with base seed here by p.add(new CropLoader(new YourCropClass(),YourItem));
@@ -139,24 +139,24 @@ public class CropLoader {
         return p;
     }
 
-    private static final List<CropCard> cropObjs() {
-        List<CropCard> p = new ArrayList<CropCard>();
+    private static List<CropCard> cropObjs() {
+        List<CropCard> p = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCC(list.get(i)));
         }
         return p;
     }
 
-    private static final List<ItemStack> setBaseSeed() {
-        List<ItemStack> p = new ArrayList<ItemStack>();
+    private static List<ItemStack> setBaseSeed() {
+        List<ItemStack> p = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             p.add(CropunpackerCG(list.get(i)));
         }
         return p;
     }
 
-    private static final List<String> setnames() {
-        List<String> s = new ArrayList<String>();
+    private static List<String> setnames() {
+        List<String> s = new ArrayList<>();
         for (int i = 0; i < list.size(); ++i) {
             s.add(cropObjs().get(i).name());
         }
@@ -167,11 +167,12 @@ public class CropLoader {
         c = new config(preinit, "berriespp.cfg");
         c.tConfig.addCustomCategoryComment(
                 "System",
-                "enable or disable system config:"
-                        + "\nDebug will set all crops groth duration to 1 and disable all requirements.(aka. \"Cheatmode\")"
-                        + "\nBonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)"
-                        + "\nWiP Items are not finished items."
-                        + "\nItems will enable/disable all items.");
+                """
+                        enable or disable system config:
+                        Debug will set all crops groth duration to 1 and disable all requirements.(aka. "Cheatmode")
+                        Bonsai Generation will generate crops from saplings, WiP state. (disabled bc of bugs with metadata, but sure you can try it.)
+                        WiP Items are not finished items.
+                        Items will enable/disable all items.""");
         ConfigValues.debug = c.tConfig.get("System", "Debug", false).getBoolean(false);
         ConfigValues.WiPItems = c.tConfig.get("System", "WiP Items", false).getBoolean(false);
         ConfigValues.Items = c.tConfig.get("System", "Items", true).getBoolean(true);
@@ -183,12 +184,12 @@ public class CropLoader {
             bHasCropObj.add(c.tConfig.get("Crops", setnames().get(i), true).getBoolean(true));
         }
         bHasCropObj.add(c.tConfig.get("Crops", "Bonsai", true).getBoolean(true));
-        c.tConfig.addCustomCategoryComment(
-                "Gain",
-                "Set custom gain modifiers here:" + "\n Tinker's Construct Berries' Gain is not modified by All Crops."
-                        + "\n Primordial Berry's gain is absolut"
-                        + "\n Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period"
-                        + "\n IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks");
+        c.tConfig.addCustomCategoryComment("Gain", """
+                Set custom gain modifiers here:
+                 Tinker's Construct Berries' Gain is not modified by All Crops.
+                 Primordial Berry's gain is absolut
+                 Primordial Berry's growth time is divided by 4, in IC2 groth points. F.e. 10 = 40GP per groth-period
+                 IC2 groth points are calculated by 3 + random 0-7 + statGrowth per 256ticks""");
         ConfigValues.BerryGain = (float) c.tConfig.get("Gain", "All crops", (float) 1).getDouble(1);
         ConfigValues.TConstructBerryGain = (float) c.tConfig.get("Gain", "Tinker's Construct berries", (float) 1)
                 .getDouble(1);
@@ -215,7 +216,7 @@ public class CropLoader {
 
     public static void registerBaseSeed() {
 
-        List<ItemStack> baseseed = new ArrayList<ItemStack>(setBaseSeed());
+        List<ItemStack> baseseed = new ArrayList<>(setBaseSeed());
 
         for (int i = 0; i < list.size(); ++i) {
             if (baseseed.get(i) != null && cropObjs().get(i) != null)

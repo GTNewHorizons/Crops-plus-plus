@@ -24,27 +24,15 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public ItemStack getDisplayItem() {
-        switch (color) {
-            case "Red": {
-                return Materials.GraniteRed.getDust(9);
-            }
-            case "Black": {
-                return Materials.GraniteBlack.getDust(9);
-            }
-            case "White": {
-                return Materials.Marble.getDust(9);
-            }
-            case "Gray": {
-                return Materials.Stone.getDust(9);
-            }
-            case "Yellow": {
-                return Materials.Endstone.getDust(2);
-            }
-            case "Nether": {
-                return Materials.Netherrack.getDust(9);
-            }
-        }
-        return new ItemStack(Blocks.cobblestone);
+        return switch (color) {
+            case "Red" -> Materials.GraniteRed.getDust(9);
+            case "Black" -> Materials.GraniteBlack.getDust(9);
+            case "White" -> Materials.Marble.getDust(9);
+            case "Gray" -> Materials.Stone.getDust(9);
+            case "Yellow" -> Materials.Endstone.getDust(2);
+            case "Nether" -> Materials.Netherrack.getDust(9);
+            default -> new ItemStack(Blocks.cobblestone);
+        };
     }
 
     @Override
@@ -71,25 +59,18 @@ public class StonelillyCrop extends BasicDecorationCrop {
         // if crop is not on last stage, it can grow anyway
         if (crop.getSize() < this.maxSize() - 1) return true;
         // if crop is on last stage, it needs the block
-        switch (color) {
-            case "Red":
-                return crop.isBlockBelow("stoneGraniteRed") || crop.isBlockBelow("blockGranite");
-            case "Black":
-                return crop.isBlockBelow("stoneGraniteBlack") || crop.isBlockBelow("stoneBasalt");
-            case "White":
-                return crop.isBlockBelow("blockMarble") || crop.isBlockBelow("blockDiorite");
-            case "Gray":
-                return crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
-                        || crop.isBlockBelow("blockAndesite");
-            case "Yellow":
-                return crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
-                        || crop.isBlockBelow(Blocks.sandstone);
-            case "Nether":
-                return crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick);
-            default:
-                // if this line executes consider it a UB
-                return false;
-        }
+        return switch (color) {
+            case "Red" -> crop.isBlockBelow("stoneGraniteRed") || crop.isBlockBelow("blockGranite");
+            case "Black" -> crop.isBlockBelow("stoneGraniteBlack") || crop.isBlockBelow("stoneBasalt");
+            case "White" -> crop.isBlockBelow("blockMarble") || crop.isBlockBelow("blockDiorite");
+            case "Gray" -> crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone)
+                    || crop.isBlockBelow("blockAndesite");
+            case "Yellow" -> crop.isBlockBelow(Blocks.end_stone) || crop.isBlockBelow(Blocks.sand)
+                    || crop.isBlockBelow(Blocks.sandstone);
+            case "Nether" -> crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick);
+            // if this line executes consider it a UB
+            default -> false;
+        };
     }
 
     @Override
@@ -99,53 +80,28 @@ public class StonelillyCrop extends BasicDecorationCrop {
 
     @Override
     public String[] attributes() {
-        switch (color) {
-            case "Red":
-                return new String[] { color, "Stone", "Fire" };
-            case "Black":
-                return new String[] { color, "Stone", "Dark" };
-            case "White":
-                return new String[] { color, "Stone", "Shiny" };
-            case "Gray":
-                return new String[] { color, "Stone", "Metal" };
-            case "Yellow":
-                return new String[] { color, "Stone", "Alien" };
-            case "Nether":
-                return new String[] { color, "Stone", "Evil" };
-            default:
-                // if this line executes consider it a UB
-                return new String[] { color, "Stone" };
-        }
+        return switch (color) {
+            case "Red" -> new String[] { color, "Stone", "Fire" };
+            case "Black" -> new String[] { color, "Stone", "Dark" };
+            case "White" -> new String[] { color, "Stone", "Shiny" };
+            case "Gray" -> new String[] { color, "Stone", "Metal" };
+            case "Yellow" -> new String[] { color, "Stone", "Alien" };
+            case "Nether" -> new String[] { color, "Stone", "Evil" };
+            // if this line executes consider it a UB
+            default -> new String[] { color, "Stone" };
+        };
     }
 
     @Override
     public List<String> getCropInformation() {
         ArrayList<String> information = new ArrayList<>();
         switch (color) {
-            case "Red": {
-                information.add("Needs a Block of Red Granite or Granite(Non-GT) below to fully Mature");
-                break;
-            }
-            case "Black": {
-                information.add("Needs a Block of Black Granite or Basalt below to fully Mature");
-                break;
-            }
-            case "White": {
-                information.add("Needs a Block of Marble or Diorite below to fully Mature");
-                break;
-            }
-            case "Gray": {
-                information.add("Needs a Block of Cobblestone, Stone or Andesite below to fully Mature");
-                break;
-            }
-            case "Yellow": {
-                information.add("Needs a Block of Endstone, Sand or Sandstone below to fully Mature");
-                break;
-            }
-            case "Nether": {
-                information.add("Needs a Block of Netherrack or Netherbrick below to fully Mature");
-                break;
-            }
+            case "Red" -> information.add("Needs a Block of Red Granite or Granite(Non-GT) below to fully Mature");
+            case "Black" -> information.add("Needs a Block of Black Granite or Basalt below to fully Mature");
+            case "White" -> information.add("Needs a Block of Marble or Diorite below to fully Mature");
+            case "Gray" -> information.add("Needs a Block of Cobblestone, Stone or Andesite below to fully Mature");
+            case "Yellow" -> information.add("Needs a Block of Endstone, Sand or Sandstone below to fully Mature");
+            case "Nether" -> information.add("Needs a Block of Netherrack or Netherbrick below to fully Mature");
         }
         information.add("Has increased Nutrient requirements (x1.4)");
         information.add("Has decreased humidity and air requirements (x0.8)");
@@ -155,37 +111,31 @@ public class StonelillyCrop extends BasicDecorationCrop {
     @Override
     public ItemStack getGain(ICropTile crop) {
         switch (color) {
-            case "Red": {
+            case "Red" -> {
                 if (crop.isBlockBelow("stoneGraniteRed")) return Materials.GraniteRed.getDust(9);
                 if (crop.isBlockBelow("blockGranite")) return CCropUtility.getCopiedOreStack("blockGranite");
-                break;
             }
-            case "Black": {
+            case "Black" -> {
                 if (crop.isBlockBelow("stoneGraniteBlack")) return Materials.GraniteBlack.getDust(9);
                 if (crop.isBlockBelow("stoneBasalt")) return Materials.Basalt.getDust(9);
-                break;
             }
-            case "White": {
+            case "White" -> {
                 if (crop.isBlockBelow("blockMarble")) return Materials.Marble.getDust(9);
                 if (crop.isBlockBelow("blockDiorite")) return CCropUtility.getCopiedOreStack("blockDiorite");
-                break;
             }
-            case "Gray": {
+            case "Gray" -> {
                 if (crop.isBlockBelow(Blocks.cobblestone) || crop.isBlockBelow(Blocks.stone))
                     return Materials.Stone.getDust(9);
                 if (crop.isBlockBelow("blockAndesite")) return CCropUtility.getCopiedOreStack("blockAndesite");
-                break;
             }
-            case "Yellow": {
+            case "Yellow" -> {
                 if (crop.isBlockBelow(Blocks.end_stone)) return Materials.Endstone.getDust(2);
                 if ((crop.isBlockBelow(Blocks.sand)) || (crop.isBlockBelow(Blocks.sandstone)))
                     return new ItemStack(Blocks.sand, 4);
-                break;
             }
-            case "Nether": {
+            case "Nether" -> {
                 if (crop.isBlockBelow(Blocks.netherrack) || crop.isBlockBelow(Blocks.nether_brick))
                     return Materials.Netherrack.getDust(9);
-                break;
             }
         }
         // this is user error if this executes, not a UB

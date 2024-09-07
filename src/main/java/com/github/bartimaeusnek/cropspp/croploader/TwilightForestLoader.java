@@ -16,7 +16,7 @@ import twilightforest.item.TFItems;
 public class TwilightForestLoader {
 
     public static List<CropLoader> load() {
-        List<CropLoader> p = new ArrayList<CropLoader>();
+        List<CropLoader> p = new ArrayList<>();
         p.add(new CropLoader(new KnighmetalCrop(), null));
         p.add(new CropLoader(new TorchberryCrop(), new ItemStack(TFItems.torchberries, 1, 0)));
 

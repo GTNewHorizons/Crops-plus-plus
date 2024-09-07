@@ -85,7 +85,7 @@ public class CppPotions extends ItemPotion {
         if (meta >= textureNames.length) {
             meta = 0;
         }
-        return new StringBuilder().append("potion.").append(textureNames[meta]).append(".bottled").toString();
+        return "potion." + textureNames[meta] + ".bottled";
     }
 
     @Override
@@ -103,47 +103,26 @@ public class CppPotions extends ItemPotion {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0 -> {
-                list.add("It stinks.");
-            }
-            case 1 -> {
-                list.add("Korn? Eww, you'll get a headache!");
-            }
-            case 2 -> {
-                list.add("Doppelkorn? German Vodka!");
-            }
-            case 3 -> {
-                list.add("It stinks.");
-            }
-            case 4 -> {
-                list.add("Too Strong.");
-            }
-            case 5 -> {
-                list.add("Soo Sweet");
-            }
-            case 6 -> {
-                list.add("It stinks.");
-            }
-            case 7 -> {
-                list.add("Too Strong.");
-            }
-            case 8 -> {
-                list.add("Das ist des J\u00e4gers' Ehrenschild,");
-                list.add("dass er besch\u00fctzt und hegt sein Wild,");
-                list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
-                list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
+            case 0, 3, 6 -> list.add("It stinks.");
+            case 1 -> list.add("Korn? Eww, you'll get a headache!");
+            case 2 -> list.add("Doppelkorn? German Vodka!");
+            case 4, 7 -> list.add("Too Strong.");
+            case 5 -> list.add("Soo Sweet");
+            case 8, 9 -> {
+                list.add("Das ist des Jägers' Ehrenschild,");
+                list.add("dass er beschützt und hegt sein Wild,");
+                list.add("weidmännisch jagt, wie sich's gehört,");
+                list.add("den Schöpfer im Geschöpfe ehrt.");
                 list.add("");
-                list.add("It will give 1h potioneffects!");
-            }
-            case 9 -> {
-                list.add("Das ist des J\u00e4gers' Ehrenschild,");
-                list.add("dass er besch\u00fctzt und hegt sein Wild,");
-                list.add("weidm\u00e4nnisch jagt, wie sich's geh\u00f6rt,");
-                list.add("den Sch\u00f6pfer im Gesch\u00f6pfe ehrt.");
-                list.add("");
-                list.add("It smells like fake J\u00e4germeister...");
+                if (stack.getItemDamage() == 8) {
+                    list.add("It will give 1h potioneffects!");
+                } else {
+                    list.add("It smells like fake Jägermeister...");
+                }
+
             }
             // other cases
+            default -> {}
         }
     }
 
@@ -156,9 +135,7 @@ public class CppPotions extends ItemPotion {
     public List<PotionEffect> getEffects(int p_77834_1_) {
         List<PotionEffect> effects = new ArrayList<>();
         switch (p_77834_1_) {
-            case 0, 3, 6 -> {
-                effects.add(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
-            }
+            case 0, 3, 6 -> effects.add(new PotionEffect(Potion.regeneration.id, 2 * 20, 1));
             case 1 -> {
                 effects.add(new PotionEffect(Potion.regeneration.id, 5 * 20, 1));
                 effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 2));
@@ -172,9 +149,7 @@ public class CppPotions extends ItemPotion {
                 effects.add(new PotionEffect(Potion.poison.id, 20 * 8, 0));
                 effects.add(new PotionEffect(Potion.confusion.id, 15 * 20, 4));
             }
-            case 5 -> {
-                effects.add(new PotionEffect(Potion.regeneration.id, 20 * 4, 0));
-            }
+            case 5 -> effects.add(new PotionEffect(Potion.regeneration.id, 20 * 4, 0));
             case 8 -> {
                 effects.add(new PotionEffect(Potion.regeneration.id, 20 * 60 * 60, 100));
                 effects.add(new PotionEffect(Potion.damageBoost.id, 20 * 60 * 60, 100));
