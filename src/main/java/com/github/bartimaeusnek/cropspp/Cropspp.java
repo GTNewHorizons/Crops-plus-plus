@@ -28,6 +28,7 @@ import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUHV;
 import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUV;
 import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserZPM;
 
+import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -227,10 +228,11 @@ public final class Cropspp {
 
         CropItemList.cropWeedPicker
                 .set(new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1).getStackForm(1));
-        new CppFluids();
 
+        CppFluids.register_Fluids();
         CppItems.register_Items();
         CppItems.OreDictItems();
+
     }
 
     @EventHandler
