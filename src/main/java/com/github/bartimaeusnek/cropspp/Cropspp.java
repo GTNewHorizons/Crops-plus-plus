@@ -39,6 +39,7 @@ import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropSynthesiser;
 import com.github.bartimaeusnek.cropspp.GTHandler.machines.CropWeedPicker;
 import com.github.bartimaeusnek.cropspp.commands.EnableDebug;
 import com.github.bartimaeusnek.cropspp.croploader.CropLoader;
+import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
 
 import cpw.mods.fml.common.Mod;
@@ -227,8 +228,10 @@ public final class Cropspp {
         CropItemList.cropWeedPicker
                 .set(new CropWeedPicker(12528, "Basic CropWeedPicker", "Basic CropWeedPicker", 1).getStackForm(1));
 
+        CppFluids.register_Fluids();
         CppItems.register_Items();
         CppItems.OreDictItems();
+
     }
 
     @EventHandler

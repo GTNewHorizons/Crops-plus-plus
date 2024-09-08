@@ -12,4 +12,7 @@ public class CppFluids {
     public static final AlkoholImpure GHP = new AlkoholImpure("potion.GHP", 700, "potion.vodka");
     public static final AlkoholImpure jagi = new AlkoholImpure("potion.jagi", 100000, "potion.alcopops");
     public static final AlkoholImpure njagi = new AlkoholImpure("potion.njagi", 350, "potion.alcopops");
+
+    /// This method intentionally left blank to instantiate the static fields
+    public static void register_Fluids() {}
 }
