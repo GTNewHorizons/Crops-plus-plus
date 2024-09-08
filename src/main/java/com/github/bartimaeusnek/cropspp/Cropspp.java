@@ -28,7 +28,6 @@ import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUHV;
 import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserUV;
 import static gregtech.api.enums.MetaTileEntityIDs.cropSynthesiserZPM;
 
-import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
