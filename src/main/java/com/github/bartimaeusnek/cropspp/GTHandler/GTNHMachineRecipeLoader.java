@@ -359,7 +359,6 @@ public class GTNHMachineRecipeLoader implements Runnable {
             GTValues.RA.stdBuilder().itemInputs(itemStack.splitStack(16)).fluidInputs(Materials.Water.getFluid(750))
                     .fluidOutputs(new FluidStack(CppFluids.Mash, 750)).duration(6 * SECONDS + 8 * TICKS).eut(4)
                     .addTo(chemicalReactorRecipes);
-
         }
 
         GTValues.RA.stdBuilder().itemInputs(new ItemStack(Items.sugar, 8))
