@@ -7,6 +7,7 @@ import static gregtech.api.enums.Mods.Natura;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.recipe.RecipeMaps.brewingRecipes;
 import static gregtech.api.recipe.RecipeMaps.centrifugeRecipes;
+import static gregtech.api.recipe.RecipeMaps.chemicalReactorRecipes;
 import static gregtech.api.recipe.RecipeMaps.compressorRecipes;
 import static gregtech.api.recipe.RecipeMaps.distillationTowerRecipes;
 import static gregtech.api.recipe.RecipeMaps.distilleryRecipes;
@@ -357,7 +358,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
         for (ItemStack itemStack : OreDictionary.getOres("listAllberry")) {
             GTValues.RA.stdBuilder().itemInputs(itemStack.splitStack(16)).fluidInputs(Materials.Water.getFluid(750))
                     .fluidOutputs(new FluidStack(CppFluids.Mash, 750)).duration(6 * SECONDS + 8 * TICKS).eut(4)
-                    .addTo(brewingRecipes);
+                    .addTo(chemicalReactorRecipes);
 
         }
 
