@@ -353,14 +353,6 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .fluidOutputs(new FluidStack(FluidRegistry.getFluid("potion.rum"), 6000)).duration(10 * TICKS).eut(8)
                 .addTo(mixerRecipes);
 
-        // Brewery
-        for (ItemStack itemStack : OreDictionary.getOres("listAllberry")) {
-            GTValues.RA.stdBuilder().itemInputs(itemStack.splitStack(16)).fluidInputs(Materials.Water.getFluid(750))
-                    .fluidOutputs(new FluidStack(CppFluids.Mash, 750)).duration(6 * SECONDS + 8 * TICKS).eut(4)
-                    .addTo(brewingRecipes);
-
-        }
-
         GTValues.RA.stdBuilder().itemInputs(new ItemStack(Items.sugar, 8))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("potion.weakness"), 750))
                 .fluidOutputs(new FluidStack(CppFluids.Mash, 750)).duration(6 * SECONDS + 8 * TICKS).eut(4)
