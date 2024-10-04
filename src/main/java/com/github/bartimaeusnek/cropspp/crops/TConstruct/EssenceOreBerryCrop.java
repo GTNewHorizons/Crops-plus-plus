@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.crops.TConstruct;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import ic2.api.crops.ICropTile;
@@ -24,6 +25,14 @@ public class EssenceOreBerryCrop extends BasicTConstructOreBerryCrop {
     @Override
     protected String hasBlock() {
         return "itemSkull";
+    }
+
+    @Override
+    public boolean isBlockBelow(ICropTile crop) {
+        // IC2 doesn't understand wildcards in its item comparison logic for block below checks.
+        // So I'm using a workaround for vanilla skulls. EIO also adds a it's endermand head to the list and since that
+        // doesn't use a wild card we can assume it that should keep working.
+        return crop.isBlockBelow(Blocks.skull) || super.isBlockBelow(crop);
     }
 
     @Override
