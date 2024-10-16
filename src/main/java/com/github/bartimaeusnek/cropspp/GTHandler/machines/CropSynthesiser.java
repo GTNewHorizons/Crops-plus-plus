@@ -1,22 +1,5 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_BOTTOM_SCANNER_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_SCANNER_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_SIDE_SCANNER_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_TOP_SCANNER_GLOW;
-
 import java.util.HashMap;
 
 import net.minecraft.item.ItemStack;
@@ -32,6 +15,7 @@ import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.SoundResource;
+import gregtech.api.enums.Textures;
 import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -60,29 +44,50 @@ public class CropSynthesiser extends MTEBasicMachine {
                 4,
                 1,
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_SIDE_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory
+                                .of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_SIDE_ACTIVE")),
+                        TextureFactory.builder().addIcon(
+                                new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_SIDE_ACTIVE_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_SIDE_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_SIDE_SCANNER_GLOW).glow().build()),
+                        TextureFactory.of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_SIDE")),
+                        TextureFactory.builder()
+                                .addIcon(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_SIDE_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_FRONT_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory
+                                .of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_FRONT_ACTIVE")),
+                        TextureFactory.builder().addIcon(
+                                new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_FRONT_ACTIVE_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_FRONT_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_FRONT_SCANNER_GLOW).glow().build()),
+                        TextureFactory.of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_FRONT")),
+                        TextureFactory.builder()
+                                .addIcon(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_FRONT_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_TOP_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory
+                                .of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_TOP_ACTIVE")),
+                        TextureFactory.builder().addIcon(
+                                new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_TOP_ACTIVE_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_TOP_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_TOP_SCANNER_GLOW).glow().build()),
+                        TextureFactory.of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_TOP")),
+                        TextureFactory.builder()
+                                .addIcon(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_TOP_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_BOTTOM_SCANNER_ACTIVE),
-                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_ACTIVE_GLOW).glow().build()),
+                        TextureFactory
+                                .of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_BOTTOM_ACTIVE")),
+                        TextureFactory.builder().addIcon(
+                                new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_BOTTOM_ACTIVE_GLOW"))
+                                .glow().build()),
                 TextureFactory.of(
-                        TextureFactory.of(OVERLAY_BOTTOM_SCANNER),
-                        TextureFactory.builder().addIcon(OVERLAY_BOTTOM_SCANNER_GLOW).glow().build()));
+                        TextureFactory.of(new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_BOTTOM")),
+                        TextureFactory.builder()
+                                .addIcon(
+                                        new Textures.BlockIcons.CustomIcon("basicmachines/scanner/OVERLAY_BOTTOM_GLOW"))
+                                .glow().build()));
     }
 
     public CropSynthesiser(String mName, byte mTier, String[] mDescriptionArray, ITexture[][][] mTextures) {
