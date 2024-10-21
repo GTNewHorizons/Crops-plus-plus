@@ -25,6 +25,7 @@ dependencies {
     //runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     //runtimeOnly("com.github.GTNewHorizons:twilightforest:2.6.34:dev")
     //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.12.10-GTNH:dev")
+    //runtimeOnly("com.github.GTNewHorizons:EnderIO:2.8.18:dev")
     //runtimeOnly("com.github.GTNewHorizons:Natura:2.7.3:dev")
     //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.6.56:dev")
     //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.2.5-GTNH:dev")

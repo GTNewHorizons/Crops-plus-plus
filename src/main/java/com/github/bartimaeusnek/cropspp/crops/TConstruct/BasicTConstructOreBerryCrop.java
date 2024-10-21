@@ -21,9 +21,13 @@ public abstract class BasicTConstructOreBerryCrop extends BasicTinkerBerryCrop {
         return crop.getSize() >= this.maxSize() - 2 ? 3000 : 500;
     }
 
+    public boolean isBlockBelow(ICropTile crop) {
+        return crop.isBlockBelow(hasBlock());
+    }
+
     @Override
     public ItemStack getGain(ICropTile crop) {
-        return getDropItem(crop.getSize() >= this.maxSize() && crop.isBlockBelow(hasBlock()) ? 6 : 2);
+        return getDropItem(crop.getSize() >= this.maxSize() && this.isBlockBelow(crop) ? 6 : 2);
     }
 
     @Override
