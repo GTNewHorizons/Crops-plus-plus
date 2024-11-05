@@ -17,7 +17,6 @@ public class BiomeHumidityBonus {
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.SAVANNA, -5);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.CONIFEROUS, 7);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.JUNGLE, 10);
-        Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.SPOOKY, 7);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.DEAD, -5);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.LUSH, 7);
         Crops.instance.addBiomehumidityBonus(BiomeDictionary.Type.NETHER, -10);
