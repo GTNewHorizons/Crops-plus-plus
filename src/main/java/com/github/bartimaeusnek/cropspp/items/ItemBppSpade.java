@@ -13,11 +13,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 import com.github.bartimaeusnek.croploadcore.MyRandom;
 import com.github.bartimaeusnek.croploadcore.Operators;
 import com.google.common.collect.Sets;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.core.IC2;
@@ -107,18 +110,43 @@ public class ItemBppSpade extends ItemTool {
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
             float hitX, float hitY, float hitZ) {
-        if (side != 0 && world.getBlock(x, y + 1, z).getMaterial() == Material.air
-                && (world.getBlock(x, y, z) == Blocks.grass || world.getBlock(x, y, z) == Blocks.dirt
-                        || world.getBlock(x, y, z) == Blocks.mycelium)) {
-            world.setBlock(x, y, z, Blocks.farmland);
+        if (!player.canPlayerEdit(x, y, z, side, stack)) {
+            return false;
+        }
+
+        var event = new UseHoeEvent(player, stack, world, x, y, z);
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            return false;
+        }
+
+        if (event.getResult() == Event.Result.ALLOW) {
             return true;
-        } else if (side != 0 && world.getBlock(x, y + 1, z).getMaterial() == Material.air
-                && (world.getBlock(x, y, z) == Blocks.farmland)) {
-                    world.setBlock(x, y, z, Blocks.dirt);
-                    return true;
-                } else {
-                    return false;
+        }
+
+        if (side != 0 && world.getBlock(x, y + 1, z).getMaterial() == Material.air) {
+            if (world.getBlock(x, y, z) == Blocks.grass || world.getBlock(x, y, z) == Blocks.dirt
+                    || world.getBlock(x, y, z) == Blocks.mycelium
+                    || world.getBlock(x, y, z) == Blocks.farmland) {
+                var spadeBlock = Blocks.farmland;
+                world.playSoundEffect(
+                        x + 0.5f,
+                        y + 0.5f,
+                        z + 0.5f,
+                        spadeBlock.stepSound.getStepResourcePath(),
+                        (spadeBlock.stepSound.getVolume() + 1f) / 2f,
+                        spadeBlock.stepSound.getPitch() * 0.8f);
+                if (!world.isRemote) {
+                    world.setBlock(
+                            x,
+                            y,
+                            z,
+                            (world.getBlock(x, y, z) == Blocks.farmland) ? Blocks.dirt : Blocks.farmland);
                 }
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
