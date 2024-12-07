@@ -11,7 +11,7 @@ import ic2.api.crops.ICropTile;
 public class SnowbellCrop extends BasicWitcheryCrop {
 
     private static final String seedOreName = "seedSnowbell";
-    private static final String cropOreName = "cropSnowbell";
+    private static final String cropOreName = "itemSnowbell";
 
     public SnowbellCrop() {
         super();
