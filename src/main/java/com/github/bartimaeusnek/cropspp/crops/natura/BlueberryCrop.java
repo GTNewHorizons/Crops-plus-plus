@@ -13,7 +13,7 @@ import mods.natura.common.NContent;
 
 public class BlueberryCrop extends BasicBerryCrop {
 
-    private static final String cropOreName = "cropCotton";
+    private static final String cropOreName = "cropBlueberry";
 
     public BlueberryCrop() {
         super();
