@@ -248,7 +248,7 @@ public class CropWeedPicker extends MTEHatch {
         return new ITexture[] { Textures.BlockIcons.MACHINE_CASINGS[mTier][colorIndex + 1],
                 (side == ForgeDirection.DOWN || side == ForgeDirection.UP)
                         ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
-                        : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP) };
+                        : TextureFactory.of(Textures.BlockIcons.OVERLAY_WEED_PICKER) };
     }
 
     @Override
@@ -258,10 +258,10 @@ public class CropWeedPicker extends MTEHatch {
 
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
-        return new ITexture[] { TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), };
+        return new ITexture[] { TextureFactory.of(Textures.BlockIcons.OVERLAY_WEED_PICKER),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_WEED_PICKER),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_WEED_PICKER),
+                TextureFactory.of(Textures.BlockIcons.OVERLAY_WEED_PICKER), };
     }
 
     @Override
