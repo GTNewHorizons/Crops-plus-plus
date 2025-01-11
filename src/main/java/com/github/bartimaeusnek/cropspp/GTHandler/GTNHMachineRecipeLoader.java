@@ -35,6 +35,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import com.dreammaster.item.NHItemList;
 import com.github.bartimaeusnek.croploadcore.OreDict;
 import com.github.bartimaeusnek.cropspp.fluids.CppFluids;
 import com.github.bartimaeusnek.cropspp.items.CppItems;
@@ -563,7 +564,7 @@ public class GTNHMachineRecipeLoader implements Runnable {
             if (Mods.NewHorizonsCoreMod.isModLoaded()) {
 
                 GTValues.RA.stdBuilder().itemInputs(new ItemStack(CppItems.Modifier, 16, 1))
-                        .itemOutputs(com.dreammaster.item.ItemList.PrimordialPearlFragment.getIS().splitStack(3))
+                        .itemOutputs(NHItemList.PrimordialPearlFragment.getIS().splitStack(3))
                         .fluidInputs(Materials.UUMatter.getFluid(52)).duration(20 * MINUTES).eut(384)
                         .addTo(RecipeMaps.autoclaveRecipes);
             }
