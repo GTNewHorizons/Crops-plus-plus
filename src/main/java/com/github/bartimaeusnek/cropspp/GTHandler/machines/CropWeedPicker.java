@@ -2,6 +2,7 @@ package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
 import static gregtech.api.enums.GTValues.V;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -15,6 +16,8 @@ import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
 import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 import com.gtnewhorizons.modularui.common.widget.TextWidget;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.gui.modularui.GTUIInfos;
@@ -29,6 +32,8 @@ import gregtech.common.tileentities.machines.basic.MTEPump;
 import ic2.core.crop.TileEntityCrop;
 
 public class CropWeedPicker extends MTEHatch {
+
+    private static ITexture OVERLAY;
 
     public CropWeedPicker(int aID, String aName, String aNameRegional, int aTier) {
         super(
@@ -243,12 +248,19 @@ public class CropWeedPicker extends MTEHatch {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister aBlockIconRegister) {
+        super.registerIcons(aBlockIconRegister);
+        OVERLAY = TextureFactory.of(new Textures.BlockIcons.CustomIcon("bpp:OVERLAY_WEED_PICKER"));
+    }
+
+    @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
             int colorIndex, boolean active, boolean redstoneLevel) {
         return new ITexture[] { Textures.BlockIcons.MACHINE_CASINGS[mTier][colorIndex + 1],
                 (side == ForgeDirection.DOWN || side == ForgeDirection.UP)
                         ? TextureFactory.of(Textures.BlockIcons.OVERLAY_PIPE_OUT)
-                        : TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP) };
+                        : OVERLAY };
     }
 
     @Override
@@ -258,10 +270,7 @@ public class CropWeedPicker extends MTEHatch {
 
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
-        return new ITexture[] { TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP),
-                TextureFactory.of(Textures.BlockIcons.OVERLAY_ADV_PUMP), };
+        return new ITexture[] { OVERLAY, OVERLAY, OVERLAY, OVERLAY };
     }
 
     @Override
