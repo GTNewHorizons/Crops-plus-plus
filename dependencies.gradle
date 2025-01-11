@@ -27,6 +27,6 @@ dependencies {
     //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.13.3-GTNH:dev")
     //runtimeOnly("com.github.GTNewHorizons:EnderIO:2.9.2:dev")
     //runtimeOnly("com.github.GTNewHorizons:Natura:2.8.0:dev")
-    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.45:dev")
+    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.46-pre:dev")
     //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.3.1-GTNH:dev")
 }
