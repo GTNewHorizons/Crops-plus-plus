@@ -4,7 +4,7 @@ dependencies {
     api("com.github.GTNewHorizons:CropLoadCore:0.2.0:dev")
     api("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
 
-    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.51.63:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.51.65:dev")
     compileOnly(deobf("https://media.forgecdn.net/files/2499/612/BiomesOPlenty-1.7.10-2.1.0.2308-universal.jar"))
     compileOnly("com.github.GTNewHorizons:twilightforest:2.7.2:dev") {
         transitive = false
@@ -13,7 +13,7 @@ dependencies {
     compileOnly("com.github.GTNewHorizons:Natura:2.8.0:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.41:dev") {
+    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.47:dev") {
         transitive = false
     }
     compileOnly("com.github.GTNewHorizons:Galacticraft:3.3.1-GTNH:dev") {
@@ -27,6 +27,6 @@ dependencies {
     //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.13.3-GTNH:dev")
     //runtimeOnly("com.github.GTNewHorizons:EnderIO:2.9.2:dev")
     //runtimeOnly("com.github.GTNewHorizons:Natura:2.8.0:dev")
-    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.41:dev")
+    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.7.47:dev")
     //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.3.1-GTNH:dev")
 }
