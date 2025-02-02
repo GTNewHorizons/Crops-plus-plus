@@ -243,11 +243,6 @@ public class CropWeedPicker extends MTEHatch {
     }
 
     @Override
-    public int getTankPressure() {
-        return 100;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister aBlockIconRegister) {
         super.registerIcons(aBlockIconRegister);
