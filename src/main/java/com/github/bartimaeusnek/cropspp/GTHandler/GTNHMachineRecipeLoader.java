@@ -248,8 +248,8 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .duration(1 * SECONDS + 8 * TICKS).eut(64).addTo(distilleryRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(GTUtility.getIntegratedCircuit(5))
-                .fluidInputs(new FluidStack(CppFluids.FWheat, 1000)).fluidOutputs(Materials.Ethanol.getFluid(4))
-                .duration(11 * SECONDS).eut(TierEU.RECIPE_MV).addTo(distilleryRecipes);
+                .fluidInputs(new FluidStack(CppFluids.FWheat, 250)).fluidOutputs(Materials.Ethanol.getFluid(1))
+                .duration(2 * SECONDS + 15 * TICKS).eut(TierEU.RECIPE_MV).addTo(distilleryRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(GTUtility.getIntegratedCircuit(1))
                 .fluidInputs(new FluidStack(CppFluids.FReed, 100)).fluidOutputs(new FluidStack(CppFluids.SWhine, 7))
@@ -261,8 +261,8 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .duration(1 * SECONDS + 4 * TICKS).eut(24).addTo(distilleryRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(GTUtility.getIntegratedCircuit(5))
-                .fluidInputs(new FluidStack(CppFluids.FReed, 1000)).fluidOutputs(Materials.Ethanol.getFluid(5))
-                .duration(11 * SECONDS).eut(TierEU.RECIPE_MV).addTo(distilleryRecipes);
+                .fluidInputs(new FluidStack(CppFluids.FReed, 200)).fluidOutputs(Materials.Ethanol.getFluid(1))
+                .duration(2 * SECONDS + 4 * TICKS).eut(TierEU.RECIPE_MV).addTo(distilleryRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(GTUtility.getIntegratedCircuit(4))
                 .fluidInputs(new FluidStack(CppFluids.Mash, 200))
@@ -616,9 +616,9 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .duration(1 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_IV).addTo(multiblockChemicalReactorRecipes);
 
         // coral buff
-        GTValues.RA.stdBuilder().itemInputs(GTModHandler.getModItem(BiomesOPlenty.ID, "coral1", 64, 15))
-                .itemOutputs(Materials.Sunnarium.getDust(4)).fluidInputs(Materials.UUMatter.getFluid(2))
-                .duration(12 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_IV).requiresCleanRoom()
+        GTValues.RA.stdBuilder().itemInputs(GTModHandler.getModItem(BiomesOPlenty.ID, "coral1", 32, 15))
+                .itemOutputs(Materials.Sunnarium.getDust(2)).fluidInputs(Materials.UUMatter.getFluid(1))
+                .duration(6 * MINUTES + 15 * SECONDS).eut(TierEU.RECIPE_IV).requiresCleanRoom()
                 .addTo(RecipeMaps.autoclaveRecipes);
 
         if (BiomesOPlenty.isModLoaded()) {
