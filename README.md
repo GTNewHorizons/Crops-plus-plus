@@ -1,9 +1,5 @@
 ## Building
 
-`./gradlew clean setupDecompWorkspace idea` 
-
-(The `idea` is for InteliJ only, try `eclipse` for Eclipse)
-
 `./gradlew build`
 
 To download the dev/cutting edge version can be found on the [GTNH Jenkins](http://jenkins.usrv.eu:8080/job/Crops++/).
