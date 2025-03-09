@@ -252,7 +252,7 @@ public class CropWeedPicker extends MTEHatch {
                                 .setPos(79, 16))
                 .widget(new TextWidget("Liquid Amount").setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 20)).widget(
                         TextWidget
-                                .dynamicString(() -> GTUtility.parseNumberToString(mFluid != null ? mFluid.amount : 0))
+                                .dynamicString(() -> GTUtility.formatNumbers(mFluid != null ? mFluid.amount : 0))
                                 .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 30));
     }
 }
