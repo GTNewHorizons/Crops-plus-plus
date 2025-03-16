@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.enums.ItemList;
+import gregtech.api.util.GTUtility;
 
 public class CppPotions extends ItemPotion {
 
@@ -90,7 +91,7 @@ public class CppPotions extends ItemPotion {
 
     @Override
     public String getItemStackDisplayName(ItemStack p_77653_1_) {
-        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(p_77653_1_) + ".name")).trim();
+        return (StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(p_77653_1_) + ".name")).trim();
     }
 
     @Override
@@ -103,21 +104,18 @@ public class CppPotions extends ItemPotion {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0, 3, 6 -> list.add("It stinks.");
-            case 1 -> list.add("Korn? Eww, you'll get a headache!");
-            case 2 -> list.add("Doppelkorn? German Vodka!");
-            case 4, 7 -> list.add("Too Strong.");
-            case 5 -> list.add("Soo Sweet");
+            case 0, 3, 6 -> list.add(StatCollector.translateToLocal("bpp.tooltip.potion.0"));
+            case 1 -> list.add(StatCollector.translateToLocal("bpp.tooltip.potion.1"));
+            case 2 -> list.add(StatCollector.translateToLocal("bpp.tooltip.potion.2"));
+            case 4, 7 -> list.add(StatCollector.translateToLocal("bpp.tooltip.potion.3"));
+            case 5 -> list.add(StatCollector.translateToLocal("bpp.tooltip.potion.4"));
             case 8, 9 -> {
-                list.add("Das ist des Jägers' Ehrenschild,");
-                list.add("dass er beschützt und hegt sein Wild,");
-                list.add("weidmännisch jagt, wie sich's gehört,");
-                list.add("den Schöpfer im Geschöpfe ehrt.");
+                Collections.addAll(list, GTUtility.breakLines(StatCollector.translateToLocal("bpp.tooltip.potion.5")));
                 list.add("");
                 if (stack.getItemDamage() == 8) {
-                    list.add("It will give 1h potioneffects!");
+                    list.add(StatCollector.translateToLocal("bpp.tooltip.potion.6"));
                 } else {
-                    list.add("It smells like fake Jägermeister...");
+                    list.add(StatCollector.translateToLocal("bpp.tooltip.potion.7"));
                 }
 
             }
