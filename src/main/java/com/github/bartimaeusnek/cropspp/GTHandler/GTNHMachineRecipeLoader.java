@@ -74,11 +74,11 @@ public class GTNHMachineRecipeLoader implements Runnable {
                 .duration(15 * SECONDS).eut(2).addTo(compressorRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(Materials.GraniteRed.getPlates(4))
-                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3, 8)).duration(15 * SECONDS).eut(2)
+                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3, 8)).duration(5 * SECONDS).eut(2)
                 .addTo(compressorRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(Materials.GraniteBlack.getPlates(4))
-                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3)).duration(15 * SECONDS).eut(2)
+                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3)).duration(5 * SECONDS).eut(2)
                 .addTo(compressorRecipes);
 
         // honey related
