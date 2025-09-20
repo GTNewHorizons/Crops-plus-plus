@@ -70,22 +70,15 @@ public class GTNHMachineRecipeLoader implements Runnable {
         GTValues.RA.stdBuilder().itemInputs(Materials.Marble.getDust(9)).itemOutputs(Materials.Marble.getBlocks(1))
                 .duration(15 * SECONDS).eut(2).addTo(compressorRecipes);
 
-        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteRed.getDust(1))
-                .itemOutputs(Materials.GraniteRed.getPlates(1)).duration(15 * SECONDS).eut(2).addTo(compressorRecipes);
-
-        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteBlack.getDust(1))
-                .itemOutputs(Materials.GraniteBlack.getPlates(1)).duration(15 * SECONDS).eut(2)
-                .addTo(compressorRecipes);
-
         GTValues.RA.stdBuilder().itemInputs(Materials.Stone.getPlates(9)).itemOutputs(new ItemStack(Blocks.stone))
                 .duration(15 * SECONDS).eut(2).addTo(compressorRecipes);
 
-        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteRed.getPlates(9))
-                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 1, 8)).duration(15 * SECONDS).eut(2)
+        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteRed.getPlates(4))
+                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3, 8)).duration(15 * SECONDS).eut(2)
                 .addTo(compressorRecipes);
 
-        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteBlack.getPlates(9))
-                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites)).duration(15 * SECONDS).eut(2)
+        GTValues.RA.stdBuilder().itemInputs(Materials.GraniteBlack.getPlates(4))
+                .itemOutputs(new ItemStack(GregTechAPI.sBlockGranites, 3)).duration(15 * SECONDS).eut(2)
                 .addTo(compressorRecipes);
 
         // honey related
