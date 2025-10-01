@@ -4,7 +4,7 @@ dependencies {
     api("com.github.GTNewHorizons:CropLoadCore:0.2.0:dev")
     api("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
 
-    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.52.02:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.52.03-pre:dev")
     compileOnly(deobf("https://mediafilez.forgecdn.net/files/2499/612/BiomesOPlenty-1.7.10-2.1.0.2308-universal.jar"))
     compileOnly("com.github.GTNewHorizons:twilightforest:2.7.13:dev") {
         transitive = false
