@@ -3,21 +3,17 @@ package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
 import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 
-import gregtech.api.GregTechAPI;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.objects.ItemData;
 import gregtech.api.objects.XSTR;
 import gregtech.api.util.GTOreDictUnificator;
-import gregtech.common.blocks.BlockOresAbstract;
-import gregtech.common.blocks.TileEntityOres;
+import gregtech.common.ores.OreInfo;
+import gregtech.common.ores.OreManager;
 import ic2.api.crops.ICropTile;
 
 public class GarnydniaCrop extends BasicCrop {
@@ -97,34 +93,14 @@ public class GarnydniaCrop extends BasicCrop {
         }
 
         for (int i = 1; i < this.getrootslength(aCrop); ++i) {
-            Block tBlock = aCrop.getWorld()
-                    .getBlock(aCrop.getLocation().posX, aCrop.getLocation().posY - i, aCrop.getLocation().posZ);
+            int x = aCrop.getLocation().posX;
+            int y = aCrop.getLocation().posY - i;
+            int z = aCrop.getLocation().posZ;
 
-            if (tBlock instanceof BlockOresAbstract) {
-                TileEntity tTileEntity = aCrop.getWorld().getTileEntity(
-                        aCrop.getLocation().posX,
-                        aCrop.getLocation().posY - i,
-                        aCrop.getLocation().posZ);
-                if (tTileEntity instanceof TileEntityOres) {
-                    Materials tMaterial = GregTechAPI.sGeneratedMaterials[((TileEntityOres) tTileEntity).mMetaData
-                            % 1000];
-                    if (tMaterial != null && tMaterial != Materials._NULL) {
-                        return tMaterial == Materials.GarnetRed || tMaterial == Materials.GarnetYellow;
-                    }
-                }
-            } else {
-                int tMetaID = aCrop.getWorld().getBlockMetadata(
-                        aCrop.getLocation().posX,
-                        aCrop.getLocation().posY - i,
-                        aCrop.getLocation().posZ);
-                ItemData tAssotiation = GTOreDictUnificator.getAssociation(new ItemStack(tBlock, 1, tMetaID));
-                if (tAssotiation != null
-                        && (tAssotiation.mPrefix.toString().startsWith("ore")
-                                || tAssotiation.mPrefix == OrePrefixes.block)
-                        && (tAssotiation.mMaterial.mMaterial == Materials.GarnetRed
-                                || tAssotiation.mMaterial.mMaterial == Materials.GarnetYellow)) {
-                    return true;
-                }
+            try (OreInfo<?> info = OreManager.getOreInfo(aCrop.getWorld(), x, y, z)) {
+                if (info == null) continue;
+
+                if (info.material == Materials.GarnetRed || info.material == Materials.GarnetYellow) return true;
             }
         }
 
