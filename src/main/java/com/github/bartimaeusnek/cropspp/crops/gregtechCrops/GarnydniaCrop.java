@@ -3,6 +3,7 @@ package com.github.bartimaeusnek.cropspp.crops.gregtechCrops;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 import com.github.bartimaeusnek.cropspp.ConfigValues;
@@ -10,10 +11,9 @@ import com.github.bartimaeusnek.cropspp.abstracts.BasicCrop;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.objects.ItemData;
 import gregtech.api.objects.XSTR;
 import gregtech.api.util.GTOreDictUnificator;
-import gregtech.common.ores.OreInfo;
-import gregtech.common.ores.OreManager;
 import ic2.api.crops.ICropTile;
 
 public class GarnydniaCrop extends BasicCrop {
@@ -97,15 +97,18 @@ public class GarnydniaCrop extends BasicCrop {
             int y = aCrop.getLocation().posY - i;
             int z = aCrop.getLocation().posZ;
 
-            try (OreInfo<?> info = OreManager.getOreInfo(aCrop.getWorld(), x, y, z)) {
-                if (info == null) continue;
+            Block block = aCrop.getWorld().getBlock(x, y, z);
+            int itemMeta = block.getDamageValue(aCrop.getWorld(), x, y, z);
 
-                if (info.material == Materials.GarnetRed || info.material == Materials.GarnetYellow) return true;
-            }
+            ItemData data = GTOreDictUnificator.getAssociation(new ItemStack(block, 1, itemMeta));
+
+            if (data == null) continue;
+
+            if (data.mMaterial.mMaterial == Materials.GarnetRed) return true;
+            if (data.mMaterial.mMaterial == Materials.GarnetYellow) return true;
         }
 
         return false;
-
     }
 
     @Override
