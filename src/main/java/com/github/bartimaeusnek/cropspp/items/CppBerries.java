@@ -76,7 +76,7 @@ public class CppBerries extends ItemFood {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
             case 0 -> {
-                list.add("Huckle-dae-Duckle-dae-Doo");
+                list.add("I'm your huckleberry.");
                 list.add("A sweet treat!");
             }
             case 1 -> {
