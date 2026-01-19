@@ -1,32 +1,32 @@
 // Add your dependencies here
 
 dependencies {
-    api("com.github.GTNewHorizons:CropLoadCore:0.2.0:dev")
+    api("com.github.GTNewHorizons:CropLoadCore:0.3.0:dev")
     api("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
 
-    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.52.31:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:GT5-Unofficial:5.09.52.218:dev")
     compileOnly(deobf("https://mediafilez.forgecdn.net/files/2499/612/BiomesOPlenty-1.7.10-2.1.0.2308-universal.jar"))
-    compileOnly("com.github.GTNewHorizons:twilightforest:2.7.13:dev") {
+    compileOnly("com.github.GTNewHorizons:twilightforest:2.7.16:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:TinkersConstruct:1.14.4-GTNH:dev")
-    compileOnly("com.github.GTNewHorizons:Natura:2.8.9:dev") {
+    compileOnly("com.github.GTNewHorizons:TinkersConstruct:1.14.20-GTNH:dev")
+    compileOnly("com.github.GTNewHorizons:Natura:2.8.12:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.8.17:dev") {
+    compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.8.108:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:Galacticraft:3.4.2-GTNH:dev") {
+    compileOnly("com.github.GTNewHorizons:Galacticraft:3.4.15-GTNH:dev") {
         transitive = false
     }
     compileOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
 
     // for testing
     //runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
-    //runtimeOnly("com.github.GTNewHorizons:twilightforest:2.7.13:dev")
-    //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.14.4-GTNH:dev")
-    //runtimeOnly("com.github.GTNewHorizons:EnderIO:2.10.0:dev")
-    //runtimeOnly("com.github.GTNewHorizons:Natura:2.8.9:dev")
-    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.8.17:dev")
-    //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.4.2-GTNH:dev")
+    //runtimeOnly("com.github.GTNewHorizons:twilightforest:2.7.16:dev")
+    //runtimeOnly("com.github.GTNewHorizons:TinkersConstruct:1.14.20-GTNH:dev")
+    //runtimeOnly("com.github.GTNewHorizons:EnderIO:2.10.15:dev")
+    //runtimeOnly("com.github.GTNewHorizons:Natura:2.8.12:dev")
+    //runtimeOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.8.108:dev")
+    //runtimeOnly("com.github.GTNewHorizons:Galacticraft:3.4.15-GTNH:dev")
 }
