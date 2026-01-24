@@ -1,5 +1,6 @@
 package com.github.bartimaeusnek.cropspp.GTHandler.machines;
 
+import static com.gtnewhorizon.gtnhlib.util.numberformatting.NumberFormatUtil.formatNumber;
 import static gregtech.api.enums.GTValues.V;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -251,7 +252,7 @@ public class CropWeedPicker extends MTEHatch {
                                 .setBackground(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_IN)
                                 .setPos(79, 16))
                 .widget(new TextWidget("Liquid Amount").setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 20)).widget(
-                        TextWidget.dynamicString(() -> GTUtility.formatNumbers(mFluid != null ? mFluid.amount : 0))
+                        TextWidget.dynamicString(() -> formatNumber(mFluid != null ? mFluid.amount : 0))
                                 .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(10, 30));
     }
 }
