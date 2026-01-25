@@ -6,6 +6,7 @@ import static gregtech.api.enums.Mods.GalacticraftCore;
 import static gregtech.api.enums.Mods.Natura;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.recipe.RecipeMaps.brewingRecipes;
+import static gregtech.api.recipe.RecipeMaps.cannerRecipes;
 import static gregtech.api.recipe.RecipeMaps.centrifugeRecipes;
 import static gregtech.api.recipe.RecipeMaps.chemicalReactorRecipes;
 import static gregtech.api.recipe.RecipeMaps.compressorRecipes;
@@ -14,7 +15,6 @@ import static gregtech.api.recipe.RecipeMaps.distilleryRecipes;
 import static gregtech.api.recipe.RecipeMaps.extractorRecipes;
 import static gregtech.api.recipe.RecipeMaps.extruderRecipes;
 import static gregtech.api.recipe.RecipeMaps.fermentingRecipes;
-import static gregtech.api.recipe.RecipeMaps.fluidCannerRecipes;
 import static gregtech.api.recipe.RecipeMaps.fluidExtractionRecipes;
 import static gregtech.api.recipe.RecipeMaps.maceratorRecipes;
 import static gregtech.api.recipe.RecipeMaps.mixerRecipes;
@@ -111,11 +111,11 @@ public class GTNHMachineRecipeLoader implements Runnable {
 
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(CppItems.CppPotions, 1, i))
                     .itemOutputs(new ItemStack(Items.glass_bottle)).fluidOutputs(new FluidStack(potion, 250))
-                    .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
+                    .duration(4 * TICKS).eut(1).addTo(cannerRecipes);
 
             GTValues.RA.stdBuilder().itemInputs(new ItemStack(Items.glass_bottle))
                     .itemOutputs(new ItemStack(CppItems.CppPotions, 1, i)).fluidInputs(new FluidStack(potion, 250))
-                    .duration(4 * TICKS).eut(1).addTo(fluidCannerRecipes);
+                    .duration(4 * TICKS).eut(1).addTo(cannerRecipes);
 
         }
 
