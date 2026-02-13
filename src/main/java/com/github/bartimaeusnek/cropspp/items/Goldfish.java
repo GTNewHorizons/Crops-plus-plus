@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
@@ -21,8 +22,8 @@ public class Goldfish extends ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
-        list.add("Hozuki no Reitetsu! A truely hellish planimal?!");
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean par4) {
+        tooltip.add(StatCollector.translateToLocal("item.foodGoldfish.tooltip"));
     }
 
     @Override
